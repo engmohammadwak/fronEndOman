@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (AI Inference / Latency) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Fixed Store Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary font-black text-xl shadow">
+            TP
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">محركات الذكاء الاصطناعي والتسعير الديناميكي</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع النماذج</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="rec">محركات التوصية</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="pricing">التسعير الذكي</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="semantic">البحث الدلالي</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن استعلام دلالي، نموذج، أو كود خوارزمية..." type="text"/>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <div class="flex items-center gap-2 bg-surface-container-highest/10 px-3 py-1.5 rounded-lg">
+            <span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed animate-pulse"></span>
+            <span class="text-xs text-surface-container-lowest font-bold">Vector DB: متصل لحظياً</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">محركات التوصية والأسعار</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">تحليلات البحث الدلالي</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">محاكي الاستنتاج (Inference Sandbox)</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">ضوابط وحوكمة الذكاء الاصطناعي</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">psychology</span>
+            <span>بنية تحتية متوافقة مع SDAIA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full text-on-surface">
+      
+      <!-- Top Hub Navigation Bar / Breadcrumbs & Telemetry Badges -->
+      <section class="w-full bg-surface-container-low px-space-md lg:px-space-xl py-space-md shadow-sm border-b border-outline-variant/10">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+          <div class="flex flex-col gap-space-2xs">
+            <div class="flex items-center gap-space-xs text-secondary text-xs font-semibold flex-wrap">
+              <a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+                <span class="material-symbols-outlined text-base">home</span>
+                <span>الرئيسية</span>
+              </a>
+              <span class="material-symbols-outlined text-xs rotate-180">chevron_left</span>
+              <span class="hover:text-primary transition-colors cursor-pointer">إدارة الذكاء الاصطناعي</span>
+              <span class="material-symbols-outlined text-xs rotate-180">chevron_left</span>
+              <span class="text-on-surface font-bold">محركات التوصيات والأسعار الذكية</span>
+            </div>
+            <div class="flex items-center gap-space-sm flex-wrap mt-1">
+              <div class="inline-flex items-center gap-space-xs bg-surface-container-lowest px-3 py-1 rounded-full shadow-sm border border-outline-variant/10">
+                <span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+                <span class="text-xs font-mono font-bold text-primary">TechPro-Recommender v3.4</span>
+                <span class="text-[10px] bg-tertiary/10 text-tertiary font-bold px-1.5 py-0.5 rounded-full">نشط لحظياً</span>
+              </div>
+              <div class="inline-flex items-center gap-space-xs bg-surface-container-lowest px-3 py-1 rounded-full shadow-sm border border-outline-variant/10">
+                <span class="material-symbols-outlined text-tertiary text-sm">verified</span>
+                <span class="text-xs text-on-surface">دقة التنبؤ: <span class="font-bold font-mono text-tertiary">94.8%</span></span>
+              </div>
+              <div class="inline-flex items-center gap-space-xs bg-surface-container-lowest px-3 py-1 rounded-full shadow-sm border border-outline-variant/10">
+                <span class="material-symbols-outlined text-primary-container text-sm">speed</span>
+                <span class="text-xs text-on-surface">زمن الاستنتاج: <span class="font-bold font-mono text-primary">18ms</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Controls -->
+          <div class="flex items-center gap-space-xs sm:gap-space-sm flex-wrap text-xs font-bold">
+            <button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-2.5 rounded-lg transition-all shadow-sm active:scale-95 flex items-center gap-1" id="retrain-btn">
+              <span class="material-symbols-outlined text-base" id="retrain-icon">sync</span>
+              <span id="retrain-text">إعادة تدريب النموذج الفوري</span>
+            </button>
+            <button onclick="toggleAbModal(true)" class="bg-surface-container-lowest hover:bg-surface-variant text-on-surface px-space-md py-2.5 rounded-lg transition-colors shadow-sm flex items-center gap-1 border border-outline-variant/10 active:scale-95">
+              <span class="material-symbols-outlined text-base text-primary">science</span>
+              <span>اختبار A/B مباشر</span>
+            </button>
+            <button onclick="alert('تم تنزيل تقرير الأثر المالي وتحويلات الذكاء الاصطناعي (TechPro-AI-Impact.pdf)')" class="bg-surface-container-lowest hover:bg-surface-variant text-secondary px-space-sm py-2.5 rounded-lg transition-colors shadow-sm flex items-center gap-1 border border-outline-variant/10 active:scale-95" title="تصدير التقرير">
+              <span class="material-symbols-outlined text-base">picture_as_pdf</span>
+              <span class="hidden sm:inline">تقرير الأثر</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-lg w-full flex flex-col gap-space-xl">
+        
+        <!-- Top KPI Performance Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+          <!-- KPI 1 -->
+          <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/10 relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="text-secondary text-xs font-bold">إيرادات مدفوعة بالذكاء الاصطناعي</span>
+                <span class="text-2xl font-black text-on-surface mt-1 font-mono">4,820,500 <span class="text-xs text-secondary font-normal font-sans">ر.س</span></span>
+              </div>
+              <div class="p-2 bg-primary-fixed rounded-lg text-on-primary-fixed">
+                <span class="material-symbols-outlined text-xl">payments</span>
+              </div>
+            </div>
+            <div class="mt-space-md pt-space-xs flex items-center justify-between text-xs border-t border-outline-variant/10">
+              <div class="flex items-center gap-1 text-tertiary font-bold">
+                <span class="material-symbols-outlined text-sm">trending_up</span>
+                <span class="font-mono">+16.8%</span>
+                <span class="text-secondary text-[11px] font-normal">شهرياً</span>
+              </div>
+              <span class="text-[11px] text-secondary bg-surface-container-low px-2 py-0.5 rounded-full font-bold">31.4% من المبيعات</span>
+            </div>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/10 relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="text-secondary text-xs font-bold">معدل نقر وتحويل التوصيات</span>
+                <div class="flex items-baseline gap-2 mt-1 font-mono">
+                  <span class="text-2xl font-black text-on-surface">8.4%</span>
+                  <span class="text-[11px] text-secondary font-sans">نقر</span>
+                  <span class="text-lg font-black text-tertiary mr-1">4.1%</span>
+                  <span class="text-[11px] text-secondary font-sans">تحويل</span>
+                </div>
+              </div>
+              <div class="p-2 bg-secondary-fixed rounded-lg text-on-secondary-fixed">
+                <span class="material-symbols-outlined text-xl">ads_click</span>
+              </div>
+            </div>
+            <div class="mt-space-md pt-space-xs flex items-center justify-between text-xs border-t border-outline-variant/10">
+              <div class="flex items-center gap-1 text-tertiary font-bold">
+                <span class="material-symbols-outlined text-sm">rocket_launch</span>
+                <span class="font-mono">+2.4x</span>
+                <span class="text-secondary text-[11px] font-normal">المعدل</span>
+              </div>
+              <svg class="w-20 h-5 text-primary" fill="none" viewBox="0 0 80 24">
+                <path d="M0 20 L15 17 L30 14 L45 16 L60 8 L75 4 L80 2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/10 relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="text-secondary text-xs font-bold">استعلامات البحث الدلالي اليومية</span>
+                <span class="text-2xl font-black text-on-surface mt-1 font-mono">384,120</span>
+              </div>
+              <div class="p-2 bg-primary-fixed rounded-lg text-on-primary-fixed">
+                <span class="material-symbols-outlined text-xl">manage_search</span>
+              </div>
+            </div>
+            <div class="mt-space-md pt-space-xs flex items-center justify-between text-xs border-t border-outline-variant/10">
+              <div class="flex items-center gap-1 text-secondary font-bold">
+                <span class="material-symbols-outlined text-sm text-primary">timer</span>
+                <span class="font-mono">22ms زمن المطابقة</span>
+              </div>
+              <span class="text-[11px] text-tertiary font-bold bg-surface-container-low px-2 py-0.5 rounded-full">دقة 98.2%</span>
+            </div>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/10 relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="text-secondary text-xs font-bold">الأجهزة المعاد تسعيرها لحظياً</span>
+                <span class="text-2xl font-black text-on-surface mt-1 font-mono">1,420 <span class="text-xs text-secondary font-normal font-sans">SKU</span></span>
+              </div>
+              <div class="p-2 bg-secondary-fixed rounded-lg text-on-secondary-fixed">
+                <span class="material-symbols-outlined text-xl">price_change</span>
+              </div>
+            </div>
+            <div class="mt-space-md pt-space-xs flex items-center justify-between text-xs border-t border-outline-variant/10">
+              <div class="flex items-center gap-1 text-tertiary font-bold">
+                <span class="material-symbols-outlined text-sm">shield</span>
+                <span>حماية الهامش</span>
+              </div>
+              <span class="text-[11px] text-on-surface-variant font-bold bg-surface-container-low px-2 py-0.5 rounded-full">تحديث كل 10 د</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Operational Workspace Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+          
+          <!-- Left Column: Active AI Engines & Semantic Insights -->
+          <div class="lg:col-span-8 flex flex-col gap-space-xl">
+            
+            <!-- Section A: Active AI Engines -->
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden">
+              <div class="p-space-md sm:p-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-low/50 border-b border-outline-variant/10">
+                <div>
+                  <h2 class="text-base font-bold text-on-surface">نماذج الذكاء الاصطناعي وخوارزميات التوصية النشطة</h2>
+                  <p class="text-xs text-secondary mt-0.5">مراقبة دقة التوزيع، حساسية النماذج، والعائد على الاستثمار لكل محرك استنتاج لحظي</p>
+                </div>
+                <div class="flex items-center gap-space-xs">
+                  <span class="text-xs text-tertiary font-bold bg-tertiary/10 px-2.5 py-1 rounded-full flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> 4 نماذج متزامنة
+                  </span>
+                </div>
+              </div>
+
+              <!-- Strategy Item 1 -->
+              <div class="p-space-md sm:p-space-lg flex flex-col gap-space-sm transition-colors hover:bg-surface-container-low/30 border-b border-outline-variant/10">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+                  <div class="flex items-center gap-space-sm">
+                    <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+                      <span class="material-symbols-outlined">join_inner</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-space-xs flex-wrap">
+                        <h3 class="text-sm font-bold text-on-surface">غالباً ما يُشترى معاً (Frequently Bought Together)</h3>
+                        <span class="text-[11px] bg-secondary-fixed text-on-secondary-fixed font-bold font-mono px-2 py-0.5 rounded-full">Graph Embeddings</span>
+                      </div>
+                      <p class="text-xs text-secondary mt-0.5">ربط تلقائي: مثل شاحن MagSafe 25W وحماية شاشة مع هواتف iPhone 15 Pro Max</p>
+                    </div>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer shrink-0">
+                    <input checked="" class="sr-only peer" type="checkbox"/>
+                    <div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:bg-primary transition-colors after:content-[''] after:absolute after:top-[2px] after:right-[2px] peer-checked:after:-translate-x-5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-transform"></div>
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs pt-space-xs bg-surface-container-low p-space-sm rounded-lg text-xs border border-outline-variant/10">
+                  <div>
+                    <span class="text-[11px] text-secondary block">معدل القبول</span>
+                    <span class="font-bold text-tertiary font-mono">34.2%</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">عائد مالي إضافي</span>
+                    <span class="font-bold text-on-surface font-mono">620,000 ر.س</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">حساسية المطابقة</span>
+                    <span class="font-bold text-primary font-mono">0.82 Cosine</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">حالة الاختبار</span>
+                    <span class="font-bold text-secondary">Champion A</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Strategy Item 2 -->
+              <div class="p-space-md sm:p-space-lg flex flex-col gap-space-sm transition-colors hover:bg-surface-container-low/30 border-b border-outline-variant/10">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+                  <div class="flex items-center gap-space-sm">
+                    <div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0">
+                      <span class="material-symbols-outlined">autorenew</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-space-xs flex-wrap">
+                        <h3 class="text-sm font-bold text-on-surface">التوصية بالأجهزة المجددة البديلة (Refurbished Swap)</h3>
+                        <span class="text-[11px] bg-tertiary-fixed-dim/40 text-tertiary font-bold font-mono px-2 py-0.5 rounded-full">Decision Trees GBDT</span>
+                      </div>
+                      <p class="text-xs text-secondary mt-0.5">اقتراح جهاز مجدد درجة A+ عند تصفح أجهزة مرتفعة السعر أو عند نفاد الجديد</p>
+                    </div>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer shrink-0">
+                    <input checked="" class="sr-only peer" type="checkbox"/>
+                    <div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:bg-primary transition-colors after:content-[''] after:absolute after:top-[2px] after:right-[2px] peer-checked:after:-translate-x-5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-transform"></div>
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs pt-space-xs bg-surface-container-low p-space-sm rounded-lg text-xs border border-outline-variant/10">
+                  <div>
+                    <span class="text-[11px] text-secondary block">معدل تحويل السلة</span>
+                    <span class="font-bold text-tertiary font-mono">19.8%</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">توفير للعميل</span>
+                    <span class="font-bold text-on-surface font-mono">متوسط 850 ر.س</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">المخزون الراكد</span>
+                    <span class="font-bold text-primary font-mono">-41% أيام تخزين</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">الضمان المرافق</span>
+                    <span class="font-bold text-secondary">عامين ذهبي تلقائي</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Strategy Item 3 -->
+              <div class="p-space-md sm:p-space-lg flex flex-col gap-space-sm transition-colors hover:bg-surface-container-low/30 border-b border-outline-variant/10">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+                  <div class="flex items-center gap-space-sm">
+                    <div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
+                      <span class="material-symbols-outlined">person_search</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-space-xs flex-wrap">
+                        <h3 class="text-sm font-bold text-on-surface">التوصيات الشخصية المعززة بالسلوك (Collaborative Vectors)</h3>
+                        <span class="text-[11px] bg-secondary-fixed text-on-secondary-fixed font-bold font-mono px-2 py-0.5 rounded-full">Neural Retrieval</span>
+                      </div>
+                      <p class="text-xs text-secondary mt-0.5">تخصيص مساحات العرض في الصفحة الرئيسية فورياً حسب سجل المشاهدات والميزانية</p>
+                    </div>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer shrink-0">
+                    <input checked="" class="sr-only peer" type="checkbox"/>
+                    <div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:bg-primary transition-colors after:content-[''] after:absolute after:top-[2px] after:right-[2px] peer-checked:after:-translate-x-5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-transform"></div>
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs pt-space-xs bg-surface-container-low p-space-sm rounded-lg text-xs border border-outline-variant/10">
+                  <div>
+                    <span class="text-[11px] text-secondary block">عمق الجلسة</span>
+                    <span class="font-bold text-tertiary font-mono">+3.8 صفحات</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">تحديث المتجهات</span>
+                    <span class="font-bold text-on-surface">لحظي (Live)</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">Cold Start</span>
+                    <span class="font-bold text-primary">بعد 3 تفاعلات</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">استهلاك الذاكرة</span>
+                    <span class="font-bold text-secondary font-mono">1.2 GB Redis</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Strategy Item 4 -->
+              <div class="p-space-md sm:p-space-lg flex flex-col gap-space-sm transition-colors hover:bg-surface-container-low/30">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+                  <div class="flex items-center gap-space-sm">
+                    <div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary shrink-0">
+                      <span class="material-symbols-outlined">trending_down</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-space-xs flex-wrap">
+                        <h3 class="text-sm font-bold text-on-surface">التسعير التنبؤي التنافسي (Dynamic Repricing Engine)</h3>
+                        <span class="text-[11px] bg-primary-fixed text-on-primary-fixed font-bold font-mono px-2 py-0.5 rounded-full">Market Scraper AI</span>
+                      </div>
+                      <p class="text-xs text-secondary mt-0.5">تتبع أسعار المتاجر التقنية الكبرى وتعديل أسعار الأجهزة ضمن هوامش محددة مسبقاً</p>
+                    </div>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer shrink-0">
+                    <input checked="" class="sr-only peer" type="checkbox"/>
+                    <div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:bg-primary transition-colors after:content-[''] after:absolute after:top-[2px] after:right-[2px] peer-checked:after:-translate-x-5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-transform"></div>
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs pt-space-xs bg-surface-container-low p-space-sm rounded-lg text-xs border border-outline-variant/10">
+                  <div>
+                    <span class="text-[11px] text-secondary block">أجهزة نشطة</span>
+                    <span class="font-bold text-tertiary font-mono">1,420 SKU</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">حماية الهامش</span>
+                    <span class="font-bold text-on-surface font-mono">حد أدنى 9.5%</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">صندوق الشراء Buy Box</span>
+                    <span class="font-bold text-primary font-mono">87.4% نجاح</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] text-secondary block">أقصى تعديل يومي</span>
+                    <span class="font-bold text-secondary font-mono">3% لكل منتج</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section B: Semantic Search Insights -->
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 p-space-md sm:p-space-lg flex flex-col gap-space-md">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+                <div>
+                  <h2 class="text-base font-bold text-on-surface">تحليلات البحث الدلالي والفهم اللغوي للهجة السعودية</h2>
+                  <p class="text-xs text-secondary mt-0.5">كيف قام محرك المتجهات بمعالجة عمليات البحث وتوجيه المتسوقين للمنتجات بدقة 96.5%</p>
+                </div>
+                <div class="flex items-center gap-2 bg-tertiary/10 text-tertiary px-3 py-1 rounded-lg text-xs font-bold self-start sm:self-auto">
+                  <span class="material-symbols-outlined text-base">translate</span>
+                  <span>معالجة اللهجات: نشط</span>
+                </div>
+              </div>
+
+              <!-- Query Processing Cards -->
+              <div class="grid grid-cols-1 gap-space-sm mt-space-xs">
+                <!-- Query 1 -->
+                <div class="bg-surface-container-low rounded-lg p-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md border border-outline-variant/10">
+                  <div class="flex items-start gap-space-sm">
+                    <div class="p-2 bg-surface-container-lowest rounded-lg text-primary shrink-0 shadow-sm border border-outline-variant/10">
+                      <span class="material-symbols-outlined text-base">search</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-space-xs flex-wrap">
+                        <span class="font-bold text-on-surface text-xs">"جوال ضد المويه بطاريه يومين"</span>
+                        <span class="text-[10px] bg-error/10 text-error px-2 py-0.5 rounded-full font-bold">صفر مطابقة حرفية</span>
+                        <span class="material-symbols-outlined text-xs text-tertiary rotate-180">arrow_forward</span>
+                        <span class="text-[10px] bg-tertiary/15 text-tertiary px-2 py-0.5 rounded-full font-bold">تم الفهم الدلالي</span>
+                      </div>
+                      <p class="text-xs text-secondary mt-1">
+                        التصنيف المستنتج: معيار مقاومة الماء IP68 + سعة بطارية ≥ 4500mAh.
+                      </p>
+                      <div class="flex items-center gap-space-xs mt-2 text-xs text-primary font-bold flex-wrap">
+                        <span class="text-[11px] text-secondary font-normal">المنتجات المقترحة:</span>
+                        <span class="bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm text-on-surface text-[11px] border border-outline-variant/10">iPhone 15 Pro Max</span>
+                        <span class="bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm text-on-surface text-[11px] border border-outline-variant/10">Samsung Galaxy S24 Ultra</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex md:flex-col items-end justify-between md:justify-center shrink-0 border-t md:border-t-0 pt-2 md:pt-0 text-xs">
+                    <span class="text-secondary text-[11px]">حجم البحث الشهري</span>
+                    <span class="text-sm font-bold font-mono text-on-surface">4,190 استعلام</span>
+                    <span class="text-[11px] text-tertiary font-bold font-mono">تحويل 7.8%</span>
+                  </div>
+                </div>
+
+                <!-- Query 2 -->
+                <div class="bg-surface-container-low rounded-lg p-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md border border-outline-variant/10">
+                  <div class="flex items-start gap-space-sm">
+                    <div class="p-2 bg-surface-container-lowest rounded-lg text-primary shrink-0 shadow-sm border border-outline-variant/10">
+                      <span class="material-symbols-outlined text-base">search</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-space-xs flex-wrap">
+                        <span class="font-bold text-on-surface text-xs">"ايفون مستعمل نظيف ضمان سنتين"</span>
+                        <span class="text-[10px] bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full font-bold">مركب</span>
+                        <span class="material-symbols-outlined text-xs text-tertiary rotate-180">arrow_forward</span>
+                        <span class="text-[10px] bg-tertiary/15 text-tertiary px-2 py-0.5 rounded-full font-bold">تطبيق فلاتر تلقائية</span>
+                      </div>
+                      <p class="text-xs text-secondary mt-1">
+                        التصنيف المستنتج: قسم الأجهزة المجددة + فلترة: درجة +A الممتازة + الضمان الذهبي لعامين.
+                      </p>
+                      <div class="flex items-center gap-space-xs mt-2 text-xs text-primary font-bold flex-wrap">
+                        <span class="text-[11px] text-secondary font-normal">المنتجات المقترحة:</span>
+                        <span class="bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm text-on-surface text-[11px] border border-outline-variant/10">قسم المجدد (iPhone 13 & 14 Pro)</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex md:flex-col items-end justify-between md:justify-center shrink-0 border-t md:border-t-0 pt-2 md:pt-0 text-xs">
+                    <span class="text-secondary text-[11px]">حجم البحث الشهري</span>
+                    <span class="text-sm font-bold font-mono text-on-surface">9,820 استعلام</span>
+                    <span class="text-[11px] text-tertiary font-bold font-mono">تحويل 11.2%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Live Inference Sandbox & Guardrails -->
+          <div class="lg:col-span-4 flex flex-col gap-space-xl">
+            
+            <!-- Section C: Live Inference Sandbox -->
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 p-space-md sm:p-space-lg flex flex-col gap-space-md">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-primary text-2xl">science</span>
+                  <h2 class="text-base font-bold text-on-surface">محاكي التوصية الفوري</h2>
+                </div>
+                <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold font-mono">Sandbox</span>
+              </div>
+              <p class="text-xs text-secondary">اختبر سلوك خوارزمية الذكاء الاصطناعي وتفسير قراراتها لأي ملف عميل افتراضي</p>
+
+              <div class="flex flex-col gap-space-sm mt-space-2xs text-xs">
+                <div>
+                  <label class="block font-bold text-on-surface mb-1">ملف العميل الافتراضي (User Persona)</label>
+                  <select class="w-full bg-surface-container-low text-on-surface p-2.5 rounded-lg border border-outline-variant/30 focus:border-primary focus:outline-none transition-colors" id="persona-select">
+                    <option value="gamer">باحث عن أجهزة قيمنق وميزانية 7,000 ر.س</option>
+                    <option value="apple-loyal">مستخدم Apple يبحث عن ترقية سنوية</option>
+                    <option value="budget-student">طالب جامعي يبحث عن لابتوب بـ 2,500 ر.س</option>
+                    <option value="deal-hunter">صياد عروض متمرس في الأجهزة المجددة +A</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block font-bold text-on-surface mb-1">مكان التوصية (Placement Context)</label>
+                  <select class="w-full bg-surface-container-low text-on-surface p-2.5 rounded-lg border border-outline-variant/30 focus:border-primary focus:outline-none transition-colors" id="placement-select">
+                    <option value="cart">سلة المشتريات (Pre-Checkout Drawer)</option>
+                    <option value="pdp">صفحة تفاصيل المنتج (PDP Related)</option>
+                    <option value="home">واجهة الصفحة الرئيسية المخصصة</option>
+                  </select>
+                </div>
+
+                <button class="w-full bg-primary hover:bg-primary-container text-on-primary py-2.5 rounded-lg font-bold transition-all shadow-sm active:scale-95 flex items-center justify-center gap-space-xs mt-space-xs" id="run-inference-btn">
+                  <span class="material-symbols-outlined text-base" id="infer-icon">play_arrow</span>
+                  <span id="infer-text">محاكاة التوصية (Run Inference)</span>
+                </button>
+              </div>
+
+              <!-- Inference Result Output -->
+              <div class="bg-surface-container-low rounded-lg p-space-md mt-space-2xs flex flex-col gap-space-sm border border-outline-variant/10 text-xs" id="result-box">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1 text-tertiary font-bold">
+                    <span class="material-symbols-outlined text-base">check_circle</span>
+                    <span>درجة الثقة: <span class="font-mono" id="conf-score">98.4%</span></span>
+                  </div>
+                  <span class="text-secondary font-mono">14ms</span>
+                </div>
+
+                <div class="flex items-center gap-space-sm bg-surface-container-lowest p-space-xs rounded-lg shadow-sm border border-outline-variant/10">
+                  <div class="w-14 h-14 rounded-md bg-surface-container-high overflow-hidden shrink-0 relative flex items-center justify-center">
+                    <img class="w-full h-full object-cover transition-opacity duration-300" id="rec-img" alt="صورة المنتج الموصى به" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBd_44WmVDRtzgxp9Suc5FqWdA9qaY9UjJei5P-13V2IZJvYx0WEWg3ZP-YrDxMJRZXmmtFhaTzMUAX0PyFdglODOK-Z1pSneUZk-zv5ZoV7BPHV3BT7dKYWVijU9oAQ2lvkXx6eOQrBqO-gPDIYSY_Tb2IqkaR4hkoRejbenFKmL1IoKK9jGxQXVvSzPCsxg3X5ZGN4XHAHY2XS-a4FMuXx5ikO8GM7ibxfSpe5GU-wWbR1pAkFIXUA"/>
+                  </div>
+                  <div class="flex flex-col min-w-0 flex-1">
+                    <span class="font-bold text-on-surface truncate" id="rec-title">شاشة ASUS ROG Swift OLED 27 بوصة</span>
+                    <span class="text-[11px] text-secondary" id="rec-cat">شاشات قيمنق احترافية</span>
+                    <div class="flex items-center gap-space-xs mt-1">
+                      <span class="font-bold font-mono text-primary" id="rec-price">3,299 ر.س</span>
+                      <span class="text-[11px] text-secondary line-through font-mono">3,699 ر.س</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- XAI Explainability -->
+                <div class="bg-primary/5 rounded-lg p-space-xs flex items-start gap-space-xs border border-primary/10">
+                  <span class="material-symbols-outlined text-primary text-base shrink-0 mt-0.5">psychology</span>
+                  <p class="text-[11px] text-on-surface-variant leading-relaxed" id="xai-reason">
+                    <strong>تفسير الذكاء الاصطناعي (XAI):</strong> تم الاقتراح بناءً على إضافة لابتوب ASUS ROG Zephyrus للسلة وسجل تصفح ملحقات الألعاب بمعدل رغبة شراء عالي.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section D: AI Guardrails -->
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 p-space-md sm:p-space-lg flex flex-col gap-space-md">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-tertiary text-2xl">gavel</span>
+                  <h2 class="text-base font-bold text-on-surface">ضوابط وحوكمة الذكاء الاصطناعي</h2>
+                </div>
+                <span class="text-xs bg-tertiary/10 text-tertiary px-2 py-0.5 rounded-full font-bold">Guardrails Active</span>
+              </div>
+
+              <div class="flex flex-col gap-space-md mt-space-2xs text-xs">
+                <!-- Guardrail 1 -->
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-on-surface">حد أقصى لتخفيض السعر التلقائي (Floor Limit)</span>
+                    <span class="font-mono font-bold text-primary" id="floor-val">12%</span>
+                  </div>
+                  <input class="w-full accent-primary h-2 bg-surface-container-high rounded-lg cursor-pointer" id="floor-slider" max="25" min="5" type="range" value="12"/>
+                  <span class="text-[11px] text-secondary">حماية أرباح الشركة من التخفيض الحاد عند تقلبات أسعار المتاجر المنافسة</span>
+                </div>
+
+                <!-- Guardrail 2 -->
+                <div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/10">
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">امتثال نظام حماية البيانات الشخصية (PDPL)</span>
+                    <span class="text-[11px] text-secondary">تعتيم تام لمعرفات العملاء وتشفير التفضيلات</span>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer shrink-0">
+                    <input checked="" class="sr-only peer" disabled="" type="checkbox"/>
+                    <div class="w-11 h-6 bg-primary peer-focus:outline-none rounded-full transition-colors after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:-translate-x-5 after:bg-white after:rounded-full after:h-5 after:w-5"></div>
+                  </label>
+                </div>
+
+                <!-- Guardrail 3 -->
+                <div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/10">
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">فلتر التوافق الفيزيائي (Anti-Hallucination)</span>
+                    <span class="text-[11px] text-secondary">منع اقتراح ملحقات غير متوافقة مع جهاز العميل</span>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer shrink-0">
+                    <input checked="" class="sr-only peer" type="checkbox"/>
+                    <div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:bg-primary transition-colors after:content-[''] after:absolute after:top-[2px] after:right-[2px] peer-checked:after:-translate-x-5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-transform"></div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Bottom Architectural Compliance Footer Badge -->
+        <div class="w-full bg-surface-container-lowest rounded-xl p-space-md sm:p-space-lg shadow-sm border border-outline-variant/10 flex flex-col md:flex-row items-center justify-between gap-space-md">
+          <div class="flex items-center gap-space-md">
+            <div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0 shadow-sm">
+              <span class="material-symbols-outlined text-2xl">verified_user</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-sm font-bold text-on-surface">بنية تحتية سيادية مؤمنة لمعالجة نماذج الذكاء الاصطناعي</span>
+              <p class="text-xs text-secondary leading-relaxed mt-0.5">
+                تتم جميع معالجات الاستنتاج والتدريب للنماذج ومحركات المتجهات محلياً داخل مراكز بيانات سحابية معتمدة داخل المملكة العربية السعودية مع تسريع وحدات GPU وتشفير كامل للبيانات، بتوافق تام مع متطلبات الهيئة السعودية للبيانات والذكاء الاصطناعي (SDAIA).
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-space-xs shrink-0 text-xs">
+            <span class="font-bold bg-surface-container-high px-space-sm py-2 rounded-lg text-secondary border border-outline-variant/10">مراكز بيانات الرياض وجدة</span>
+            <span class="font-bold bg-tertiary-fixed text-on-tertiary-fixed px-space-sm py-2 rounded-lg flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">lock</span>
+              <span>مشفر AES-256</span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- A/B Testing Modal -->
+      <div id="abTestModal" class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm items-center justify-center p-space-md" onclick="toggleAbModal(false)">
+        <div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-lg shadow-2xl flex flex-col gap-space-md border border-outline-variant/20" onclick="event.stopPropagation()">
+          <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/15">
+            <div class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-xl text-primary">science</span>
+              <h3 class="text-base font-bold text-on-surface">إعداد اختبار A/B للنماذج الذكية</h3>
+            </div>
+            <button class="p-1 rounded text-secondary hover:text-on-surface" onclick="toggleAbModal(false)">
+              <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+          </div>
+
+          <div class="flex flex-col gap-space-sm text-xs">
+            <div>
+              <label class="font-bold text-on-surface block mb-1">النموذج التجريبي (Model Variant B)</label>
+              <select class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface focus:outline-none border border-outline-variant/20">
+                <option>Hybrid Collaborative + Content-Based (v3.5-Beta)</option>
+                <option>Transformer-based Sequential Rec (v4.0)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="font-bold text-on-surface block mb-1">نسبة توزيع الزوار (Traffic Split)</label>
+              <div class="flex items-center gap-3">
+                <span class="font-bold font-mono" id="split-a-text">50% Champion</span>
+                <input class="flex-1 accent-primary h-2 bg-surface-container-high rounded cursor-pointer" id="split-slider" max="90" min="10" type="range" value="50"/>
+                <span class="font-bold font-mono" id="split-b-text">50% Challenger</span>
+              </div>
+            </div>
+
+            <div class="p-space-xs bg-surface-container-low rounded-lg text-secondary text-[11px] flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">info</span>
+              <span>سيتم قياس الأثر المباشر على معدل النقر (CTR) وقيمة السلة المتوسطة (AOV).</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end gap-space-xs pt-space-xs border-t border-outline-variant/15 text-xs">
+            <button class="px-space-md py-2 rounded-lg text-secondary hover:text-on-surface font-bold" onclick="toggleAbModal(false)">
+              إلغاء
+            </button>
+            <button class="bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2 rounded-lg font-bold transition-colors shadow-md" onclick="alert('تم تفعيل تجربة A/B بنجاح وتوجيه الزوار وفق الحصص المحددة.'); toggleAbModal(false);">
+              تفعيل التجربة
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل المباشر عبر واتساب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>محركات الذكاء الاصطناعي السيادية v3.4</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function toggleAbModal(show) {
+      const modal = document.getElementById('abTestModal');
+      if (show) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        toggleAbModal(false);
+      }
+    });
+
+    (function() {
+      const personaSelect = document.getElementById('persona-select');
+      const runBtn = document.getElementById('run-inference-btn');
+      const inferText = document.getElementById('infer-text');
+      const inferIcon = document.getElementById('infer-icon');
+      const confScore = document.getElementById('conf-score');
+      const recTitle = document.getElementById('rec-title');
+      const recCat = document.getElementById('rec-cat');
+      const recPrice = document.getElementById('rec-price');
+      const recImg = document.getElementById('rec-img');
+      const xaiReason = document.getElementById('xai-reason');
+      const floorSlider = document.getElementById('floor-slider');
+      const floorVal = document.getElementById('floor-val');
+      const retrainBtn = document.getElementById('retrain-btn');
+      const retrainIcon = document.getElementById('retrain-icon');
+      const retrainText = document.getElementById('retrain-text');
+      const splitSlider = document.getElementById('split-slider');
+      const splitAText = document.getElementById('split-a-text');
+      const splitBText = document.getElementById('split-b-text');
+
+      // A/B Traffic Splitter live feedback
+      if (splitSlider) {
+        splitSlider.addEventListener('input', (e) => {
+          const val = e.target.value;
+          splitAText.textContent = `${val}% Champion`;
+          splitBText.textContent = `${100 - val}% Challenger`;
+        });
+      }
+
+      if (floorSlider && floorVal) {
+        floorSlider.addEventListener('input', function(e) {
+          floorVal.textContent = e.target.value + '%';
+        });
+      }
+
+      if (retrainBtn) {
+        retrainBtn.addEventListener('click', function() {
+          retrainIcon.classList.add('animate-spin');
+          retrainText.textContent = 'جارِ فحص البيانات وتحديث الأوزان...';
+          retrainBtn.disabled = true;
+          setTimeout(function() {
+            retrainIcon.classList.remove('animate-spin');
+            retrainText.textContent = 'تم التدريب بنجاح (v3.4.1)';
+            setTimeout(function() {
+              retrainText.textContent = 'إعادة تدريب النموذج الفوري';
+              retrainBtn.disabled = false;
+            }, 2500);
+          }, 1500);
+        });
+      }
+
+      const personas = {
+        'gamer': {
+          title: 'شاشة ASUS ROG Swift OLED 27 بوصة',
+          category: 'شاشات قيمنق احترافية',
+          price: '3,299 ر.س',
+          confidence: '98.4%',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDBd_44WmVDRtzgxp9Suc5FqWdA9qaY9UjJei5P-13V2IZJvYx0WEWg3ZP-YrDxMJRZXmmtFhaTzMUAX0PyFdglODOK-Z1pSneUZk-zv5ZoV7BPHV3BT7dKYWVijU9oAQ2lvkXx6eOQrBqO-gPDIYSY_Tb2IqkaR4hkoRejbenFKmL1IoKK9jGxQXVvSzPCsxg3X5ZGN4XHAHY2XS-a4FMuXx5ikO8GM7ibxfSpe5GU-wWbR1pAkFIXUA',
+          reason: 'تم الاقتراح بناءً على إضافة لابتوب ASUS ROG Zephyrus للسلة وسجل تصفح ملحقات الألعاب بمعدل رغبة شراء عالي.'
+        },
+        'apple-loyal': {
+          title: 'محول طاقة Apple Dual USB-C 35W أصلي',
+          category: 'شواحن وكابلات معتمدة',
+          price: '249 ر.س',
+          confidence: '99.1%',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBnPfO8LVS_QxWT40xoxtfKQAYOr4mec-qm7eq6uqyoYUKY9fKZk4_MuZG550vRUy1lR8iTk1LD2-kQwkhYFwb5CR3RnLcH1K6He7HkOLt-ds83yfTrQHQ2NahQty5lSrxO2hxoghU9GxjSVsLajDuJhif2bvDKkNV_ZaNXGCAfQKH9Ni6jiDwQDfksmNQEq5Pl8xiQjTnMOBOsVDekT9N4jRX4wLJIq0lxB9H8_JQyoTmIRi6SVC_lVA',
+          reason: 'اقتراح مخصص: العميل يملك في سجله طلبين سابقين لأجهزة iPhone و iPad، وتجاوب مع إطلاق سلسلة iPhone 16.'
+        },
+        'budget-student': {
+          title: 'حقيبة لابتوب HP المقاومة للصدمات + ماوس',
+          category: 'حزمة الملحقات الاقتصادية',
+          price: '119 ر.س',
+          confidence: '95.6%',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBJlikXECwKxzt2gHTF5rB6VvM-wWi2iWz1g-xJX-w90gvt-b5bIWFgkZhrLrlN8-ZXx3UulEUQihOR08TuRo0UTBzVNdyFEPEAJAY2z0XDVORaPzdpOaX-T3pY62Ubvwky3no9xTmGvu9fiqNAbr5l-zHUQcwv83sAA57yrgwfQI2hM1JWEgYC6DeDHerE17HT8NqLJY87-0dxAnI1EvvoUdwx_2Qkc3944uSOgf5G-oLH2VrTzsPa1A',
+          reason: 'تم الاقتراح كحزمة توفير مخفضة بنسبة 25% تلائم حساسية السعر المقدرة للعميل.'
+        },
+        'deal-hunter': {
+          title: 'iPad Air 5th Gen (مجدد درجة +A كأنه جديد)',
+          category: 'أجهزة لوحية مجددة معتمدة',
+          price: '1,799 ر.س',
+          confidence: '97.2%',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBUE-kKK3N3NYAP2EJCkj8yNdZtDb1KOimYN16g8697iBJeEObMfZAagPxeqIP8r0Adq4XIDybhUps0wbBgw5HMIVWKTp_MZ6c8OZfy2wAfrozfhk_AcaD209spc8QBZFoknKQUeShQMvlkRWJ2wMT_FjrWVB9e9FaRogC41JD_w2fzu6Eo_3jcUUPa0VTGX8rn5_-GcwAX0xRXIXWOcRz1h__BSpzlxDP5Je9z57dVMohAbfTFEaMCKA',
+          reason: 'تم التوجيه نحو العرض المجدد الأقوى مع ضمان ذهبي عامين لمطابقة نمط الشراء السابق للعميل.'
+        }
+      };
+
+      if (runBtn) {
+        runBtn.addEventListener('click', function() {
+          inferIcon.classList.add('animate-spin');
+          inferText.textContent = 'جارِ المعالجة في محرك المتجهات...';
+          runBtn.disabled = true;
+
+          setTimeout(function() {
+            const selected = personaSelect ? personaSelect.value : 'gamer';
+            const data = personas[selected] || personas['gamer'];
+
+            if (recTitle) recTitle.textContent = data.title;
+            if (recCat) recCat.textContent = data.category;
+            if (recPrice) recPrice.textContent = data.price;
+            if (confScore) confScore.textContent = data.confidence;
+            if (recImg && data.img) recImg.src = data.img;
+            if (xaiReason) {
+              xaiReason.innerHTML = '<strong>تفسير الذكاء الاصطناعي (XAI):</strong> ' + data.reason;
+            }
+
+            inferIcon.classList.remove('animate-spin');
+            inferText.textContent = 'محاكاة التوصية (Run Inference)';
+            runBtn.disabled = false;
+          }, 450);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

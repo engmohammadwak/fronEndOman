@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Network Metrics & PoPs) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <img alt="صورة الملف الشخصي" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE"/>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">مركز التحكم في شبكات الحافة و CDN</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors">
+              <span class="material-symbols-outlined text-xl">mic</span>
+            </button>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
+            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+          </a>
+          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+            <div class="hidden sm:flex flex-col text-right">
+              <span class="text-caption-sm text-secondary-fixed-dim">سلة المشتريات (٣)</span>
+              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+            </div>
+          </a>
+          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl">person</span>
+            <span class="hidden sm:inline">مهندس الشبكات (CDN)</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة والمجددة</a>
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">مركز التحكم في CDN</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">موازنة الأحمال والـ Failover</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">حماية الأمان ضد DDoS</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span>شبكة حافة عالمية بأداء فائق</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full text-on-surface">
+      
+      <!-- Notification Toast -->
+      <div class="fixed bottom-6 start-6 z-50 transform -translate-y-4 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-space-sm bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-xl shadow-2xl border border-outline-variant/30 text-xs" id="actionToast">
+        <span class="material-symbols-outlined text-tertiary-fixed-dim text-xl" id="toastIcon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        <div class="flex flex-col text-right">
+          <span class="font-bold" id="toastTitle">تمت العملية بنجاح</span>
+          <span class="text-secondary-fixed text-[11px]" id="toastMsg">تم تحديث إعدادات الشبكة</span>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-lg flex flex-col gap-space-xl">
+        
+        <!-- Top Context Bar -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10">
+          <div class="flex flex-col gap-space-2xs">
+            <div class="flex items-center gap-space-xs text-secondary text-xs font-semibold flex-wrap">
+              <span class="material-symbols-outlined text-base">hub</span>
+              <span>البنية التحتية السحابية</span>
+              <span class="text-outline-variant">/</span>
+              <span>الشبكات وموازنة الأحمال</span>
+              <span class="text-outline-variant">/</span>
+              <span class="text-primary font-bold">مركز التحكم في حركة المرور و CDN</span>
+            </div>
+            
+            <div class="flex items-center gap-space-sm flex-wrap mt-1">
+              <h1 class="text-xl lg:text-2xl font-black text-on-surface tracking-tight">مركز إدارة موازنة الأحمال ومحطات CDN وشبكات الحافة</h1>
+              <div class="inline-flex items-center gap-1 bg-tertiary-fixed/30 text-tertiary px-3 py-1 rounded-full text-xs font-bold">
+                <span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span>
+                <span>حالة الشبكة: ممتازة (100% Active)</span>
+              </div>
+            </div>
+            <p class="text-xs text-secondary max-w-3xl leading-relaxed mt-0.5">
+              إدارة موجهات الترافيك الإقليمية والدولية لمتاجر TechPro، سياسات الـ Failover، ومحطات الكاش الفوري لتقليل زمن الاستجابة.
+            </p>
+          </div>
+
+          <!-- Action Controls -->
+          <div class="flex flex-wrap items-center gap-2 shrink-0 text-xs font-bold">
+            <button onclick="triggerPurgeModal()" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-2 rounded-lg transition-all active:scale-95 shadow-sm border border-outline-variant/10 flex items-center gap-1 cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base text-primary">cached</span>
+              <span>مسح الكاش الفوري</span>
+            </button>
+            <button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-2 rounded-lg transition-all active:scale-95 border border-outline-variant/10 flex items-center gap-1 cursor-pointer" id="flashModeBtn" type="button">
+              <span class="material-symbols-outlined text-base text-error">bolt</span>
+              <span>وضع عروض الفلاش</span>
+              <span class="bg-surface-variant text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded" id="flashStatusBadge">غير نشط</span>
+            </button>
+            <button onclick="triggerToast('تم تحديث مسارات Anycast BGP عبر المزودين العالميين')" class="bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded-lg shadow-sm transition-all active:scale-95 flex items-center gap-1 cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base">sync_alt</span>
+              <span>تحديث Anycast BGP</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Network & CDN Telemetry KPIs Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md text-xs">
+          
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>إجمالي الترافيك اللحظي</span>
+              <span class="material-symbols-outlined text-primary text-xl">speed</span>
+            </div>
+            <div class="my-2">
+              <div class="flex items-baseline gap-1 font-mono">
+                <span class="text-2xl font-black text-on-surface">3.42</span>
+                <span class="text-secondary font-sans font-bold">Gbps</span>
+              </div>
+              <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
+                <span class="material-symbols-outlined text-sm">trending_up</span>
+                <span>+18.5% عن أُمس</span>
+              </div>
+            </div>
+            <div class="mt-2 h-6 w-full">
+              <svg class="w-full h-full text-primary" fill="none" preserveAspectRatio="none" viewBox="0 0 100 24">
+                <path d="M0 18 Q 20 22, 35 12 T 65 8 T 85 14 T 100 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>معدل الطلبات العالمي</span>
+              <span class="material-symbols-outlined text-on-secondary-fixed-variant text-xl">alt_route</span>
+            </div>
+            <div class="my-2">
+              <div class="flex items-baseline gap-1 font-mono">
+                <span class="text-2xl font-black text-on-surface">48.2k</span>
+                <span class="text-secondary font-sans font-bold">req/s</span>
+              </div>
+              <div class="flex items-center gap-1 text-secondary mt-1">
+                <span class="material-symbols-outlined text-sm">flag</span>
+                <span>ذروة: 75,000 req/s</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-2">
+              <div class="bg-primary h-full rounded-full" style="width: 64%"></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>نسبة إصابة الكاش (Edge)</span>
+              <span class="material-symbols-outlined text-tertiary text-xl">cloud_done</span>
+            </div>
+            <div class="my-2">
+              <div class="flex items-baseline gap-1 font-mono">
+                <span class="text-2xl font-black text-tertiary">94.6%</span>
+                <span class="text-secondary font-sans font-bold">Hit Rate</span>
+              </div>
+              <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
+                <span class="material-symbols-outlined text-sm">savings</span>
+                <span>توفير 8.2 TB اليوم</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-2">
+              <div class="bg-tertiary-fixed-dim h-full rounded-full" style="width: 94.6%"></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>متوسط استجابة الحافة P95</span>
+              <span class="material-symbols-outlined text-primary text-xl">timer</span>
+            </div>
+            <div class="my-2">
+              <div class="flex items-baseline gap-1 font-mono">
+                <span class="text-2xl font-black text-on-surface">14</span>
+                <span class="text-secondary font-sans font-bold">ms</span>
+              </div>
+              <div class="flex items-center gap-1 text-secondary mt-1">
+                <span class="material-symbols-outlined text-sm text-tertiary">my_location</span>
+                <span>الرياض: 6ms | جدة: 9ms</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between text-[11px] text-secondary mt-2 pt-1 border-t border-outline-variant/10 font-mono">
+              <span>الدمام: 8ms</span>
+              <span>الخليج: 22ms</span>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between sm:col-span-2 lg:col-span-1">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>معدل أخطاء البوابات</span>
+              <span class="material-symbols-outlined text-secondary text-xl">verified</span>
+            </div>
+            <div class="my-2">
+              <div class="flex items-baseline gap-1 font-mono">
+                <span class="text-2xl font-black text-on-surface">0.008%</span>
+                <span class="text-secondary font-sans font-bold">5xx/4xx</span>
+              </div>
+              <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                <span>ضمن المعايير الصارمة SLA</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 text-secondary text-[11px] mt-2 pt-1 border-t border-outline-variant/10">
+              <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+              <span>Zero Gateway Drops</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Edge Matrix & Routing Map Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+          
+          <!-- PoP Grid (8 Columns) -->
+          <div class="lg:col-span-8 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-md text-xs">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs pb-2 border-b border-outline-variant/10">
+              <div>
+                <h2 class="text-sm font-bold text-on-surface">مصفوفة محطات الحافة والتوزيع الجغرافي (CDN Edge PoP & Anycast)</h2>
+                <p class="text-secondary text-[11px] mt-0.5">المواقع الاستراتيجية المتصلة بنظام Anycast DNS للتوجيه التلقائي عبر أقصر مسار RTT</p>
+              </div>
+              <span class="text-secondary bg-surface-container px-2.5 py-1 rounded-full self-start sm:self-auto font-bold">
+                تحديث فوري كل 2 ثانية
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+              <!-- DC 1: Riyadh -->
+              <div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col justify-between border border-outline-variant/10">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+                      <span class="material-symbols-outlined">dns</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-1">
+                        <span class="font-bold text-on-surface">الرياض - العقدة الرئيسية DC1</span>
+                        <span class="bg-tertiary-container text-on-tertiary text-[10px] px-1.5 py-0.5 rounded font-bold">رئيسي</span>
+                      </div>
+                      <span class="text-secondary font-mono text-[11px]">RUH-DC1-BGP-4892</span>
+                    </div>
+                  </div>
+                  <span class="font-bold text-tertiary font-mono text-sm">6ms</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 mt-3 p-2 bg-surface-container-lowest rounded-lg text-center font-mono border border-outline-variant/10">
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">حمل المعالجة</span>
+                    <span class="font-bold text-on-surface">45%</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">حاويات Ingress</span>
+                    <span class="font-bold text-primary">24 Pods</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">بروتوكول</span>
+                    <span class="font-bold text-on-surface">H3 / QUIC</span>
+                  </div>
+                </div>
+                <div class="mt-3 pt-2 flex items-center justify-between text-secondary border-t border-outline-variant/10 text-[11px]">
+                  <span class="flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-tertiary"></span> NGINX Ingress: طبيعي
+                  </span>
+                  <span class="text-tertiary font-bold">متوازن</span>
+                </div>
+              </div>
+
+              <!-- DC 2: Jeddah -->
+              <div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col justify-between border border-outline-variant/10">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
+                      <span class="material-symbols-outlined">hub</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-1">
+                        <span class="font-bold text-on-surface">جدة - محطة حافة CDN Edge</span>
+                        <span class="bg-tertiary-container/20 text-tertiary text-[10px] px-1.5 py-0.5 rounded font-bold">كاش ميديا</span>
+                      </div>
+                      <span class="text-secondary font-mono text-[11px]">JED-POP-02-EDGE</span>
+                    </div>
+                  </div>
+                  <span class="font-bold text-tertiary font-mono text-sm">9ms</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 mt-3 p-2 bg-surface-container-lowest rounded-lg text-center font-mono border border-outline-variant/10">
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">إصابة الكاش</span>
+                    <span class="font-bold text-tertiary">96.2%</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">تخزين مؤقت</span>
+                    <span class="font-bold text-on-surface">NVMe Tier</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">تشفير الحافة</span>
+                    <span class="font-bold text-on-surface">TLS 1.3</span>
+                  </div>
+                </div>
+                <div class="mt-3 pt-2 flex items-center justify-between text-secondary border-t border-outline-variant/10 text-[11px]">
+                  <span class="flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-tertiary"></span> وسائط الأجهزة: مؤمنة
+                  </span>
+                  <span class="text-tertiary font-bold">2.1 TB / 10 TB</span>
+                </div>
+              </div>
+
+              <!-- DC 3: Dammam -->
+              <div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col justify-between border border-outline-variant/10">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
+                      <span class="material-symbols-outlined">router</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-1">
+                        <span class="font-bold text-on-surface">الدمام - بوابة الخليج والشرقية</span>
+                        <span class="bg-tertiary-container/20 text-tertiary text-[10px] px-1.5 py-0.5 rounded font-bold">بوابة الخليج</span>
+                      </div>
+                      <span class="text-secondary font-mono text-[11px]">DMM-POP-03-GW</span>
+                    </div>
+                  </div>
+                  <span class="font-bold text-tertiary font-mono text-sm">8ms</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 mt-3 p-2 bg-surface-container-lowest rounded-lg text-center font-mono border border-outline-variant/10">
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">كفاءة الأداء</span>
+                    <span class="font-bold text-on-surface">99.9%</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">ترافيك الخليج</span>
+                    <span class="font-bold text-primary">380 Mbps</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">الترشيح الأمني</span>
+                    <span class="font-bold text-tertiary">WAF L7</span>
+                  </div>
+                </div>
+                <div class="mt-3 pt-2 flex items-center justify-between text-secondary border-t border-outline-variant/10 text-[11px]">
+                  <span class="flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-tertiary"></span> اتصالات إقليمية نشطة
+                  </span>
+                  <span class="text-tertiary font-bold font-mono">Anycast BGP</span>
+                </div>
+              </div>
+
+              <!-- DC 4: Disaster Recovery -->
+              <div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col justify-between border border-outline-variant/10">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-surface-container-high text-secondary flex items-center justify-center">
+                      <span class="material-symbols-outlined">shield_with_heart</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-1">
+                        <span class="font-bold text-on-surface">عقدة التعافي الجغرافي DR</span>
+                        <span class="bg-secondary-fixed text-on-secondary-fixed text-[10px] px-1.5 py-0.5 rounded font-bold">Standby</span>
+                      </div>
+                      <span class="text-secondary font-mono text-[11px]">KSA-WEST-FAILOVER</span>
+                    </div>
+                  </div>
+                  <span class="font-bold text-secondary font-mono text-sm">11ms</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 mt-3 p-2 bg-surface-container-lowest rounded-lg text-center font-mono border border-outline-variant/10">
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">فحص السلامة</span>
+                    <span class="font-bold text-tertiary">كل 5 ث</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">المزامنة</span>
+                    <span class="font-bold text-tertiary">تطابق تام</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-secondary font-sans">وقت التحويل</span>
+                    <span class="font-bold text-primary">&lt; 200ms</span>
+                  </div>
+                </div>
+                <div class="mt-3 pt-2 flex items-center justify-between text-secondary border-t border-outline-variant/10 text-[11px]">
+                  <span class="flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-tertiary"></span> جاهزية التبديل مفعلة
+                  </span>
+                  <span class="text-tertiary font-bold">100% Pass</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick CDN Cache & Optimization Controls (4 Columns) -->
+          <div class="lg:col-span-4 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-space-md text-xs">
+            <div>
+              <div class="flex items-center justify-between pb-2 border-b border-outline-variant/10">
+                <h2 class="text-sm font-bold text-on-surface">تحكم كاش الحافة والأداء</h2>
+                <span class="material-symbols-outlined text-primary text-lg">tune</span>
+              </div>
+              <p class="text-secondary text-[11px] mt-1">السياسات الحية لتحسين صور منتجات تيك برو وضغط المحتوى.</p>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <div class="p-2.5 bg-surface-container-low rounded-lg flex items-center justify-between border border-outline-variant/10">
+                <div class="flex flex-col">
+                  <span class="font-bold text-on-surface">ضغط الصور التلقائي AVIF/WebP</span>
+                  <span class="text-[10px] text-tertiary font-bold">توفير 62% من الباندويث</span>
+                </div>
+                <button aria-label="Toggle Image Compression" class="w-11 h-6 bg-primary rounded-full p-1 transition-colors relative flex items-center justify-end cursor-pointer">
+                  <div class="w-4 h-4 bg-on-primary rounded-full shadow"></div>
+                </button>
+              </div>
+
+              <div class="p-2.5 bg-surface-container-low rounded-lg flex items-center justify-between border border-outline-variant/10">
+                <div class="flex flex-col">
+                  <span class="font-bold text-on-surface">ميزة المتجر الدائم (Always Online)</span>
+                  <span class="text-[10px] text-secondary">تقديم كاش الحافة أثناء الصيانة</span>
+                </div>
+                <button aria-label="Toggle Always Online" class="w-11 h-6 bg-primary rounded-full p-1 transition-colors relative flex items-center justify-end cursor-pointer">
+                  <div class="w-4 h-4 bg-on-primary rounded-full shadow"></div>
+                </button>
+              </div>
+
+              <div class="p-2.5 bg-surface-container-low rounded-lg flex flex-col gap-2 border border-outline-variant/10">
+                <span class="font-bold text-on-surface">تفريغ الكاش المخصص (Selective Purge)</span>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface py-1.5 px-2 rounded transition-colors text-center border border-outline-variant/10 font-bold cursor-pointer" onclick="simulatePurge('صفحات المنتجات فقط')">
+                    صفحات المنتجات
+                  </button>
+                  <button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface py-1.5 px-2 rounded transition-colors text-center border border-outline-variant/10 font-bold cursor-pointer" onclick="simulatePurge('ملفات CSS و JS')">
+                    ملفات الأصول (Assets)
+                  </button>
+                </div>
+                <button class="bg-error-container hover:bg-error/20 text-on-error-container py-1.5 px-2 rounded transition-colors text-center font-bold cursor-pointer" onclick="simulatePurge('كامل شبكة الـ CDN')">
+                  تفريغ كامل المحتوى (Full Purge)
+                </button>
+                <span class="text-[10px] text-secondary text-center">وقت التوزيع العالمي: 150ms لجميع العقد</span>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-surface-container-high flex items-center gap-2 border border-outline-variant/10">
+              <span class="material-symbols-outlined text-tertiary text-xl">verified_user</span>
+              <div class="flex flex-col">
+                <span class="font-bold text-on-surface">DigiCert / EV Wildcard SSL سارية</span>
+                <span class="text-[10px] text-secondary">تنتهي بعد 290 يوماً | تجديد آلي ACME مفعل</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Active Load Balancers & Routing Table -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden flex flex-col">
+          <div class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md border-b border-outline-variant/10">
+            <div>
+              <h2 class="text-base font-bold text-on-surface">موزعات الأحمال وقواعد التوجيه النشطة (Active Load Balancers & Ingress)</h2>
+              <p class="text-xs text-secondary mt-0.5">إدارة طبقات ALB/NLB لمختلف خدمات متجر TechPro الإلكتروني وتوزيع الطلبات</p>
+            </div>
+            
+            <div class="flex items-center gap-2 text-xs">
+              <div class="flex items-center bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant/20">
+                <span class="material-symbols-outlined text-secondary text-base pl-1">search</span>
+                <input class="bg-transparent text-xs text-on-surface focus:outline-none placeholder-secondary w-48" placeholder="تصفية حسب النطاق أو الخدمة..." type="text"/>
+              </div>
+              <button onclick="alert('تحديث إعدادات موازنات الأحمال')" class="bg-surface-container hover:bg-surface-container-high text-on-surface px-3 py-1.5 rounded-lg font-bold transition-colors border border-outline-variant/10 cursor-pointer flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">filter_list</span>
+                <span>فلترة</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-right border-collapse text-xs">
+              <thead>
+                <tr class="bg-surface-container-low text-secondary font-bold">
+                  <th class="py-2.5 px-3 rounded-r-lg">موزع الأحمال والنطاق</th>
+                  <th class="py-2.5 px-3">النوع والطبقة</th>
+                  <th class="py-2.5 px-3">خوارزمية التوزيع</th>
+                  <th class="py-2.5 px-3">فحص السلامة (Health Check)</th>
+                  <th class="py-2.5 px-3">الحمل والترافيك اللحظي</th>
+                  <th class="py-2.5 px-3">مستوى التشفير والأمان</th>
+                  <th class="py-2.5 px-3 rounded-l-lg text-center">الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant/10 text-on-surface">
+                
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-2">
+                      <div class="w-8 h-8 rounded-lg bg-primary-fixed text-primary flex items-center justify-center font-bold">
+                        <span class="material-symbols-outlined text-base">perm_media</span>
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-bold font-mono text-on-surface">alb-catalog-media.techpro.sa</span>
+                        <span class="text-[11px] text-secondary">كتالوج الأجهزة والوسائط</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="bg-surface-container text-on-surface text-[10px] px-2 py-0.5 rounded font-bold">ALB (L7 Ingress)</span>
+                  </td>
+                  <td class="py-3 px-3 text-secondary">
+                    <span class="font-bold text-on-surface">Least Connections</span> (كاش WebP)
+                  </td>
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-1 font-bold text-tertiripay">
+                      <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                      <span class="text-tertiary font-mono text-[11px]">HTTP 200 /healthz</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <div class="flex flex-col">
+                      <span class="font-bold font-mono">1.85 Gbps (22,400 req/s)</span>
+                      <div class="w-28 bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-1">
+                        <div class="bg-primary h-full rounded-full" style="width: 55%"></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="bg-tertiary-container/10 text-tertiary text-[10px] px-2 py-0.5 rounded font-bold font-mono">TLS 1.3 / HTTP/3</span>
+                  </td>
+                  <td class="py-3 px-3 text-center">
+                    <button onclick="alert('إعدادات التوجيه لـ alb-catalog-media')" class="p-1 rounded text-secondary hover:text-primary transition-colors cursor-pointer" title="الإعدادات">
+                      <span class="material-symbols-outlined text-base">settings</span>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-2">
+                      <div class="w-8 h-8 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold">
+                        <span class="material-symbols-outlined text-base">lock</span>
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-bold font-mono text-on-surface">nlb-checkout-secure.techpro.sa</span>
+                        <span class="text-[11px] text-secondary">بوابات الدفع ومعالجة السلة</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="bg-primary-fixed text-primary text-[10px] px-2 py-0.5 rounded font-bold">NLB (L4 Ultra-Fast)</span>
+                  </td>
+                  <td class="py-3 px-3 text-secondary">
+                    <span class="font-bold text-on-surface">Round Robin + Sticky</span>
+                  </td>
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-1 font-bold text-tertiary">
+                      <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                      <span class="text-tertiary font-mono text-[11px]">TCP Port 443</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <div class="flex flex-col">
+                      <span class="font-bold font-mono">920 Mbps (9,100 req/s)</span>
+                      <div class="w-28 bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-1">
+                        <div class="bg-tertiary h-full rounded-full" style="width: 38%"></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="bg-tertiary-container/10 text-tertiary text-[10px] px-2 py-0.5 rounded font-bold font-mono">mTLS + PCI-DSS</span>
+                  </td>
+                  <td class="py-3 px-3 text-center">
+                    <button onclick="alert('إعدادات التوجيه لـ nlb-checkout-secure')" class="p-1 rounded text-secondary hover:text-primary transition-colors cursor-pointer" title="الإعدادات">
+                      <span class="material-symbols-outlined text-base">settings</span>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-2">
+                      <div class="w-8 h-8 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold">
+                        <span class="material-symbols-outlined text-base">api</span>
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-bold font-mono text-on-surface">alb-partner-gateways.techpro.sa</span>
+                        <span class="text-[11px] text-secondary">واجهات الـ API للشركات</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="bg-surface-container text-on-surface text-[10px] px-2 py-0.5 rounded font-bold">ALB (API Gateway)</span>
+                  </td>
+                  <td class="py-3 px-3 text-secondary">
+                    <span class="font-bold text-on-surface">Rate Limited (5k/min)</span>
+                  </td>
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-1 font-bold text-tertiary">
+                      <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                      <span class="text-tertiary font-mono text-[11px]">HTTP 200 /api/ping</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <div class="flex flex-col">
+                      <span class="font-bold font-mono">340 Mbps (4,200 req/s)</span>
+                      <div class="w-28 bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-1">
+                        <div class="bg-secondary h-full rounded-full" style="width: 25%"></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="bg-surface-container-high text-on-surface text-[10px] px-2 py-0.5 rounded font-bold font-mono">OAuth 2.0 + TLS 1.3</span>
+                  </td>
+                  <td class="py-3 px-3 text-center">
+                    <button onclick="alert('إعدادات التوجيه')" class="p-1 rounded text-secondary hover:text-primary transition-colors cursor-pointer">
+                      <span class="material-symbols-outlined text-base">settings</span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Health Checks, Alerts & Failover Audit Stream -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg text-xs">
+          
+          <!-- Live Health Stream (7 Cols) -->
+          <div class="lg:col-span-7 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-md">
+            <div class="flex items-center justify-between pb-2 border-b border-outline-variant/10">
+              <div class="flex items-center gap-2 font-bold text-on-surface">
+                <span class="material-symbols-outlined text-tertiary text-lg">monitor_heart</span>
+                <span class="text-sm">سجل الفحوصات وتجاوز الفشل (Failover & Health Log)</span>
+              </div>
+              <span class="text-tertiary font-bold bg-tertiary-container/10 px-2.5 py-0.5 rounded-full">32/32 العقد سليمة</span>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <div class="p-2.5 bg-surface-container-low rounded-lg flex items-start justify-between gap-2 border border-outline-variant/10">
+                <div class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-tertiary mt-0.5 text-base">check_circle</span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">فحص السلامة الآلي لجميع الموزعات (Comprehensive Mesh Check)</span>
+                    <p class="text-secondary text-[11px] mt-0.5">تم اختبار زمن الاستجابة بين الرياض وجدة ومحطات الخليج عبر محاكاة 500 طلب مجمّع. النتيجة: 100% نجاح.</p>
+                  </div>
+                </div>
+                <span class="text-secondary text-[10px] whitespace-nowrap">منذ دقيقتين</span>
+              </div>
+
+              <div class="p-2.5 bg-surface-container-low rounded-lg flex items-start justify-between gap-2 border border-outline-variant/10">
+                <div class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary mt-0.5 text-base">published_with_changes</span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">محاكاة تحويل مسار Anycast BGP (Drill Simulation)</span>
+                    <p class="text-secondary text-[11px] mt-0.5">تم اختبار عزل مؤقت لعقدة فرعية وتوجيه طلبات المنطقة الشرقية إلى محطة الرياض المركزية خلال 140ms دون انقطاع.</p>
+                  </div>
+                </div>
+                <span class="text-secondary text-[10px] whitespace-nowrap">منذ 38 دقيقة</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Bandwidth & Origin Offload Diagram (5 Cols) -->
+          <div class="lg:col-span-5 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-space-md">
+            <div>
+              <div class="flex items-center justify-between pb-2 border-b border-outline-variant/10">
+                <h3 class="text-sm font-bold text-on-surface">كفاءة تخفيف الحمل عن الخوادم</h3>
+                <span class="material-symbols-outlined text-tertiary text-lg">pie_chart</span>
+              </div>
+              <p class="text-secondary text-[11px] mt-1">نسبة الترافيك المستوفى من الحافة دون الوصول للخوادم الأصلية</p>
+            </div>
+
+            <div class="flex items-center justify-center gap-6 py-2">
+              <div class="relative w-32 h-32">
+                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                  <path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4.5"></path>
+                  <path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="94.6, 100" stroke-linecap="round" stroke-width="4.5"></path>
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                  <span class="text-lg font-black text-on-surface font-mono">94.6%</span>
+                  <span class="text-[10px] text-secondary">تفريغ الكاش</span>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">محطات CDN Edge</span>
+                    <span class="text-[10px] text-secondary">3.23 Gbps من الحافة</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-surface-container-high"></span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">الخوادم الأصلية (Origin)</span>
+                    <span class="text-[10px] text-secondary">0.19 Gbps طلبات ديناميكية</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 bg-surface-container-low rounded-lg flex items-center justify-between border border-outline-variant/10 text-xs">
+              <span class="font-bold text-on-surface flex items-center gap-1">
+                <span class="material-symbols-outlined text-base text-primary">energy_savings_leaf</span>
+                استقرار خوادم قواعد البيانات
+              </span>
+              <span class="font-bold text-tertiary">99.98%</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل عبر واتساب المباشر</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>شبكة الحافة العالمية وموازنات الأحمال Anycast CDN</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    function triggerToast(title, message) {
+      const toast = document.getElementById('actionToast');
+      const tTitle = document.getElementById('toastTitle');
+      const tMsg = document.getElementById('toastMsg');
+      if (!toast) return;
+
+      tTitle.textContent = title || 'إشعار الشبكة';
+      tMsg.textContent = message || 'تم تطبيق الإجراء بنجاح عبر محطات CDN';
+
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 3200);
+    }
+
+    function triggerPurgeModal() {
+      triggerToast('تفريغ الكاش العالمي (Purge)', 'أُرسلت إشارة التفريغ الفوري لكافة محطات الحافة الـ 4 بنجاح (150ms)');
+    }
+
+    function simulatePurge(target) {
+      triggerToast('تفريغ محلي', 'تم مسح ' + target + ' من ذاكرة الكاش المؤقتة بنجاح');
+    }
+
+    let flashActive = false;
+    const flashBtn = document.getElementById('flashModeBtn');
+    const flashBadge = document.getElementById('flashStatusBadge');
+
+    if (flashBtn) {
+      flashBtn.addEventListener('click', () => {
+        flashActive = !flashActive;
+        if (flashActive) {
+          flashBadge.textContent = 'نشط الآن';
+          flashBadge.className = 'bg-error text-on-error text-[10px] px-1.5 py-0.5 rounded font-bold animate-pulse';
+          triggerToast('وضع عروض الفلاش: مفعل', 'تم رفع سقف الاتصالات وتحويل الترافيك لمسارات الطوارئ');
+        } else {
+          flashBadge.textContent = 'غير نشط';
+          flashBadge.className = 'bg-surface-variant text-on-surface-variant text-[10px] px-1.5 py-0.5 rounded';
+          triggerToast('وضع عروض الفلاش: متوقف', 'عادت قواعد التوجيه لوضع التوزيع القياسي');
+        }
+      });
+    }
+
+    // Live countdown timer ticker
+    let timeLeft = 10;
+    const timerElem = document.getElementById('countdown-timer');
+    setInterval(() => {
+      timeLeft--;
+      if (timeLeft <= 0) {
+        timeLeft = 10;
+        if (timerElem) {
+          timerElem.classList.add('scale-125');
+          setTimeout(() => timerElem.classList.remove('scale-125'), 300);
+        }
+      }
+      if (timerElem) {
+        timerElem.textContent = timeLeft;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

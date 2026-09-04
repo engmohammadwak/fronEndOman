@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Serial, IMEI & Warranty IDs) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <img alt="صورة الملف الشخصي" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE"/>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">وثيقة الضمان الذهبي وسياسات الجودة</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع السياسات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="warranty">الضمان الذهبي</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="returns">الاستبدال والاسترجاع</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="repair">خدمات الصيانة</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث في شروط الضمان أو سياسة الاسترجاع..." type="text"/>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
+            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+          </a>
+          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+            <div class="hidden sm:flex flex-col text-right">
+              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
+              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+            </div>
+          </a>
+          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl">person</span>
+            <span class="hidden sm:inline">حسابي</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة والمجددة</a>
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">الضمان الذهبي وضوابط الجودة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">فحص سريان الضمان</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">خدمة العملاء</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">verified</span>
+            <span>معتمد رسمياً من وزارة التجارة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full text-on-surface">
+      
+      <!-- Top Anchor Breadcrumbs & Sub-Header -->
+      <section class="w-full bg-surface-container-low px-space-md lg:px-space-xl py-3 border-b border-outline-variant/10 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-sm">
+          <nav class="flex items-center gap-1 text-secondary font-bold">
+            <a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+              <span class="material-symbols-outlined text-base">home</span>
+              <span>الرئيسية</span>
+            </a>
+            <span class="material-symbols-outlined text-xs rotate-180 text-outline">chevron_right</span>
+            <span>خدمة العملاء والسياسات</span>
+            <span class="material-symbols-outlined text-xs rotate-180 text-outline">chevron_right</span>
+            <span class="text-on-surface">الضمان الذهبي وضوابط الجودة</span>
+          </nav>
+          
+          <div class="flex items-center gap-3 font-semibold">
+            <span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full text-on-surface">
+              <span class="material-symbols-outlined text-sm text-tertiary">history_edu</span> آخر تحديث: رجب 1446 هـ
+            </span>
+            <span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-bold">
+              <span class="material-symbols-outlined text-sm">verified</span> معتمد رسمياً
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hero & Trust Banner -->
+      <section class="relative w-full overflow-hidden bg-gradient-to-b from-surface-container-low via-surface to-background py-space-2xl lg:py-space-3xl">
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-tertiary/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            
+            <div class="lg:col-span-7 flex flex-col items-start gap-4 text-right">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-bold">
+                <span class="material-symbols-outlined text-base text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+                <span>وثيقة الضمان الرسمي المعتمد لعامين متتاليين</span>
+              </div>
+              
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface tracking-tight leading-tight">
+                الضمان الذهبي وسياسة الاستبدال السهل في <span class="text-primary">تيك برو</span>
+              </h1>
+              <p class="text-sm sm:text-base text-secondary leading-relaxed max-w-2xl">
+                استثمارك التقني في أيدٍ أمينة مع تغطية شاملة بنسبة 100%. سواء اخترت جهازاً جديداً بختم المصنع أو جهازاً مجدداً معتمداً، نمنحك تجربة خالية تماماً من المخاطر مع الاستلام والتوصيل المجاني إلى باب منزلك.
+              </p>
+
+              <div class="flex flex-wrap items-center gap-3 pt-2 text-xs font-bold">
+                <a class="bg-primary hover:bg-primary-container text-on-primary px-6 py-3 rounded-lg shadow-md transition-all flex items-center gap-2" href="#verify-section">
+                  <span class="material-symbols-outlined text-base">qr_code_scanner</span>
+                  <span>فحص سريان ضمان جهازك</span>
+                </a>
+                <a class="bg-surface-container hover:bg-surface-container-high text-on-surface px-6 py-3 rounded-lg transition-colors flex items-center gap-2 border border-outline-variant/10" href="#warranty-table">
+                  <span class="material-symbols-outlined text-base">table_chart</span>
+                  <span>مصفوفة التغطية والمزايا</span>
+                </a>
+              </div>
+
+              <!-- Fast Highlights -->
+              <div class="grid grid-cols-3 gap-3 w-full pt-2 font-mono">
+                <div class="flex flex-col bg-surface-container-lowest p-3 rounded-lg shadow-sm border border-outline-variant/10">
+                  <span class="text-lg font-black text-primary">24 شهر</span>
+                  <span class="text-[10px] text-secondary font-sans">ضمان شامل معتمد</span>
+                </div>
+                <div class="flex flex-col bg-surface-container-lowest p-3 rounded-lg shadow-sm border border-outline-variant/10">
+                  <span class="text-lg font-black text-tertiary">14 يوم</span>
+                  <span class="text-[10px] text-secondary font-sans">استرجاع بدون أسئلة</span>
+                </div>
+                <div class="flex flex-col bg-surface-container-lowest p-3 rounded-lg shadow-sm border border-outline-variant/10">
+                  <span class="text-lg font-black text-on-surface">64 نقطة</span>
+                  <span class="text-[10px] text-secondary font-sans">فحص مخبري رقمي</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Certificate Mockup -->
+            <div class="lg:col-span-5 relative">
+              <div class="relative rounded-2xl overflow-hidden shadow-xl bg-surface-container-lowest p-4 border border-outline-variant/10">
+                <div class="bg-inverse-surface text-inverse-on-surface rounded-xl p-5 relative overflow-hidden text-xs">
+                  <div class="absolute -top-12 -left-12 w-40 h-40 bg-primary/20 rounded-full blur-2xl"></div>
+                  
+                  <div class="flex items-center justify-between pb-3 border-b border-white/10 font-bold">
+                    <div class="flex items-center gap-1.5 text-surface-container-lowest">
+                      <span class="material-symbols-outlined text-tertiary-fixed text-lg" style="font-variation-settings: 'FILL' 1;">shield</span>
+                      <span>بطاقة الضمان الماسي</span>
+                    </div>
+                    <span class="bg-tertiary text-on-tertiary text-[10px] px-2.5 py-0.5 rounded-full">نشط ومفعل</span>
+                  </div>
+
+                  <div class="py-4 space-y-2 text-secondary-fixed-dim font-mono">
+                    <div class="flex justify-between items-center bg-white/5 px-3 py-1.5 rounded">
+                      <span class="text-[11px] font-sans">المعرف الرقمي للمنتج:</span>
+                      <span class="font-bold text-surface-container-lowest">SA-TP-2025-99824</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs font-sans">
+                      <span class="text-secondary-fixed">صحة البطارية المعتمدة:</span>
+                      <span class="font-bold text-tertiary-fixed">98% (ممتاز - فئة +A)</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs font-sans">
+                      <span class="text-secondary-fixed">مدة الحماية المتبقية:</span>
+                      <span class="font-bold text-surface-container-lowest">718 يوماً من أصل 730</span>
+                    </div>
+                  </div>
+
+                  <div class="pt-2 flex items-center justify-between border-t border-white/10 font-sans">
+                    <div class="flex items-center gap-2">
+                      <div class="w-8 h-8 rounded bg-white p-0.5 flex items-center justify-center font-mono font-bold text-black text-xs">QR</div>
+                      <div class="flex flex-col">
+                        <span class="text-[10px] text-secondary-fixed">تقرير الجودة المخبري</span>
+                        <span class="text-[11px] font-bold text-surface-container-lowest">موثق بالسحابة</span>
+                      </div>
+                    </div>
+                    <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">verified_user</span>
+                  </div>
+                </div>
+
+                <div class="mt-3 flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/10 text-xs">
+                  <img class="w-10 h-10 rounded-lg object-cover border border-outline-variant/10" alt="فني مختبر معتمد" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACq-nDSuEUHn9vhAbhwu6LUKX0Yi6c-fXtRV7NO4eL87h9bk1gHCuLb83SDCYMTrnp6aQ3Qu4zQPcRnN1voyJrsipZfCqsdEEp_IIaAmt48ewqJ-MdgNpZKE4JQsj5VskUUvl0gYIVG_A3I9s9vN4sc35H2w72RxluOBh6HGdMgP5SKS4dywAC4w7MzoQmY7TXWNmMywvuT5gDmuVLtHHePliNJiOUskXWfxsWt5IeJkSNDnb8YtffdA"/>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">فحص دقيق بأيدي مهندسين معتمدين</span>
+                    <span class="text-secondary text-[10px]">اختبارات عتاد شاملة بمعدات تشخيصية حديثة</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 1: Quick Trust Pillars Grid -->
+      <section class="w-full py-space-xl bg-surface text-xs">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl">
+          <div class="text-center max-w-2xl mx-auto mb-space-xl">
+            <h2 class="text-xl lg:text-2xl font-black text-on-surface">ركائز الضمان الذهبي في تيك برو</h2>
+            <p class="text-secondary mt-1">معايير حقيقية وضعت خصيصاً لتمنحك الأمان المطلق والشراء براحة تامة دون أي مخاطرة</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+            
+            <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="w-10 h-10 rounded-lg bg-primary-fixed text-primary flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+                </div>
+                <h3 class="font-bold text-on-surface text-sm pt-1">ضمان ذهبي 24 شهراً</h3>
+                <p class="text-secondary leading-relaxed text-[11px]">تغطية شاملة ضد جميع الأعطال المصنعية، العتاد الداخلي، المعالجات، وشبكات الاتصال دون أي تكاليف خفية.</p>
+              </div>
+              <div class="pt-4 flex items-center gap-1 font-bold text-primary border-t border-outline-variant/10 mt-4">
+                <span>تغطية بلا استثناءات</span>
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="w-10 h-10 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">currency_exchange</span>
+                </div>
+                <h3 class="font-bold text-on-surface text-sm pt-1">استبدال واسترجاع 14 يوماً</h3>
+                <p class="text-secondary leading-relaxed text-[11px]">إذا لم يناسبك الجهاز لأي سبب، يمكنك إرجاعه أو استبداله فوراً مع استرداد مالي كامل وسريع بدون تعقيد.</p>
+              </div>
+              <div class="pt-4 flex items-center gap-1 font-bold text-tertiary border-t border-outline-variant/10 mt-4">
+                <span>استرداد فوري لحسابك</span>
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="w-10 h-10 rounded-lg bg-secondary-container text-primary flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">battery_charging_full</span>
+                </div>
+                <h3 class="font-bold text-on-surface text-sm pt-1">فحص مجاني وضمان بطارية</h3>
+                <p class="text-secondary leading-relaxed text-[11px]">استبدال مجاني ببطارية أصلية معتمدة إذا هبطت السعة عن 80% خلال فترة الضمان للأجهزة الجديدة والمجددة +A.</p>
+              </div>
+              <div class="pt-4 flex items-center gap-1 font-bold text-primary border-t border-outline-variant/10 mt-4">
+                <span>بطاريات أصلية 100%</span>
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="w-10 h-10 rounded-lg bg-surface-container-highest text-on-surface flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+                </div>
+                <h3 class="font-bold text-on-surface text-sm pt-1">صيانة من الباب للباب</h3>
+                <p class="text-secondary leading-relaxed text-[11px]">لا داعي لمغادرة بيتك؛ مندوب أسطولنا يستلم الجهاز من موقعك ويسلمه إليك مع خيار توفير هاتف بديل أثناء الصيانة.</p>
+              </div>
+              <div class="pt-4 flex items-center gap-1 font-bold text-on-surface border-t border-outline-variant/10 mt-4">
+                <span>جهاز بديل مجاني مؤقت</span>
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Warranty Matrix Comparison -->
+      <section class="w-full py-space-2xl bg-surface-container-low text-xs" id="warranty-table">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+            <div>
+              <span class="text-primary font-bold uppercase tracking-wider text-[11px]">الشفافية الكاملة</span>
+              <h2 class="text-xl lg:text-2xl font-black text-on-surface mt-1">مقارنة تغطية الأجهزة الجديدة والمجددة</h2>
+              <p class="text-secondary mt-0.5">تفاصيل ومزايا الضمان وفقاً لحالة وتصنيف الجهاز في تيك برو</p>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10">
+            <table class="w-full text-right border-collapse text-xs">
+              <thead>
+                <tr class="bg-surface-container-high text-on-surface font-bold">
+                  <th class="py-3 px-space-md">بند التغطية والخدمة</th>
+                  <th class="py-3 px-space-md bg-primary/10 text-primary">الأجهزة الجديدة تماماً <span class="block text-secondary font-normal text-[10px]">بختم المصنع الأصلي</span></th>
+                  <th class="py-3 px-space-md bg-tertiary/10 text-tertiary">المجدد الماسي (+A) <span class="block text-secondary font-normal text-[10px]">شبه جديد بأعلى معايير</span></th>
+                  <th class="py-3 px-space-md">المجدد الاقتصادي (A & B) <span class="block text-secondary font-normal text-[10px]">أداء ممتاز بسعر منافس</span></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant/10 text-on-surface">
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="py-3 px-space-md font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-base">calendar_month</span> مدة الضمان الذهبي</td>
+                  <td class="py-3 px-space-md bg-primary/5 font-bold text-primary">24 شهراً (سنتان)</td>
+                  <td class="py-3 px-space-md bg-tertiary/5 font-bold text-tertiary">24 شهراً (الضمان الذهبي)</td>
+                  <td class="py-3 px-space-md">12 شهراً كاملاً</td>
+                </tr>
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="py-3 px-space-md font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-tertiary text-base">battery_full</span> حالة البطارية وكفاءتها</td>
+                  <td class="py-3 px-space-md bg-primary/5 font-bold">100% سعة المصنع</td>
+                  <td class="py-3 px-space-md bg-tertiary/5 text-tertiary font-bold">90%+ (تبديل مجاني إذا قلت عن 80%)</td>
+                  <td class="py-3 px-space-md">85%+ (مفحوصة بدقة)</td>
+                </tr>
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="py-3 px-space-md font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-secondary text-base">swap_horiz</span> استبدال أو استرجاع حر</td>
+                  <td class="py-3 px-space-md bg-primary/5 font-bold">14 يوماً من الاستلام</td>
+                  <td class="py-3 px-space-md bg-tertiary/5 text-tertiary font-bold">14 يوماً من الاستلام</td>
+                  <td class="py-3 px-space-md">7 أيام من الاستلام</td>
+                </tr>
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="py-3 px-space-md font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-secondary text-base">local_shipping</span> الشحن والتوصيل للصيانة</td>
+                  <td class="py-3 px-space-md bg-primary/5 font-bold">مجاني من الباب للباب</td>
+                  <td class="py-3 px-space-md bg-tertiary/5 font-bold">مجاني من الباب للباب</td>
+                  <td class="py-3 px-space-md">مجاني طوال العام الأول</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: IMEI / Serial Number Warranty Checker Widget -->
+      <section class="w-full py-space-2xl bg-surface text-xs" id="verify-section">
+        <div class="max-w-5xl mx-auto px-space-md lg:px-space-xl">
+          <div class="bg-surface-container-lowest rounded-2xl shadow-lg p-space-lg lg:p-space-xl relative overflow-hidden border border-outline-variant/10">
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-4 border-b border-outline-variant/10">
+              <div>
+                <span class="inline-flex items-center gap-1 font-bold text-primary mb-1">
+                  <span class="material-symbols-outlined text-base">search_check</span> نظام الاستعلام السحابي المباشر
+                </span>
+                <h2 class="text-xl font-black text-on-surface">تحقق من سريان ضمان جهازك الآن</h2>
+                <p class="text-secondary text-[11px] mt-0.5">أدخل الرقم التسلسلي (Serial Number) أو رقم الـ IMEI المسجل على كرتون الجهاز أو الفاتورة</p>
+              </div>
+              <span class="bg-surface-container text-secondary px-3 py-1.5 rounded-lg font-bold">متاح لجميع عملاء المملكة والخليج</span>
+            </div>
+
+            <!-- Search Input Bar -->
+            <div class="flex flex-col sm:flex-row gap-2 my-6">
+              <div class="relative flex-1">
+                <span class="material-symbols-outlined absolute right-3 top-3 text-secondary text-base">dialpad</span>
+                <input class="w-full pl-3 pr-9 py-2.5 bg-surface-container-low rounded-lg text-on-surface placeholder:text-outline focus:outline-none border border-outline-variant/20 focus:border-primary font-mono text-xs" id="imeiInput" placeholder="مثال: 354892109847123" type="text" value="354892109847123"/>
+              </div>
+              <button class="bg-primary hover:bg-primary-container text-on-primary px-6 py-2.5 rounded-lg shadow-md font-bold transition-all flex items-center justify-center gap-1 cursor-pointer" id="searchBtn" onclick="checkWarranty()" type="button">
+                <span class="material-symbols-outlined text-base">verified</span>
+                <span>فحص حالة الضمان</span>
+              </button>
+            </div>
+
+            <!-- Result Card -->
+            <div class="bg-surface-container-low rounded-xl p-4 transition-all border border-outline-variant/10" id="warrantyResultCard">
+              <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-3 border-b border-outline-variant/10">
+                <div class="flex items-center gap-3">
+                  <img class="w-14 h-14 rounded-lg object-contain bg-surface-container-lowest p-1 border border-outline-variant/10" alt="آيفون 15 برو ماكس" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCXpNWM0CclyihEMbGqdu90rAchFX8LG-hrEiPWdq37A4NhxzdimiWSEB4a20kJlhv25S6eAPux1UeRWcs5yy-235hgYJL8ky9HumxWFY5H25ll3wEc3k1HZ7oohF5DX7yolH5oNRkZGg28nX6CBDZS9I_EKAxe9tlALlFl_9BjqtrLcJ62reP4AMNfgnZbp4YFMmGnxTDEJviDPa_i9gcRbfnBrX9v2LuLU3jJVn85YMBD2Hsknrw0g"/>
+                  <div>
+                    <div class="flex items-center gap-2 font-bold">
+                      <span class="text-on-surface">iPhone 15 Pro Max - 256GB تيتانيوم طبيعي</span>
+                      <span class="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] px-2 py-0.2 rounded-full">ساري ومعتمد</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-secondary text-[11px] mt-1 font-mono">
+                      <span>الرقم التسلسلي: <strong class="text-on-surface font-sans">354892109847123</strong></span>
+                      <span>تاريخ الشراء: <strong class="text-on-surface font-sans">16 نوفمبر 2024</strong></span>
+                    </div>
+                  </div>
+                </div>
+                <button onclick="alert('تم تنزيل وثيقة الضمان الرقمية PDF')" class="text-primary hover:text-primary-container font-bold flex items-center gap-1 bg-surface-container-lowest px-3 py-1.5 rounded-lg shadow-2xs cursor-pointer border border-outline-variant/10" type="button">
+                  <span class="material-symbols-outlined text-sm">download</span>
+                  <span>تحميل وثيقة الضمان PDF</span>
+                </button>
+              </div>
+
+              <div class="pt-3 space-y-1.5 font-mono">
+                <div class="flex justify-between items-center text-[11px]">
+                  <span class="text-secondary font-sans">المدة المنقضية من الضمان (سنتان - 730 يوماً):</span>
+                  <span class="text-primary font-bold">متبقي 668 يوماً (ساري حتى 15 نوفمبر 2026)</span>
+                </div>
+                <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+                  <div class="bg-gradient-to-l from-primary to-tertiary h-full rounded-full w-[88%]"></div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 mt-2 border-t border-outline-variant/10 text-[11px]">
+                <div class="bg-surface-container-lowest p-2 rounded border border-outline-variant/10">
+                  <span class="text-secondary block">فئة الجهاز:</span>
+                  <span class="font-bold text-on-surface">جديد (Factory Sealed)</span>
+                </div>
+                <div class="bg-surface-container-lowest p-2 rounded border border-outline-variant/10">
+                  <span class="text-secondary block">نوع التغطية:</span>
+                  <span class="font-bold text-tertiary">الضمان الذهبي + صيانة منزلية</span>
+                </div>
+                <div class="bg-surface-container-lowest p-2 rounded border border-outline-variant/10">
+                  <span class="text-secondary block">صحة البطارية:</span>
+                  <span class="font-bold text-on-surface">100% (تبديل مجاني إذا قلت عن 80%)</span>
+                </div>
+                <div class="bg-surface-container-lowest p-2 rounded border border-outline-variant/10">
+                  <span class="text-secondary block">مركز الصيانة المعين:</span>
+                  <span class="font-bold text-on-surface">مختبر تيك برو - الرياض</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Immediate CTA & Support Contact Box -->
+      <section class="w-full py-space-2xl bg-surface-container-low text-xs">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl">
+          <div class="bg-gradient-to-r from-inverse-surface to-slate-900 text-inverse-on-surface rounded-2xl p-space-lg lg:p-space-xl shadow-xl relative overflow-hidden border border-outline-variant/20">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center relative z-10">
+              <div class="lg:col-span-8 flex flex-col gap-2">
+                <span class="inline-flex items-center gap-1 font-bold text-tertiary-fixed">
+                  <span class="material-symbols-outlined text-sm">support_agent</span>
+                  فريق مستشاري الضمان بانتظارك
+                </span>
+                <h2 class="text-xl lg:text-2xl font-black text-surface-container-lowest">هل تحتاج لمساعدة، صيانة أو استبدال جهازك الآن؟</h2>
+                <p class="text-secondary-fixed-dim max-w-xl leading-relaxed text-[11px]">
+                  لا تتردد في بدء طلبك. فريق الدعم الفني متواجد على مدار الساعة لخدمتك وضمان حصولك على تجربة تقنية مثالية دون انقطاع.
+                </p>
+                <div class="flex flex-wrap items-center gap-2 pt-2 font-bold">
+                  <a class="bg-primary hover:bg-primary-container text-on-primary px-5 py-2.5 rounded-lg shadow-md transition-all flex items-center gap-1" href="#">
+                    <span class="material-symbols-outlined text-base">build</span>
+                    <span>رفع طلب ضمان وصيانة أونلاين</span>
+                  </a>
+                  <a class="bg-surface-container-highest/20 hover:bg-surface-container-highest/30 text-surface-container-lowest px-5 py-2.5 rounded-lg transition-colors flex items-center gap-1 border border-white/10" href="#">
+                    <span class="material-symbols-outlined text-base text-tertiary-fixed">chat</span>
+                    <span>محادثة فورية عبر واتساب</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="lg:col-span-4 flex flex-col gap-2 bg-surface-container-highest/10 p-4 rounded-xl border border-white/10">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-primary/20 text-primary-fixed flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xl">call</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary-fixed">الرقم الموحد المجاني</span>
+                    <span class="text-base font-black text-surface-container-lowest font-mono dir-ltr">920000988</span>
+                  </div>
+                </div>
+                <div class="border-t border-white/10 pt-2 text-[10px] text-secondary-fixed-dim font-sans">
+                  أوقات العمل: من السبت للخميس (9:00 ص - 11:00 م)
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل عبر واتساب المباشر</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>الضمان الذهبي وضوابط الجودة المعتمدة</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function checkWarranty() {
+      const input = document.getElementById('imeiInput');
+      const card = document.getElementById('warrantyResultCard');
+      const searchBtn = document.getElementById('searchBtn');
+
+      if (!input.value.trim()) {
+        input.focus();
+        return;
+      }
+
+      searchBtn.disabled = true;
+      searchBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span><span>جاري التحقق...</span>';
+
+      setTimeout(() => {
+        searchBtn.disabled = false;
+        searchBtn.innerHTML = '<span class="material-symbols-outlined text-base">verified</span><span>فحص حالة الضمان</span>';
+        
+        card.classList.add('ring-2', 'ring-primary');
+        setTimeout(() => {
+          card.classList.remove('ring-2', 'ring-primary');
+        }, 1200);
+      }, 600);
+    }
+  </script>
+</body>
+</html>

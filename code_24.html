@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Audit Logs, IPs, Hashes) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <img alt="صورة الملف الشخصي" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE"/>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">سجل التدقيق الأمني الجنائي (Audit Log)</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">كافة السجلات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="critical">الأحداث الحرجة</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="finance">العمليات المالية</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="security">التهديدات المحظورة</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث برقم IP، معرف الموظف، أو الـ UUID..." type="text"/>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
+            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+          </a>
+          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+            <div class="hidden sm:flex flex-col text-right">
+              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
+              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+            </div>
+          </a>
+          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl">person</span>
+            <span class="hidden sm:inline">مدير التدقيق والأمن</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">سجل التدقيق الأمني الجنائي</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">مراقبة التغييرات الحية</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">تقارير الامتثال التنظيمي</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">سلسلة الكتل والتوثيق (Ledger)</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">security</span>
+            <span>متوافق مع معايير NCA & ZATCA الجنائية</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full text-on-surface">
+      
+      <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-lg flex flex-col gap-space-xl">
+        
+        <!-- Top System Identity & Security Status Banner -->
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md bg-inverse-surface text-inverse-on-surface p-space-lg rounded-xl shadow-md border border-outline-variant/20">
+          <div class="flex items-center gap-space-md">
+            <div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center text-primary-fixed">
+              <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">security</span>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-space-xs flex-wrap">
+                <h1 class="text-lg lg:text-xl font-bold text-surface-container-lowest">سجل التدقيق الأمني الجنائي ومراقبة التغييرات</h1>
+                <span class="bg-tertiary text-tertiary-fixed text-xs px-2.5 py-0.5 rounded-full font-bold flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span>
+                  مباشر ومشفر (Immutable Ledger)
+                </span>
+              </div>
+              <p class="text-xs text-secondary-fixed-dim mt-0.5">
+                نظام التوثيق الجنائي الموحد لمبيعات التجزئة، الفروع، والمستودعات | متوافق مع معايير NCA & ZATCA
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex flex-wrap items-center gap-space-sm w-full lg:w-auto text-xs font-bold">
+            <div class="flex items-center gap-1 bg-surface-container-highest/10 px-3 py-2 rounded-lg text-secondary-fixed border border-white/10">
+              <span class="material-symbols-outlined text-tertiary-fixed text-base">verified</span>
+              <span>SHA-256 Validated Chain</span>
+            </div>
+            <button class="bg-tertiary-container hover:bg-tertiary text-on-tertiary px-3 py-2 rounded-lg flex items-center gap-1 transition-colors shadow-sm cursor-pointer" id="live-toggle-btn" type="button">
+              <span class="material-symbols-outlined text-base">sensors</span>
+              <span>البث الحي للسجلات (Live ON)</span>
+            </button>
+            <button onclick="alert('تم تصدير شهادة التدقيق الجنائي المعتمدة (Forensic-Audit-Report.pdf)')" class="bg-primary-container hover:bg-primary text-on-primary px-3 py-2 rounded-lg flex items-center gap-1 transition-colors shadow-sm cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base">file_download</span>
+              <span>تصدير شهادة التدقيق</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Forensic & Audit KPIs Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md text-xs">
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/10">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>إجمالي الأحداث المسجلة اليوم</span>
+              <span class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-lg">database</span>
+              </span>
+            </div>
+            <div class="mt-space-md">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl lg:text-3xl font-black text-on-surface font-mono">14,820</span>
+                <span class="text-secondary">حدث مؤمن</span>
+              </div>
+              <div class="flex items-center gap-1 text-tertiary mt-1 font-bold">
+                <span class="material-symbols-outlined text-sm">trending_up</span>
+                <span>+18% عن الأمس (بدون فقد بيانات)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>العمليات عالية الحساسية</span>
+              <span class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+                <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
+              </span>
+            </div>
+            <div class="mt-space-md">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl lg:text-3xl font-black text-on-surface font-mono">19</span>
+                <span class="text-secondary">عملية حساسة</span>
+              </div>
+              <div class="flex items-center gap-1 text-primary mt-1 font-bold">
+                <span class="material-symbols-outlined text-sm">fingerprint</span>
+                <span>موثقة بـ OTP وبصمة الموظف</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>المحاولات المشبوهة المحظورة</span>
+              <span class="w-8 h-8 rounded-lg bg-error-container flex items-center justify-center text-error">
+                <span class="material-symbols-outlined text-lg">gpp_bad</span>
+              </span>
+            </div>
+            <div class="mt-space-md">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl lg:text-3xl font-black text-error font-mono">3</span>
+                <span class="text-secondary">محاولات وصول غير مصرّح</span>
+              </div>
+              <div class="flex items-center gap-1 text-error mt-1 font-bold">
+                <span class="material-symbols-outlined text-sm">block</span>
+                <span>حظر فوري عبر WAF و Geo-IP</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>نزاهة السلسلة الجنائية</span>
+              <span class="w-8 h-8 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+                <span class="material-symbols-outlined text-lg">lock</span>
+              </span>
+            </div>
+            <div class="mt-space-md">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl lg:text-3xl font-black text-tertiary font-mono">100%</span>
+                <span class="text-secondary">SHA-256 Seal</span>
+              </div>
+              <div class="flex items-center gap-1 text-tertiary mt-1 font-bold">
+                <span class="material-symbols-outlined text-sm">verified_user</span>
+                <span>غير قابلة للحذف أو التعديل</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forensic Search and Smart Filter Toolbar -->
+        <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-md text-xs">
+          <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+            <div class="flex-1 flex items-center bg-surface-container-low rounded-lg px-3 py-1.5 border border-outline-variant/20 focus-within:border-primary-container">
+              <span class="material-symbols-outlined text-secondary ml-2 text-base">travel_explore</span>
+              <input class="bg-transparent w-full text-xs text-on-surface placeholder:text-secondary focus:outline-none font-mono" id="forensic-search-input" placeholder="بحث جنائي: رقم الموظف، IP، رقم الفاتورة، السيريال IMEI، ZATCA UUID..." type="text"/>
+              <button onclick="alert('جاري تنفيذ البحث الجنائي في السجلات المشفرة')" class="bg-primary-container hover:bg-primary text-on-primary px-3 py-1 rounded-md font-bold transition-colors cursor-pointer">
+                تحرّي
+              </button>
+            </div>
+            <div class="flex items-center gap-2 text-secondary">
+              <span class="material-symbols-outlined text-sm text-tertiary">history_toggle_off</span>
+              <span>تحديث التزامن التلقائي: كل 5 ثوانٍ</span>
+            </div>
+          </div>
+
+          <!-- Dropdown Filters Bar -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm pt-1">
+            <div class="flex flex-col gap-1">
+              <label class="text-[11px] text-secondary font-bold">مستوى الحساسية</label>
+              <select class="bg-surface-container-low text-on-surface font-bold rounded-lg px-2.5 py-2 focus:outline-none border border-outline-variant/20 cursor-pointer" id="filter-severity">
+                <option value="all">جميع المستويات</option>
+                <option value="critical">حرج جداً (Critical)</option>
+                <option value="high">عالي (High)</option>
+                <option value="medium">متوسط (Medium)</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label class="text-[11px] text-secondary font-bold">الوحدة والنظام</label>
+              <select class="bg-surface-container-low text-on-surface font-bold rounded-lg px-2.5 py-2 focus:outline-none border border-outline-variant/20 cursor-pointer" id="filter-module">
+                <option value="all">كافة الوحدات</option>
+                <option value="finance">المعاملات المالية والفوترة (ZATCA)</option>
+                <option value="inventory">إدارة المخزون والمناقلات</option>
+                <option value="auth">صلاحيات الموظفين والمصادقة</option>
+                <option value="pos">نظام نقاط البيع والكاشير (POS)</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label class="text-[11px] text-secondary font-bold">الموقع الجغرافي / الفرع</label>
+              <select class="bg-surface-container-low text-on-surface font-bold rounded-lg px-2.5 py-2 focus:outline-none border border-outline-variant/20 cursor-pointer" id="filter-location">
+                <option value="all">كافة الفروع والمواقع</option>
+                <option value="tahliya">فرع التحلية - الرياض</option>
+                <option value="yasmin">فرع الياسمين - الرياض</option>
+                <option value="sulay">مستودع السلي المركزي</option>
+                <option value="online">متجر الويب وتطبيق الجوال</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label class="text-[11px] text-secondary font-bold">النطاق الزمني</label>
+              <select class="bg-surface-container-low text-on-surface font-bold rounded-lg px-2.5 py-2 focus:outline-none border border-outline-variant/20 cursor-pointer" id="filter-time">
+                <option value="1h">آخر 60 دقيقة</option>
+                <option selected="" value="today">اليوم (منذ 00:00)</option>
+                <option value="7d">آخر 7 أيام</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Audit Log Stream + Forensic Deep-Dive Container -->
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+          
+          <!-- Forensic Log Stream Table (8 Cols) -->
+          <div class="xl:col-span-8 flex flex-col gap-space-md">
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden">
+              <div class="p-space-md bg-surface-container-low flex items-center justify-between text-xs border-b border-outline-variant/10">
+                <div class="flex items-center gap-space-xs font-bold text-on-surface">
+                  <span class="material-symbols-outlined text-primary">view_list</span>
+                  <span>سجلات التدقيق الجنائي الموثوقة</span>
+                </div>
+                <span class="text-secondary font-mono">Block ID: #BLK-89102-SEC</span>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-right border-collapse text-xs">
+                  <thead>
+                    <tr class="bg-surface-container text-secondary font-bold">
+                      <th class="py-2.5 px-3 rounded-r-lg">الوقت والتاريخ</th>
+                      <th class="py-2.5 px-3">المستخدم والمصدر</th>
+                      <th class="py-2.5 px-3">الحدث والتغيير</th>
+                      <th class="py-2.5 px-3 text-center">مستوى الخطورة</th>
+                      <th class="py-2.5 px-3 rounded-l-lg text-center">التحقق</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-outline-variant/10 text-on-surface">
+                    
+                    <!-- Event 1 -->
+                    <tr class="hover:bg-surface-container-low cursor-pointer transition-colors bg-surface-container-low/40" onclick="selectEvent(1)">
+                      <td class="py-3 px-3 whitespace-nowrap">
+                        <div class="flex flex-col font-mono">
+                          <span class="font-bold text-on-surface">14:48:22</span>
+                          <span class="text-secondary text-[10px]">18 أكتوبر 2025</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3">
+                        <div class="flex flex-col">
+                          <span class="font-bold text-on-surface">فهد السبيعي</span>
+                          <span class="text-secondary text-[11px]">كاشير POS - فرع التحلية</span>
+                          <span class="text-primary font-mono text-[10px]">IP: 10.14.2.19</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3">
+                        <div class="flex flex-col gap-0.5">
+                          <span class="font-bold text-error">تعديل سعر بيع يدوي (تجاوز السعر)</span>
+                          <span class="text-on-surface-variant text-[11px]">iPhone 15 Pro Max 256GB</span>
+                          <div class="flex items-center gap-1 font-mono text-[10px]">
+                            <span class="text-error line-through bg-error-container/40 px-1 rounded">4,699 ر.س</span>
+                            <span class="material-symbols-outlined text-[10px]">arrow_forward</span>
+                            <span class="text-tertiary font-bold bg-tertiary-fixed/20 px-1 rounded">4,200 ر.س</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3 text-center whitespace-nowrap">
+                        <span class="bg-error text-on-error px-2.5 py-0.5 rounded-full font-bold text-[10px]">حرج جداً</span>
+                      </td>
+                      <td class="py-3 px-3 text-center whitespace-nowrap">
+                        <div class="flex flex-col items-center">
+                          <span class="material-symbols-outlined text-tertiary text-base">verified_user</span>
+                          <span class="text-secondary text-[10px]">OTP مدير</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <!-- Event 2 -->
+                    <tr class="hover:bg-surface-container-low cursor-pointer transition-colors" onclick="selectEvent(2)">
+                      <td class="py-3 px-3 whitespace-nowrap">
+                        <div class="flex flex-col font-mono">
+                          <span class="font-bold text-on-surface">14:12:05</span>
+                          <span class="text-secondary text-[10px]">18 أكتوبر 2025</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3">
+                        <div class="flex flex-col">
+                          <span class="font-bold text-on-surface">سارة المنصور</span>
+                          <span class="text-secondary text-[11px]">كبير المحاسبين - المالية</span>
+                          <span class="text-primary font-mono text-[10px]">IP: 10.10.1.44</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3">
+                        <div class="flex flex-col gap-0.5">
+                          <span class="font-bold text-on-surface">إصدار إشعار دائن Credit Note ZATCA</span>
+                          <span class="text-secondary text-[11px]">إلغاء فاتورة #INV-98212 بمبلغ 3,699 ر.س</span>
+                          <span class="text-secondary font-mono text-[10px]">UUID: 9c2b8-f10a-4a87-8f72</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3 text-center whitespace-nowrap">
+                        <span class="bg-error text-on-error px-2.5 py-0.5 rounded-full font-bold text-[10px]">حرج جداً</span>
+                      </td>
+                      <td class="py-3 px-3 text-center whitespace-nowrap">
+                        <div class="flex flex-col items-center">
+                          <span class="material-symbols-outlined text-tertiary text-base">fact_check</span>
+                          <span class="text-secondary text-[10px]">ختم الزكاة</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <!-- Event 3 -->
+                    <tr class="hover:bg-surface-container-low cursor-pointer transition-colors" onclick="selectEvent(3)">
+                      <td class="py-3 px-3 whitespace-nowrap">
+                        <div class="flex flex-col font-mono">
+                          <span class="font-bold text-on-surface">13:30:19</span>
+                          <span class="text-secondary text-[10px]">18 أكتوبر 2025</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3">
+                        <div class="flex flex-col">
+                          <span class="font-bold text-on-surface">خالد الرويلي</span>
+                          <span class="text-secondary text-[11px]">مشرف مستودع - السلي</span>
+                          <span class="text-primary font-mono text-[10px]">Zebra #WMS-04</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3">
+                        <div class="flex flex-col gap-0.5">
+                          <span class="font-bold text-on-surface">مناقلة مخزون فوري صادرة</span>
+                          <span class="text-secondary text-[11px]">تصدير 15 جهاز سامسونج S24 Ultra</span>
+                          <span class="text-secondary text-[10px] font-mono">RedBox #RB-9921</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3 text-center whitespace-nowrap">
+                        <span class="bg-surface-container-highest text-on-surface px-2.5 py-0.5 rounded-full font-bold text-[10px]">عالي</span>
+                      </td>
+                      <td class="py-3 px-3 text-center whitespace-nowrap">
+                        <div class="flex flex-col items-center">
+                          <span class="material-symbols-outlined text-tertiary text-base">check_circle</span>
+                          <span class="text-secondary text-[10px]">بصمة مستلم</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <!-- Event 4 -->
+                    <tr class="hover:bg-surface-container-low cursor-pointer transition-colors" onclick="selectEvent(4)">
+                      <td class="py-3 px-3 whitespace-nowrap">
+                        <div class="flex flex-col font-mono">
+                          <span class="font-bold text-error">12:15:40</span>
+                          <span class="text-secondary text-[10px]">18 أكتوبر 2025</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3">
+                        <div class="flex flex-col">
+                          <span class="font-bold text-error">مجهول (Anonymous)</span>
+                          <span class="text-secondary text-[11px]">بروكسي / VPN خارجي</span>
+                          <span class="text-error font-mono text-[10px]">IP: 185.220.101.5</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3">
+                        <div class="flex flex-col gap-0.5">
+                          <span class="font-bold text-error">محاولات دخول فاشلة (Brute Force)</span>
+                          <span class="text-secondary text-[11px]">استهداف حساب Super Admin - لوحة التحكم</span>
+                          <span class="text-error text-[10px]">تم الحظر الجغرافي الفوري عبر WAF</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-3 text-center whitespace-nowrap">
+                        <span class="bg-error text-on-error px-2.5 py-0.5 rounded-full font-bold text-[10px]">تهديد محظور</span>
+                      </td>
+                      <td class="py-3 px-3 text-center whitespace-nowrap">
+                        <div class="flex flex-col items-center">
+                          <span class="material-symbols-outlined text-error text-base">gpp_bad</span>
+                          <span class="text-error font-bold text-[10px]">حظر WAF</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination Bar -->
+              <div class="p-3 bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm text-xs border-t border-outline-variant/10">
+                <span class="text-secondary font-bold">عرض 1 إلى 4 من أصل 14,820 حدث مدقق</span>
+                <div class="flex items-center gap-1 font-bold">
+                  <button class="px-2.5 py-1 bg-surface-container-lowest rounded text-secondary hover:text-on-surface">السابق</button>
+                  <button class="px-2.5 py-1 bg-primary text-on-primary rounded">1</button>
+                  <button class="px-2.5 py-1 bg-surface-container-lowest rounded text-secondary hover:text-on-surface">2</button>
+                  <button class="px-2.5 py-1 bg-surface-container-lowest rounded text-secondary hover:text-on-surface">التالي</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ledger Proof -->
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-2 text-xs">
+              <div class="flex items-center justify-between font-bold">
+                <div class="flex items-center gap-1 text-on-surface">
+                  <span class="material-symbols-outlined text-tertiary">polyline</span>
+                  <span>تأكيد توثيق السلسلة (Cryptographic Ledger Proof)</span>
+                </div>
+                <span class="text-tertiary font-mono text-[11px]">Zero-Knowledge Validated</span>
+              </div>
+              <p class="text-secondary text-[11px] leading-relaxed">
+                كل عملية مسجلة مرتبطة بالحدث السابق بواسطة هاش تشفيري يمنع أي تعديل رجعي لقواعد البيانات.
+              </p>
+              <div class="bg-surface-container p-2 rounded-lg font-mono text-[11px] text-on-surface-variant flex items-center justify-between gap-2 border border-outline-variant/10">
+                <span class="truncate" dir="ltr">Root Merkle Hash: 8f4e2c9183bb901d84f004a3e9c7bc2990a12e105e94b83fec9a18d1a1b18c0f</span>
+                <button onclick="navigator.clipboard.writeText('8f4e2c9183bb901d84f004a3e9c7bc2990a12e105e94b83fec9a18d1a1b18c0f'); alert('تم نسخ الهاش بنجاح');" class="text-primary font-bold hover:underline shrink-0 cursor-pointer">نسخ</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Forensic Inspector & Deep-Dive Panel (4 Cols) -->
+          <div class="xl:col-span-4 flex flex-col gap-space-md sticky top-36" id="inspector-panel">
+            <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-md text-xs">
+              
+              <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/10">
+                <div class="flex items-center gap-1 font-bold text-on-surface">
+                  <span class="material-symbols-outlined text-primary text-base">biotech</span>
+                  <h3 class="text-xs">الفاحص الجنائي للحدث المختار</h3>
+                </div>
+                <span class="bg-error-container text-on-error-container text-[10px] px-2 py-0.5 rounded font-bold font-mono">#EV-88391</span>
+              </div>
+
+              <!-- Event Summary Info -->
+              <div class="bg-surface-container-low p-3 rounded-lg flex flex-col gap-1.5 border border-outline-variant/10">
+                <div class="flex justify-between">
+                  <span class="text-secondary">نوع العملية:</span>
+                  <span class="font-bold text-on-surface">تعديل سعر كاشير (Price Override)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-secondary">المسؤول:</span>
+                  <span class="font-bold text-on-surface">فهد السبيعي (EMP-4091)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-secondary">الموقع:</span>
+                  <span class="font-bold text-on-surface">كاشير 02 - التحلية الرياض</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-secondary">اعتماد المشرف:</span>
+                  <span class="font-mono font-bold text-tertiary">OTP-849201</span>
+                </div>
+              </div>
+
+              <!-- Diff View -->
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center justify-between font-bold">
+                  <span class="text-on-surface">مقارنة التغيير (Diff Inspector)</span>
+                  <span class="text-secondary font-mono text-[10px]">pos_order_items</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2 font-mono text-[11px] mt-1">
+                  <div class="bg-error-container/40 p-2 rounded flex flex-col gap-0.5 text-on-error-container border border-error/20">
+                    <span class="font-bold text-error">السابق (Before):</span>
+                    <span>price: 4699.00</span>
+                    <span>disc: 0.00%</span>
+                  </div>
+                  <div class="bg-tertiary-fixed/20 p-2 rounded flex flex-col gap-0.5 text-tertiary border border-tertiary/20">
+                    <span class="font-bold text-tertiary">المعدل (After):</span>
+                    <span>price: 4200.00</span>
+                    <span>disc: 10.61%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Network Metadata -->
+              <div class="flex flex-col gap-1">
+                <span class="font-bold text-on-surface">البصمة الجنائية والشبكية</span>
+                <div class="bg-surface-container-high/40 p-2.5 rounded-lg flex flex-col gap-0.5 text-secondary font-mono text-[11px] leading-relaxed border border-outline-variant/10" dir="ltr">
+                  <div><strong>IP:</strong> 10.14.2.19 (VLAN_POS_SECURE)</div>
+                  <div><strong>MAC:</strong> 00:1A:2B:3C:4D:5E</div>
+                  <div><strong>Terminal:</strong> TechPro_Tahliya_POS_T02</div>
+                  <div><strong>TLS:</strong> 1.3 | AES_256_GCM</div>
+                </div>
+              </div>
+
+              <!-- Evidence Actions -->
+              <div class="flex flex-col gap-2 pt-1 font-bold">
+                <button onclick="alert('تم توليد وتنزيل شهادة الإثبات الجنائي الرقمية المعتمدة (Forensic-Proof-EV88391.pdf)')" class="bg-primary hover:bg-primary-container text-on-primary py-2 rounded-lg flex items-center justify-center gap-1 transition-colors shadow-sm cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-base">verified</span>
+                  <span>توليد شهادة إثبات جنائي رقمية</span>
+                </button>
+                <button onclick="alert('تم تجميد صلاحيات الحساب احترازياً وإرسال تنبيه لفريق الأمان')" class="bg-surface-container hover:bg-surface-container-high text-on-surface py-2 rounded-lg flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-base text-error">lock_reset</span>
+                  <span>تجميد صلاحيات الحساب احترازياً</span>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Evidence Seal Note -->
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex items-center gap-3 text-xs">
+              <span class="material-symbols-outlined text-2xl text-tertiary shrink-0">shield</span>
+              <div class="flex flex-col">
+                <span class="font-bold text-on-surface">إثبات غير قابل للتنكير (Non-Repudiation)</span>
+                <span class="text-secondary text-[11px]">معتمد كبيّنة رقمية وفق نظام التعاملات الإلكترونية السعودي.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Regulatory Compliance Section -->
+        <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-lg text-xs">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs pb-2 border-b border-outline-variant/10">
+            <div class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-primary text-xl">policy</span>
+              <h3 class="text-sm font-bold text-on-surface">الامتثال للأنظمة والتشريعات السعودية</h3>
+            </div>
+            <span class="bg-tertiary text-on-tertiary px-3 py-1 rounded-full font-bold">
+              100% متوافق ومعتمد
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+            <div class="bg-surface-container-low p-3 rounded-lg flex flex-col justify-between gap-2 border border-outline-variant/10">
+              <div class="flex items-start gap-2">
+                <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+                  <span class="material-symbols-outlined text-base">account_balance</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-on-surface text-xs">الامتثال لـ ZATCA المرحلة الثانية</h4>
+                  <p class="text-secondary text-[11px] leading-relaxed mt-1">تشفير وحفظ كافة الفواتير والإشعارات بالختم الرقمي والتوقيع لمدة 5 سنوات، مع الربط اللحظي بمنصة فاتورة.</p>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] pt-1 border-t border-outline-variant/10 font-bold text-tertiary">
+                <span>الحالة: ربط مباشر فعال</span>
+                <span class="material-symbols-outlined text-sm">check</span>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-low p-3 rounded-lg flex flex-col justify-between gap-2 border border-outline-variant/10">
+              <div class="flex items-start gap-2">
+                <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+                  <span class="material-symbols-outlined text-base">gavel</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-on-surface text-xs">ضوابط NCA للأمن السيبراني</h4>
+                  <p class="text-secondary text-[11px] leading-relaxed mt-1">الالتزام بضوابط الهيئة الوطنية للأمن السيبراني (ECC-1:2018) لحفظ سجلات الوصول وإدارة الصلاحيات (PAM).</p>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] pt-1 border-t border-outline-variant/10 font-bold text-tertiary">
+                <span>الحالة: فحص ربع سنوي ناجح</span>
+                <span class="material-symbols-outlined text-sm">check</span>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-low p-3 rounded-lg flex flex-col justify-between gap-2 border border-outline-variant/10">
+              <div class="flex items-start gap-2">
+                <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+                  <span class="material-symbols-outlined text-base">cloud_sync</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-on-surface text-xs">أرشفة سحابية WORM مشفرة</h4>
+                  <p class="text-secondary text-[11px] leading-relaxed mt-1">حفظ غير قابل للتعديل أو المسح داخل خوادم محلية بالمملكة مع مفاتيح تشفير دورية KMS تمنع أي وصول خارجي.</p>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] pt-1 border-t border-outline-variant/10 font-bold text-tertiary">
+                <span>سياسة الحفظ: 5 سنوات</span>
+                <span class="material-symbols-outlined text-sm">check</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل عبر واتساب المباشر</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>سجل التدقيق الجنائي الموثق (Immutable Audit Ledger)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function selectEvent(eventId) {
+      alert(`جاري تحميل بيانات السجل الجنائي المفصل للحدث [#EV-8839{eventId}] وعرض بصمة الـ SHA-256 الخاصة به.`);
+    }
+
+    const liveToggleBtn = document.getElementById('live-toggle-btn');
+    let isLiveOn = true;
+    if (liveToggleBtn) {
+      liveToggleBtn.addEventListener('click', function() {
+        isLiveOn = !isLiveOn;
+        if (isLiveOn) {
+          this.className = 'bg-tertiary-container hover:bg-tertiary text-on-tertiary px-3 py-2 rounded-lg flex items-center gap-1 transition-colors shadow-sm cursor-pointer';
+          this.innerHTML = '<span class="material-symbols-outlined text-base">sensors</span><span>البث الحي للسجلات (Live ON)</span>';
+        } else {
+          this.className = 'bg-surface-container-high hover:bg-surface-variant text-on-surface px-3 py-2 rounded-lg flex items-center gap-1 transition-colors shadow-sm cursor-pointer border border-outline-variant/10';
+          this.innerHTML = '<span class="material-symbols-outlined text-base">sensors_off</span><span>البث متوقف (Paused)</span>';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

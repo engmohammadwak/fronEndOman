@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Log Streams & Metrics) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <img alt="صورة الملف الشخصي" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE"/>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">مركز إدارة السجلات المركزية (OpenSearch)</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الحاويات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="api">بوابات API</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="errors">أخطاء 5xx</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="audit">تدقيق أمني</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث برقم IP، Service، أو استعلام KQL..." type="text"/>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
+            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+          </a>
+          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+            <div class="hidden sm:flex flex-col text-right">
+              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
+              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+            </div>
+          </a>
+          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl">person</span>
+            <span class="hidden sm:inline">مهندس السجلات (DevOps)</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">إدارة السجلات المركزية</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">تحليل تدفق الأحداث</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">تنبيهات SRE والتنبؤ</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">سياسات الاحتفاظ والامتثال</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">data_exploration</span>
+            <span>مفهرس مباشر OpenSearch 2.14</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full text-on-surface">
+      
+      <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-lg flex flex-col gap-space-xl">
+        
+        <!-- Top Identity & Status Banner -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10">
+          <div class="flex items-center gap-space-md">
+            <div class="w-14 h-14 rounded-xl bg-primary-container/10 flex items-center justify-center text-primary-container shrink-0">
+              <span class="material-symbols-outlined text-3xl">data_exploration</span>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-space-xs flex-wrap">
+                <h1 class="text-lg lg:text-xl font-bold text-on-surface">مركز إدارة السجلات المركزية وتحليل التدفقات</h1>
+                <span class="bg-tertiary-container/10 text-tertiary-container text-xs px-2.5 py-0.5 rounded-full font-bold flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-ping"></span>
+                  مفهرس مباشر OpenSearch 2.14
+                </span>
+                <span class="bg-secondary-container/50 text-secondary text-xs px-2.5 py-0.5 rounded-full font-bold">
+                  عنقود الإنتاج - الرياض (prod-ruh-k8s)
+                </span>
+              </div>
+              <p class="text-xs text-secondary mt-1 leading-relaxed">
+                منظومة استيعاب ومعالجة السجلات المركزية، الربط السياقي مع التتبع الموزع (Trace Context)، والتحقق من التوافق اللحظي مع معايير NCA و PDPL.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Action Triggers -->
+          <div class="flex items-center gap-space-xs shrink-0 text-xs font-bold">
+            <button onclick="alert('تم تجهيز تصدير السجلات الشامل بصيغة JSON/CSV')" class="flex items-center gap-1 px-3 py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors shadow-sm border border-outline-variant/10 cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base text-secondary">download</span>
+              <span>تصدير السجلات</span>
+            </button>
+            <button onclick="alert('فتح معالج إنشاء قاعدة تنبيه SRE جديدة')" class="flex items-center gap-1 px-3 py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary transition-all active:scale-95 shadow-sm cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base">notification_add</span>
+              <span>إنشاء قاعدة تنبيه SRE</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Section 1: Ingestion Telemetry & Health Metrics (KPI Bento Grid) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md text-xs">
+          
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>الاستيعاب اليومي (Logs/Day)</span>
+              <span class="material-symbols-outlined text-primary-container text-xl">dataset</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-black text-on-surface font-mono">184.6M</div>
+              <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
+                <span class="material-symbols-outlined text-sm">trending_up</span>
+                <span>+14.2% مقارنة بأمس</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+              <div class="bg-primary-container h-full rounded-full" style="width: 78%;"></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>الحجم المفهرس وضغط ZSTD</span>
+              <span class="material-symbols-outlined text-secondary text-xl">compress</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-black text-on-surface font-mono">412 <span class="text-xs font-normal text-secondary font-sans">جيجابايت</span></div>
+              <div class="flex items-center gap-1 text-secondary mt-1">
+                <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">check_circle</span>
+                <span class="font-bold">65% مساحة موفّرة</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+              <div class="bg-tertiary-container h-full rounded-full" style="width: 65%;"></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>معدل المعالجة اللحظي</span>
+              <span class="material-symbols-outlined text-primary text-xl">speed</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-black text-on-surface font-mono">28,400 <span class="text-xs text-secondary font-normal font-sans">سجل/ث</span></div>
+              <div class="flex items-center gap-1 text-on-surface mt-1">
+                <span class="text-tertiary-container font-bold font-mono">1.18s</span>
+                <span class="text-secondary">زمن وصول الفهرسة (Lag)</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+              <div class="bg-primary h-full rounded-full" style="width: 92%;"></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>توزيع مستويات الخطورة</span>
+              <span class="material-symbols-outlined text-error text-xl">warning_amber</span>
+            </div>
+            <div class="my-2 flex flex-col gap-1">
+              <div class="flex items-center justify-between font-bold">
+                <span class="text-error flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error"></span> أخطاء وحرجة</span>
+                <span class="text-error font-mono">3.3% (14)</span>
+              </div>
+              <div class="flex items-center justify-between text-secondary font-semibold">
+                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> تحذيرات WARN</span>
+                <span class="font-mono">12.2%</span>
+              </div>
+              <div class="flex items-center justify-between text-tertiary-container font-semibold">
+                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary-container"></span> تشغيلي INFO</span>
+                <span class="font-mono">84.5%</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden flex">
+              <div class="bg-tertiary-container h-full" style="width: 84.5%;"></div>
+              <div class="bg-secondary h-full" style="width: 12.2%;"></div>
+              <div class="bg-error h-full" style="width: 3.3%;"></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between sm:col-span-2 lg:col-span-1">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>سياسة الاحتفاظ</span>
+              <span class="material-symbols-outlined text-tertiary text-xl">lock_clock</span>
+            </div>
+            <div class="my-2 text-xs">
+              <div class="flex items-baseline gap-2">
+                <span class="font-bold text-on-surface font-mono text-base">90 يوم</span>
+                <span class="text-secondary">Hot NVMe</span>
+              </div>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="font-bold text-primary-container font-mono text-base">سنتان</span>
+                <span class="text-secondary">Cold Glacier</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 text-tertiary font-bold text-[11px]">
+              <span class="material-symbols-outlined text-sm">verified</span>
+              <span>مطابق لمتطلبات NCA</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section 2: KQL Search Bar & Live Toggle -->
+        <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-md text-xs">
+          
+          <div class="flex flex-col lg:flex-row gap-space-sm items-stretch lg:items-center">
+            <div class="flex-1 bg-surface-container-low rounded-xl px-3 py-2 flex items-center gap-2 border border-outline-variant/20 focus-within:border-primary-container transition-all">
+              <span class="material-symbols-outlined text-primary-container text-xl shrink-0">terminal</span>
+              <div class="flex-1 flex items-center flex-wrap gap-1 font-mono text-xs">
+                <span class="text-primary-container font-bold">service:</span>
+                <span class="text-on-surface bg-surface-container px-1.5 py-0.5 rounded">"checkout-api"</span>
+                <span class="text-secondary font-bold">AND</span>
+                <span class="text-primary-container font-bold">status:</span>
+                <span class="text-error font-bold">&gt;=500</span>
+                <span class="text-secondary font-bold">AND</span>
+                <span class="text-primary-container font-bold">env:</span>
+                <span class="text-on-surface bg-surface-container px-1.5 py-0.5 rounded">"production-riyadh"</span>
+                <input class="bg-transparent border-none outline-none flex-1 min-w-[140px] text-on-surface placeholder:text-secondary font-mono" placeholder="| أضف فلتر استعلام KQL جديد..." type="text"/>
+              </div>
+              <button class="text-secondary hover:text-on-surface cursor-pointer p-1" title="مسح">
+                <span class="material-symbols-outlined text-base">close</span>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-space-xs flex-wrap shrink-0 font-bold">
+              <div class="flex items-center bg-surface-container-low rounded-xl px-3 py-2 text-on-surface border border-outline-variant/20">
+                <span class="material-symbols-outlined text-secondary ml-1 text-base">schedule</span>
+                <select class="bg-transparent border-none outline-none cursor-pointer font-bold">
+                  <option value="15m">آخر 15 دقيقة</option>
+                  <option selected="" value="1h">آخر ساعة</option>
+                  <option value="24h">آخر 24 ساعة</option>
+                  <option value="7d">آخر 7 أيام</option>
+                </select>
+              </div>
+
+              <button class="flex items-center gap-1 px-3 py-2 rounded-xl bg-tertiary-container text-on-tertiary shadow-sm transition-all cursor-pointer" id="liveStreamToggle" type="button">
+                <span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span>
+                <span>بث حي (كل 3ث)</span>
+              </button>
+
+              <button class="flex items-center gap-1 px-4 py-2 rounded-xl bg-primary-container text-on-primary hover:bg-primary shadow-sm transition-transform active:scale-95 cursor-pointer" type="button">
+                <span class="material-symbols-outlined text-base">play_arrow</span>
+                <span>تنفيذ الاستعلام</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Service Filters -->
+          <div class="flex items-center gap-1.5 overflow-x-auto pt-1 font-semibold text-secondary">
+            <span class="text-on-surface font-bold pl-1">الفلاتر السريعة:</span>
+            <button class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary text-[11px] flex items-center gap-1 shadow-sm font-bold">
+              <span>checkout-api</span>
+              <span class="material-symbols-outlined text-xs">close</span>
+            </button>
+            <button class="px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container text-[11px] transition-colors border border-outline-variant/10">
+              payment-worker
+            </button>
+            <button class="px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container text-[11px] transition-colors border border-outline-variant/10">
+              zatca-tax-engine
+            </button>
+            <button class="px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container text-[11px] transition-colors border border-outline-variant/10">
+              shipping-aramex-bridge
+            </button>
+            <button class="px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container text-[11px] transition-colors border border-outline-variant/10">
+              auth-jwt-service
+            </button>
+            <span class="text-outline">|</span>
+            <button class="px-2.5 py-1 rounded-full bg-error/10 text-error hover:bg-error/20 text-[11px] font-bold transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">filter_alt</span>
+              <span>فقط الأخطاء (ERROR & FATAL)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Section 3: Log Distribution Histogram Chart -->
+        <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-md text-xs">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+            <div>
+              <h2 class="text-base font-bold text-on-surface">المخطط الزمني لتوزيع تدفق السجلات (Log Distribution Histogram)</h2>
+              <p class="text-secondary text-[11px] mt-0.5">رصد طفرات تدفق الأحداث ومقارنتها بساعات الذروة لمتجر تيك برو خلال الساعة الماضية</p>
+            </div>
+            <div class="flex items-center gap-4 text-secondary font-bold">
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-tertiary-container"></span><span>INFO</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-secondary"></span><span>WARN</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-error"></span><span>ERROR</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-primary"></span><span>FATAL</span></div>
+            </div>
+          </div>
+
+          <div class="w-full h-44 relative bg-surface-container-low/40 rounded-lg p-3 flex flex-col justify-end border border-outline-variant/10">
+            <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1000 120">
+              <line stroke="#e0e3e5" stroke-dasharray="3 3" stroke-width="0.75" x1="0" x2="1000" y1="20" y2="20"></line>
+              <line stroke="#e0e3e5" stroke-dasharray="3 3" stroke-width="0.75" x1="0" x2="1000" y1="60" y2="60"></line>
+              <line stroke="#e0e3e5" stroke-dasharray="3 3" stroke-width="0.75" x1="0" x2="1000" y1="100" y2="100"></line>
+              
+              <!-- Stacked bars representation -->
+              <rect fill="#006e4b" height="48" rx="2" width="28" x="15" y="70"></rect>
+              <rect fill="#545f73" height="10" rx="1" width="28" x="15" y="60"></rect>
+              <rect fill="#ba1a1a" height="4" rx="1" width="28" x="15" y="56"></rect>
+
+              <rect fill="#006e4b" height="56" rx="2" width="28" x="65" y="62"></rect>
+              <rect fill="#545f73" height="10" rx="1" width="28" x="65" y="52"></rect>
+              <rect fill="#ba1a1a" height="3" rx="1" width="28" x="65" y="49"></rect>
+
+              <rect fill="#006e4b" height="68" rx="2" width="28" x="165" y="50"></rect>
+              <rect fill="#545f73" height="12" rx="1" width="28" x="165" y="38"></rect>
+              <rect fill="#ba1a1a" height="4" rx="1" width="28" x="165" y="34"></rect>
+
+              <!-- Spike -->
+              <rect fill="#006e4b" height="88" rx="2" width="28" x="215" y="30"></rect>
+              <rect fill="#545f73" height="14" rx="1" width="28" x="215" y="16"></rect>
+              <rect fill="#ba1a1a" height="9" rx="1" width="28" x="215" y="7"></rect>
+              <rect fill="#3525cd" height="3" rx="1" width="28" x="215" y="4"></rect>
+
+              <rect fill="#006e4b" height="70" rx="2" width="28" x="415" y="48"></rect>
+              <rect fill="#545f73" height="12" rx="1" width="28" x="415" y="36"></rect>
+              <rect fill="#ba1a1a" height="4" rx="1" width="28" x="415" y="32"></rect>
+
+              <!-- Peak -->
+              <rect fill="#006e4b" height="94" rx="2" width="28" x="465" y="24"></rect>
+              <rect fill="#545f73" height="12" rx="1" width="28" x="465" y="12"></rect>
+              <rect fill="#ba1a1a" height="7" rx="1" width="28" x="465" y="5"></rect>
+              <rect fill="#3525cd" height="3" rx="1" width="28" x="465" y="2"></rect>
+
+              <rect fill="#006e4b" height="80" rx="2" width="28" x="515" y="38"></rect>
+              <rect fill="#545f73" height="12" rx="1" width="28" x="515" y="26"></rect>
+              <rect fill="#ba1a1a" height="4" rx="1" width="28" x="515" y="22"></rect>
+
+              <rect fill="#006e4b" height="98" rx="2" width="28" x="715" y="20"></rect>
+              <rect fill="#545f73" height="11" rx="1" width="28" x="715" y="9"></rect>
+              <rect fill="#ba1a1a" height="5" rx="1" width="28" x="715" y="4"></rect>
+
+              <rect fill="#006e4b" height="53" rx="2" width="20" x="965" y="65"></rect>
+              <rect fill="#545f73" height="10" rx="1" width="20" x="965" y="55"></rect>
+              <rect fill="#ba1a1a" height="3" rx="1" width="20" x="965" y="52"></rect>
+            </svg>
+
+            <div class="flex items-center justify-between text-[11px] text-secondary pt-1 font-mono">
+              <span>14:00 (قبل 60 دقيقة)</span>
+              <span>14:15</span>
+              <span class="text-error font-bold font-sans flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">bolt</span> طفرة ترافيك 14:30 (عروض الفلاش)
+              </span>
+              <span>14:45</span>
+              <span class="text-primary font-bold font-sans">الآن 15:00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Live Streaming Log Console -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden flex flex-col text-xs">
+          <div class="p-space-md bg-surface-container-low flex items-center justify-between flex-wrap gap-2 border-b border-outline-variant/10">
+            <div class="flex items-center gap-2 font-bold text-on-surface">
+              <span class="material-symbols-outlined text-primary-container text-lg">dns</span>
+              <span>عارض السجلات الحي المباشر (Live Ingestion Stream)</span>
+              <span class="bg-surface-container text-secondary text-[10px] px-2 py-0.5 rounded-full font-mono font-normal">
+                عرض 5 من 28,400 logs/sec
+              </span>
+            </div>
+            <div class="flex items-center gap-3 text-secondary font-bold">
+              <label class="flex items-center gap-1 cursor-pointer">
+                <input checked="" class="rounded text-primary-container focus:ring-0 accent-primary w-3.5 h-3.5" type="checkbox"/>
+                <span>التمرير التلقائي</span>
+              </label>
+              <button onclick="alert('تم تفريغ شاشة السجلات بنجاح')" class="hover:text-on-surface transition-colors cursor-pointer">تفريغ</button>
+            </div>
+          </div>
+
+          <!-- Logs Interactive Table List -->
+          <div class="divide-y divide-outline-variant/10 flex flex-col font-mono text-xs">
+            
+            <!-- Log Item 1: FATAL -->
+            <div class="p-3 hover:bg-surface-container-low/60 transition-colors flex flex-col gap-1">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-secondary text-[11px]">14:48:32.412</span>
+                  <span class="bg-primary text-on-primary font-bold text-[10px] px-2 py-0.5 rounded-full">FATAL</span>
+                  <span class="text-primary-container font-bold">checkout-service-pod-7f99b</span>
+                  <span class="text-secondary">k8s-cluster-ruh</span>
+                </div>
+                <div class="flex items-center gap-2 text-[11px] text-secondary font-sans">
+                  <span>Trace:</span>
+                  <span class="font-mono bg-surface-container text-on-surface px-1.5 py-0.5 rounded">e4b7c19a0f3d4a21</span>
+                  <button onclick="alert('تم نسخ الهاش')" class="text-secondary hover:text-primary-container cursor-pointer p-0.5"><span class="material-symbols-outlined text-xs">content_copy</span></button>
+                </div>
+              </div>
+              <div class="text-on-surface pl-2 leading-relaxed font-mono">
+                <span class="text-error font-bold">[DB_POOL_EXHAUSTED]</span> Connection pool 'primary-pg-cluster' timeout after 5000ms. Active: 250/250. Max clients reached during checkout order_id=TKP-99201.
+              </div>
+              <div class="mt-1 p-2 rounded-lg bg-inverse-surface text-inverse-on-surface text-[11px] overflow-x-auto" dir="ltr">
+                <code>{"timestamp":"2026-09-04T14:48:32.412Z","level":"FATAL","service":"checkout-service","trace_id":"e4b7c19a0f3d4a21","exception":"PgConnectionPoolTimeout","pending_waiters":38,"cart_value_sar":4199.00}</code>
+              </div>
+            </div>
+
+            <!-- Log Item 2: ERROR -->
+            <div class="p-3 hover:bg-surface-container-low/60 transition-colors flex flex-col gap-1">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-secondary text-[11px]">14:48:31.984</span>
+                  <span class="bg-error text-on-error font-bold text-[10px] px-2 py-0.5 rounded-full">ERROR</span>
+                  <span class="text-primary-container font-bold">auth-jwt-service-pod-3d</span>
+                  <span class="text-secondary">k8s-ingress-waf</span>
+                </div>
+                <div class="flex items-center gap-2 text-[11px] text-secondary font-sans">
+                  <span>Trace:</span>
+                  <span class="font-mono bg-surface-container text-on-surface px-1.5 py-0.5 rounded">8c119e03fa55b801</span>
+                </div>
+              </div>
+              <div class="text-on-surface pl-2 leading-relaxed font-mono">
+                <span class="text-error font-bold">JWTValidationFailed:</span> Token expired at 14:47:30. Client session unauthorized from IP: 158.101.90.12. Path: <span class="bg-surface-container px-1 rounded">/api/v2/customer/saved-cards</span>
+              </div>
+            </div>
+
+            <!-- Log Item 3: INFO ZATCA -->
+            <div class="p-3 hover:bg-surface-container-low/60 transition-colors flex flex-col gap-1">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-secondary text-[11px]">14:48:29.805</span>
+                  <span class="bg-tertiary-container text-on-tertiary font-bold text-[10px] px-2 py-0.5 rounded-full">INFO</span>
+                  <span class="text-primary-container font-bold">zatca-invoicing-runner-1b</span>
+                  <span class="text-secondary">compliance-vault</span>
+                </div>
+                <div class="flex items-center gap-2 text-[11px] text-secondary font-sans">
+                  <span class="bg-tertiary-fixed-dim/20 text-tertiary px-2 py-0.5 rounded font-bold">ZATCA CLEARED</span>
+                </div>
+              </div>
+              <div class="text-on-surface pl-2 leading-relaxed font-mono">
+                <span class="text-tertiary font-bold">TaxInvoiceCleared:</span> Invoice #TKP-INV-2025-08471 successfully signed and accepted by ZATCA API v2. Cryptographic Stamp validated in 280ms.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section 5: AI Pattern Clustering & Top Error Signatures -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-xl text-xs">
+          
+          <!-- Card 1 -->
+          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-on-surface font-bold">
+                  <span class="material-symbols-outlined text-primary-container text-xl">auto_awesome</span>
+                  <span class="text-sm">اكتشاف الأنماط بالذكاء الاصطناعي</span>
+                </div>
+                <span class="bg-primary-fixed text-on-primary-fixed text-[10px] px-2 py-0.5 rounded-full font-bold font-mono">AI Cluster</span>
+              </div>
+              <p class="text-secondary text-[11px] leading-relaxed">
+                خوارزميات التجميع الدلالي تختزل آلاف السجلات المكررة في أنماط جذرية قابلة للحل فوراً.
+              </p>
+            </div>
+
+            <div class="my-3 flex flex-col gap-2">
+              <div class="p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/10 flex flex-col gap-1">
+                <div class="flex items-center justify-between font-bold">
+                  <span class="text-error">Pattern #8491: PgConnectionPool</span>
+                  <span class="text-[10px] bg-error/10 text-error px-1.5 py-0.2 rounded font-mono">1,420 تكرار</span>
+                </div>
+                <p class="text-on-surface text-[11px]">استنزاف اتصالات قاعدة بيانات الدفع أثناء تأكيد طلبات أجهزة الآيفون.</p>
+                <div class="flex items-center justify-between mt-1 pt-1 bg-surface-container px-2 py-1 rounded text-[11px]">
+                  <span class="text-tertiary font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">psychology</span> زيادة max_connections
+                  </span>
+                  <button onclick="alert('تم تطبيق التعديل الآلي وتحديث الـ pool')" class="text-primary-container hover:underline font-bold cursor-pointer">تطبيق</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2 border-t border-outline-variant/10 text-[11px] text-secondary">
+              <span>توفير 94% من وقت قراءة السجلات</span>
+              <span class="material-symbols-outlined text-tertiary text-base">check_circle</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Top Error Signatures -->
+          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-on-surface font-bold">
+                  <span class="material-symbols-outlined text-error text-xl">bug_report</span>
+                  <span class="text-sm">أكثر توقيعات الأخطاء تكراراً</span>
+                </div>
+                <span class="text-secondary text-[11px]">آخر 24 ساعة</span>
+              </div>
+              <p class="text-secondary text-[11px]">التصنيفات الخمسة الأولى للمشاكل التقنية مصنفة حسب حجم التأثير على المتسوقين.</p>
+            </div>
+
+            <div class="my-3 flex flex-col gap-2 font-mono">
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center justify-between font-bold text-[11px]">
+                  <span class="text-on-surface truncate">1. HTTP 504 Gateway Timeout</span>
+                  <span class="text-error">42.8%</span>
+                </div>
+                <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+                  <div class="bg-error h-full rounded-full" style="width: 42.8%;"></div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center justify-between font-bold text-[11px]">
+                  <span class="text-on-surface truncate">2. PostgreSql LockWaitTimeout</span>
+                  <span class="text-on-surface">26.1%</span>
+                </div>
+                <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+                  <div class="bg-primary-container h-full rounded-full" style="width: 26.1%;"></div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center justify-between font-bold text-[11px]">
+                  <span class="text-on-surface truncate">3. AuthJWT::TokenSignatureInvalid</span>
+                  <span class="text-on-surface">18.4%</span>
+                </div>
+                <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+                  <div class="bg-secondary h-full rounded-full" style="width: 18.4%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="alert('عرض جميع التوقيعات 28')" class="w-full py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary-container text-center transition-colors font-bold cursor-pointer border border-outline-variant/10">
+              عرض جميع التوقيعات (28)
+            </button>
+          </div>
+
+          <!-- Card 3: Compliance & Security -->
+          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-on-surface font-bold">
+                  <span class="material-symbols-outlined text-tertiary text-xl">verified_user</span>
+                  <span class="text-sm">الامتثال والحوكمة والأمن</span>
+                </div>
+                <span class="bg-tertiary/10 text-tertiary text-[10px] px-2.5 py-0.5 rounded-full font-bold">
+                  100% متوافق
+                </span>
+              </div>
+              <p class="text-secondary text-[11px] leading-relaxed">
+                فهرسة وتشفير سجلات التدقيق والمطابقة التشريعية الصارمة وفق معايير الجهات التنظيمية السعودية.
+              </p>
+            </div>
+
+            <div class="my-3 flex flex-col gap-2">
+              <div class="p-2.5 rounded-lg bg-surface-container-low flex items-start gap-2 border border-outline-variant/10">
+                <span class="material-symbols-outlined text-tertiary text-base shrink-0 mt-0.5">shield</span>
+                <div class="flex flex-col">
+                  <div class="flex items-center justify-between font-bold">
+                    <span class="text-on-surface">ضوابط الأمن السيبراني (NCA ECC)</span>
+                    <span class="text-[10px] text-tertiary font-mono">WORM مفعل</span>
+                  </div>
+                  <span class="text-secondary text-[10px] mt-0.5">سجلات الوصول محمية من التعديل مع توقيع HMAC.</span>
+                </div>
+              </div>
+
+              <div class="p-2.5 rounded-lg bg-surface-container-low flex items-start gap-2 border border-outline-variant/10">
+                <span class="material-symbols-outlined text-tertiary text-base shrink-0 mt-0.5">policy</span>
+                <div class="flex flex-col">
+                  <div class="flex items-center justify-between font-bold">
+                    <span class="text-on-surface">حماية البيانات الشخصية (PDPL)</span>
+                    <span class="text-[10px] text-tertiary font-mono">PII Masked</span>
+                  </div>
+                  <span class="text-secondary text-[10px] mt-0.5">تعتيم فوري للهويات وأرقام الهواتف في السجلات.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2 border-t border-outline-variant/10 text-secondary">
+              <span>السجل الرقمي غير قابل للمسح</span>
+              <button onclick="alert('توليد تقرير مدقق رسمي')" class="text-primary hover:underline font-bold cursor-pointer">توليد تقرير رسمي</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section 6: Notification Routing -->
+        <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col md:flex-row md:items-center justify-between gap-space-md text-xs">
+          <div class="flex items-center gap-space-md">
+            <div class="w-12 h-12 rounded-xl bg-error/10 text-error flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-2xl">sensors</span>
+            </div>
+            <div class="flex flex-col">
+              <h3 class="text-sm font-bold text-on-surface">قنوات الإشعار الفوري للمناوبين (SRE On-Call Dispatch)</h3>
+              <p class="text-xs text-secondary mt-0.5 max-w-2xl leading-relaxed">يتم توجيه السجلات الحرجة تلقائياً إلى مهندسي المناوبة في متجر تيك برو عبر PagerDuty وقنوات الدعم التقني الداخلي على مدار 24/7.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-space-sm shrink-0 flex-wrap font-bold">
+            <div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/10">
+              <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+              <span>PagerDuty (متصل)</span>
+            </div>
+            <div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/10">
+              <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+              <span>Slack: #techpro-ops</span>
+            </div>
+            <button onclick="alert('فتح إعدادات مسارات إشعارات المناوبة')" class="px-3 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors border border-outline-variant/10 cursor-pointer">
+              <span>تعديل المسارات</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل عبر واتساب المباشر</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>منظومة إدارة السجلات المركزية (OpenSearch)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    (function() {
+      let timeLeft = 10;
+      const timerElem = document.getElementById('countdown-timer');
+      setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+          timeLeft = 10;
+          if (timerElem) {
+            timerElem.classList.add('scale-125');
+            setTimeout(() => timerElem.classList.remove('scale-125'), 300);
+          }
+        }
+        if (timerElem) {
+          timerElem.textContent = timeLeft;
+        }
+      }, 1000);
+
+      const liveBtn = document.getElementById('liveStreamToggle');
+      if (liveBtn) {
+        let isStreaming = true;
+        liveBtn.addEventListener('click', () => {
+          isStreaming = !isStreaming;
+          if (isStreaming) {
+            liveBtn.className = 'flex items-center gap-1 px-3 py-1.5 rounded-xl bg-tertiary-container text-on-tertiary text-xs font-bold shadow-sm transition-all cursor-pointer';
+            liveBtn.innerHTML = '<span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span><span>بث حي (كل 3 ثوانٍ)</span>';
+          } else {
+            liveBtn.className = 'flex items-center gap-1 px-3 py-1.5 rounded-xl bg-surface-container text-secondary text-xs font-bold shadow-sm transition-all cursor-pointer';
+            liveBtn.innerHTML = '<span class="material-symbols-outlined text-base">pause</span><span>البث متوقف مؤقتاً</span>';
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Prices & Storage Specs) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <img alt="صورة الملف الشخصي" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE"/>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">كتالوج الأجهزة والتقنيات المعتمد</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors">
+              <span class="material-symbols-outlined text-xl">mic</span>
+            </button>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
+            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+          </a>
+          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+            <div class="hidden sm:flex flex-col text-right">
+              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
+              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+            </div>
+          </a>
+          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl">person</span>
+            <span class="hidden sm:inline">حسابي</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة المستعملة والمجددة</a>
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">كتالوج الأجهزة والتقنيات</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">خدمة العملاء</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span>توصيل سريع خلال 24 ساعة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full text-on-surface">
+      
+      <!-- Top Sub-Header & Breadcrumb -->
+      <section class="w-full bg-surface-container-low px-space-md lg:px-space-xl py-space-lg shadow-sm border-b border-outline-variant/10 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col gap-space-md">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-1 text-secondary font-bold">
+            <a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+              <span class="material-symbols-outlined text-base">home</span>
+              <span>الرئيسية</span>
+            </a>
+            <span class="material-symbols-outlined text-xs rotate-180 text-outline">chevron_right</span>
+            <span>الأجهزة الإلكترونية</span>
+            <span class="material-symbols-outlined text-xs rotate-180 text-outline">chevron_right</span>
+            <span class="text-on-surface">كتالوج الأجهزة والتقنيات</span>
+          </nav>
+
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h1 class="text-xl lg:text-2xl font-black text-on-surface tracking-tight">كتالوج الأجهزة والتقنيات المعتمدة</h1>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-bold">٤٨ جهاز متاح حالياً</span>
+              </div>
+              <p class="text-secondary leading-relaxed">تسوّق أحدث الجوالات، الحواسيب المحمولة وملحقاتها، جديدة كلياً بضمان الوكيل أو مجددة معتمدة.</p>
+            </div>
+
+            <!-- Segmented Tab Bar -->
+            <div class="inline-flex p-1 bg-surface-container rounded-xl shadow-inner gap-1 shrink-0">
+              <button class="px-4 py-2 rounded-lg font-bold bg-surface-container-lowest text-primary shadow-sm cursor-pointer">الكل (٤٨)</button>
+              <button class="px-4 py-2 rounded-lg font-bold text-secondary hover:text-on-surface transition-colors cursor-pointer">جديدة (٢٦)</button>
+              <button class="px-4 py-2 rounded-lg font-bold text-secondary hover:text-on-surface transition-colors cursor-pointer">مجددة (٢٢)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Control Bar -->
+      <section class="w-full bg-surface-container-lowest px-space-md lg:px-space-xl py-space-md shadow-sm text-xs">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-md">
+          <div class="relative flex-1 min-w-[280px] max-w-lg">
+            <span class="material-symbols-outlined absolute right-3 top-2.5 text-secondary text-lg">search</span>
+            <input class="w-full h-10 pr-9 pl-3 bg-surface-container-low rounded-lg text-on-surface placeholder:text-secondary focus:outline-none border border-outline-variant/20 focus:border-primary transition-all font-mono text-xs" placeholder="ابحث بالاسم، الموديل، السعة، المعالج..." type="text"/>
+          </div>
+
+          <div class="flex items-center gap-3 flex-wrap font-bold">
+            <div class="flex items-center gap-1">
+              <span class="text-secondary">الترتيب حسب:</span>
+              <select class="h-10 bg-surface-container-low text-on-surface px-3 rounded-lg border border-outline-variant/20 focus:outline-none cursor-pointer font-bold">
+                <option>الأحدث وصولاً وتوفراً</option>
+                <option>السعر: من الأقل للأعلى</option>
+                <option>السعر: من الأعلى للأقل</option>
+                <option>الأعلى تقييماً</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Catalog Space -->
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-xl w-full text-xs">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+          
+          <!-- Sidebar Filters (3 Cols) -->
+          <aside class="hidden lg:flex flex-col lg:col-span-3 gap-space-md sticky top-36">
+            <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/10 flex flex-col gap-4">
+              <div class="flex items-center justify-between pb-2 border-b border-outline-variant/10 font-bold">
+                <div class="flex items-center gap-1 text-on-surface">
+                  <span class="material-symbols-outlined text-primary text-base">tune</span>
+                  <span>فلترة الأجهزة</span>
+                </div>
+                <button class="text-error hover:underline font-bold cursor-pointer">تفريغ الفلاتر</button>
+              </div>
+
+              <!-- Condition Checkboxes -->
+              <div class="flex flex-col gap-2">
+                <span class="font-bold text-on-surface">حالة الجهاز والفحص</span>
+                <label class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer">
+                  <div class="flex items-center gap-2">
+                    <input checked="" class="accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+                    <span class="text-on-surface font-semibold">جديد بالكرتونة المبرشمة</span>
+                  </div>
+                  <span class="bg-primary/10 text-primary px-2 py-0.2 rounded-full font-bold">٢٦</span>
+                </label>
+                <label class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer">
+                  <div class="flex items-center gap-2">
+                    <input checked="" class="accent-tertiary w-4 h-4 cursor-pointer" type="checkbox"/>
+                    <span class="text-on-surface font-semibold">مجدد Grade A+ (كالجديد)</span>
+                  </div>
+                  <span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.2 rounded-full font-bold">١٤</span>
+                </label>
+              </div>
+
+              <div class="h-px bg-outline-variant/10"></div>
+
+              <!-- Storage -->
+              <div class="flex flex-col gap-2">
+                <span class="font-bold text-on-surface">سعة التخزين</span>
+                <div class="grid grid-cols-2 gap-1 font-bold">
+                  <button class="py-2 bg-surface-container-low rounded text-secondary hover:text-primary transition-colors cursor-pointer">128GB</button>
+                  <button class="py-2 bg-primary text-on-primary rounded shadow-2xs cursor-pointer">256GB</button>
+                </div>
+              </div>
+
+              <div class="h-px bg-outline-variant/10"></div>
+
+              <button class="w-full py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-bold shadow-md cursor-pointer transition-all">
+                تطبيق التصفية
+              </button>
+            </div>
+          </aside>
+
+          <!-- Products Grid (9 Cols) -->
+          <main class="lg:col-span-9 flex flex-col gap-space-lg">
+            
+            <div class="bg-surface-container-lowest p-3 rounded-xl shadow-sm border border-outline-variant/10 flex items-center justify-between text-xs font-semibold">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-secondary">الفلاتر المطبقة:</span>
+                <span class="bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant/10">جديد + A+</span>
+                <span class="bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant/10">256GB</span>
+              </div>
+              <span class="text-secondary font-mono">إظهار 1 - 3 من 48 نتيجة</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-md">
+              
+              <!-- Card 1 -->
+              <article class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all flex flex-col justify-between group">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="bg-primary text-on-primary px-2 py-0.5 rounded-full font-bold text-[10px]">جديد كلياً</span>
+                    <button class="text-secondary hover:text-error cursor-pointer"><span class="material-symbols-outlined text-base">favorite</span></button>
+                  </div>
+                  <div class="relative w-full aspect-square bg-surface-container-low rounded-lg p-2 mb-2 flex items-center justify-center border border-outline-variant/10">
+                    <img class="w-full h-full object-contain p-1" alt="آيفون 15 برو ماكس" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8bLCYo-o2bNa_WYI_eqvN5uC3EbHEtOyCMzIb12cd98CMgs2gAfqvjYg6ZifN_5VV6pknyNA4LysK2BHMnfdrENlf62YPKtvI8jXKMTjbyuP5ddqINFpXG_W6q6gmaiJHZIGGcHYTkfRdixdEu0k1A-elP9dNY-6VRgI60BYc0XgwRQSMiYYfcOs0FNqhP5JjdXNs4sN5KNPBEIic2KgNPSF7dgWFHAuuUIYw9g3WDGMrEKwlBC9Caw"/>
+                  </div>
+                  <h3 class="font-bold text-on-surface line-clamp-1 mb-1 text-xs">أبل آيفون 15 برو ماكس تيتانيوم</h3>
+                  <div class="flex items-center gap-1 text-tertiary mb-2 font-bold text-[11px]">
+                    <span class="material-symbols-outlined text-sm">savings</span>
+                    <span>يكسبك +75 نقطة تيك برو</span>
+                  </div>
+                </div>
+                <div class="pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+                  <span class="font-bold text-primary text-sm">4,999 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
+                  <button onclick="alert('تمت الإضافة للسلة')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold cursor-pointer font-sans">أضف للسلة</button>
+                </div>
+              </article>
+
+              <!-- Card 2 -->
+              <article class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all flex flex-col justify-between group">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="bg-tertiary text-on-tertiary px-2 py-0.5 rounded-full font-bold text-[10px]">معتمد A+</span>
+                    <button class="text-secondary hover:text-error cursor-pointer"><span class="material-symbols-outlined text-base">favorite</span></button>
+                  </div>
+                  <div class="relative w-full aspect-square bg-surface-container-low rounded-lg p-2 mb-2 flex items-center justify-center border border-outline-variant/10">
+                    <img class="w-full h-full object-contain p-1" alt="ماك بوك برو 14" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdELpABShIn9MFz2KGO9TD_IKASHQVGbZmD2FfGbWLNMUHxLzFp88ZcpH5zQ0Tmw3EXcdCw36S83tHdv6MqW6VuknyQfaNL4Swypn0JqT3yw0R9hHPDtXQS0tA8pMjzlRnLzFVSSUnr8ukingYgVnJcCkLALieh_-E8__9F7hhS0gEIcGZWLJPxElkQr2Qz_Rz6f_vtQ2f4e4Z6glTZCzhKyK__X_62dMSpYHBMLUFZszTMvI2TV8msw"/>
+                  </div>
+                  <h3 class="font-bold text-on-surface line-clamp-1 mb-1 text-xs">ماك بوك برو 14 إنش M3 Max (مجدد)</h3>
+                  <div class="flex items-center gap-1 text-tertiary mb-2 font-bold text-[11px]">
+                    <span class="material-symbols-outlined text-sm">verified</span>
+                    <span>فحص 40 نقطة سليم</span>
+                  </div>
+                </div>
+                <div class="pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+                  <span class="font-bold text-primary text-sm">7,899 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
+                  <button onclick="alert('تمت الإضافة للسلة')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold cursor-pointer font-sans">أضف للسلة</button>
+                </div>
+              </article>
+
+              <!-- Card 3 -->
+              <article class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all flex flex-col justify-between group">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="bg-primary text-on-primary px-2 py-0.5 rounded-full font-bold text-[10px]">جديد كلياً</span>
+                    <button class="text-secondary hover:text-error cursor-pointer"><span class="material-symbols-outlined text-base">favorite</span></button>
+                  </div>
+                  <div class="relative w-full aspect-square bg-surface-container-low rounded-lg p-2 mb-2 flex items-center justify-center border border-outline-variant/10">
+                    <img class="w-full h-full object-contain p-1" alt="سامسونج S24 ألترا" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe8feHJkHTYOd3x8xHY1_JfxTKGqRsS3vMo8JmRpXZ-9hU0rhd1VUOLyxjDg9kx58gypAMs6dP0GXWebvDpJrOz9sGwvDZR5gWSHk5B8HD4B7lmUm748ph0Y7EaodzoUYs13d_XO-o5uESzmyxq_HEI5OezTHdtRS2IEpUZsOWKKNckHvNDOCNeviughB9aOd4hEK14uzpJvsFo3MUu-f_roMTpdm27vk6W14RlUOwQpbwDj0mnWgECA"/>
+                  </div>
+                  <h3 class="font-bold text-on-surface line-clamp-1 mb-1 text-xs">سامسونج جالكسي S24 ألترا 5G</h3>
+                  <div class="flex items-center gap-1 text-tertiary mb-2 font-bold text-[11px]">
+                    <span class="material-symbols-outlined text-sm">local_shipping</span>
+                    <span>توصيل سريع مجاني</span>
+                  </div>
+                </div>
+                <div class="pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+                  <span class="font-bold text-primary text-sm">4,499 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
+                  <button onclick="alert('تمت الإضافة للسلة')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold cursor-pointer font-sans">أضف للسلة</button>
+                </div>
+              </article>
+
+            </div>
+
+          </main>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل عبر واتساب المباشر</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>كتالوج الأجهزة والتقنيات المعتمدة</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

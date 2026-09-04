@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Tracking / Numbers) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Fixed Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary font-black text-xl shadow">
+            TP
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">متجر الأجهزة والتقنية المعتمد</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
+            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+          </a>
+          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+            <div class="hidden sm:flex flex-col text-right">
+              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
+              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+            </div>
+          </a>
+          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl">person</span>
+            <span class="hidden sm:inline">حسابي (محمد)</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة المستعملة والمجددة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">العروض الخاصة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الماركات</a>
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">تتبع الشحنة الحية</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span>توصيل سريع خلال 24 ساعة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full font-body-md text-on-surface">
+      
+      <!-- Floating Alert Banner for Premium Customer Experience -->
+      <div class="w-full bg-secondary-fixed/40 py-2 px-space-md border-b border-outline-variant/10 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-sm text-on-secondary-fixed">
+          <div class="flex items-center gap-space-xs">
+            <span class="flex h-2.5 w-2.5 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary-container opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary"></span>
+            </span>
+            <span class="font-bold">تحديث نظام تيك برو إكسبريس:</span>
+            <span>بيانات مسار الشحنة ودرجة حرارة حجيرة النقل يتم تحديثها كل ٤٥ ثانية بشكل مشفر وتلقائي.</span>
+          </div>
+          <div class="flex items-center gap-space-md text-[11px] text-secondary font-mono">
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-tertiary">lock</span> اتصال فضائي آمن</span>
+            <span class="hidden sm:inline">|</span>
+            <span class="hidden sm:inline">EXP-RYD-409</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-lg lg:py-space-xl flex flex-col gap-space-xl">
+        
+        <!-- SECTION 1: SEARCH & CURRENT STATUS HERO TILE -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 p-space-md lg:p-space-xl flex flex-col gap-space-lg">
+          <!-- Breadcrumb & Top Bar -->
+          <div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-sm border-b border-outline-variant/10 text-xs">
+            <div class="flex items-center gap-space-xs text-secondary font-semibold">
+              <a class="hover:text-primary transition-colors" href="#">الرئيسية</a>
+              <span class="material-symbols-outlined text-xs rotate-180">chevron_left</span>
+              <a class="text-primary font-bold" href="#">تتبع الشحنة الحية</a>
+              <span class="material-symbols-outlined text-xs rotate-180">chevron_left</span>
+              <span class="text-on-surface-variant font-mono" id="breadcrumb-order-id">#TP-2025-98231</span>
+            </div>
+            <div class="flex items-center gap-space-xs font-bold">
+              <button class="inline-flex items-center gap-1 bg-surface-container-low hover:bg-surface-container text-secondary hover:text-on-surface px-3 py-1.5 rounded-lg transition-all" onclick="window.print()">
+                <span class="material-symbols-outlined text-base">print</span>
+                <span>طباعة الملخص</span>
+              </button>
+              <button onclick="alert('تم تنزيل الفاتورة الضريبية الإلكترونية المعتمدة (ZATCA e-Invoice.pdf)')" class="inline-flex items-center gap-1 bg-surface-container-low hover:bg-surface-container text-secondary hover:text-on-surface px-3 py-1.5 rounded-lg transition-all">
+                <span class="material-symbols-outlined text-base">receipt_long</span>
+                <span>الفاتورة (PDF)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Search & Identifier Inputs -->
+          <div class="bg-surface-container-low rounded-xl p-space-md flex flex-col lg:flex-row items-center gap-space-md justify-between border border-outline-variant/10 text-xs">
+            <div class="flex-1 w-full flex flex-col sm:flex-row items-center gap-space-sm">
+              <div class="relative w-full sm:w-80">
+                <label class="block font-bold text-on-surface-variant mb-1">رقم الطلب أو الشحنة</label>
+                <div class="relative">
+                  <input class="w-full bg-surface-container-lowest text-on-surface font-mono font-bold px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container pr-9 shadow-sm border border-outline-variant/20" id="trackingInput" placeholder="TP-2025-XXXXX" type="text" value="TP-2025-98231"/>
+                  <span class="material-symbols-outlined absolute right-2.5 top-2 text-secondary text-base">local_shipping</span>
+                </div>
+              </div>
+              <div class="relative w-full sm:w-64">
+                <label class="block font-bold text-on-surface-variant mb-1">رقم الجوال المسجل</label>
+                <div class="relative">
+                  <input class="w-full bg-surface-container-lowest text-on-surface font-mono font-bold px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container pr-9 shadow-sm border border-outline-variant/20" dir="ltr" id="phoneTrackInput" type="tel" value="0554891234"/>
+                  <span class="material-symbols-outlined absolute right-2.5 top-2 text-secondary text-base">smartphone</span>
+                </div>
+              </div>
+              <div class="w-full sm:w-auto self-end pt-2 sm:pt-0">
+                <button onclick="updateTrackingData()" class="w-full sm:w-auto bg-primary hover:bg-primary-container text-on-primary font-bold px-space-lg py-2 rounded-lg shadow-sm hover:shadow transition-all flex items-center justify-center gap-1 h-[38px] active:scale-95">
+                  <span class="material-symbols-outlined text-base">manage_search</span>
+                  <span>تحديث التتبع</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-space-md shrink-0 border-t lg:border-t-0 lg:border-r border-outline-variant/30 pt-space-sm lg:pt-0 lg:pr-space-md w-full lg:w-auto justify-between lg:justify-start">
+              <div class="flex flex-col text-right">
+                <span class="text-[11px] text-secondary">الناقل المعتمد:</span>
+                <span class="text-xs text-primary font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-base">rocket_launch</span>
+                  أسطول تيك برو إكسبريس (TechPro Express)
+                </span>
+              </div>
+              <span class="bg-primary-fixed text-on-primary-fixed text-[11px] font-bold px-2 py-0.5 rounded-full">شحن مؤمّن بالكامل</span>
+            </div>
+          </div>
+
+          <!-- Main Status Banner Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+            <!-- Status Indicator 1 -->
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex items-start gap-space-sm relative overflow-hidden">
+              <div class="w-1.5 h-full absolute right-0 top-0 bg-tertiary"></div>
+              <div class="w-12 h-12 rounded-xl bg-tertiary/10 text-tertiary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-2xl">verified_user</span>
+              </div>
+              <div class="flex flex-col min-w-0 text-xs">
+                <span class="text-secondary text-[11px]">حالة الشحنة الحالية</span>
+                <div class="flex items-center gap-1 my-1">
+                  <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span>
+                  </span>
+                  <span class="text-sm text-on-surface font-bold truncate">استلام أسطول النقل والجدولة</span>
+                </div>
+                <span class="text-[11px] text-tertiary font-bold">تم اجتياز الفحص المخبري 100%</span>
+              </div>
+            </div>
+
+            <!-- Status Indicator 2: Expected Time -->
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex items-start gap-space-sm relative overflow-hidden">
+              <div class="w-1.5 h-full absolute right-0 top-0 bg-primary-container"></div>
+              <div class="w-12 h-12 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-2xl">schedule</span>
+              </div>
+              <div class="flex flex-col min-w-0 text-xs">
+                <span class="text-secondary text-[11px]">موعد الوصول المتوقع</span>
+                <span class="text-sm text-on-surface font-bold my-1" id="delivery-date-text">اليوم، خلال ساعتين</span>
+                <div class="flex items-center gap-1 text-[11px] text-primary font-bold">
+                  <span class="material-symbols-outlined text-xs">nest_clock_farsight_analog</span>
+                  <span id="delivery-window-text">نافذة التوصيل: بين 02:00 م - 05:00 م</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Status Indicator 3: Security & OTP -->
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex items-start gap-space-sm relative overflow-hidden">
+              <div class="w-1.5 h-full absolute right-0 top-0 bg-secondary"></div>
+              <div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-2xl">key</span>
+              </div>
+              <div class="flex flex-col min-w-0 text-xs">
+                <span class="text-secondary text-[11px]">رمز الاستلام الآمن للعميل (OTP)</span>
+                <div class="flex items-center gap-2 my-1">
+                  <span class="text-2xl tracking-widest text-primary font-black font-mono">8 4 1 9</span>
+                  <span class="bg-surface-container px-1.5 py-0.5 rounded text-[10px] text-secondary font-bold">سري</span>
+                </div>
+                <span class="text-[11px] text-on-surface-variant">يُسلَّم للمندوب فقط بعد فحص الصندوق</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: LIVE MAP VISUALIZER & ROUTE RADAR -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+          
+          <!-- Interactive Map & Courier Card (8 Cols) -->
+          <div class="lg:col-span-8 flex flex-col gap-space-md">
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden flex flex-col">
+              <!-- Map Header Bar -->
+              <div class="p-space-md bg-surface-container-low flex items-center justify-between flex-wrap gap-space-xs text-xs border-b border-outline-variant/10">
+                <div class="flex items-center gap-1 font-bold text-on-surface">
+                  <span class="material-symbols-outlined text-primary text-lg">satellite_alt</span>
+                  <span>رادار مسار الشحنة الحي - الرياض، المملكة العربية السعودية</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="inline-flex items-center gap-1 bg-surface-container-lowest text-tertiary px-2 py-0.5 rounded-full font-bold shadow-sm text-[11px] border border-outline-variant/10">
+                    <span class="h-1.5 w-1.5 rounded-full bg-tertiary animate-pulse"></span>
+                    <span>GPS متزامن</span>
+                  </span>
+                  <button onclick="alert('تمت إعادة ضبط وتوسيط زاوية الرادار')" class="w-7 h-7 rounded-lg bg-surface-container-lowest flex items-center justify-center text-secondary hover:text-on-surface shadow-sm border border-outline-variant/10" title="إعادة تركيز الخريطة">
+                    <span class="material-symbols-outlined text-sm">my_location</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Map View Canvas -->
+              <div class="relative w-full h-[400px] lg:h-[460px] overflow-hidden bg-surface-container-high">
+                <div class="w-full h-full bg-cover bg-center" data-location="Riyadh, Saudi Arabia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHtG-slw253J7UgH04Ed-3UQZMw2Qc5nOh2wtbsoyCs2TZzuLhzy0l_HVu7lMX9fZBPIAR1MnFSQCC1bIGY8ml38iiTYfN2NfThW9FRcJ7LxJerd2npTNfgyyBanaM7hE7acb35kj6egtW-FISb9QXGvA5rszfab3AJ5OAA4zYGDvyOguW-2yjjG11lsoL6ZmIKRdASWNqaeAoYqp7PuEGBcS9PyWl_VBgHTZNHJzk75gvlwz57LDefw')">
+                  
+                  <div class="absolute inset-0 bg-surface-container-high/40 backdrop-contrast-125 pointer-events-none"></div>
+                  
+                  <!-- Vector Route Overlay -->
+                  <svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 800 460">
+                    <path d="M 680,380 Q 520,310 400,220 T 160,90" fill="none" stroke="#4f46e5" stroke-linecap="round" stroke-opacity="0.25" stroke-width="6"></path>
+                    <path class="animate-[dash_20s_linear_infinite]" d="M 680,380 Q 520,310 400,220 T 160,90" fill="none" stroke="#3525cd" stroke-dasharray="8,6" stroke-linecap="round" stroke-width="3.5"></path>
+                  </svg>
+
+                  <!-- Origin (Sulai) -->
+                  <div class="absolute bottom-12 right-16 sm:right-24 flex flex-col items-center group cursor-pointer text-xs">
+                    <div class="bg-surface-container-lowest text-secondary text-[11px] px-2 py-0.5 rounded shadow mb-1 whitespace-nowrap font-bold flex items-center gap-1 border border-outline-variant/10">
+                      <span class="material-symbols-outlined text-xs text-primary">warehouse</span>
+                      <span>مستودع السلي (الانطلاق)</span>
+                    </div>
+                    <div class="w-7 h-7 rounded-full bg-surface-container-lowest shadow flex items-center justify-center text-primary border border-outline-variant/10">
+                      <span class="material-symbols-outlined text-sm">inventory_2</span>
+                    </div>
+                  </div>
+
+                  <!-- Vehicle Midpoint -->
+                  <div class="absolute top-[46%] left-[48%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20 cursor-pointer text-xs">
+                    <div class="relative flex items-center justify-center">
+                      <div class="absolute w-12 h-12 bg-primary/20 rounded-full animate-ping"></div>
+                      <div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg transform -rotate-12">
+                        <span class="material-symbols-outlined text-xl">local_shipping</span>
+                      </div>
+                    </div>
+                    <div class="mt-2 bg-inverse-surface text-inverse-on-surface px-3 py-1 rounded-lg shadow-xl text-center whitespace-nowrap border border-white/10">
+                      <span class="font-bold block text-xs">سيارة الأسطول #12</span>
+                      <span class="text-[10px] text-tertiary-fixed-dim font-mono">طريق الدائري الشمالي (52 km/h)</span>
+                    </div>
+                  </div>
+
+                  <!-- Destination (Al-Yasmin) -->
+                  <div class="absolute top-10 left-12 sm:left-24 flex flex-col items-center group cursor-pointer z-10 text-xs">
+                    <div class="bg-tertiary text-on-tertiary text-[11px] px-2 py-0.5 rounded shadow mb-1 whitespace-nowrap font-bold flex items-center gap-1">
+                      <span class="material-symbols-outlined text-xs">home_pin</span>
+                      <span id="map-dest-label">حي الياسمين (موقع العميل)</span>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-tertiary text-on-tertiary shadow-lg flex items-center justify-center animate-bounce">
+                      <span class="material-symbols-outlined text-base">person_pin_circle</span>
+                    </div>
+                  </div>
+
+                  <!-- Climate Telemetry HUD -->
+                  <div class="absolute bottom-4 left-4 right-4 sm:right-auto sm:w-80 bg-surface-container-lowest/95 backdrop-blur-md p-space-sm rounded-xl shadow-lg border border-outline-variant/30 flex flex-col gap-1 z-30 text-xs">
+                    <div class="flex items-center justify-between border-b border-surface-container pb-1">
+                      <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-tertiary text-base">thermostat</span>
+                        <span class="font-bold text-on-surface">حجيرة نقل الأجهزة الحساسة</span>
+                      </div>
+                      <span class="text-[10px] bg-tertiary-container/20 text-tertiary px-1.5 py-0.5 rounded font-bold">مثالية</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1 text-center py-1">
+                      <div class="bg-surface-container-low p-1.5 rounded border border-outline-variant/10">
+                        <span class="text-[10px] text-secondary block">الحرارة</span>
+                        <span class="font-bold text-on-surface font-mono">21.4° C</span>
+                      </div>
+                      <div class="bg-surface-container-low p-1.5 rounded border border-outline-variant/10">
+                        <span class="text-[10px] text-secondary block">الرطوبة</span>
+                        <span class="font-bold text-on-surface font-mono">38%</span>
+                      </div>
+                      <div class="bg-surface-container-low p-1.5 rounded border border-outline-variant/10">
+                        <span class="text-[10px] text-secondary block">الصدمة</span>
+                        <span class="font-bold text-tertiary font-mono">0.0 G</span>
+                      </div>
+                    </div>
+                    <p class="text-[10px] text-secondary leading-tight mt-0.5">
+                      <span class="material-symbols-outlined text-xs align-middle text-primary">info</span>
+                      صناديق تيك برو معزولة ومزودة ببطانة امتصاص اهتزازات معتمدة.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Courier Profile -->
+              <div class="p-space-md bg-surface-container-lowest flex flex-col sm:flex-row items-center justify-between gap-space-md text-xs">
+                <div class="flex items-center gap-space-sm w-full sm:w-auto">
+                  <div class="relative">
+                    <img class="w-14 h-14 rounded-full object-cover shadow-sm border-2 border-primary-fixed" alt="صورة كابتن التوصيل فهد الدوسري" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQmbJNfocF9Y7dH6lIqIOSUu3pXz5naVq6lmYIthV8tZVcKlRRS3Y53vSwS5MD9rlfEG-JZCaSUnZoz4SbOfUXIWTkw-LLnwmJEBK9SN6DneVWGdU3XwlOsZ-h7uxvwqbBsQHASw4g2Z-U3v4_yOAM2IymOmCTLRS9Jh11h4csJ8E3tP9EjUSIlIATCjd5QAK1IBK8DzX8NVDM80HWS7CX9hqjISfrPDNB0qpQxn6jCSiJuv0gFjT5xQ"/>
+                    <span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-tertiary border-2 border-surface-container-lowest"></span>
+                  </div>
+                  <div class="flex flex-col">
+                    <div class="flex items-center gap-space-xs">
+                      <span class="text-sm text-on-surface font-bold">فهد الدوسري</span>
+                      <span class="bg-surface-container px-1.5 py-0.5 rounded text-[10px] font-bold text-secondary flex items-center gap-0.5">
+                        <span class="material-symbols-outlined text-xs text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+                        4.9 (420+ توصيل)
+                      </span>
+                    </div>
+                    <span class="text-[11px] text-secondary mt-0.5">سفير التوصيل والخدمات التقنية - أسطول شمال الرياض</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-space-xs w-full sm:w-auto justify-end font-bold">
+                  <a class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2 rounded-lg transition-colors border border-outline-variant/10" href="tel:920000000">
+                    <span class="material-symbols-outlined text-base text-primary">call</span>
+                    <span>اتصال هاتفي</span>
+                  </a>
+                  <a class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#128C7E] px-space-md py-2 rounded-lg transition-colors" href="https://wa.me/966500000000" target="_blank">
+                    <span class="material-symbols-outlined text-base">chat</span>
+                    <span>محادثة واتساب</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Inspection & Guarantee Quality Card -->
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md border-r-4 border-primary border border-outline-variant/10 text-xs">
+              <div class="flex items-center gap-space-sm">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-xl">fact_check</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-on-surface text-xs">خدمة المعاينة الفورية للأجهزة عند الباب</h4>
+                  <p class="text-secondary text-[11px] mt-0.5">يحق لك فحص الأجهزة في حضور المندوب ومطابقة الأرقام التسلسلية قبل تسليم رمز التحقق (OTP).</p>
+                </div>
+              </div>
+              <button onclick="alert('عرض تقرير فحص الجودة الماسي المعتمد 64 نقطة')" class="shrink-0 text-primary font-bold hover:underline flex items-center gap-1">
+                <span>وثيقة الفحص المخبري</span>
+                <span class="material-symbols-outlined text-sm">open_in_new</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Detailed Timeline (4 Cols) -->
+          <div class="lg:col-span-4 flex flex-col">
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 p-space-md flex flex-col h-full text-xs">
+              <div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/10">
+                <div class="flex items-center gap-space-xs font-bold">
+                  <span class="material-symbols-outlined text-primary text-lg">timeline</span>
+                  <h3 class="text-sm text-on-surface">سجل مراحل الشحن</h3>
+                </div>
+                <span class="text-[11px] text-secondary font-bold">٦ محطات تفصيلية</span>
+              </div>
+
+              <!-- Vertical Timeline Steps -->
+              <div class="relative py-space-md pr-space-md flex flex-col gap-space-md flex-1">
+                <div class="absolute right-[19px] top-6 bottom-6 w-0.5 bg-surface-container-highest"></div>
+                
+                <!-- STEP 1 -->
+                <div class="relative flex items-start gap-space-sm">
+                  <div class="w-6 h-6 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center z-10 shrink-0 shadow-sm">
+                    <span class="material-symbols-outlined text-xs font-bold">check</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">استلام الطلب وتأكيد السداد</span>
+                    <span class="text-[11px] text-secondary">اليوم، 02:45 ص • تم الخصم بنجاح عبر مدى</span>
+                    <span class="text-[11px] text-tertiary font-mono font-bold mt-0.5">TX-904829</span>
+                  </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="relative flex items-start gap-space-sm">
+                  <div class="w-6 h-6 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center z-10 shrink-0 shadow-sm">
+                    <span class="material-symbols-outlined text-xs font-bold">check</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">الفحص المخبري والتقني المعتمد</span>
+                    <span class="text-[11px] text-secondary">اليوم، 03:15 ص • مختبر تيك برو رقم 4</span>
+                    <div class="mt-1 bg-surface-container-low p-2 rounded text-[11px] text-secondary border border-outline-variant/10 leading-relaxed">
+                      ✓ بطارية الآيفون: 98%<br/>
+                      ✓ فحص المعالج M3 والشاشة: سليم 100%<br/>
+                      ✓ تعقيم ألتراسونيك عالي الدقة
+                    </div>
+                  </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="relative flex items-start gap-space-sm">
+                  <div class="w-6 h-6 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center z-10 shrink-0 shadow-sm">
+                    <span class="material-symbols-outlined text-xs font-bold">check</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">التغليف الآمن المقاوم للصدمات</span>
+                    <span class="text-[11px] text-secondary">اليوم، 08:30 ص • ختم RFID</span>
+                    <span class="text-[11px] text-secondary font-mono">مطابقة IMEI & S/N</span>
+                  </div>
+                </div>
+
+                <!-- STEP 4: CURRENT -->
+                <div class="relative flex items-start gap-space-sm">
+                  <div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center z-10 shrink-0 shadow-md ring-4 ring-primary-fixed">
+                    <span class="material-symbols-outlined text-xs animate-spin">refresh</span>
+                  </div>
+                  <div class="flex flex-col bg-primary-fixed/30 p-2 rounded-lg -mr-1 border border-primary/20">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-primary">استلام الأسطول وجدولة المسار</span>
+                      <span class="bg-primary text-on-primary text-[10px] px-1.5 py-0.5 rounded font-bold">الحالي</span>
+                    </div>
+                    <span class="text-[11px] text-secondary mt-0.5">اليوم، 10:45 ص • المحطة المركزية</span>
+                    <span class="text-[11px] text-on-surface-variant mt-1 font-bold">تم تحميل الصناديق في الحجرة المكيفة للسيارة #12</span>
+                  </div>
+                </div>
+
+                <!-- STEP 5 -->
+                <div class="relative flex items-start gap-space-sm opacity-60">
+                  <div class="w-6 h-6 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center z-10 shrink-0">
+                    <span class="material-symbols-outlined text-xs">local_shipping</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">خارج للتوصيل مع المندوب</span>
+                    <span class="text-[11px] text-secondary">متوقع: خلال ساعتين</span>
+                  </div>
+                </div>
+
+                <!-- STEP 6 -->
+                <div class="relative flex items-start gap-space-sm opacity-60">
+                  <div class="w-6 h-6 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center z-10 shrink-0">
+                    <span class="material-symbols-outlined text-xs">done_all</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">المعاينة والتسليم للعميل</span>
+                    <span class="text-[11px] text-secondary">متوقع: اليوم مساءً • حي الياسمين</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Notice -->
+              <div class="pt-space-sm border-t border-outline-variant/10 flex items-center justify-between text-[11px] text-secondary">
+                <span>تحديث يدوي وتلقائي</span>
+                <span onclick="updateTrackingData()" class="flex items-center gap-1 text-primary cursor-pointer hover:underline font-bold">
+                  <span class="material-symbols-outlined text-xs">sync</span>
+                  <span>تحديث الحالة</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SECTION 3: SHIPMENT ITEMS & DESTINATION -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+          
+          <!-- Packed Products List (8 Cols) -->
+          <div class="lg:col-span-8 flex flex-col gap-space-md">
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 p-space-md flex flex-col gap-space-md text-xs">
+              <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/10">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-primary text-xl">devices</span>
+                  <h3 class="text-sm font-bold text-on-surface">محتويات هذه الشحنة (٣ أجهزة تقنية)</h3>
+                </div>
+                <span class="text-[11px] bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-full font-bold">مفحوصة ومعقمة</span>
+              </div>
+
+              <!-- Product Item 1 -->
+              <div class="flex flex-col sm:flex-row items-center gap-space-md p-space-sm bg-surface-container-low/50 hover:bg-surface-container-low rounded-xl transition-colors border border-outline-variant/10">
+                <div class="w-16 h-16 rounded-lg bg-surface-container-lowest flex items-center justify-center p-1.5 shrink-0 shadow-sm relative border border-outline-variant/10">
+                  <img class="w-full h-full object-contain" alt="آبل آيفون 15 برو ماكس تيتانيوم طبيعي" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7RxlBfu2C4mO-1bANXFRM3UUB4HCh3_QKeM_3VSEACJ0tHExsopl7GhHg72ALOew-637eMjzH7rZ2LrUc6J2mG_MzkE1jufNzWas0GChwue6ttLecl6H6R6TZerGqgxkeNbU2UTxn30_-q5g0ptuze6ULprkUoRM02SpRYfqmD4mgG_xV1K1nDZp4xCFu99862aGqGQgg5vzI93Ab95iUvMUQXQ8_1FltNHWuXvVI4soPDZ7fMpLFjQ"/>
+                  <span class="absolute top-1 right-1 bg-amber-500 text-surface-container-lowest text-[8px] font-bold px-1 rounded">مجدد +A</span>
+                </div>
+                <div class="flex-1 flex flex-col min-w-0 w-full sm:w-auto text-right">
+                  <div class="flex items-start justify-between gap-space-xs">
+                    <div>
+                      <h4 class="font-bold text-on-surface text-xs">آبل آيفون 15 برو ماكس (Apple iPhone 15 Pro Max)</h4>
+                      <span class="text-[11px] text-secondary">اللون: تيتانيوم طبيعي | السعة: 256 جيجابايت | شريحتين</span>
+                    </div>
+                    <span class="font-bold font-mono text-primary shrink-0 text-sm">4,299 ر.س</span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-space-xs mt-1 text-[11px] text-on-surface-variant">
+                    <span class="bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm text-tertiary font-bold flex items-center gap-0.5 border border-outline-variant/10">
+                      <span class="material-symbols-outlined text-xs">battery_charging_full</span>
+                      صحة البطارية: 98%
+                    </span>
+                    <span class="bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm text-secondary flex items-center gap-0.5 border border-outline-variant/10">
+                      <span class="material-symbols-outlined text-xs">verified</span>
+                      الضمان الذهبي: 24 شهر
+                    </span>
+                    <span class="text-secondary font-mono text-[10px]">S/N: F2LZK089P0DX</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product Item 2 -->
+              <div class="flex flex-col sm:flex-row items-center gap-space-md p-space-sm bg-surface-container-low/50 hover:bg-surface-container-low rounded-xl transition-colors border border-outline-variant/10">
+                <div class="w-16 h-16 rounded-lg bg-surface-container-lowest flex items-center justify-center p-1.5 shrink-0 shadow-sm relative border border-outline-variant/10">
+                  <img class="w-full h-full object-contain" alt="آبل ماك بوك برو 14 بوصة M3 Max" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ-yxkEcjhUbPJOcjbMuQnpKtY29F0ScRMa3LQrXtbnjUUxctOv8T-QNPE9VQbUksOZuTPvhMacw3AHUbLQu0xLOHo4mEfYE2fwaP32blwSz44a9YvpyfArNqTFIyrMo0EY-xd3q1pwBQBuFjTsIgEJ1JhVC-SpY0j7ArYywK_MVHgOUkyPfkmiyTCULeMPSG8cjKRfT6eBx3eA6w-IBxW0Ze7D4K5PverhOjB-cNIwmBx0wDtFi_O3Q"/>
+                  <span class="absolute top-1 right-1 bg-tertiary text-surface-container-lowest text-[8px] font-bold px-1 rounded">جديد</span>
+                </div>
+                <div class="flex-1 flex flex-col min-w-0 w-full sm:w-auto text-right">
+                  <div class="flex items-start justify-between gap-space-xs">
+                    <div>
+                      <h4 class="font-bold text-on-surface text-xs">آبل ماك بوك برو 14 بوصة - شريحة M3 Max خارقة</h4>
+                      <span class="text-[11px] text-secondary">اللون: أسود فلكي | الذاكرة: 36GB | السعة: 1TB SSD | كيبورد عربي</span>
+                    </div>
+                    <span class="font-bold font-mono text-primary shrink-0 text-sm">12,199 ر.س</span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-space-xs mt-1 text-[11px] text-on-surface-variant">
+                    <span class="bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm text-tertiary font-bold flex items-center gap-0.5 border border-outline-variant/10">
+                      <span class="material-symbols-outlined text-xs">lock</span>
+                      مغلف بختم المصنع
+                    </span>
+                    <span class="bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm text-secondary flex items-center gap-0.5 border border-outline-variant/10">
+                      <span class="material-symbols-outlined text-xs">shield</span>
+                      ضمان حاسبات العرب سنتين
+                    </span>
+                    <span class="text-secondary font-mono text-[10px]">S/N: C02GN003MD6R</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product Item 3 -->
+              <div class="flex flex-col sm:flex-row items-center gap-space-md p-space-sm bg-surface-container-low/50 hover:bg-surface-container-low rounded-xl transition-colors border border-outline-variant/10">
+                <div class="w-16 h-16 rounded-lg bg-surface-container-lowest flex items-center justify-center p-1.5 shrink-0 shadow-sm relative border border-outline-variant/10">
+                  <img class="w-full h-full object-contain" alt="سماعة سوني WH-1000XM5 العازلة للضوضاء" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJsrG6xJCBGzOPJ6dcsfF7toCql-XkpojFm5iFZwQturdCLKdyvWpBw7xiEP1WdB65eYR3dxJl4S38cArWETFeyV5cVXKISi3k2iz8oHZGI641oMbZY4nh6UEQZBQqNLDH4UPtSE7Agc-kMDrLasjQbEBIHVcCqZZkxXIQsH8eGk3ZFY6I07hHJa44E0f7lqUfddpzvtYHGctJbSJ-cROqx9XdDZVJcheU26G-HJxtA-xFmWwrZPzj_g"/>
+                  <span class="absolute top-1 right-1 bg-amber-500 text-surface-container-lowest text-[8px] font-bold px-1 rounded">مجدد</span>
+                </div>
+                <div class="flex-1 flex flex-col min-w-0 w-full sm:w-auto text-right">
+                  <div class="flex items-start justify-between gap-space-xs">
+                    <div>
+                      <h4 class="font-bold text-on-surface text-xs">سماعة سوني WH-1000XM5 اللاسلكية العازلة</h4>
+                      <span class="text-[11px] text-secondary">اللون: فضي بلاتينيوم | وسادات أذن جديدة معقمة | حقيبة أصلية</span>
+                    </div>
+                    <span class="font-bold font-mono text-primary shrink-0 text-sm">1,099 ر.س</span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-space-xs mt-1 text-[11px] text-on-surface-variant">
+                    <span class="bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm text-tertiary font-bold flex items-center gap-0.5 border border-outline-variant/10">
+                      <span class="material-symbols-outlined text-xs">check_circle</span>
+                      العزل النشط: ممتاز
+                    </span>
+                    <span class="bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm text-secondary flex items-center gap-0.5 border border-outline-variant/10">
+                      <span class="material-symbols-outlined text-xs">verified</span>
+                      ضمان تيك برو 12 شهر
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address & Destination Controls (4 Cols) -->
+          <div class="lg:col-span-4 flex flex-col gap-space-md">
+            <!-- Recipient Details Card -->
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 p-space-md flex flex-col gap-space-sm text-xs">
+              <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/10">
+                <div class="flex items-center gap-space-xs font-bold text-on-surface">
+                  <span class="material-symbols-outlined text-primary text-lg">location_on</span>
+                  <h4 class="text-xs">عنوان وجهة التوصيل</h4>
+                </div>
+                <span onclick="openManageModal('address')" class="material-symbols-outlined text-secondary text-base cursor-pointer hover:text-primary" title="تعديل العنوان">edit_location</span>
+              </div>
+              <div class="flex flex-col gap-1 text-right">
+                <span class="font-bold text-on-surface text-sm" id="dest-client-name">محمد العتيبي</span>
+                <span class="text-on-surface-variant" id="dest-address-summary">مدينة الرياض، حي الياسمين</span>
+                <span class="text-secondary text-[11px]" id="dest-street-desc">شارع أنس بن مالك، فيلا رقم 42 (مقابل حديقة الحي)</span>
+                <div class="flex items-center gap-space-xs mt-1 text-secondary font-mono" dir="ltr">
+                  <span class="font-bold text-on-surface">+966 55 489 1234</span>
+                  <span class="material-symbols-outlined text-xs text-tertiary">phone_android</span>
+                </div>
+              </div>
+              <div class="bg-surface-container-low p-2 rounded-lg mt-1 border border-outline-variant/10">
+                <span class="text-secondary block font-bold mb-0.5 text-[11px]">تعليمات التسليم الخاصة:</span>
+                <p class="text-on-surface-variant text-[11px] leading-relaxed" id="dest-notes">"يرجى الاتصال قبل الوصول بـ 15 دقيقة، وتوفير جهاز نقاط البيع (مدى) عند الباب إذا لزم الأمر."</p>
+              </div>
+            </div>
+
+            <!-- Order Management Controls -->
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 p-space-md flex flex-col gap-space-xs text-xs font-bold">
+              <h4 class="text-on-surface mb-1">إجراءات التحكم بالشحنة</h4>
+              
+              <button onclick="openManageModal('reschedule')" class="w-full bg-surface-container-low hover:bg-surface-container text-on-surface py-2 px-3 rounded-lg flex items-center justify-between transition-colors border border-outline-variant/10 cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-base">calendar_month</span>
+                  <span>تغيير موعد التسليم</span>
+                </div>
+                <span class="material-symbols-outlined text-sm text-secondary rotate-180">chevron_left</span>
+              </button>
+
+              <button onclick="openManageModal('address')" class="w-full bg-surface-container-low hover:bg-surface-container text-on-surface py-2 px-3 rounded-lg flex items-center justify-between transition-colors border border-outline-variant/10 cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-base">home_pin</span>
+                  <span>تغيير موقع الاستلام أو الحي</span>
+                </div>
+                <span class="material-symbols-outlined text-sm text-secondary rotate-180">chevron_left</span>
+              </button>
+
+              <button onclick="alert('تم تفعيل تعليمات ترك الشحنة عند الباب مع إشعار كابتن التوصيل.')" class="w-full bg-surface-container-low hover:bg-surface-container text-on-surface py-2 px-3 rounded-lg flex items-center justify-between transition-colors border border-outline-variant/10 cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-base">door_front</span>
+                  <span>ترك الشحنة بأمان عند الباب</span>
+                </div>
+                <span class="material-symbols-outlined text-sm text-secondary rotate-180">chevron_left</span>
+              </button>
+
+              <button onclick="openManageModal('cancel')" class="w-full bg-error-container/40 hover:bg-error-container/60 text-error py-2 px-3 rounded-lg flex items-center justify-between transition-colors mt-1 cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-error text-base">cancel</span>
+                  <span>إلغاء الطلب أو طلب الإرجاع</span>
+                </div>
+                <span class="material-symbols-outlined text-sm text-error rotate-180">chevron_left</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SECTION 4: HELP DESK & ASSURANCE BAR -->
+        <div class="bg-inverse-surface text-inverse-on-surface rounded-xl p-space-lg flex flex-col md:flex-row items-center justify-between gap-space-lg shadow-md border border-outline-variant/20">
+          <div class="flex items-center gap-space-md">
+            <div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-2xl">support_agent</span>
+            </div>
+            <div class="flex flex-col">
+              <h3 class="text-base font-bold text-surface-container-lowest">هل تحتاج لمساعدة فورية بشأن شحنتك؟</h3>
+              <p class="text-xs text-secondary-fixed-dim max-w-xl mt-0.5 leading-relaxed">فريق دعم عملاء تيك برو متواجد على مدار الساعة لمتابعة حالة الشحن وتقديم المساعدة الفنية لأجهزتك الجديدة والمجددة.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-space-sm w-full md:w-auto justify-end text-xs font-bold">
+            <button onclick="alert('جاري فتح المحادثة الحية المباشرة مع استشاري الشحن...')" class="bg-primary hover:bg-primary-container text-on-primary px-space-lg py-2.5 rounded-lg transition-colors flex items-center gap-1 shadow-sm">
+              <span class="material-symbols-outlined text-base">chat_bubble</span>
+              <span>المحادثة الحية مع خبير الدعم</span>
+            </button>
+            <a class="bg-surface-container-highest/20 hover:bg-surface-container-highest/30 text-surface-container-lowest px-space-md py-2.5 rounded-lg transition-colors flex items-center gap-1 border border-white/10" href="tel:920000000">
+              <span class="material-symbols-outlined text-base">call</span>
+              <span>الرقم الموحد: 920009988</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal: Manage Shipment (Reschedule / Address) -->
+      <div id="manageShipmentModal" class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm items-center justify-center p-space-md" onclick="closeManageModal()">
+        <div class="bg-surface-container-lowest rounded-xl max-w-md w-full p-space-lg shadow-2xl flex flex-col gap-space-md border border-outline-variant/20 text-xs" onclick="event.stopPropagation()">
+          <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/15">
+            <div class="flex items-center gap-space-xs font-bold text-on-surface">
+              <span class="material-symbols-outlined text-xl text-primary" id="modal-icon">tune</span>
+              <h3 class="text-sm font-bold" id="modal-title">إدارة خيارات الشحنة</h3>
+            </div>
+            <button class="p-1 rounded text-secondary hover:text-on-surface" onclick="closeManageModal()">
+              <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+          </div>
+
+          <div class="flex flex-col gap-space-sm" id="modal-body-content">
+            <!-- Dynamic Injection based on clicked action -->
+          </div>
+
+          <div class="flex items-center justify-end gap-space-xs pt-space-xs border-t border-outline-variant/15 font-bold">
+            <button class="px-space-md py-2 rounded-lg text-secondary hover:text-on-surface" onclick="closeManageModal()">
+              إلغاء
+            </button>
+            <button class="bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2 rounded-lg transition-colors shadow-md" id="modal-confirm-btn" onclick="confirmManageAction()">
+              حفظ وتأكيد
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل المباشر عبر واتساب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>أسطول النقل الذكي TechPro Fleet Express</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    let activeActionType = '';
+
+    function updateTrackingData() {
+      const trackVal = document.getElementById('trackingInput').value.trim();
+      if (!trackVal) {
+        alert('يرجى إدخال رقم شحنة صالح.');
+        return;
+      }
+      document.getElementById('breadcrumb-order-id').textContent = `طلب رقم #${trackVal}`;
+      alert(`تم بنجاح تحديث بيانات وموقع الشحنة رقم [${trackVal}] المتزامنة مع الـ GPS.`);
+    }
+
+    function openManageModal(type) {
+      activeActionType = type;
+      const modal = document.getElementById('manageShipmentModal');
+      const title = document.getElementById('modal-title');
+      const icon = document.getElementById('modal-icon');
+      const body = document.getElementById('modal-body-content');
+      const confirmBtn = document.getElementById('modal-confirm-btn');
+
+      if (type === 'reschedule') {
+        title.textContent = 'تغيير موعد التسليم';
+        icon.textContent = 'calendar_month';
+        confirmBtn.textContent = 'تأكيد الموعد الجديد';
+        confirmBtn.className = 'bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2 rounded-lg transition-colors shadow-md';
+        body.innerHTML = `
+          <div>
+            <label class="font-bold text-on-surface block mb-1">اختر اليوم المناسب للتسليم:</label>
+            <input type="date" id="reschedule-date" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20" value="2026-09-06"/>
+          </div>
+          <div>
+            <label class="font-bold text-on-surface block mb-1">الفترة الزمنية المفضلة:</label>
+            <select id="reschedule-time" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20">
+              <option value="الفترة الصباحية (10:00 ص - 01:00 م)">الفترة الصباحية (10:00 ص - 01:00 م)</option>
+              <option value="فترة الظهيرة (02:00 م - 05:00 م)" selected>فترة الظهيرة (02:00 م - 05:00 م)</option>
+              <option value="الفترة المسائية (06:00 م - 09:00 م)">الفترة المسائية (06:00 م - 09:00 م)</option>
+            </select>
+          </div>
+        `;
+      } else if (type === 'address') {
+        title.textContent = 'تعديل عنوان التسليم';
+        icon.textContent = 'home_pin';
+        confirmBtn.textContent = 'حفظ العنوان الجديد';
+        confirmBtn.className = 'bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2 rounded-lg transition-colors shadow-md';
+        body.innerHTML = `
+          <div>
+            <label class="font-bold text-on-surface block mb-1">الحي السكني:</label>
+            <input type="text" id="new-district" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20" value="حي النرجس، الرياض"/>
+          </div>
+          <div>
+            <label class="font-bold text-on-surface block mb-1">تفاصيل الشارع والمنزل:</label>
+            <input type="text" id="new-street" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20" value="طريق الأمير فيصل، فيلا 18"/>
+          </div>
+        `;
+      } else if (type === 'cancel') {
+        title.textContent = 'إلغاء الطلب أو طلب الإرجاع';
+        icon.textContent = 'cancel';
+        confirmBtn.textContent = 'تأكيد طلب الإلغاء';
+        confirmBtn.className = 'bg-error hover:bg-error/90 text-on-error px-space-lg py-2 rounded-lg transition-colors shadow-md';
+        body.innerHTML = `
+          <div class="p-2.5 bg-error-container/30 text-error rounded-lg leading-relaxed">
+            تنبيه: نظراً لأن الشحنة حالياً مع مندوب الأسطول، قد يستغرق تأكيد إرجاعها للمستودع وإعادة المبلغ للبطاقة من 24 إلى 48 ساعة عمل.
+          </div>
+          <div>
+            <label class="font-bold text-on-surface block mb-1">سبب طلب الإلغاء:</label>
+            <select class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20">
+              <option>تغيير الرغبة في الشراء</option>
+              <option>تأخر موعد الوصول المتوقع</option>
+              <option>طلب جهاز بمواصفات أخرى</option>
+            </select>
+          </div>
+        `;
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeManageModal() {
+      const modal = document.getElementById('manageShipmentModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function confirmManageAction() {
+      if (activeActionType === 'reschedule') {
+        const timeVal = document.getElementById('reschedule-time').value;
+        document.getElementById('delivery-window-text').textContent = `نافذة التوصيل: ${timeVal}`;
+        alert('تم تعديل موعد التوصيل بنجاح وإخطار الكابتن.');
+      } else if (activeActionType === 'address') {
+        const district = document.getElementById('new-district').value;
+        const street = document.getElementById('new-street').value;
+        document.getElementById('dest-address-summary').textContent = district;
+        document.getElementById('dest-street-desc').textContent = street;
+        document.getElementById('map-dest-label').textContent = district;
+        alert('تم تعديل عنوان التوصيل وتحديث إحداثيات الكابتن.');
+      } else if (activeActionType === 'cancel') {
+        alert('تم تقديم طلب الإلغاء بنجاح وجاري التواصل معك من قسم خدمة العملاء.');
+      }
+      closeManageModal();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeManageModal();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Wallet Balances & Points) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+    
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary font-black text-xl shadow">
+            TP
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">متجر الأجهزة والتقنية المعتمد</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors">
+              <span class="material-symbols-outlined text-xl">mic</span>
+            </button>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
+            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+          </a>
+          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+            <div class="hidden sm:flex flex-col text-right">
+              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
+              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+            </div>
+          </a>
+          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl">person</span>
+            <span class="hidden sm:inline">حسابي</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة المستعملة والمجددة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">العروض الخاصة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الماركات</a>
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">المحفظة والمكافآت</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span>توصيل سريع خلال 24 ساعة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full text-on-surface">
+      <!-- Breadcrumb Bar -->
+      <div class="w-full bg-surface-container-low py-space-sm px-space-md lg:px-space-xl border-b border-outline-variant/10 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-sm">
+          <div class="flex items-center gap-space-xs text-secondary">
+            <a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+              <span class="material-symbols-outlined text-base">home</span>
+              <span>الرئيسية</span>
+            </a>
+            <span class="material-symbols-outlined text-xs rotate-180 text-outline">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="#">حسابي</a>
+            <span class="material-symbols-outlined text-xs rotate-180">chevron_right</span>
+            <span class="text-on-surface font-bold">محفظة تيك برو ونادي المكافآت</span>
+          </div>
+          <div class="flex items-center gap-space-sm">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full font-bold">
+              <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+              <span>حساب موثق ومحمي بنظام التشفير المزدوج</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-xl flex flex-col gap-space-2xl">
+        
+        <!-- Section 1: Executive Hub (Wallet & VIP Tier Card) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
+          
+          <!-- Wallet Card -->
+          <div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-space-lg lg:p-space-xl shadow-sm flex flex-col justify-between relative overflow-hidden border border-outline-variant/10">
+            <div class="absolute -top-24 -left-24 w-64 h-64 bg-gradient-to-br from-primary-fixed/40 via-surface-container-low to-transparent rounded-full blur-2xl pointer-events-none"></div>
+            <div class="flex flex-col gap-space-md relative z-10">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-2xl text-primary">account_balance_wallet</span>
+                  <span class="text-base font-bold text-on-surface">رصيد المحفظة النقدية المتاحة</span>
+                </div>
+                <span class="text-xs text-secondary px-2.5 py-1 bg-surface-container rounded-full flex items-center gap-1 font-bold">
+                  <span class="material-symbols-outlined text-xs text-tertiary">lock</span>
+                  <span>مضمون ومعتمد</span>
+                </span>
+              </div>
+              
+              <div class="flex flex-col sm:flex-row sm:items-baseline gap-space-xs sm:gap-space-sm mt-space-xs">
+                <span class="text-3xl lg:text-4xl text-primary font-black tracking-tight font-mono" id="wallet-balance-display">450.00</span>
+                <span class="text-base text-on-surface-variant font-bold">ريال سعودي</span>
+                <span class="text-tertiary text-xs font-bold bg-tertiary-container/15 px-2.5 py-1 rounded-md sm:mr-auto font-mono">
+                  +15.4% عن الشهر السابق
+                </span>
+              </div>
+              
+              <div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between flex-wrap gap-space-xs text-xs">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-tertiary">autorenew</span>
+                  <span class="font-bold text-on-surface">الكاش باك التلقائي للطلبات القادمة مفعل</span>
+                </div>
+                <span class="text-secondary font-bold">خصم تلقائي 100% متاح بالسلة</span>
+              </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="grid grid-cols-3 gap-space-sm mt-space-lg relative z-10 text-xs font-bold">
+              <button onclick="handleTopup()" class="flex flex-col sm:flex-row items-center justify-center gap-1 py-2.5 px-2 bg-primary hover:bg-primary-container text-on-primary rounded-lg shadow-sm transition-all text-center active:scale-95 cursor-pointer">
+                <span class="material-symbols-outlined text-lg">add_circle</span>
+                <span class="whitespace-nowrap">شحن الرصيد</span>
+              </button>
+              <button onclick="alert('خدمة التحويل لحساب تيك برو آخر متاحة قريباً.')" class="flex flex-col sm:flex-row items-center justify-center gap-1 py-2.5 px-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg transition-all text-center cursor-pointer border border-outline-variant/10">
+                <span class="material-symbols-outlined text-lg text-primary">swap_horiz</span>
+                <span class="whitespace-nowrap">تحويل رصيد</span>
+              </button>
+              <button onclick="alert('سيتم فتح طلب السحب لحسابك البنكي المعتمد.')" class="flex flex-col sm:flex-row items-center justify-center gap-1 py-2.5 px-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg transition-all text-center cursor-pointer border border-outline-variant/10">
+                <span class="material-symbols-outlined text-lg text-secondary">account_balance</span>
+                <span class="whitespace-nowrap">سحب بنكي</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- VIP Club Card -->
+          <div class="lg:col-span-5 bg-inverse-surface text-inverse-on-surface rounded-xl p-space-lg lg:p-space-xl shadow-md flex flex-col justify-between relative overflow-hidden text-xs">
+            <div class="absolute -bottom-16 -right-16 w-48 h-48 bg-primary/30 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="flex flex-col gap-space-md relative z-10">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-tertiary-fixed text-xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+                  <span class="text-base font-bold text-surface-container-lowest">نادي تيك برو VIP</span>
+                </div>
+                <span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full font-bold shadow-sm">
+                  العضوية البلاتينية
+                </span>
+              </div>
+
+              <!-- Points Stat -->
+              <div class="bg-surface-container-highest/10 p-space-md rounded-lg flex items-center justify-between border border-white/5">
+                <div>
+                  <span class="text-secondary-fixed-dim text-[11px] block">رصيد نقاط الولاء النشطة</span>
+                  <div class="flex items-baseline gap-1 mt-1">
+                    <span class="text-2xl lg:text-3xl text-tertiary-fixed font-black font-mono" id="active-points-display">8,750</span>
+                    <span class="text-surface-container-lowest font-medium text-[11px]">نقطة</span>
+                  </div>
+                </div>
+                <div class="text-left">
+                  <span class="text-secondary-fixed-dim text-[11px] block">قيمتها الشرائية الفورية</span>
+                  <span class="text-lg lg:text-xl text-surface-container-lowest font-black font-mono" id="points-sar-value">175 ر.س</span>
+                </div>
+              </div>
+
+              <!-- Progress -->
+              <div class="flex flex-col gap-1">
+                <div class="flex justify-between items-center text-[11px]">
+                  <span class="text-secondary-fixed-dim">المستوى الحالي: بلاتيني (Platinum)</span>
+                  <span class="text-tertiary-fixed font-bold">تبقّى 1,250 نقطة للماسي</span>
+                </div>
+                <div class="w-full h-2 bg-surface-container-highest/20 rounded-full overflow-hidden relative">
+                  <div class="h-full bg-gradient-to-l from-tertiary-fixed to-primary-container rounded-full transition-all duration-1000" style="width: 87.5%;"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-secondary-fixed-dim font-mono">
+                  <span>8,750 / 10,000</span>
+                  <span>المستوى الماسي VIP</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Expiry Warning -->
+            <div class="mt-space-md pt-space-sm bg-surface-container-highest/10 -mx-space-lg lg:-mx-space-xl -mb-space-lg lg:-mb-space-xl px-space-lg lg:px-space-xl py-2.5 flex items-center justify-between text-[11px] border-t border-white/5">
+              <div class="flex items-center gap-1 text-error-container font-bold">
+                <span class="material-symbols-outlined text-sm">schedule</span>
+                <span>تنبيه: 650 نقطة تنتهي قريباً</span>
+              </div>
+              <button onclick="document.getElementById('rewards-catalog').scrollIntoView({behavior: 'smooth'})" class="text-primary-fixed-dim hover:text-surface-container-lowest underline font-bold cursor-pointer">استبدلها الآن</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section 2: Membership Tiers -->
+        <div class="flex flex-col gap-space-lg text-xs">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm">
+            <div>
+              <span class="text-primary font-bold tracking-wide uppercase block text-[11px]">برنامج التميز التقني المستمر</span>
+              <h2 class="text-xl font-black text-on-surface mt-0.5">مستويات العضوية والمزايا الحصرية</h2>
+            </div>
+            <div class="text-secondary">
+              تتم ترقية مستواك تلقائياً مع كل عملية شراء أو استبدال في متجر تيك برو.
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+            <!-- Silver -->
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between opacity-80 hover:opacity-100 transition-all border border-outline-variant/10">
+              <div class="flex flex-col gap-space-xs">
+                <div class="flex items-center justify-between">
+                  <span class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+                    <span class="material-symbols-outlined">workspace_premium</span>
+                  </span>
+                  <span class="text-[10px] px-2.5 py-0.5 bg-surface-container rounded-full text-secondary font-bold">البداية</span>
+                </div>
+                <h3 class="text-sm font-bold text-on-surface mt-1">الفضي (Silver)</h3>
+                <span class="text-secondary text-[11px]">من 0 حتى 2,499 نقطة</span>
+                <ul class="mt-2 flex flex-col gap-1 text-on-surface-variant">
+                  <li class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span>استرجاع نقدي 1.5%</span>
+                  </li>
+                  <li class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span>ضمان قياسي 12 شهراً</span>
+                  </li>
+                </ul>
+              </div>
+              <span class="mt-4 font-bold text-secondary">مستوى مُنجز ✓</span>
+            </div>
+
+            <!-- Gold -->
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between opacity-80 hover:opacity-100 transition-all border border-outline-variant/10">
+              <div class="flex flex-col gap-space-xs">
+                <div class="flex items-center justify-between">
+                  <span class="w-9 h-9 rounded-full bg-secondary-fixed/40 flex items-center justify-center text-on-secondary-fixed-variant">
+                    <span class="material-symbols-outlined">military_tech</span>
+                  </span>
+                  <span class="text-[10px] px-2.5 py-0.5 bg-surface-container rounded-full text-secondary font-bold">المتقدم</span>
+                </div>
+                <h3 class="text-sm font-bold text-on-surface mt-1">الذهبي (Gold)</h3>
+                <span class="text-secondary text-[11px]">من 2,500 حتى 5,999 نقطة</span>
+                <ul class="mt-2 flex flex-col gap-1 text-on-surface-variant">
+                  <li class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span>استرجاع نقدي 3%</span>
+                  </li>
+                  <li class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span>خصم 5% على الصيانة</span>
+                  </li>
+                </ul>
+              </div>
+              <span class="mt-4 font-bold text-secondary">مستوى مُنجز ✓</span>
+            </div>
+
+            <!-- Platinum (Current) -->
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-md flex flex-col justify-between relative bg-gradient-to-b from-primary-fixed/20 to-surface-container-lowest ring-2 ring-primary-container">
+              <div class="absolute -top-3 right-4 px-2.5 py-0.5 bg-primary-container text-on-primary text-[10px] rounded-full font-bold">
+                مستواك الحالي النشط
+              </div>
+              <div class="flex flex-col gap-space-xs">
+                <div class="flex items-center justify-between">
+                  <span class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined">diamond</span>
+                  </span>
+                  <span class="text-[10px] px-2.5 py-0.5 bg-primary-fixed text-on-primary-fixed rounded-full font-bold">فئة النخبة</span>
+                </div>
+                <h3 class="text-sm font-bold text-primary mt-1">البلاتيني (Platinum)</h3>
+                <span class="text-secondary text-[11px]">من 6,000 حتى 9,999 نقطة</span>
+                <ul class="mt-2 flex flex-col gap-1 text-on-surface font-semibold">
+                  <li class="flex items-center gap-1 text-primary font-bold">
+                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                    <span>استرجاع 5% فوري</span>
+                  </li>
+                  <li class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span>شحن سريع مجاني لكافة الطلبات</span>
+                  </li>
+                  <li class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span>فحص مخبري سنوي لجهازين</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-4 p-1.5 bg-surface-container-low rounded text-center text-primary font-bold">
+                تتمتع بكافة امتيازات الفئة
+              </div>
+            </div>
+
+            <!-- Diamond (Next) -->
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-all border border-outline-variant/10">
+              <div class="flex flex-col gap-space-xs">
+                <div class="flex items-center justify-between">
+                  <span class="w-9 h-9 rounded-full bg-inverse-surface text-tertiary-fixed flex items-center justify-center">
+                    <span class="material-symbols-outlined">military_tech</span>
+                  </span>
+                  <span class="text-[10px] px-2.5 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed rounded-full font-bold">VIP المطلق</span>
+                </div>
+                <h3 class="text-sm font-bold text-on-surface mt-1">الماسي (Diamond VIP)</h3>
+                <span class="text-secondary text-[11px]">10,000+ نقطة</span>
+                <ul class="mt-2 flex flex-col gap-1 text-on-surface-variant">
+                  <li class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span>استرجاع نقدي 8% دائم</span>
+                  </li>
+                  <li class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span>مدير حساب تقني مخصص</span>
+                  </li>
+                </ul>
+              </div>
+              <button class="mt-4 w-full py-2 bg-surface-container hover:bg-primary hover:text-on-primary rounded font-bold text-secondary transition-all cursor-pointer">
+                احصل عليه بـ 1,250 نقطة
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Points Redemption Catalog -->
+        <div id="rewards-catalog" class="flex flex-col gap-space-lg text-xs">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm">
+            <div>
+              <span class="text-primary font-bold tracking-wide uppercase block text-[11px]">سوق المكافآت الحصري</span>
+              <h2 class="text-xl font-black text-on-surface mt-0.5">استبدال النقاط بمكافآت فورية</h2>
+            </div>
+            <div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant/20">
+              <span class="text-secondary">رصيدك المتوفر:</span>
+              <span class="text-sm text-primary font-black font-mono" id="catalog-points-display">8,750 نقطة</span>
+            </div>
+          </div>
+
+          <!-- Redemption Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+            
+            <!-- Voucher 100 -->
+            <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-all border border-outline-variant/10">
+              <div class="flex flex-col gap-3">
+                <div class="w-full h-36 bg-surface-container-low rounded-lg flex items-center justify-center relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-primary-fixed/20 via-transparent to-surface-container"></div>
+                  <img class="object-cover w-full h-full" alt="قسيمة مشتريات 100 ريال" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_KVPysq9spc_9KYYw1lkAKdiHKShkTuuK0VRXyHxwMzN9WT7J-GnlEmwKAXjgrS1njOfoTzbo5Er8v2-fOAj1I0AhfmKcwBxp8-zG5FArcSUp_J2e57gQ0LCnvnI3FaZ8mbVPlopYe2-WijQa3NEwfkXgjs98pumXhRu1ceVz9xihBaCtAI7rtQtnolgVX3EgaBHtLBJl26zEpllVU-PjwGl4bh9T0wsTbEOdvTIQ3VSIr2N1WSv5Yg"/>
+                  <span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 bg-primary text-on-primary text-[10px] rounded-full font-bold">
+                    قسيمة مشتريات
+                  </span>
+                </div>
+                <div class="flex flex-col">
+                  <h3 class="text-sm font-bold text-on-surface">قسيمة شراء بقيمة 100 ر.س</h3>
+                  <p class="text-secondary mt-1 text-[11px] leading-relaxed">صالحة للاستخدام على جميع المنتجات الجديدة والمجددة بدون شروط.</p>
+                </div>
+                <div class="flex items-center justify-between pt-1">
+                  <span class="text-base text-primary font-black font-mono">5,000 <span class="text-xs font-normal text-secondary font-sans">نقطة</span></span>
+                  <span class="text-[11px] text-tertiary font-bold bg-tertiary-fixed/30 px-2 py-0.5 rounded">مؤهل</span>
+                </div>
+              </div>
+              <button class="mt-4 w-full py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-bold flex items-center justify-center gap-1 shadow-sm transition-all cursor-pointer active:scale-95" onclick="redeemReward('قسيمة 100 ر.س', 5000, 100)">
+                <span class="material-symbols-outlined text-base">redeem</span>
+                <span>استبدال الآن (5,000 نقطة)</span>
+              </button>
+            </div>
+
+            <!-- Warranty 2 Years -->
+            <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-all border border-outline-variant/10">
+              <div class="flex flex-col gap-3">
+                <div class="w-full h-36 bg-surface-container-low rounded-lg flex items-center justify-center relative overflow-hidden">
+                  <img class="object-cover w-full h-full" alt="باقة الضمان الذهبي الماسي" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwz819eoLOI5VVCYA-0oPvDi71xu24mppecsR0qZ9Wzzm_2GFBMqs4Bd7Takg7jDYFRdT5PMeOLPvsxYyg2AiXOwnx6QGWjghnxTHdKOeMvO5uiLC0FQWGI9q-PwvgMkVGdAntiSWJ6RDg5L1A3_yF1uD1irOWqPMCN4WH_nZcSOQOc_FHguPqa3SpbPsCazGrG5wg401_qkdGHCiAdiNBVpcuwugQJJdaqPuN4IMFeLiHfpEko-8XQg"/>
+                  <span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 bg-tertiary text-on-tertiary text-[10px] rounded-full font-bold">
+                    الأكثر طلباً
+                  </span>
+                </div>
+                <div class="flex flex-col">
+                  <h3 class="text-sm font-bold text-on-surface">باقة الضمان الذهبي الماسي (سنتان)</h3>
+                  <p class="text-secondary mt-1 text-[11px] leading-relaxed">تغطية شاملة ضد عيوب المصنعية، استبدال البطارية والدعم المباشر.</p>
+                </div>
+                <div class="flex items-center justify-between pt-1">
+                  <span class="text-base text-primary font-black font-mono">7,000 <span class="text-xs font-normal text-secondary font-sans">نقطة</span></span>
+                  <span class="text-[11px] text-tertiary font-bold bg-tertiary-fixed/30 px-2 py-0.5 rounded">مؤهل</span>
+                </div>
+              </div>
+              <button class="mt-4 w-full py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-bold flex items-center justify-center gap-1 shadow-sm transition-all cursor-pointer active:scale-95" onclick="redeemReward('الضمان الذهبي الماسي', 7000, 0)">
+                <span class="material-symbols-outlined text-base">verified_user</span>
+                <span>استبدال الآن (7,000 نقطة)</span>
+              </button>
+            </div>
+
+            <!-- Conversion Tile -->
+            <div class="bg-gradient-to-br from-primary-container to-primary text-on-primary rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+              <div class="flex flex-col gap-2">
+                <span class="material-symbols-outlined text-3xl text-tertiary-fixed">currency_exchange</span>
+                <h3 class="text-sm font-bold text-on-primary">تحويل النقاط إلى رصيد محفظة نقدي</h3>
+                <p class="text-[11px] text-on-primary-container leading-relaxed">
+                  لا ترغب في القسائم؟ يمكنك تحويل نقاطك المكتسبة مباشرة إلى رصيد نقدي في محفظتك لاستخدامه متى شئت.
+                </p>
+                <div class="bg-surface-container-lowest/15 p-2 rounded-lg flex items-center justify-between font-mono text-[11px]">
+                  <span>معدل التحويل:</span>
+                  <span class="font-bold text-tertiary-fixed">50 نقطة = 1 ر.س</span>
+                </div>
+              </div>
+              <div class="mt-4">
+                <button class="w-full py-2.5 bg-surface-container-lowest hover:bg-surface-container text-primary font-bold rounded-lg shadow-sm transition-all cursor-pointer active:scale-95" onclick="convertAllPoints()">
+                  تحويل كامل الرصيد (175 ر.س) للمحفظة
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section 4: Referral Program -->
+        <div class="bg-surface-container-lowest rounded-xl p-space-md lg:p-space-lg shadow-sm border border-outline-variant/10 text-xs">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            
+            <div class="lg:col-span-7 flex flex-col gap-space-md">
+              <div>
+                <span class="px-2.5 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded text-[10px] font-bold inline-block mb-1">
+                  برنامج الشركاء وسفراء تيك برو
+                </span>
+                <h2 class="text-xl font-black text-on-surface">شارك أصدقاءك واكسب 100 ر.س نقداً</h2>
+                <p class="text-secondary mt-1 leading-relaxed">
+                  امنح أصدقاءك كود خصم حصري بنسبة <span class="text-primary font-bold">10% فوري</span> على أول طلب، واكسب فورياً <span class="text-tertiary font-bold">100 ر.س نقدية</span> في محفظتك بعد إتمام الشراء.
+                </p>
+              </div>
+
+              <!-- Code Box -->
+              <div class="p-3 bg-surface-container-low rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 border border-outline-variant/10">
+                <div class="flex flex-col text-right w-full sm:w-auto">
+                  <span class="text-secondary text-[11px]">رمز الدعوة الفريد الخاص بك:</span>
+                  <div class="flex items-center gap-1 mt-0.5">
+                    <span class="text-base font-mono font-black text-primary tracking-wider select-all" id="referral-code-text">PRO-KHALID99</span>
+                    <span class="material-symbols-outlined text-tertiary text-base">verified</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1 w-full sm:w-auto font-bold">
+                  <button class="flex-1 sm:flex-none px-4 py-2 bg-primary hover:bg-primary-container text-on-primary rounded-lg flex items-center justify-center gap-1 transition-all cursor-pointer" onclick="copyReferralCode()">
+                    <span class="material-symbols-outlined text-base">content_copy</span>
+                    <span id="copy-btn-label">نسخ الكود</span>
+                  </button>
+                  <button class="p-2 bg-tertiary hover:bg-tertiary-container text-on-tertiary rounded-lg flex items-center justify-center transition-all cursor-pointer" onclick="shareWhatsApp()" title="واتساب">
+                    <span class="material-symbols-outlined text-lg">share</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4 flex-wrap text-secondary text-[11px]">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs text-tertiary">check</span> لا يوجد حد أقصى للأصدقاء</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs text-tertiary">check</span> تحويل فوري للبنوك السعودية</span>
+              </div>
+            </div>
+
+            <!-- Stats Panel -->
+            <div class="lg:col-span-5 bg-surface-container rounded-xl p-space-md flex flex-col gap-3 border border-outline-variant/10">
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-on-surface">لوحة أداء إحالاتك</h3>
+                <span class="text-primary font-bold">تحديث فوري</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-center font-mono">
+                <div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col items-center border border-outline-variant/10">
+                  <span class="text-lg font-black text-on-surface">14</span>
+                  <span class="text-[10px] text-secondary mt-0.5 font-sans">دعوات مرسلة</span>
+                </div>
+                <div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col items-center border border-outline-variant/10">
+                  <span class="text-lg font-black text-tertiary">9</span>
+                  <span class="text-[10px] text-secondary mt-0.5 font-sans">أتموا الشراء</span>
+                </div>
+                <div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col items-center border border-outline-variant/10">
+                  <span class="text-lg font-black text-primary">900</span>
+                  <span class="text-[10px] text-secondary mt-0.5 font-sans">أرباح (ر.س)</span>
+                </div>
+              </div>
+              
+              <div class="bg-surface-container-lowest p-2.5 rounded-lg flex flex-col gap-1 border border-outline-variant/10">
+                <div class="flex justify-between text-[11px]">
+                  <span class="font-bold text-on-surface">مكافأة السفير (هدف: 10 طلبات)</span>
+                  <span class="text-primary font-bold font-mono">90%</span>
+                </div>
+                <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+                  <div class="bg-tertiary h-full rounded-full" style="width: 90%;"></div>
+                </div>
+                <span class="text-[10px] text-secondary">أكمل دعوة شخص إضافي واحصل على بونص 250 ر.س فوري!</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section 5: Transaction History Ledger -->
+        <div class="bg-surface-container-lowest rounded-xl p-space-lg lg:p-space-xl shadow-sm flex flex-col gap-space-lg border border-outline-variant/10 text-xs">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+            <div>
+              <h2 class="text-base font-bold text-on-surface">سجل العمليات والحركات المالية للرصيد</h2>
+              <p class="text-xs text-secondary mt-0.5">تتبع دقيق لجميع حركات الإيداع، الخصم، الكاش باك واستبدال النقاط.</p>
+            </div>
+            
+            <!-- Filter Chips -->
+            <div class="flex items-center gap-space-2xs overflow-x-auto pb-1 font-bold" id="ledger-filters">
+              <button class="filter-btn px-3 py-1 rounded-full bg-primary text-on-primary transition-all cursor-pointer" onclick="filterTransactions('all', this)">الكل</button>
+              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('cashback', this)">استرجاع كاش باك</button>
+              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('deposit', this)">إيداع وشحن</button>
+              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('redemption', this)">استبدال مكافآت</button>
+              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('referral', this)">مكافآت الإحالة</button>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-right border-collapse">
+              <thead>
+                <tr class="bg-surface-container-low text-secondary font-bold">
+                  <th class="py-2.5 px-3 rounded-r-lg">العملية والتفاصيل</th>
+                  <th class="py-2.5 px-3">النوع</th>
+                  <th class="py-2.5 px-3">التاريخ</th>
+                  <th class="py-2.5 px-3">نقاط الولاء</th>
+                  <th class="py-2.5 px-3 rounded-l-lg text-left">الأثر المالي (ر.س)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant/10 text-on-surface" id="transaction-rows">
+                <tr class="transaction-row hover:bg-surface-container-low/50 transition-colors" data-type="cashback">
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-2">
+                      <span class="w-7 h-7 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-sm">savings</span>
+                      </span>
+                      <div>
+                        <span class="font-bold block">كاش باك 5% - طلب iPhone 15 Pro Max</span>
+                        <span class="text-[11px] text-secondary">إيداع نقدي مباشر في المحفظة</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="px-2 py-0.5 bg-tertiary-container/15 text-tertiary text-[10px] font-bold rounded-full">كاش باك</span>
+                  </td>
+                  <td class="py-3 px-3 text-secondary">24 فبراير 2025</td>
+                  <td class="py-3 px-3 text-tertiary font-bold font-mono">+2,500 نقطة</td>
+                  <td class="py-3 px-3 text-left font-bold text-tertiary font-mono">+250.00 ر.س</td>
+                </tr>
+
+                <tr class="transaction-row hover:bg-surface-container-low/50 transition-colors" data-type="referral">
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-2">
+                      <span class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-sm">group_add</span>
+                      </span>
+                      <div>
+                        <span class="font-bold block">مكافأة دعوة صديق (سارة العتيبي)</span>
+                        <span class="text-[11px] text-secondary">شراء أول لابتوب MacBook Pro</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold rounded-full">إحالة صديق</span>
+                  </td>
+                  <td class="py-3 px-3 text-secondary">21 فبراير 2025</td>
+                  <td class="py-3 px-3 text-primary font-bold font-mono">+1,000 نقطة</td>
+                  <td class="py-3 px-3 text-left font-bold text-tertiary font-mono">+100.00 ر.س</td>
+                </tr>
+
+                <tr class="transaction-row hover:bg-surface-container-low/50 transition-colors" data-type="redemption">
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-2">
+                      <span class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-sm">redeem</span>
+                      </span>
+                      <div>
+                        <span class="font-bold block">استبدال قسيمة شراء</span>
+                        <span class="text-[11px] text-secondary font-mono">كود: VOUCH-100-PRO</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="px-2 py-0.5 bg-surface-container text-secondary text-[10px] font-bold rounded-full">استبدال مكافأة</span>
+                  </td>
+                  <td class="py-3 px-3 text-secondary">18 فبراير 2025</td>
+                  <td class="py-3 px-3 text-error font-bold font-mono">-5,000 نقطة</td>
+                  <td class="py-3 px-3 text-left font-bold text-secondary font-mono">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل عبر واتساب المباشر</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>صُمم بأحدث التقنيات السريعة والآمنة</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    let userPoints = 8750;
+    let userBalance = 450.00;
+
+    function updateUI() {
+      document.getElementById('wallet-balance-display').innerText = userBalance.toFixed(2);
+      document.getElementById('active-points-display').innerText = userPoints.toLocaleString();
+      document.getElementById('catalog-points-display').innerText = userPoints.toLocaleString() + ' نقطة';
+      document.getElementById('points-sar-value').innerText = (userPoints / 50).toFixed(0) + ' ر.س';
+    }
+
+    function handleTopup() {
+      const amount = prompt('أدخل المبلغ المراد شحنه إلى محفظتك (ر.س):', '100');
+      if (amount && !isNaN(amount) && Number(amount) > 0) {
+        userBalance += Number(amount);
+        updateUI();
+        alert(`تم شحن ${amount} ر.س بنجاح إلى محفظتك!`);
+      }
+    }
+
+    function copyReferralCode() {
+      const code = document.getElementById('referral-code-text').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const btnLabel = document.getElementById('copy-btn-label');
+        btnLabel.innerText = 'تم النسخ!';
+        setTimeout(() => {
+          btnLabel.innerText = 'نسخ الكود';
+        }, 2000);
+      });
+    }
+
+    function shareWhatsApp() {
+      const code = document.getElementById('referral-code-text').innerText;
+      const text = encodeURIComponent(`استخدم كود الخصم الحصري في متجر تيك برو (${code}) واحصل على خصم 10% فوري! https://techpro.sa`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    function redeemReward(name, points, addedBalance = 0) {
+      if (userPoints < points) {
+        alert('عذراً، رصيد نقاطك غير كافٍ لهذه المكافأة.');
+        return;
+      }
+      if (confirm(`هل ترغب في استبدال ${points.toLocaleString()} نقطة مقابل «${name}»؟`)) {
+        userPoints -= points;
+        if (addedBalance > 0) {
+          userBalance += addedBalance;
+        }
+        updateUI();
+        alert(`تهانينا! تم استبدال «${name}» بنجاح.`);
+      }
+    }
+
+    function convertAllPoints() {
+      if (userPoints === 0) {
+        alert('لا توجد نقاط متاحة للتحويل.');
+        return;
+      }
+      const sarAmount = userPoints / 50;
+      if (confirm(`هل تريد تحويل كامل الرصيد (${userPoints.toLocaleString()} نقطة) إلى ${sarAmount.toFixed(2)} ر.س نقداً في محفظتك؟`)) {
+        userBalance += sarAmount;
+        userPoints = 0;
+        updateUI();
+        alert(`تم إيداع ${sarAmount.toFixed(2)} ر.س بنجاح في محفظتك!`);
+      }
+    }
+
+    function filterTransactions(type, btnElement) {
+      const buttons = document.querySelectorAll('#ledger-filters .filter-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-on-primary');
+        btn.classList.add('bg-surface-container', 'text-on-surface');
+      });
+      btnElement.classList.remove('bg-surface-container', 'text-on-surface');
+      btnElement.classList.add('bg-primary', 'text-on-primary');
+
+      const rows = document.querySelectorAll('#transaction-rows .transaction-row');
+      rows.forEach(row => {
+        if (type === 'all' || row.dataset.type === type) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

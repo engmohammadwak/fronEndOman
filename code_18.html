@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (POS / IMEI / Currency) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary font-black text-xl shadow">
+            TP
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">نظام نقاط البيع المعتمد (POS Hub)</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <div class="flex items-center gap-2 bg-surface-container-highest/10 px-3 py-1.5 rounded-lg">
+            <span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed animate-pulse"></span>
+            <span class="text-xs text-surface-container-lowest font-bold">POS #01 متصل</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">نظام نقاط البيع (POS)</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">إدارة المخزون والعهد</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الفواتير الإلكترونية ZATCA</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">إغلاق الوردية والجرد</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">store</span>
+            <span>فرع الرياض الرئيسي - طريق الملك فهد</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full text-on-surface">
+      
+      <!-- POS Sticky System Operational Ribbon -->
+      <div class="w-full bg-surface-container-lowest shadow-sm px-space-md lg:px-space-xl py-2 border-b border-outline-variant/10">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-sm text-xs">
+          
+          <div class="flex items-center gap-space-md flex-wrap">
+            <div class="flex items-center gap-2 bg-surface-container-low px-3 py-1 rounded-lg border border-outline-variant/10">
+              <span class="material-symbols-outlined text-primary text-base">store</span>
+              <div class="flex flex-col text-right">
+                <span class="font-bold text-on-surface">فرع الرياض الرئيسي - الملك فهد</span>
+                <span class="text-[11px] text-secondary">POS-01 | مستودع العرض</span>
+              </div>
+            </div>
+
+            <div class="hidden sm:flex items-center gap-2 bg-surface-container-low px-3 py-1 rounded-lg border border-outline-variant/10">
+              <span class="material-symbols-outlined text-tertiary text-base">badge</span>
+              <div class="flex flex-col text-right">
+                <div class="flex items-center gap-1">
+                  <span class="font-bold text-on-surface">سلمان الشمري</span>
+                  <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                </div>
+                <span class="text-[11px] text-secondary">الوردية الصباحية</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1 bg-tertiary/10 text-tertiary px-3 py-1 rounded-lg font-bold">
+              <span class="material-symbols-outlined text-sm">cloud_done</span>
+              <span>ZATCA Phase 2 متوافق ومشفر</span>
+            </div>
+          </div>
+
+          <!-- Quick Operational Action Buttons -->
+          <div class="flex items-center gap-space-xs shrink-0 font-bold">
+            <button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-2 rounded-lg transition-all active:scale-95 flex items-center gap-1 border border-outline-variant/10 cursor-pointer" id="open-drawer-btn" type="button">
+              <span class="material-symbols-outlined text-base text-primary">point_of_sale</span>
+              <span>فتح الدرج (F4)</span>
+            </button>
+            <button class="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 rounded-lg transition-all active:scale-95 flex items-center gap-1 cursor-pointer" id="scan-imei-btn" type="button">
+              <span class="material-symbols-outlined text-base">qr_code_scanner</span>
+              <span>فحص IMEI سريع</span>
+            </button>
+            <button class="bg-secondary-container/60 hover:bg-secondary-container text-on-secondary-container px-3 py-2 rounded-lg transition-all active:scale-95 flex items-center gap-1 cursor-pointer" id="hold-order-btn" type="button">
+              <span class="material-symbols-outlined text-base">pause_circle</span>
+              <span>تعليق الفاتورة</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notification Toast Container -->
+      <div class="fixed bottom-6 start-6 z-50 transform -translate-y-4 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-space-sm bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-xl shadow-2xl border border-outline-variant/30 text-xs" id="pos-toast">
+        <span class="material-symbols-outlined text-tertiary-fixed-dim text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        <div class="flex flex-col text-right">
+          <span class="font-bold" id="toast-title">تمت العملية بنجاح</span>
+          <span class="text-secondary-fixed text-[11px]" id="toast-desc">تم تحديث بيانات الفاتورة الحالية</span>
+        </div>
+      </div>
+
+      <!-- Main POS Master-Detail Work Surface -->
+      <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-md">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+          
+          <!-- Catalog & Barcode Scanner Panel (7 Cols) -->
+          <section class="lg:col-span-7 flex flex-col gap-space-md order-2 lg:order-1">
+            
+            <!-- Live Barcode & Search Field -->
+            <div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-xs">
+              <div class="flex items-center gap-2 bg-surface-container-low rounded-lg px-3 py-1.5 border border-outline-variant/20 focus-within:border-primary-container">
+                <span class="material-symbols-outlined text-primary text-xl">barcode_scanner</span>
+                <input class="w-full bg-transparent text-xs text-on-surface placeholder:text-outline focus:outline-none py-1 font-mono" id="pos-search-input" placeholder="امسح الباركود بجهاز القارئ، أو اكتب الاسم، الموديل، S/N أو الـ IMEI..." type="text"/>
+                <button class="text-outline hover:text-on-surface p-1 cursor-pointer" id="clear-search-btn" type="button">
+                  <span class="material-symbols-outlined text-base">cancel</span>
+                </button>
+                <span class="bg-surface-container px-2 py-0.5 rounded text-[10px] font-mono text-secondary font-bold">F2</span>
+              </div>
+
+              <!-- Quick Category Filters -->
+              <div class="flex items-center gap-1 overflow-x-auto py-1 text-xs font-bold">
+                <button class="category-chip bg-primary text-on-primary px-3 py-1 rounded-full whitespace-nowrap shadow-sm transition-all cursor-pointer" data-cat="all" type="button">الكل (142)</button>
+                <button class="category-chip bg-surface-container-low hover:bg-surface-container text-on-surface-variant px-3 py-1 rounded-full whitespace-nowrap transition-all border border-outline-variant/10 cursor-pointer" data-cat="refurbished" type="button">آيفون مجدد +A</button>
+                <button class="category-chip bg-surface-container-low hover:bg-surface-container text-on-surface-variant px-3 py-1 rounded-full whitespace-nowrap transition-all border border-outline-variant/10 cursor-pointer" data-cat="laptops" type="button">ماك بوك ومحمول</button>
+                <button class="category-chip bg-surface-container-low hover:bg-surface-container text-on-surface-variant px-3 py-1 rounded-full whitespace-nowrap transition-all border border-outline-variant/10 cursor-pointer" data-cat="new" type="button">أجهزة جديدة 100%</button>
+                <button class="category-chip bg-surface-container-low hover:bg-surface-container text-on-surface-variant px-3 py-1 rounded-full whitespace-nowrap transition-all border border-outline-variant/10 cursor-pointer" data-cat="accessories" type="button">إكسسوارات وشواحن</button>
+                <button class="category-chip bg-surface-container-low hover:bg-surface-container text-on-surface-variant px-3 py-1 rounded-full whitespace-nowrap transition-all border border-outline-variant/10 cursor-pointer" data-cat="warranty" type="button">الضمان الماسي</button>
+              </div>
+            </div>
+
+            <!-- Inventory Status Banner -->
+            <div class="bg-surface-container-low rounded-xl p-3 flex items-center justify-between text-xs border border-outline-variant/10">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+                <span class="font-bold text-on-surface">مزامنة المخزون الحي مع مستودع الفرع: الرياض - الملك فهد</span>
+              </div>
+              <span class="text-secondary">آخر تحديث قبل دقيقة</span>
+            </div>
+
+            <!-- POS Interactive Product Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-space-sm" id="product-grid">
+              
+              <!-- Product 1 -->
+              <article class="product-item group bg-surface-container-lowest rounded-xl p-space-sm shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-category="refurbished" data-id="p1" data-price="4299" data-title="Apple iPhone 15 Pro Max 256GB">
+                <div class="relative w-full aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-2 flex items-center justify-center border border-outline-variant/10">
+                  <img class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" alt="آيفون 15 برو ماكس تيتانيوم" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2U4Erbc1hQgOG-_TeYOI3ThAvh75UvQWsAaGORr1cAyKQtldvvfacbg1gTGhHyL9rIzzY_Jj4vsTwmTs0urEUzA9sjWB0Tdb4hr6tMuwPr3jrlO4yDIelJ3FfC6KqNAhOfeGtzDx6VLqs5pst-95AYX0gvLS80tNUxZTlpDVHNhmUFI8YRiFoNIWJMrt-20s7s7lZCkNzt67iBUjra5iCTcCfGkV073pb7T5MSYFc2Bn-zGf1G50ntA"/>
+                  <span class="absolute top-2 start-2 bg-amber-600 text-surface-container-lowest px-2 py-0.5 rounded-full text-[10px] font-bold shadow-sm">مجدد +A</span>
+                </div>
+                <div class="flex flex-col text-right gap-0.5 flex-1 text-xs">
+                  <span class="text-secondary text-[11px]">Apple | A3106</span>
+                  <h4 class="font-bold text-on-surface line-clamp-1 leading-snug">آيفون 15 برو ماكس 256GB</h4>
+                  <div class="flex items-center justify-between mt-auto pt-2">
+                    <span class="text-tertiary font-bold text-[11px]">المخزون: 4</span>
+                    <span class="font-bold text-primary font-mono text-sm">4,299 <span class="text-[10px] font-normal font-sans">ر.س</span></span>
+                  </div>
+                </div>
+                <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span>إضافة للفاتورة</span>
+                </button>
+              </article>
+
+              <!-- Product 2 -->
+              <article class="product-item group bg-surface-container-lowest rounded-xl p-space-sm shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-category="laptops" data-id="p2" data-price="12199" data-title="MacBook Pro 14 M3 Max 36GB">
+                <div class="relative w-full aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-2 flex items-center justify-center border border-outline-variant/10">
+                  <img class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" alt="ماك بوك برو 14" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlch-DW8NuSUQbc1IXwYD9yxHGSJhNyZh3fXbljFF4qCmOnsAKiH6ddmcnbGb2lvg_2Pzl_DywTuI3shdjEC5K23fs18UhYLy5Q8HRz-OblNL8uVJcm59YXxY36bA1I3DtwDIvZHxIa66YppzjcERtvhuBuNLslucDTBEjlkB_A7tXHsqNiRthWDD9aOG6oyo8gX1VxvLo8hYdWXHjeILZvVu5DoUFbcN4vKglBWXG1Cz1e3GGgS1Afg"/>
+                  <span class="absolute top-2 start-2 bg-tertiary text-on-tertiary px-2 py-0.5 rounded-full text-[10px] font-bold shadow-sm">جديد بالكرتون</span>
+                </div>
+                <div class="flex flex-col text-right gap-0.5 flex-1 text-xs">
+                  <span class="text-secondary text-[11px]">Apple | Space Black</span>
+                  <h4 class="font-bold text-on-surface line-clamp-1 leading-snug">ماك بوك برو 14 (M3 Max)</h4>
+                  <div class="flex items-center justify-between mt-auto pt-2">
+                    <span class="text-amber-700 font-bold text-[11px]">المخزون: 2</span>
+                    <span class="font-bold text-primary font-mono text-sm">12,199 <span class="text-[10px] font-normal font-sans">ر.س</span></span>
+                  </div>
+                </div>
+                <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span>إضافة للفاتورة</span>
+                </button>
+              </article>
+
+              <!-- Product 3 -->
+              <article class="product-item group bg-surface-container-lowest rounded-xl p-space-sm shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-category="accessories" data-id="p3" data-price="1099" data-title="سماعة سوني WH-1000XM5 لاسلكية">
+                <div class="relative w-full aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-2 flex items-center justify-center border border-outline-variant/10">
+                  <img class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" alt="سماعة سوني عازلة للضوضاء" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT7p5wDtBivX3KGmNBwnUOH3UEsApXpbj92liewuc4iDsdG53P0x2HnO3kIjnH2Cvc_dHRyOTyqD6O3774J8Qzf4xwBA5lfUaTQhM5Jdq7ui0rh1yF7oW95jR-C7q6JYWKlSfGt1Kvu8eoLGMzrGNojX-_dXVT4YYMKewM68i5MurfQrbUimhCnaYTdyWUDxjaWvDXCSwwVRa2-8RBuJk7kej1jLQH9GPrC5z2vkYiRj9uft2HJMqiBQ"/>
+                  <span class="absolute top-2 start-2 bg-amber-600 text-surface-container-lowest px-2 py-0.5 rounded-full text-[10px] font-bold shadow-sm">مجدد ممتاز</span>
+                </div>
+                <div class="flex flex-col text-right gap-0.5 flex-1 text-xs">
+                  <span class="text-secondary text-[11px]">Sony Audio | عازل ضجيج</span>
+                  <h4 class="font-bold text-on-surface line-clamp-1 leading-snug">سماعة سوني WH-1000XM5</h4>
+                  <div class="flex items-center justify-between mt-auto pt-2">
+                    <span class="text-tertiary font-bold text-[11px]">المخزون: 7</span>
+                    <span class="font-bold text-primary font-mono text-sm">1,099 <span class="text-[10px] font-normal font-sans">ر.س</span></span>
+                  </div>
+                </div>
+                <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span>إضافة للفاتورة</span>
+                </button>
+              </article>
+
+              <!-- Product 4 -->
+              <article class="product-item group bg-surface-container-lowest rounded-xl p-space-sm shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-category="accessories" data-id="p4" data-price="199" data-title="شاحن أبل أصلي USB-C بقدرة 70 واط">
+                <div class="relative w-full aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-2 flex items-center justify-center border border-outline-variant/10">
+                  <img class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" alt="شاحن أبل أصلي 70 واط" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_ZVpd4r7RPcTMk-D0XDEvDH5KHb7Zr1h_Bt2hXcVE0C4aSy2ST8kl1ysPEOXe3A_Krp8u0nBKoxUTIt4C6Rhz6JTKxT7yOYyA0jtl8st7gGZXTzKQ0Bx26e5lbMXoYRkUj117Lx0gIbMcskhMVJsF8EXRi29XA-Vav3EAYrb5SRAc4HUCUnlAcETXuZbevv9eTxDyJHkh4aSqIdcDYIoAf4YiTNUK__jzBe1J_7CZPAk9HZEb9s9Flw"/>
+                  <span class="absolute top-2 start-2 bg-tertiary text-on-tertiary px-2 py-0.5 rounded-full text-[10px] font-bold shadow-sm">جديد أصلي</span>
+                </div>
+                <div class="flex flex-col text-right gap-0.5 flex-1 text-xs">
+                  <span class="text-secondary text-[11px]">Apple Accessory</span>
+                  <h4 class="font-bold text-on-surface line-clamp-1 leading-snug">شاحن أبل أصلي 70W مع كابل</h4>
+                  <div class="flex items-center justify-between mt-auto pt-2">
+                    <span class="text-tertiary font-bold text-[11px]">المخزون: 28</span>
+                    <span class="font-bold text-primary font-mono text-sm">199 <span class="text-[10px] font-normal font-sans">ر.س</span></span>
+                  </div>
+                </div>
+                <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span>إضافة للفاتورة</span>
+                </button>
+              </article>
+
+              <!-- Product 5 -->
+              <article class="product-item group bg-surface-container-lowest rounded-xl p-space-sm shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-category="refurbished" data-id="p5" data-price="4199" data-title="Apple iPad Pro 12.9 M2 128GB">
+                <div class="relative w-full aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-2 flex items-center justify-center border border-outline-variant/10">
+                  <img class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" alt="آيباد برو 12.9 إنش M2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAFZNVMYSabQJqg9k97rKoaYW3dEjGGGE0A2bo8wcV-Zc5ytIwAaszTQPCwvbEMMB_jLr7BYGtvbo1eT8Ymk5NfysgbFMk9U2J8ZK2Dmq2a1nC5sckhaOWxEaAtd9yjlo4vKBRxkm_l4vk4uSnN2p-i096W8ihJrwdlfji1mDNZJv-oPSyTzXTq2Yu7nB5HO0JyHBRKy-uYAjAJ4Ca0dK1k4QtJ1ZCDdHAlj8Vs0w4yU3kWHJc3onK2g"/>
+                  <span class="absolute top-2 start-2 bg-amber-600 text-surface-container-lowest px-2 py-0.5 rounded-full text-[10px] font-bold shadow-sm">مجدد +A</span>
+                </div>
+                <div class="flex flex-col text-right gap-0.5 flex-1 text-xs">
+                  <span class="text-secondary text-[11px]">Apple Tablet | XDR</span>
+                  <h4 class="font-bold text-on-surface line-clamp-1 leading-snug">آيباد برو 12.9 M2 واي فاي</h4>
+                  <div class="flex items-center justify-between mt-auto pt-2">
+                    <span class="text-tertiary font-bold text-[11px]">المخزون: 3</span>
+                    <span class="font-bold text-primary font-mono text-sm">4,199 <span class="text-[10px] font-normal font-sans">ر.س</span></span>
+                  </div>
+                </div>
+                <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span>إضافة للفاتورة</span>
+                </button>
+              </article>
+
+              <!-- Product 6 -->
+              <article class="product-item group bg-surface-container-lowest rounded-xl p-space-sm shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-category="warranty" data-id="p6" data-price="299" data-title="باقة الضمان الماسي الإضافي الشامل لسنتين">
+                <div class="relative w-full aspect-square rounded-lg bg-primary-container/10 overflow-hidden mb-2 flex flex-col items-center justify-center p-2 text-center border border-primary/20">
+                  <span class="material-symbols-outlined text-primary text-3xl mb-1">verified_user</span>
+                  <span class="font-bold text-primary text-xs">الضمان الماسي TechPro</span>
+                  <span class="text-[10px] text-secondary mt-0.5">تغطية كسر وبطارية</span>
+                  <span class="absolute top-2 start-2 bg-primary text-on-primary px-2 py-0.5 rounded-full text-[10px] font-bold">خدمة</span>
+                </div>
+                <div class="flex flex-col text-right gap-0.5 flex-1 text-xs">
+                  <span class="text-secondary text-[11px]">صيانة واستبدال معتمدة</span>
+                  <h4 class="font-bold text-on-surface line-clamp-1 leading-snug">باقة الضمان الماسي (سنتين)</h4>
+                  <div class="flex items-center justify-between mt-auto pt-2">
+                    <span class="text-tertiary font-bold text-[11px]">فوري غير محدود</span>
+                    <span class="font-bold text-primary font-mono text-sm">299 <span class="text-[10px] font-normal font-sans">ر.س</span></span>
+                  </div>
+                </div>
+                <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span>إضافة للفاتورة</span>
+                </button>
+              </article>
+
+            </div>
+
+            <!-- Shift Stats -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm text-xs font-bold">
+              <div class="bg-surface-container-lowest p-3 rounded-xl shadow-sm text-right flex flex-col border border-outline-variant/10">
+                <span class="text-secondary font-semibold text-[11px]">إجمالي فواتير الوردية</span>
+                <span class="text-base text-on-surface mt-1 font-mono">38 فاتورة</span>
+                <span class="text-[10px] text-tertiary mt-0.5 font-sans">100% مسجلة ZATCA</span>
+              </div>
+              <div class="bg-surface-container-lowest p-3 rounded-xl shadow-sm text-right flex flex-col border border-outline-variant/10">
+                <span class="text-secondary font-semibold text-[11px]">مبيعات نقدية بالدرج</span>
+                <span class="text-base text-on-surface mt-1 font-mono">4,350 <span class="text-xs font-normal font-sans">ر.س</span></span>
+                <span class="text-[10px] text-secondary mt-0.5 font-sans">جاهز للجرد</span>
+              </div>
+              <div class="bg-surface-container-lowest p-3 rounded-xl shadow-sm text-right flex flex-col border border-outline-variant/10">
+                <span class="text-secondary font-semibold text-[11px]">مدفوعات POS (مدى)</span>
+                <span class="text-base text-primary mt-1 font-mono">42,890 <span class="text-xs font-normal font-sans">ر.س</span></span>
+                <span class="text-[10px] text-primary mt-0.5 font-sans">تسوية بنكية آلية</span>
+              </div>
+              <div class="bg-surface-container-lowest p-3 rounded-xl shadow-sm text-right flex flex-col border border-outline-variant/10">
+                <span class="text-secondary font-semibold text-[11px]">حالة طابعة الباركود</span>
+                <div class="flex items-center gap-1 mt-1">
+                  <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                  <span class="text-on-surface">جاهزة ومتصلة</span>
+                </div>
+                <span class="text-[10px] text-secondary mt-0.5 font-mono">Epson TM-T88VI</span>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- Left Panel: Active Cart & Checkout (5 Cols) -->
+          <section class="lg:col-span-5 flex flex-col gap-space-sm order-1 lg:order-2">
+            
+            <div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/10 p-space-md flex flex-col gap-space-md text-xs">
+              
+              <!-- Bill Header -->
+              <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/15">
+                <div class="flex flex-col text-right">
+                  <div class="flex items-center gap-2">
+                    <span class="text-sm font-bold text-on-surface">فاتورة مبيعات معتمدة</span>
+                    <span class="bg-primary/10 text-primary font-mono text-xs px-2 py-0.5 rounded font-bold">#INV-84920</span>
+                  </div>
+                  <span class="text-secondary text-[11px]" id="live-clock">اليوم | 02:44:18 م</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <button class="p-1 text-secondary hover:text-error transition-colors rounded cursor-pointer" id="reset-cart-btn" title="إفراغ الفاتورة" type="button">
+                    <span class="material-symbols-outlined text-lg">delete_sweep</span>
+                  </button>
+                  <button onclick="window.print()" class="p-1 text-secondary hover:text-on-surface transition-colors rounded cursor-pointer" title="طباعة مسودة" type="button">
+                    <span class="material-symbols-outlined text-lg">print</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Customer Lookup Bar -->
+              <div class="bg-surface-container-low rounded-xl p-2.5 flex items-center justify-between border border-outline-variant/10">
+                <div class="flex items-center gap-2">
+                  <div class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">
+                    <span class="material-symbols-outlined text-base">person</span>
+                  </div>
+                  <div class="flex flex-col text-right">
+                    <div class="flex items-center gap-1">
+                      <span class="font-bold text-on-surface">محمد العتيبي</span>
+                      <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-1.5 py-0.5 rounded">عضوية VIP</span>
+                    </div>
+                    <span class="text-[11px] text-secondary">050****419 | رصيد المحفظة: <strong class="text-tertiary font-mono">350.00 ر.س</strong></span>
+                  </div>
+                </div>
+                <button onclick="alert('فتح شاشة اختيار العميل من قاعدة البيانات')" class="text-primary hover:text-primary-container font-bold flex items-center gap-0.5 cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-sm">edit</span>
+                  <span>تبديل</span>
+                </button>
+              </div>
+
+              <!-- Cart Line Items -->
+              <div class="flex flex-col gap-2 max-h-[280px] overflow-y-auto pr-1" id="cart-items-container">
+                
+                <!-- Line Item 1 -->
+                <div class="cart-line-item bg-surface-container-low/70 rounded-xl p-2.5 flex flex-col gap-1 border border-outline-variant/10" data-price="4299" data-qty="1">
+                  <div class="flex items-start justify-between">
+                    <div class="flex flex-col text-right flex-1">
+                      <span class="font-bold text-on-surface">آيفون 15 برو ماكس 256GB مجدد +A</span>
+                      <div class="flex items-center gap-1 mt-0.5">
+                        <span class="material-symbols-outlined text-sm text-tertiary">verified</span>
+                        <span class="text-secondary text-[11px]">IMEI:</span>
+                        <span class="font-mono text-[11px] font-bold text-primary bg-primary/10 px-1 py-0.5 rounded">354890-09-281920-1</span>
+                      </div>
+                    </div>
+                    <span class="font-bold font-mono text-on-surface text-sm">4,299.00 <span class="text-xs font-normal font-sans">ر.س</span></span>
+                  </div>
+                  <div class="flex items-center justify-between pt-1">
+                    <div class="flex items-center gap-1 bg-surface-container-lowest px-2 py-0.5 rounded-lg border border-outline-variant/10">
+                      <button class="qty-btn-minus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">-</button>
+                      <span class="qty-count font-bold font-mono px-1">1</span>
+                      <button class="qty-btn-plus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">+</button>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <button onclick="alert('تطبيق خصم خاص على بند الفاتورة')" class="text-secondary hover:text-primary text-[11px] flex items-center gap-0.5 cursor-pointer" type="button">
+                        <span class="material-symbols-outlined text-sm">percent</span>
+                        <span>خصم بند</span>
+                      </button>
+                      <button class="cart-remove-btn text-outline hover:text-error transition-colors p-1 cursor-pointer" type="button">
+                        <span class="material-symbols-outlined text-base">delete</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Line Item 2 -->
+                <div class="cart-line-item bg-surface-container-low/70 rounded-xl p-2.5 flex flex-col gap-1 border border-outline-variant/10" data-price="299" data-qty="1">
+                  <div class="flex items-start justify-between">
+                    <div class="flex flex-col text-right flex-1">
+                      <span class="font-bold text-on-surface">باقة الضمان الماسي الشامل (سنتين)</span>
+                      <span class="text-secondary text-[11px]">مرتبط بالجهاز: 354890-09-281920-1</span>
+                    </div>
+                    <span class="font-bold font-mono text-on-surface text-sm">299.00 <span class="text-xs font-normal font-sans">ر.س</span></span>
+                  </div>
+                  <div class="flex items-center justify-between pt-1">
+                    <div class="flex items-center gap-1 bg-surface-container-lowest px-2 py-0.5 rounded-lg border border-outline-variant/10">
+                      <button class="qty-btn-minus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">-</button>
+                      <span class="qty-count font-bold font-mono px-1">1</span>
+                      <button class="qty-btn-plus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">+</button>
+                    </div>
+                    <button class="cart-remove-btn text-outline hover:text-error transition-colors p-1 cursor-pointer" type="button">
+                      <span class="material-symbols-outlined text-base">delete</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Line Item 3 -->
+                <div class="cart-line-item bg-surface-container-low/70 rounded-xl p-2.5 flex flex-col gap-1 border border-outline-variant/10" data-price="99" data-qty="2">
+                  <div class="flex items-start justify-between">
+                    <div class="flex flex-col text-right flex-1">
+                      <span class="font-bold text-on-surface">شاحن أبل أصلي USB-C بقدرة 70 واط</span>
+                      <span class="text-secondary text-[11px]">باركود: 194253713028</span>
+                    </div>
+                    <span class="font-bold font-mono text-on-surface text-sm">198.00 <span class="text-xs font-normal font-sans">ر.س</span></span>
+                  </div>
+                  <div class="flex items-center justify-between pt-1">
+                    <div class="flex items-center gap-1 bg-surface-container-lowest px-2 py-0.5 rounded-lg border border-outline-variant/10">
+                      <button class="qty-btn-minus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">-</button>
+                      <span class="qty-count font-bold font-mono px-1">2</span>
+                      <button class="qty-btn-plus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">+</button>
+                    </div>
+                    <button class="cart-remove-btn text-outline hover:text-error transition-colors p-1 cursor-pointer" type="button">
+                      <span class="material-symbols-outlined text-base">delete</span>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Financial Breakdown Calculation Box -->
+              <div class="bg-surface-container-low rounded-xl p-3 flex flex-col gap-1 text-right border border-outline-variant/10">
+                <div class="flex items-center justify-between text-secondary">
+                  <span>المجموع قبل الضريبة:</span>
+                  <span class="font-mono text-on-surface font-semibold" id="subtotal-val">4,796.00 ر.س</span>
+                </div>
+                <div class="flex items-center justify-between text-secondary">
+                  <div class="flex items-center gap-1">
+                    <span>ضريبة القيمة المضافة (15%):</span>
+                    <span class="text-[10px] bg-surface-container px-1.5 py-0.2 rounded font-mono text-secondary font-bold">ZATCA</span>
+                  </div>
+                  <span class="font-mono text-on-surface font-semibold" id="vat-val">719.40 ر.س</span>
+                </div>
+                <div class="flex items-center justify-between text-tertiary">
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">stars</span>
+                    <span>خصم العضوية الذهبية VIP:</span>
+                  </div>
+                  <span class="font-mono font-bold" id="discount-val">-145.00 ر.س</span>
+                </div>
+                <div class="pt-2 border-t border-outline-variant/30 flex items-center justify-between">
+                  <div class="flex flex-col">
+                    <span class="font-bold text-on-surface text-sm">الإجمالي النهائي المستحق:</span>
+                    <span class="text-[10px] text-secondary">شامل ضريبة القيمة المضافة 15%</span>
+                  </div>
+                  <div class="flex items-baseline gap-1">
+                    <span class="text-xl text-primary font-black font-mono" id="grand-total">5,370.40</span>
+                    <span class="text-xs text-primary font-bold">ر.س</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Multi-Tender Quick Payment Tabs -->
+              <div class="flex flex-col gap-2">
+                <span class="text-secondary text-right font-bold text-[11px]">اختر طريقة الدفع الفورية (F9):</span>
+                <div class="grid grid-cols-4 gap-1.5 font-bold text-[11px]">
+                  <button class="payment-method-btn active-method flex flex-col items-center justify-center p-2 rounded-xl bg-primary text-on-primary transition-all shadow-sm cursor-pointer" data-payment="mada" type="button">
+                    <span class="material-symbols-outlined text-lg mb-0.5">contactless</span>
+                    <span>مدى NFC</span>
+                  </button>
+                  <button class="payment-method-btn flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-all border border-outline-variant/10 cursor-pointer" data-payment="cash" type="button">
+                    <span class="material-symbols-outlined text-lg mb-0.5">payments</span>
+                    <span>نقداً (كاش)</span>
+                  </button>
+                  <button class="payment-method-btn flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-all border border-outline-variant/10 cursor-pointer" data-payment="applepay" type="button">
+                    <span class="material-symbols-outlined text-lg mb-0.5">phone_iphone</span>
+                    <span>Apple Pay</span>
+                  </button>
+                  <button class="payment-method-btn flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-all border border-outline-variant/10 cursor-pointer" data-payment="split" type="button">
+                    <span class="material-symbols-outlined text-lg mb-0.5">call_split</span>
+                    <span>تمارا / تابي</span>
+                  </button>
+                </div>
+
+                <!-- Cash Calculator (Hidden by default) -->
+                <div class="hidden flex items-center justify-between gap-2 bg-surface-container-low p-2 rounded-xl border border-outline-variant/10" id="cash-calculator-panel">
+                  <span class="text-secondary text-[11px]">استلام النقد:</span>
+                  <div class="flex items-center gap-1">
+                    <button class="cash-chip px-2.5 py-1 bg-surface-container-lowest hover:bg-primary hover:text-on-primary rounded text-xs font-mono font-bold text-on-surface border border-outline-variant/10 cursor-pointer" type="button">5,400</button>
+                    <button class="cash-chip px-2.5 py-1 bg-surface-container-lowest hover:bg-primary hover:text-on-primary rounded text-xs font-mono font-bold text-on-surface border border-outline-variant/10 cursor-pointer" type="button">5,500</button>
+                    <button class="cash-chip px-2.5 py-1 bg-surface-container-lowest hover:bg-primary hover:text-on-primary rounded text-xs font-mono font-bold text-on-surface border border-outline-variant/10 cursor-pointer" type="button">6,000</button>
+                  </div>
+                  <span class="text-tertiary font-bold font-mono text-[11px]">الباقي: 29.60 ر.س</span>
+                </div>
+              </div>
+
+              <!-- Checkout Button -->
+              <button class="w-full bg-primary-container hover:bg-primary text-on-primary py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.98] cursor-pointer" id="complete-checkout-btn" type="button">
+                <span class="material-symbols-outlined text-xl">receipt_long</span>
+                <span>إتمام السداد وطباعة الفاتورة (F12)</span>
+              </button>
+
+              <!-- Post-sale Dispatch Sub-actions -->
+              <div class="grid grid-cols-3 gap-1.5 text-center text-[11px] font-bold">
+                <button class="flex items-center justify-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface-variant py-1.5 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer" id="send-whatsapp-btn" type="button">
+                  <span class="material-symbols-outlined text-sm text-tertiary">chat</span>
+                  <span>واتساب</span>
+                </button>
+                <button class="flex items-center justify-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface-variant py-1.5 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer" id="send-sms-btn" type="button">
+                  <span class="material-symbols-outlined text-sm text-primary">sms</span>
+                  <span>رسالة SMS</span>
+                </button>
+                <button class="flex items-center justify-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface-variant py-1.5 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer" id="tax-portal-btn" type="button">
+                  <span class="material-symbols-outlined text-sm text-secondary">qr_code_2</span>
+                  <span>رمز ZATCA</span>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Offline Queue Synchronizer Widget -->
+            <div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm flex items-center justify-between border border-outline-variant/10 text-xs">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-tertiary text-xl">cloud_sync</span>
+                <div class="flex flex-col text-right">
+                  <span class="font-bold text-on-surface">نظام الحماية من انقطاع الإنترنت (Edge POS)</span>
+                  <span class="text-secondary text-[11px]">جميع العمليات مخزنة محلياً وجاهزة للإرسال</span>
+                </div>
+              </div>
+              <span class="w-3 h-3 rounded-full bg-tertiary"></span>
+            </div>
+
+          </section>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل عبر واتساب المباشر</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>صُمم بأحدث التقنيات السريعة والآمنة</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- POS Interactivity Script -->
+  <script>
+    (function () {
+      function updateLiveTime() {
+        const clockEl = document.getElementById('live-clock');
+        if (!clockEl) return;
+        const now = new Date();
+        const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        clockEl.textContent = 'اليوم | ' + now.toLocaleTimeString('ar-SA', options);
+      }
+      setInterval(updateLiveTime, 1000);
+      updateLiveTime();
+
+      const toast = document.getElementById('pos-toast');
+      const toastTitle = document.getElementById('toast-title');
+      const toastDesc = document.getElementById('toast-desc');
+
+      function showToast(title, desc) {
+        if (!toast) return;
+        toastTitle.textContent = title;
+        toastDesc.textContent = desc;
+        toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        setTimeout(() => {
+          toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 3200);
+      }
+
+      document.getElementById('open-drawer-btn')?.addEventListener('click', () => {
+        showToast('تم فتح درج النقدية', 'إشارة النبضة أرسلت إلى طابعة الإيصالات الموصولة بنجاح.');
+      });
+
+      document.getElementById('scan-imei-btn')?.addEventListener('click', () => {
+        showToast('وضع فحص الـ IMEI نشط', 'وجّه قارئ الليزر نحو باركود الجهاز أو العلبة للتحقق الفوري.');
+      });
+
+      document.getElementById('hold-order-btn')?.addEventListener('click', () => {
+        showToast('تم تعليق الفاتورة #INV-84920', 'تم الحفظ في طابور الفواتير المعلقة لاستئنافها لاحقاً.');
+      });
+
+      // Cart Calculations & Recalculate Totals
+      function recalculateCart() {
+        let subtotal = 0;
+        const lineItems = document.querySelectorAll('.cart-line-item');
+        lineItems.forEach(item => {
+          const price = parseFloat(item.getAttribute('data-price')) || 0;
+          const qtySpan = item.querySelector('.qty-count');
+          const qty = parseInt(qtySpan ? qtySpan.textContent : '1') || 1;
+          subtotal += price * qty;
+        });
+
+        const vat = subtotal * 0.15;
+        const discount = 145.00;
+        const grandTotal = subtotal + vat - discount;
+
+        const subEl = document.getElementById('subtotal-val');
+        const vatEl = document.getElementById('vat-val');
+        const grandEl = document.getElementById('grand-total');
+
+        if (subEl) subEl.textContent = subtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' ر.س';
+        if (vatEl) vatEl.textContent = vat.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' ر.س';
+        if (grandEl) grandEl.textContent = grandTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      }
+
+      // Quantity buttons listener
+      document.querySelectorAll('.cart-line-item').forEach(item => {
+        const minusBtn = item.querySelector('.qty-btn-minus');
+        const plusBtn = item.querySelector('.qty-btn-plus');
+        const qtySpan = item.querySelector('.qty-count');
+        const removeBtn = item.querySelector('.cart-remove-btn');
+
+        minusBtn?.addEventListener('click', () => {
+          let q = parseInt(qtySpan.textContent) || 1;
+          if (q > 1) {
+            q--;
+            qtySpan.textContent = q;
+            item.setAttribute('data-qty', q);
+            recalculateCart();
+          }
+        });
+
+        plusBtn?.addEventListener('click', () => {
+          let q = parseInt(qtySpan.textContent) || 1;
+          q++;
+          qtySpan.textContent = q;
+          item.setAttribute('data-qty', q);
+          recalculateCart();
+        });
+
+        removeBtn?.addEventListener('click', () => {
+          item.remove();
+          recalculateCart();
+          showToast('تم الحذف', 'أُزيل البند من الفاتورة الحالية');
+        });
+      });
+
+      recalculateCart();
+
+      // Payment Tender Switcher
+      const payButtons = document.querySelectorAll('.payment-method-btn');
+      const cashPanel = document.getElementById('cash-calculator-panel');
+
+      payButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          payButtons.forEach((b) => {
+            b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+            b.classList.add('bg-surface-container-low', 'text-on-surface');
+          });
+          btn.classList.remove('bg-surface-container-low', 'text-on-surface');
+          btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+
+          const method = btn.getAttribute('data-payment');
+          if (method === 'cash') {
+            cashPanel?.classList.remove('hidden');
+          } else {
+            cashPanel?.classList.add('hidden');
+          }
+        });
+      });
+
+      // Dynamic Category Filtering
+      const catChips = document.querySelectorAll('.category-chip');
+      const productItems = document.querySelectorAll('.product-item');
+
+      catChips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          catChips.forEach((c) => {
+            c.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+            c.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+          });
+          chip.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+          chip.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+
+          const selectedCat = chip.getAttribute('data-cat');
+          productItems.forEach((item) => {
+            const itemCat = item.getAttribute('data-category');
+            if (selectedCat === 'all' || itemCat === selectedCat) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // Realtime Product Search Filter
+      const searchInput = document.getElementById('pos-search-input');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+
+      searchInput?.addEventListener('input', (e) => {
+        const val = e.target.value.trim().toLowerCase();
+        productItems.forEach((item) => {
+          const title = item.getAttribute('data-title')?.toLowerCase() || '';
+          if (title.includes(val) || val === '') {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+
+      clearSearchBtn?.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        productItems.forEach((item) => item.classList.remove('hidden'));
+      });
+
+      // Checkout Execution Button
+      document.getElementById('complete-checkout-btn')?.addEventListener('click', () => {
+        showToast('تم اعتماد الفاتورة الضريبية ZATCA', 'رقم المعاملة: TXN-994102. جارٍ إرسال أمر الطباعة.');
+      });
+
+      document.getElementById('send-whatsapp-btn')?.addEventListener('click', () => {
+        showToast('واتساب', 'تم إرسال نسخة الفاتورة الرقمية بصيغة PDF للعميل محمد العتيبي.');
+      });
+
+      document.getElementById('send-sms-btn')?.addEventListener('click', () => {
+        showToast('رسالة نصية', 'تم إرسال رابط الفاتورة والضمان الذهبي بنجاح.');
+      });
+
+      document.getElementById('tax-portal-btn')?.addEventListener('click', () => {
+        showToast('هيئة الزكاة والضريبة ZATCA', 'الرمز المشفر (QR Code) ومفتاح التوقيع الرقمي جاهزان ومطابقان.');
+      });
+
+      document.getElementById('reset-cart-btn')?.addEventListener('click', () => {
+        if (confirm('هل أنت متأكد من تفريغ كافة بنود الفاتورة الحالية؟')) {
+          document.getElementById('cart-items-container').innerHTML = '';
+          recalculateCart();
+          showToast('إفراغ الفاتورة', 'تم إلغاء كافة البنود.');
+        }
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'F2') {
+          e.preventDefault();
+          searchInput?.focus();
+        } else if (e.key === 'F4') {
+          e.preventDefault();
+          document.getElementById('open-drawer-btn')?.click();
+        } else if (e.key === 'F12') {
+          e.preventDefault();
+          document.getElementById('complete-checkout-btn')?.click();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

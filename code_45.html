@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Prices, SKU & Storage Specs) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <img alt="صورة الملف الشخصي" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE"/>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">متجر الأجهزة والتقنية المعتمد</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm font-label-md px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors"><span class="material-symbols-outlined text-xl">mic</span></button>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors"><span class="material-symbols-outlined text-xl">search</span></button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
+            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+          </a>
+          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+            <div class="hidden sm:flex flex-col text-right">
+              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
+              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+            </div>
+          </a>
+          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl">person</span>
+            <span class="hidden sm:inline">حسابي</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">الرئيسية</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة المستعملة والمجددة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">العروض الخاصة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الماركات</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">خدمة العملاء</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span>توصيل سريع خلال 24 ساعة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full text-on-surface">
+      
+      <!-- Top Breadcrumb & Quick Actions Bar -->
+      <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-3 text-xs">
+        <div class="flex flex-wrap items-center justify-between gap-2 bg-surface-container-lowest p-3 rounded-xl shadow-sm border border-outline-variant/10">
+          <nav aria-label="مسار التصفح" class="flex items-center gap-1 text-secondary font-bold">
+            <a class="flex items-center gap-1 hover:text-primary transition-colors" href="#">
+              <span class="material-symbols-outlined text-base">home</span>
+              <span>الرئيسية</span>
+            </a>
+            <span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="#">الهواتف الذكية</a>
+            <span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="#">آبل Apple</a>
+            <span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+            <span class="text-on-surface">آيفون 15 برو ماكس</span>
+          </nav>
+          <div class="flex items-center gap-2 text-secondary font-mono">
+            <span class="text-outline">SKU:</span>
+            <code class="bg-surface-container px-2 py-0.5 rounded font-bold text-on-surface">TP-IPH15PM-NT-256</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Hero Layout: Product Showcase & Buy Box -->
+      <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-3 text-xs">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+          
+          <!-- Gallery Column (7 Cols) -->
+          <div class="lg:col-span-7 flex flex-col gap-3">
+            <div class="relative bg-surface-container-lowest rounded-xl p-6 shadow-md flex flex-col items-center justify-center min-h-[420px] overflow-hidden group border border-outline-variant/10">
+              
+              <div class="absolute top-4 start-4 flex flex-col gap-1.5 z-10 font-bold">
+                <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary text-[11px] shadow-sm">
+                  <span class="material-symbols-outlined text-sm">verified</span> فحص معتمد 40 نقطة
+                </span>
+                <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary-container text-on-primary text-[11px] shadow-sm">
+                  <span class="material-symbols-outlined text-sm">shield</span> ضمان تيك برو الذهبي
+                </span>
+              </div>
+
+              <div class="absolute top-4 end-4 flex flex-col gap-1.5 z-10">
+                <button aria-label="مفضلة" class="w-9 h-9 rounded-full bg-surface-container-low hover:bg-error-container text-secondary hover:text-error flex items-center justify-center transition-all cursor-pointer shadow-sm">
+                  <span class="material-symbols-outlined text-lg">favorite</span>
+                </button>
+                <button aria-label="مشاركة" class="w-9 h-9 rounded-full bg-surface-container-low hover:bg-secondary-container text-secondary hover:text-primary flex items-center justify-center transition-all cursor-pointer shadow-sm">
+                  <span class="material-symbols-outlined text-lg">share</span>
+                </button>
+              </div>
+
+              <div class="relative w-full max-w-sm aspect-square flex items-center justify-center p-2">
+                <img class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" alt="آيفون 15 برو ماكس تيتانيوم طبيعي" id="main-product-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXK1mnD-2zgfzHnAcihlNnP8SWS5aNpBep7ni4ypi3fMINUaEtQZb9lqmNalcPIDIDCnkD8lb6cg89VoJBZ-AhytO__v7naEbgbK9iAUg0yfc78Gvwtctq_fHqN16Xx1tPY4R9DUngKt5pr3HsYe1CoLtbqR3gbA05bDYHcdcVyIKYyjoCmQOIVoxb3prQuFkMl1sFTz9Zf_zD4EgiC8kcCNJoK8PETmyVL9Eenv1Zb1GELaIE3k6swA"/>
+              </div>
+
+              <div class="absolute bottom-4 end-4 bg-surface-container/90 backdrop-blur px-3 py-1 rounded-full flex items-center gap-1 text-on-surface font-mono text-[11px] shadow-sm">
+                <span class="material-symbols-outlined text-sm text-primary">360</span>
+                <span>عرض تفاعلي</span>
+              </div>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div class="grid grid-cols-4 sm:grid-cols-5 gap-2">
+              <button class="gallery-thumb active-thumb bg-surface-container-lowest p-1 rounded-lg shadow-2xs border-2 border-primary-container focus:outline-none transition-all cursor-pointer" onclick="changeImage(0)">
+                <img class="w-full aspect-square object-contain" alt="الواجهة" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5TGtWxImCX9EKQKxYfSon1Ey_Jdjh1fkAHdugOYOcmraQUnpQL8zlnOcNyNxtgtlOnWN1OvMMvqh3SoMfxw2PvkrR1RMU1B1G4VqZCQdYeQ-qWF6SUmSE54Y1dzedW-dSKei5rt8F2Ws2--2B_W2JNfarz7BLVudJQQVu3Bw8lVLn2-H178-9pxXeGdS4SciexK0BvWqJjOhD3AsM2CxaZ3U-3K0vjzi4lPNh9E99qAd8jewYIta-Sw"/>
+                <span class="block text-center text-[10px] text-secondary mt-1">الواجهة</span>
+              </button>
+              <button class="gallery-thumb bg-surface-container-lowest p-1 rounded-lg shadow-2xs border border-outline-variant/10 focus:outline-none transition-all hover:bg-surface-container cursor-pointer" onclick="changeImage(1)">
+                <img class="w-full aspect-square object-contain" alt="الجهة الخلفية" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjwuGVLNoqnZLfScUQDfi4srMOlSPgKxaudtKyJOa9v_jja0ZNcmchhTxmh44GpQQrlGX8V6-ytc2VpA7Rk8Y0HOwu64Ecfh6bk_cSf9YLW4o0ClBhZSOovPLJDzU5pMeKZqQLarxql0HjlfsXCwoeWEDzu7cmQWSs6jVPttNbrrLri6FFKMwsdQwSCM9B1vuNgf4_M_YuN1bzPX9ozrK02spHODCXr0L_GbYJYMHRdYJ8tLz6OjUiIA"/>
+                <span class="block text-center text-[10px] text-secondary mt-1">الخلفية</span>
+              </button>
+              <button class="gallery-thumb bg-surface-container-lowest p-1 rounded-lg shadow-2xs border border-outline-variant/10 focus:outline-none transition-all hover:bg-surface-container cursor-pointer" onclick="changeImage(2)">
+                <img class="w-full aspect-square object-contain" alt="هيكل التيتانيوم" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC70uk86tT5eG9HBS88cwZrwEo2SsTCaA2PPpEeRQNde4g9DfVMAEH8mBPEa4qi1o4uQ5OZYj2TXXPWPfxGIaapXGMV8pMMl-eHkR842EVvHVgcMI3Mq3G9PCQcv3gFqWYs027Eu1_0ARtpcOlHwQO6rHAjjcuc46rqGqROj1BMGKkuVSNOvvQUSzvtbukzpZdgy7zrxldEU6xLjmFhuJOiukgg0_7gypuUY_IQGdgVnoyTS-o-d6OCTA"/>
+                <span class="block text-center text-[10px] text-secondary mt-1">التيتانيوم</span>
+              </button>
+              <button class="gallery-thumb bg-surface-container-lowest p-1 rounded-lg shadow-2xs border border-outline-variant/10 focus:outline-none transition-all hover:bg-surface-container cursor-pointer" onclick="changeImage(3)">
+                <img class="w-full aspect-square object-contain" alt="منفذ USB-C" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6Sd1AiccoEkXHDZuUIafjbOA186zJJsIkmA5b6wPj3-hVTrqOq2E0zCVtFwaJnID1fN5ovfhVFD8Sn3ZQ1yg1N-5bzEvVlmj2cS3XKnb12Q59uV-bXrBW7IjQEfz6bjJSAfj2DyjSZXZgg-4477ep7IyEFHyc0T3uYE1mzlGLiwVMJAKlp3Bewqk4ixDno-jyu-rrD5axIuLCdnzVK7I6kqnfVFH1jThz9m0ZRcTJkuUel0Aantqpqg"/>
+                <span class="block text-center text-[10px] text-secondary mt-1">USB-C</span>
+              </button>
+            </div>
+
+            <!-- TechPro Certified Lab Badge Card -->
+            <div class="bg-gradient-to-br from-surface-container-lowest to-surface-container-low rounded-xl p-4 shadow-sm border border-outline-variant/10">
+              <div class="flex items-center justify-between pb-2 border-b border-outline-variant/10 font-bold">
+                <div class="flex items-center gap-2 text-on-surface">
+                  <span class="material-symbols-outlined text-tertiary text-lg">verified_user</span>
+                  <span>تقرير الفحص الفني والاعتماد المكتبي</span>
+                </div>
+                <span class="text-tertiary bg-tertiary/10 px-2 py-0.5 rounded text-[10px]">معتمد 100%</span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3">
+                <div class="bg-surface-container-lowest p-2 rounded border border-outline-variant/10">
+                  <span class="text-secondary text-[10px] block">صحة البطارية</span>
+                  <span class="font-bold text-tertiary font-mono text-sm">98% أصلية</span>
+                </div>
+                <div class="bg-surface-container-lowest p-2 rounded border border-outline-variant/10">
+                  <span class="text-secondary text-[10px] block">الشاشة واللمس</span>
+                  <span class="font-bold text-on-surface text-sm">OLED أصلي</span>
+                </div>
+                <div class="bg-surface-container-lowest p-2 rounded border border-outline-variant/10">
+                  <span class="text-secondary text-[10px] block">العدسات</span>
+                  <span class="font-bold text-on-surface text-sm">دقة 48MP</span>
+                </div>
+                <div class="bg-surface-container-lowest p-2 rounded border border-outline-variant/10">
+                  <span class="text-secondary text-[10px] block">الحالة النظامية</span>
+                  <span class="font-bold text-tertiary text-sm">مفتوح رسمي</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buy Box Column (5 Cols) -->
+          <div class="lg:col-span-5 flex flex-col gap-3">
+            <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md border border-outline-variant/10 flex flex-col gap-4 text-xs">
+              
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center justify-between font-bold">
+                  <span class="text-secondary">Apple Flagship Series</span>
+                  <span class="text-tertiary bg-tertiary/10 px-2.5 py-0.5 rounded-full text-[10px]">متوفر في المخزون</span>
+                </div>
+                <h1 class="text-lg lg:text-xl font-black text-on-surface leading-tight mt-1">Apple iPhone 15 Pro Max</h1>
+                <p class="text-secondary text-[11px] leading-relaxed">شريحة 5G فائقة السرعة، سعة 256GB، تيتانيوم طبيعي، مع معالج A17 Pro الجبار.</p>
+                
+                <div class="flex items-center gap-2 mt-1 font-bold">
+                  <div class="flex text-amber-500">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                  </div>
+                  <span class="text-on-surface">4.9</span>
+                  <a class="text-primary hover:underline" href="#tab-reviews">(148 تقييم موثق)</a>
+                </div>
+              </div>
+
+              <!-- Condition Selector -->
+              <div class="flex flex-col gap-2 pt-1 font-bold">
+                <span class="text-on-surface">اختر حالة الجهاز (Condition):</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div class="cursor-pointer relative p-3 rounded-xl bg-surface-container-low border-2 border-primary-container shadow-2xs" id="cond-card-refurbished" onclick="selectCondition('refurbished')">
+                    <span class="absolute -top-2.5 start-2 px-2 py-0.5 rounded-full bg-primary-container text-on-primary text-[9px] font-bold">الأكثر طلباً 🔥</span>
+                    <div class="flex items-center justify-between mt-1">
+                      <span class="text-on-surface text-xs font-bold">مجدد معتمد A+</span>
+                      <span class="material-symbols-outlined text-primary text-base" id="icon-refurbished">radio_button_checked</span>
+                    </div>
+                    <div class="mt-2 pt-1 border-t border-outline-variant/10 flex items-baseline justify-between font-mono">
+                      <span class="text-sm font-black text-primary">3,899 ر.س</span>
+                      <span class="text-[10px] text-tertiary font-bold font-sans">وفر 1,100</span>
+                    </div>
+                  </div>
+
+                  <div class="cursor-pointer relative p-3 rounded-xl bg-surface-container-lowest border-2 border-outline-variant/30" id="cond-card-new" onclick="selectCondition('new')">
+                    <div class="flex items-center justify-between mt-1">
+                      <span class="text-on-surface text-xs font-bold">جديد كلياً (Sealed)</span>
+                      <span class="material-symbols-outlined text-secondary text-base" id="icon-new">radio_button_unchecked</span>
+                    </div>
+                    <div class="mt-2 pt-1 border-t border-outline-variant/10 flex items-baseline justify-between font-mono">
+                      <span class="text-sm font-black text-on-surface">4,999 ر.س</span>
+                      <span class="text-[10px] text-secondary line-through font-sans">5,499</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Color Selector -->
+              <div class="flex flex-col gap-1.5">
+                <span class="font-bold text-on-surface">اللون: <span class="text-primary font-normal" id="selected-color-name">تيتانيوم طبيعي</span></span>
+                <div class="flex items-center gap-2">
+                  <button aria-label="تيتانيوم طبيعي" class="color-btn active-color w-8 h-8 rounded-full bg-[#9c958d] ring-2 ring-primary ring-offset-2 cursor-pointer transition-all" onclick="setColor('تيتانيوم طبيعي', this)"></button>
+                  <button aria-label="تيتانيوم أزرق" class="color-btn w-8 h-8 rounded-full bg-[#2d3846] ring-2 ring-transparent ring-offset-2 hover:ring-outline cursor-pointer transition-all" onclick="setColor('تيتانيوم أزرق', this)"></button>
+                  <button aria-label="تيتانيوم أبيض" class="color-btn w-8 h-8 rounded-full bg-[#f2f1ed] ring-2 ring-transparent ring-offset-2 hover:ring-outline cursor-pointer transition-all" onclick="setColor('تيتانيوم أبيض', this)"></button>
+                </div>
+              </div>
+
+              <!-- Storage Selector -->
+              <div class="flex flex-col gap-1.5 font-bold">
+                <span class="text-on-surface">السعة التخزينية:</span>
+                <div class="grid grid-cols-3 gap-1.5">
+                  <button class="storage-btn py-2 px-2 rounded-lg bg-primary text-on-primary text-center cursor-pointer shadow-2xs" onclick="setStorage('256GB', '3,899', this)" type="button">256 جيجا</button>
+                  <button class="storage-btn py-2 px-2 rounded-lg bg-surface-container text-on-surface text-center cursor-pointer" onclick="setStorage('512GB', '4,499', this)" type="button">512 جيجا</button>
+                  <button class="storage-btn py-2 px-2 rounded-lg bg-surface-container text-on-surface text-center cursor-pointer" onclick="setStorage('1TB', '5,299', this)" type="button">1 تيرا</button>
+                </div>
+              </div>
+
+              <!-- Installments Banner -->
+              <div class="bg-surface-container-low rounded-xl p-2.5 flex flex-col gap-1 border border-outline-variant/10">
+                <div class="flex items-center justify-between font-bold">
+                  <span class="text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-sm text-tertiary">credit_score</span> التقسيط الميسر</span>
+                  <span class="text-[10px] text-tertiary">تابي / تمارا</span>
+                </div>
+                <p class="text-secondary text-[11px]">قسّم فاتورتك على 4 دفعات بقيمة <strong class="text-primary font-mono font-bold" id="installment-price">974.75 ر.س/شهر</strong> بدون فوائد.</p>
+              </div>
+
+              <!-- CTA Buttons -->
+              <div class="flex flex-col gap-2 pt-1 font-bold">
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
+                  <button onclick="triggerCartToast()" class="sm:col-span-7 bg-tertiary-container hover:bg-tertiary text-on-tertiary py-3 px-3 rounded-xl flex items-center justify-center gap-1.5 shadow-md transition-all cursor-pointer" type="button">
+                    <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+                    <span>إضافة إلى سلة المشتريات</span>
+                  </button>
+                  <button onclick="alert('الانتقال الفوري لإتمام الدفع الآمن')" class="sm:col-span-5 bg-primary-container hover:bg-primary text-on-primary py-3 px-3 rounded-xl flex items-center justify-center gap-1 shadow-md transition-all cursor-pointer" type="button">
+                    <span class="material-symbols-outlined text-base">bolt</span>
+                    <span>شراء فوري</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" data-path="customer-support" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" data-path="track-order" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" data-path="customer-support" href="#">التواصل عبر واتساب المباشر</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" data-path="customer-support" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" data-path="warranty-policy" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" data-path="return-policy" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" data-path="refurbished-devices" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" data-path="privacy-policy" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>صفحة تفاصيل المنتج (Product Detail Page)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function changeImage(index) {
+      const thumbs = document.querySelectorAll('.gallery-thumb');
+      thumbs.forEach((t, i) => {
+        if (i === index) {
+          t.classList.add('border-2', 'border-primary-container');
+        } else {
+          t.classList.remove('border-2', 'border-primary-container');
+          t.classList.add('border', 'border-outline-variant/10');
+        }
+      });
+    }
+
+    function selectCondition(type) {
+      const cardRefurb = document.getElementById('cond-card-refurbished');
+      const cardNew = document.getElementById('cond-card-new');
+      const iconRefurb = document.getElementById('icon-refurbished');
+      const iconNew = document.getElementById('icon-new');
+      const installmentPrice = document.getElementById('installment-price');
+
+      if (type === 'refurbished') {
+        cardRefurb.className = 'cursor-pointer relative p-3 rounded-xl bg-surface-container-low border-2 border-primary-container shadow-2xs';
+        iconRefurb.textContent = 'radio_button_checked';
+        iconRefurb.className = 'material-symbols-outlined text-primary text-base';
+
+        cardNew.className = 'cursor-pointer relative p-3 rounded-xl bg-surface-container-lowest border-2 border-outline-variant/30';
+        iconNew.textContent = 'radio_button_unchecked';
+        iconNew.className = 'material-symbols-outlined text-secondary text-base';
+
+        installmentPrice.textContent = '974.75 ر.س/شهر';
+      } else {
+        cardNew.className = 'cursor-pointer relative p-3 rounded-xl bg-surface-container-low border-2 border-primary-container shadow-2xs';
+        iconNew.textContent = 'radio_button_checked';
+        iconNew.className = 'material-symbols-outlined text-primary text-base';
+
+        cardRefurb.className = 'cursor-pointer relative p-3 rounded-xl bg-surface-container-lowest border-2 border-outline-variant/30';
+        iconRefurb.textContent = 'radio_button_unchecked';
+        iconRefurb.className = 'material-symbols-outlined text-secondary text-base';
+
+        installmentPrice.textContent = '1,249.75 ر.س/شهر';
+      }
+    }
+
+    function setColor(colorName, btn) {
+      document.getElementById('selected-color-name').textContent = colorName;
+      const buttons = document.querySelectorAll('.color-btn');
+      buttons.forEach(b => {
+        b.classList.remove('ring-4', 'ring-primary');
+        b.classList.add('ring-2', 'ring-transparent');
+      });
+      btn.classList.add('ring-4', 'ring-primary');
+      btn.classList.remove('ring-2', 'ring-transparent');
+    }
+
+    function setStorage(capacity, price, btn) {
+      const buttons = document.querySelectorAll('.storage-btn');
+      buttons.forEach(b => {
+        b.className = 'storage-btn py-2 px-2 rounded-lg bg-surface-container text-on-surface text-center cursor-pointer';
+      });
+      btn.className = 'storage-btn py-2 px-2 rounded-lg bg-primary text-on-primary text-center cursor-pointer font-bold shadow-2xs';
+    }
+
+    function triggerCartToast() {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

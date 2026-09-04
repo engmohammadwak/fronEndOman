@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Event Streams, Latency & Offsets) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cairo', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#545f73",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#006e4b",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#464555",
+            "on-secondary-fixed-variant": "#3c475a",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-fixed": "#002113",
+            "primary": "#3525cd",
+            "error": "#ba1a1a",
+            "surface-container": "#eceef0",
+            "secondary-fixed-dim": "#bcc7de",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-secondary-fixed": "#111c2d",
+            "secondary-container": "#d5e0f8",
+            "on-primary-fixed-variant": "#3323cc",
+            "primary-container": "#4f46e5",
+            "outline-variant": "#c7c4d8",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#dad7ff",
+            "on-background": "#191c1e",
+            "surface-tint": "#4d44e3",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005236",
+            "outline": "#777587",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed-dim": "#c3c0ff",
+            "background": "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "primary-fixed": "#e2dfff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#0f0069",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary-container": "#586377"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "4rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2.5rem"
+          },
+          fontFamily: {
+            sans: ["Cairo", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <img alt="صورة الملف الشخصي" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE"/>
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">حافلة الرسائل والأحداث الحية (Event Stream Grid)</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع Topics</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="orders">أحداث الطلبات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="payments">المدفوعات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="dlq">الرسائل الميتة DLQ</option>
+            </select>
+            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن Topic، Consumer Group، أو حدث..." type="text"/>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
+            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+          </a>
+          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+            <div class="hidden sm:flex flex-col text-right">
+              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
+              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+            </div>
+          </a>
+          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl">person</span>
+            <span class="hidden sm:inline">مهندس الوسطاء (Kafka)</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">حافلة الرسائل والأحداث</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">عناقيد الوسائط النشطة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">طوابير الرسائل الميتة DLQ</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">مواضيع Kafka Topics</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">hub</span>
+            <span>شبكة التدفق اللحظي KRaft Quorum</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content with corrected top padding -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="flex flex-col w-full text-on-surface">
+      
+      <!-- Dynamic Telemetry Control Bar -->
+      <div class="w-full bg-surface-container-lowest px-space-md lg:px-space-xl py-space-md shadow-sm border-b border-outline-variant/10 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md">
+          <div class="flex flex-col gap-space-2xs">
+            <div class="flex items-center gap-space-xs flex-wrap">
+              <span class="inline-flex items-center gap-1 bg-tertiary/10 text-tertiary px-3 py-1 rounded-full font-bold">
+                <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                شبكة التدفق اللحظي متصلة (KRaft Quorum Active)
+              </span>
+              <span class="inline-flex items-center gap-1 bg-secondary-container/40 text-on-secondary-container px-3 py-1 rounded-full font-semibold">
+                <span class="material-symbols-outlined text-xs">encrypted</span>
+                mTLS 1.3 / SASL_SSL SCRAM-512
+              </span>
+              <span class="text-secondary">المنطقة: الرياض • الضمان: Exactly-Once (EOS)</span>
+            </div>
+            
+            <div class="flex items-baseline gap-2 mt-1">
+              <h1 class="text-xl lg:text-2xl font-black text-on-surface">مركز إدارة تدفق الأحداث الحية وحافلة الرسائل</h1>
+              <span class="text-secondary font-mono font-bold">v4.18</span>
+            </div>
+          </div>
+
+          <!-- Quick Telemetry Actions -->
+          <div class="flex items-center gap-space-xs w-full lg:w-auto justify-end font-bold">
+            <button class="flex items-center gap-1 bg-surface-container hover:bg-surface-container-high text-on-surface px-3 py-2 rounded-lg transition-all cursor-pointer border border-outline-variant/10" id="stream-toggle-btn" onclick="toggleStreamFeed()" type="button">
+              <span class="material-symbols-outlined text-base" id="stream-btn-icon">pause_circle</span>
+              <span id="stream-btn-label">تجميد البث اللحظي</span>
+            </button>
+            <button onclick="alert('تم فتح مدير طوابير الرسائل المعطوبة DLQ (2 رسائل معلقة)')" class="flex items-center gap-1 bg-error/10 hover:bg-error/20 text-error px-3 py-2 rounded-lg transition-all cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base">sync_problem</span>
+              <span>معالجة DLQ (2)</span>
+            </button>
+            <button onclick="refreshBrokers()" class="flex items-center gap-1 bg-primary-container hover:bg-primary text-on-primary px-4 py-2 rounded-lg transition-all shadow-sm cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base">tune</span>
+              <span>إدارة Schema Registry</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-xl flex flex-col gap-space-xl">
+        
+        <!-- Visual Telemetry KPI Banner -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md text-xs">
+          
+          <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/10 flex flex-col justify-between relative overflow-hidden group">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>معدل الأحداث (Throughput)</span>
+              <span class="material-symbols-outlined text-primary text-xl">speed</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-black text-primary flex items-baseline gap-1 font-mono">
+                <span id="kpi-throughput">3.84M</span>
+                <span class="text-xs text-secondary font-sans font-normal">حدث/د</span>
+              </div>
+              <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
+                <span class="material-symbols-outlined text-sm">trending_up</span>
+                <span>+24.6% وقت الذروة</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+              <div class="bg-primary h-full w-[78%] rounded-full"></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/10 flex flex-col justify-between relative overflow-hidden group">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>زمن الحسم (P99 Latency)</span>
+              <span class="material-symbols-outlined text-tertiary text-xl">timer</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-black text-on-surface flex items-baseline gap-1 font-mono">
+                <span>4.2</span>
+                <span class="text-xs text-secondary font-sans font-bold">ms</span>
+              </div>
+              <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
+                <span class="material-symbols-outlined text-sm">bolt</span>
+                <span>Kafka Raft Quorum متوازن</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+              <div class="bg-tertiary h-full w-[22%] rounded-full"></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/10 flex flex-col justify-between relative overflow-hidden group">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>ضمان التسليم (EOS)</span>
+              <span class="material-symbols-outlined text-primary text-xl">verified_user</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-black text-on-surface flex items-baseline gap-1 font-mono">
+                <span>100</span>
+                <span class="text-xs text-secondary font-sans font-bold">%</span>
+              </div>
+              <div class="flex items-center gap-1 text-secondary mt-1 font-bold">
+                <span class="material-symbols-outlined text-sm text-tertiary">check_circle</span>
+                <span>Exactly-Once Semantics</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+              <div class="bg-primary h-full w-full rounded-full"></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/10 flex flex-col justify-between relative overflow-hidden group">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>تراكم المستهلكين (Lag)</span>
+              <span class="material-symbols-outlined text-tertiary text-xl">layers</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-black text-on-surface flex items-baseline gap-1 font-mono">
+                <span id="kpi-lag">18</span>
+                <span class="text-xs text-secondary font-sans font-bold">رسالة</span>
+              </div>
+              <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
+                <span class="material-symbols-outlined text-sm">check</span>
+                <span>ضمن النطاق الأخضر (&lt;50)</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+              <div class="bg-tertiary h-full w-[12%] rounded-full"></div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/10 flex flex-col justify-between sm:col-span-2 lg:col-span-1">
+            <div class="flex items-center justify-between text-secondary font-bold">
+              <span>التخزين المضغوط (ZSTD)</span>
+              <span class="material-symbols-outlined text-secondary text-xl">inventory_2</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-black text-on-surface flex items-baseline gap-1 font-mono">
+                <span>1.8</span>
+                <span class="text-xs text-secondary font-sans font-bold">TB</span>
+              </div>
+              <div class="flex items-center gap-1 text-secondary mt-1">
+                <span class="material-symbols-outlined text-sm">history</span>
+                <span>حفظ أسبوعي مع كبس تلقائي</span>
+              </div>
+            </div>
+            <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+              <div class="bg-secondary h-full w-[45%] rounded-full"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Cluster Topology Architecture Panel -->
+        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/10 text-xs">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between pb-space-md mb-space-md gap-space-sm border-b border-outline-variant/10">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-2xl">hub</span>
+              </div>
+              <div>
+                <h2 class="text-base font-bold text-on-surface">عناقيد وسائط الرسائل النشطة (Active Broker Clusters)</h2>
+                <p class="text-secondary text-[11px] mt-0.5">المراقبة الصحية لوسطاء كافكا الموزعين، حافلة RabbitMQ، وخوادم ذاكرة Redis Streams</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-secondary font-bold">
+              <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+              <span>جميع العناقيد في وضع Quorum التزامني الكامل</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md">
+            
+            <!-- Kafka -->
+            <div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-between border border-outline-variant/10">
+              <div class="flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2 font-bold text-on-surface">
+                    <span class="material-symbols-outlined text-primary text-lg">dataset</span>
+                    <span>عنقود Apache Kafka Production</span>
+                  </div>
+                  <span class="bg-tertiary/15 text-tertiary px-2 py-0.5 rounded-full font-bold text-[10px]">6 Brokers • KRaft</span>
+                </div>
+                <p class="text-secondary text-[11px] leading-relaxed">العمود الفقري لحركات الشراء، تسلسل المخازن، والأحداث المشفرة ذات الحجم الضخم.</p>
+                <div class="grid grid-cols-2 gap-2 font-mono">
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">معدل البايتات (In/Out)</span>
+                    <span class="font-bold text-primary">450 MB/s</span>
+                  </div>
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">Under-Replicated</span>
+                    <span class="font-bold text-tertiary">0 أقسام</span>
+                  </div>
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">استهلاك CPU</span>
+                    <span class="font-bold text-on-surface">41.8%</span>
+                  </div>
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">ذاكرة JVM Heap</span>
+                    <span class="font-bold text-on-surface">14.2 / 32 GB</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 pt-2 flex items-center justify-between border-t border-outline-variant/10 text-secondary">
+                <span>حالة الوسطاء 01 إلى 06</span>
+                <div class="flex items-center gap-1">
+                  <span class="w-2.5 h-2.5 rounded-full bg-tertiary" title="Broker-01: OK"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-tertiary" title="Broker-02: OK"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-tertiary" title="Broker-03: OK"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-tertiary" title="Broker-04: OK"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-tertiary" title="Broker-05: OK"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-tertiary" title="Broker-06: OK"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- RabbitMQ -->
+            <div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-between border border-outline-variant/10">
+              <div class="flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2 font-bold text-on-surface">
+                    <span class="material-symbols-outlined text-primary text-lg">mark_email_read</span>
+                    <span>عنقود RabbitMQ AMQP</span>
+                  </div>
+                  <span class="bg-tertiary/15 text-tertiary px-2 py-0.5 rounded-full font-bold text-[10px]">3 Nodes • Quorum</span>
+                </div>
+                <p class="text-secondary text-[11px] leading-relaxed">معالجة إشعارات تطبيقات الجوال الفورية، رسائل التحقق SMS، وWebhooks شركات الشحن.</p>
+                <div class="grid grid-cols-2 gap-2 font-mono">
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">رسائل جاهزة (Ready)</span>
+                    <span class="font-bold text-on-surface">14,200</span>
+                  </div>
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">غير مؤكدة (Unacked)</span>
+                    <span class="font-bold text-secondary">12</span>
+                  </div>
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">معدل الإرسال الفوري</span>
+                    <span class="font-bold text-primary">6,410 msg/s</span>
+                  </div>
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">اتصالات AMQP نشطة</span>
+                    <span class="font-bold text-on-surface">884 Channel</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 pt-2 flex items-center justify-between border-t border-outline-variant/10 text-secondary">
+                <span>عقد الربط والمزامنة</span>
+                <span class="text-tertiary flex items-center gap-1 font-bold font-sans">
+                  <span class="material-symbols-outlined text-xs">sync</span> 3/3 متطابقة كلياً
+                </span>
+              </div>
+            </div>
+
+            <!-- Redis Streams -->
+            <div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-between border border-outline-variant/10">
+              <div class="flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2 font-bold text-on-surface">
+                    <span class="material-symbols-outlined text-primary text-lg">memory</span>
+                    <span>عنقود الذاكرة Redis Streams</span>
+                  </div>
+                  <span class="bg-tertiary/15 text-tertiary px-2 py-0.5 rounded-full font-bold text-[10px]">v7.2 Cluster</span>
+                </div>
+                <p class="text-secondary text-[11px] leading-relaxed">إدارة أحداث جلسات السلة المتروكة، عروض التخفيض اللحظية (Flash Sale)، ومحادثات الدعم.</p>
+                <div class="grid grid-cols-2 gap-2 font-mono">
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">أوامر في الثانية (Ops/s)</span>
+                    <span class="font-bold text-primary">182,400</span>
+                  </div>
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">نسبة الذاكرة المستخدمة</span>
+                    <span class="font-bold text-on-surface">64.5% (28 GB)</span>
+                  </div>
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">عدد مفاتيح التيارات</span>
+                    <span class="font-bold text-on-surface">4,120 Stream</span>
+                  </div>
+                  <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/10">
+                    <span class="text-[10px] text-secondary block font-sans">دقة زمن الوصول</span>
+                    <span class="font-bold text-tertiary">0.4 ms</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 pt-2 flex items-center justify-between border-t border-outline-variant/10 text-secondary">
+                <span>إعادة التوجيه إلى SSD RDB</span>
+                <span class="font-mono">AOF Sync 1s</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Kafka Topics & Realtime Dataflow Grid -->
+        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/10 text-xs">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between pb-space-md mb-space-md gap-space-sm border-b border-outline-variant/10">
+            <div>
+              <h2 class="text-base font-bold text-on-surface">مواضيع الأحداث الحيوية (Kafka Topics & Stream Topologies)</h2>
+              <p class="text-xs text-secondary mt-0.5">مسارات التدفق المحمية بالـ Schemas لتحديث المخازن، سداد المدفوعات، وتكامل هيئة الزكاة</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <input class="bg-surface-container-low text-on-surface placeholder-secondary px-3 py-1.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary w-60 border border-outline-variant/20 font-mono text-xs" id="topic-search-input" onkeyup="filterTopics()" placeholder="بحث عن اسم Topic..." type="text"/>
+              <button class="bg-surface-container hover:bg-surface-container-high text-on-surface p-2 rounded-lg border border-outline-variant/10 cursor-pointer">
+                <span class="material-symbols-outlined text-base">filter_alt</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-right border-collapse text-xs" id="topics-table">
+              <thead>
+                <tr class="bg-surface-container-low text-secondary font-bold">
+                  <th class="py-2.5 px-3 rounded-r-lg">اسم الموضوع (Topic Key)</th>
+                  <th class="py-2.5 px-3">الأقسام والنسخ (Part/Repl)</th>
+                  <th class="py-2.5 px-3">معدل الدفق</th>
+                  <th class="py-2.5 px-3">التراكم (Lag)</th>
+                  <th class="py-2.5 px-3">فترة الحفظ</th>
+                  <th class="py-2.5 px-3">المستهلكون النشطون</th>
+                  <th class="py-2.5 px-3 rounded-l-lg text-center">الحالة</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant/10 text-on-surface">
+                
+                <tr class="hover:bg-surface-container-low/50 transition-colors">
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+                      <div class="flex flex-col font-mono">
+                        <span class="font-bold text-primary">orders.checkout.events</span>
+                        <span class="text-secondary text-[10px] font-sans">أحداث سلات الشراء المكتملة وحجز المخزون</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3 font-mono text-[11px]">12 P / 3 R</td>
+                  <td class="py-3 px-3 font-bold font-mono">840 msg/s</td>
+                  <td class="py-3 px-3 text-tertiary font-bold font-mono">0</td>
+                  <td class="py-3 px-3 text-secondary">14 يوم (Compacted)</td>
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-1 flex-wrap text-[10px]">
+                      <span class="bg-surface-container px-1.5 py-0.5 rounded">OrderSaga</span>
+                      <span class="bg-surface-container px-1.5 py-0.5 rounded">InventoryLock</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3 text-center">
+                    <span class="bg-tertiary/10 text-tertiary px-2 py-0.5 rounded-full font-bold text-[11px]">متطابق</span>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-surface-container-low/50 transition-colors">
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+                      <div class="flex flex-col font-mono">
+                        <span class="font-bold text-primary">inventory.stock.mutation</span>
+                        <span class="text-secondary text-[10px] font-sans">مزامنة أرصدة أجهزة آبل وسامسونج بين الفروع</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3 font-mono text-[11px]">8 P / 3 R</td>
+                  <td class="py-3 px-3 font-bold font-mono">1,120 msg/s</td>
+                  <td class="py-3 px-3 text-tertiary font-bold font-mono">3 msg</td>
+                  <td class="py-3 px-3 text-secondary">30 يوم</td>
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-1 flex-wrap text-[10px]">
+                      <span class="bg-surface-container px-1.5 py-0.5 rounded">POS-Sync</span>
+                      <span class="bg-surface-container px-1.5 py-0.5 rounded">AlgoliaIndex</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3 text-center">
+                    <span class="bg-tertiary/10 text-tertiary px-2 py-0.5 rounded-full font-bold text-[11px]">متزامن</span>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-surface-container-low/50 transition-colors">
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+                      <div class="flex flex-col font-mono">
+                        <span class="font-bold text-primary">zatca.tax.invoicing.pipeline</span>
+                        <span class="text-secondary text-[10px] font-sans">الفواتير الإلكترونية للمرحلة الثانية (ZATCA)</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3 font-mono text-[11px]">6 P / 3 R</td>
+                  <td class="py-3 px-3 font-bold font-mono">340 msg/s</td>
+                  <td class="py-3 px-3 text-tertiary font-bold font-mono">0</td>
+                  <td class="py-3 px-3 text-secondary">365 يوم (مؤرشف)</td>
+                  <td class="py-3 px-3">
+                    <div class="flex items-center gap-1 flex-wrap text-[10px]">
+                      <span class="bg-surface-container px-1.5 py-0.5 rounded">CryptoSigner</span>
+                      <span class="bg-surface-container px-1.5 py-0.5 rounded">ZatcaGateway</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3 text-center">
+                    <span class="bg-tertiary/10 text-tertiary px-2 py-0.5 rounded-full font-bold text-[11px]">SLA &lt;10ms</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Live Stream Inspector & JSON Schema Viewer -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg text-xs">
+          
+          <!-- Live Stream Console -->
+          <div class="lg:col-span-6 bg-inverse-surface text-inverse-on-surface rounded-xl p-space-lg shadow-xl flex flex-col justify-between border border-outline-variant/20">
+            <div>
+              <div class="flex items-center justify-between pb-3 mb-3 border-b border-outline-variant/20">
+                <div class="flex items-center gap-2 font-bold text-surface-container-lowest">
+                  <span class="w-2.5 h-2.5 rounded-full bg-error animate-ping"></span>
+                  <span>مفتش الأحداث المباشر (Live Stream Tap)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="bg-surface-container-highest/20 text-secondary-fixed text-[10px] px-2 py-0.5 rounded font-mono">Tail: 25 ev/s</span>
+                  <button class="text-secondary-fixed hover:text-surface-container-lowest cursor-pointer p-1" onclick="clearConsole()" title="تنظيف">
+                    <span class="material-symbols-outlined text-base">clear_all</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="h-72 overflow-y-auto space-y-1.5 font-mono text-[11px] text-secondary-fixed-dim pr-1 bg-black/40 p-2.5 rounded-lg" id="live-stream-box" dir="ltr">
+                <div class="p-1 bg-inverse-surface/60 rounded flex items-center justify-between border-r-2 border-tertiary-fixed-dim">
+                  <span class="text-tertiary-fixed-dim">[14:52:19.912]</span>
+                  <span class="text-surface-container-lowest">orders.checkout.events</span>
+                  <span class="text-secondary-fixed">part: 4 • off: 981120</span>
+                  <span class="text-primary-fixed">TKP-2025-098233</span>
+                </div>
+                <div class="p-1 bg-inverse-surface/60 rounded flex items-center justify-between border-r-2 border-tertiary-fixed-dim">
+                  <span class="text-tertiary-fixed-dim">[14:52:18.420]</span>
+                  <span class="text-surface-container-lowest">payments.webhook.inbound</span>
+                  <span class="text-secondary-fixed">part: 11 • off: 341829</span>
+                  <span class="text-tertiary-fixed-dim">TAMARA_OK_200</span>
+                </div>
+                <div class="p-1 bg-inverse-surface/60 rounded flex items-center justify-between border-r-2 border-primary-fixed">
+                  <span class="text-tertiary-fixed-dim">[14:52:16.104]</span>
+                  <span class="text-surface-container-lowest">inventory.stock.mutation</span>
+                  <span class="text-secondary-fixed">part: 2 • off: 441091</span>
+                  <span class="text-secondary-fixed">SKU-IPHONE16-PRO-256</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-2 flex items-center justify-between text-[11px] text-secondary-fixed-dim border-t border-white/10">
+              <span>Apache Kafka Wire Protocol 3.6</span>
+              <span class="flex items-center gap-1 font-bold text-tertiary-fixed-dim">
+                <span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span> SSL Consumer Group Active
+              </span>
+            </div>
+          </div>
+
+          <!-- JSON Payload & Schema Inspector -->
+          <div class="lg:col-span-6 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-3 mb-3 border-b border-outline-variant/10 font-bold text-on-surface">
+                <div class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-primary text-base">data_object</span>
+                  <span>فحص حمولة الرسالة الحالية (Payload Schema)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="bg-tertiary/10 text-tertiary text-[10px] px-2 py-0.5 rounded font-mono">Avro v3.2 Valid</span>
+                  <button class="text-secondary hover:text-primary cursor-pointer p-1" onclick="copyPayload()" title="نسخ الـ JSON">
+                    <span class="material-symbols-outlined text-base" id="copy-icon">content_copy</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="bg-surface-container-low rounded-lg p-3 font-mono text-[11px] text-on-surface overflow-x-auto leading-relaxed max-h-72 border border-outline-variant/10" dir="ltr">
+                <pre class="text-left" id="json-code-block"><span class="text-secondary">{</span>
+  <span class="text-primary">"eventId"</span>: <span class="text-tertiary">"evt_99824_chk"</span>,
+  <span class="text-primary">"topic"</span>: <span class="text-tertiary">"orders.checkout.events"</span>,
+  <span class="text-primary">"timestamp"</span>: <span class="text-tertiary">"2025-05-18T14:52:10.824Z"</span>,
+  <span class="text-primary">"partition"</span>: 3,
+  <span class="text-primary">"offset"</span>: 981118,
+  <span class="text-primary">"orderId"</span>: <span class="text-tertiary">"TKP-2025-098231"</span>,
+  <span class="text-primary">"customerId"</span>: <span class="text-tertiary">"usr_89311"</span>,
+  <span class="text-primary">"amount"</span>: 1849.00,
+  <span class="text-primary">"currency"</span>: <span class="text-tertiary">"SAR"</span>,
+  <span class="text-primary">"paymentMethod"</span>: <span class="text-tertiary">"TAMARA_SPLIT_4"</span>,
+  <span class="text-primary">"warehouseOrigin"</span>: <span class="text-tertiary">"RUH-HUB-01"</span>,
+  <span class="text-primary">"signatureVerified"</span>: <span class="text-primary font-bold">true</span>,
+  <span class="text-primary">"schemaVersion"</span>: <span class="text-tertiary">"v3.2"</span>
+<span class="text-secondary">}</span></pre>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-2 flex items-center justify-between flex-wrap gap-2 text-[11px] text-secondary border-t border-outline-variant/10">
+              <span>Schema Registry ID: #10928 (متوافق للأمام والخلف)</span>
+              <button class="bg-surface-container hover:bg-surface-container-high text-on-surface px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer border border-outline-variant/10" id="replay-btn" onclick="simulateEventReplay()">
+                إعادة بث الحدث (Replay Event)
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- DLQ Center & Poison Pill Resolver -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg text-xs">
+          
+          <div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-3 mb-3 border-b border-outline-variant/10">
+                <div class="flex items-center gap-2">
+                  <div class="w-9 h-9 rounded-lg bg-error-container/30 flex items-center justify-center text-error">
+                    <span class="material-symbols-outlined text-xl">pest_control</span>
+                  </div>
+                  <div>
+                    <h3 class="text-sm font-bold text-on-surface">إدارة طوابير الرسائل الميتة (Dead Letter Queue - DLQ)</h3>
+                    <p class="text-[11px] text-secondary">عزل الرسائل السامة والمعطوبة وإعادة توجيهها بعد إصلاح الأعطال</p>
+                  </div>
+                </div>
+                <span class="bg-error/10 text-error px-2 py-0.5 rounded-full font-bold text-[11px]">2 رسائل عالقة</span>
+              </div>
+
+              <!-- DLQ Items List -->
+              <div class="space-y-2">
+                <div class="bg-surface-container-low rounded-lg p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border border-outline-variant/10">
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-error text-lg">error</span>
+                    <div>
+                      <div class="flex items-center gap-2 font-bold">
+                        <span class="font-mono text-on-surface">logistics.shipment.dispatch</span>
+                        <span class="text-error bg-error-container/20 px-1.5 py-0.2 rounded text-[10px]">504 Gateway Timeout</span>
+                      </div>
+                      <span class="text-secondary text-[11px]">تعذر استلام Webhook من شريك الشحن (SMSA) • المحاولات: 5/5</span>
+                    </div>
+                  </div>
+                  <button class="bg-surface-container hover:bg-surface-container-high text-primary px-3 py-1 rounded-md font-bold transition-colors cursor-pointer border border-outline-variant/10" onclick="retrySingleDlq(this)">
+                    إعادة المحاولة
+                  </button>
+                </div>
+
+                <div class="bg-surface-container-low rounded-lg p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border border-outline-variant/10">
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-error text-lg">error</span>
+                    <div>
+                      <div class="flex items-center gap-2 font-bold">
+                        <span class="font-mono text-on-surface">pos.offline.sync.batch</span>
+                        <span class="text-error bg-error-container/20 px-1.5 py-0.2 rounded text-[10px]">Malformed Payload</span>
+                      </div>
+                      <span class="text-secondary text-[11px]">فشل تدقيق التوقيع الرقمي لكاشير فرع جدة (Terminal #08)</span>
+                    </div>
+                  </div>
+                  <button class="bg-surface-container hover:bg-surface-container-high text-primary px-3 py-1 rounded-md font-bold transition-colors cursor-pointer border border-outline-variant/10" onclick="retrySingleDlq(this)">
+                    إعادة المحاولة
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 flex items-center justify-between flex-wrap gap-2 border-t border-outline-variant/10 text-secondary">
+              <span class="text-[11px]">تطبيق نمط Exponential Backoff مع تباعد تدريجي حتى 15 دقيقة</span>
+              <div class="flex items-center gap-2 font-bold">
+                <button onclick="exportDlqLogs()" class="bg-surface-container hover:bg-surface-container-high text-on-surface px-3 py-1.5 rounded-lg transition-colors cursor-pointer border border-outline-variant/10">
+                  تصدير السجلات (JSON)
+                </button>
+                <button onclick="retryAllDlq()" class="bg-primary-container hover:bg-primary text-on-primary px-3 py-1.5 rounded-lg shadow-sm transition-all cursor-pointer">
+                  إعادة ضخ الكل (Retry All)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security & Governance Mosaic -->
+          <div class="lg:col-span-5 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 pb-3 mb-3 border-b border-outline-variant/10 font-bold text-on-surface">
+                <div class="w-9 h-9 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+                  <span class="material-symbols-outlined text-xl">shield_lock</span>
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-on-surface">أمان وحوكمة بيانات التدفق</h3>
+                  <p class="text-secondary text-[11px]">معايير التشفير والامتثال المالي الصارم</p>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <div class="flex items-center justify-between p-2.5 bg-surface-container-low rounded-lg border border-outline-variant/10">
+                  <span class="text-on-surface font-bold">التشفير بالعبور والتخزين</span>
+                  <span class="font-bold text-tertiary font-mono text-[11px]">TLS 1.3 & AES-256</span>
+                </div>
+                <div class="flex items-center justify-between p-2.5 bg-surface-container-low rounded-lg border border-outline-variant/10">
+                  <span class="text-on-surface font-bold">إدارة المفاتيح المركزية</span>
+                  <span class="text-secondary font-mono text-[11px]">AWS KMS CloudHSM (KSA)</span>
+                </div>
+                <div class="flex items-center justify-between p-2.5 bg-surface-container-low rounded-lg border border-outline-variant/10">
+                  <span class="text-on-surface font-bold">حجب البيانات الحساسة (PII Masking)</span>
+                  <span class="font-bold text-tertiary font-mono text-[11px]">مفعل بالوسيط</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 flex items-center justify-between text-secondary border-t border-outline-variant/10 font-bold">
+              <span>متوافق مع الهيئة الوطنية للأمن السيبراني</span>
+              <span class="font-mono text-tertiary">SOC2 Type II</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span>سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل عبر واتساب المباشر</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span>حافلة الرسائل والأحداث الحية (Event Stream Grid)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    let isStreamPaused = false;
+    let eventCounter = 98234;
+    let intervalId = null;
+
+    function toggleStreamFeed() {
+      isStreamPaused = !isStreamPaused;
+      const btnLabel = document.getElementById('stream-btn-label');
+      const btnIcon = document.getElementById('stream-btn-icon');
+      const btn = document.getElementById('stream-toggle-btn');
+
+      if (isStreamPaused) {
+        btnLabel.textContent = 'استئناف البث اللحظي';
+        btnIcon.textContent = 'play_circle';
+        btn.classList.add('bg-tertiary', 'text-on-tertiary');
+        btn.classList.remove('bg-surface-container-high', 'text-on-surface');
+        if (intervalId) clearInterval(intervalId);
+      } else {
+        btnLabel.textContent = 'تجميد البث اللحظي';
+        btnIcon.textContent = 'pause_circle';
+        btn.classList.remove('bg-tertiary', 'text-on-tertiary');
+        btn.classList.add('bg-surface-container-high', 'text-on-surface');
+        startLiveStreamLoop();
+      }
+    }
+
+    function startLiveStreamLoop() {
+      if (intervalId) clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        if (isStreamPaused) return;
+        eventCounter++;
+        const topics = [
+          { topic: 'orders.checkout.events', key: 'TKP-2025-' + eventCounter, color: 'border-tertiary-fixed-dim' },
+          { topic: 'payments.webhook.inbound', key: 'MADA_AUTHORIZED_200', color: 'border-tertiary-fixed-dim' },
+          { topic: 'inventory.stock.mutation', key: 'SKU-MACBOOK-M3-MAX', color: 'border-primary-fixed' },
+          { topic: 'zatca.tax.invoicing.pipeline', key: 'ZATCA_SUBMITTED_SUCCESS', color: 'border-tertiary-fixed-dim' }
+        ];
+        const randomItem = topics[Math.floor(Math.random() * topics.length)];
+        const now = new Date();
+        const timeString = now.toTimeString().split(' ')[0] + '.' + String(now.getMilliseconds()).padStart(3, '0');
+        const partition = Math.floor(Math.random() * 12);
+        const offset = 981120 + Math.floor(Math.random() * 50);
+
+        const logBox = document.getElementById('live-stream-box');
+        if (!logBox) return;
+
+        const newRow = document.createElement('div');
+        newRow.className = `p-1 bg-inverse-surface/60 rounded flex items-center justify-between border-r-2 ${randomItem.color} opacity-0 transition-opacity duration-300`;
+        newRow.innerHTML = `
+          <span class="text-tertiary-fixed-dim">[${timeString}]</span>
+          <span class="text-surface-container-lowest">${randomItem.topic}</span>
+          <span class="text-secondary-fixed">part: ${partition} • off: ${offset}</span>
+          <span class="text-primary-fixed">${randomItem.key}</span>
+        `;
+
+        logBox.insertBefore(newRow, logBox.firstChild);
+        setTimeout(() => newRow.classList.remove('opacity-0'), 30);
+
+        if (logBox.children.length > 20) {
+          logBox.removeChild(logBox.lastChild);
+        }
+
+        const throughputEl = document.getElementById('kpi-throughput');
+        if (throughputEl && Math.random() > 0.6) {
+          const val = (3.80 + Math.random() * 0.1).toFixed(2);
+          throughputEl.textContent = val + 'M';
+        }
+      }, 2800);
+    }
+
+    function clearConsole() {
+      const logBox = document.getElementById('live-stream-box');
+      if (logBox) {
+        logBox.innerHTML = '<div class="p-1 text-secondary-fixed text-center">تم مسح سجل الشاشة اللحظية... بانتظار أحداث جديدة</div>';
+      }
+    }
+
+    function copyPayload() {
+      const text = document.getElementById('json-code-block').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const icon = document.getElementById('copy-icon');
+        icon.textContent = 'done';
+        setTimeout(() => { icon.textContent = 'content_copy'; }, 2000);
+      });
+    }
+
+    function simulateEventReplay() {
+      const btn = document.getElementById('replay-btn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">refresh</span> جاري الضخ...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = '<span class="material-symbols-outlined text-sm text-tertiary">check_circle</span> تم الإرسال للوسيط';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 2000);
+      }, 1000);
+    }
+
+    function retrySingleDlq(buttonElement) {
+      const card = buttonElement.closest('.bg-surface-container-low');
+      buttonElement.disabled = true;
+      buttonElement.innerHTML = '<span class="material-symbols-outlined text-xs animate-spin">sync</span>';
+      setTimeout(() => {
+        if (card) {
+          card.style.transition = 'all 0.4s ease';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(-10px)';
+          setTimeout(() => card.remove(), 400);
+        }
+      }, 800);
+    }
+
+    function retryAllDlq() {
+      const container = document.querySelector('.lg\\:col-span-7 .space-y-2');
+      if (container) {
+        container.innerHTML = '<div class="p-3 text-center text-tertiary bg-tertiary/10 rounded-lg font-bold">تم تفريغ طابور الرسائل الميتة وإعادة ضخ جميع الأحداث (0 DLQ remaining).</div>';
+      }
+    }
+
+    function exportDlqLogs() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
+        exportTime: new Date().toISOString(),
+        cluster: "TechPro-Kafka-Prod-01",
+        failedEvents: [
+          { topic: "logistics.shipment.dispatch", reason: "504 Gateway Timeout", errorCount: 5 }
+        ]
+      }, null, 2));
+      const dlAnchorElem = document.createElement('a');
+      dlAnchorElem.setAttribute("href", dataStr);
+      dlAnchorElem.setAttribute("download", "dlq_audit_report_techpro.json");
+      dlAnchorElem.click();
+    }
+
+    function filterTopics() {
+      const input = document.getElementById("topic-search-input").value.toLowerCase().trim();
+      const rows = document.querySelectorAll("#topics-table tbody tr");
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+      });
+    }
+
+    function refreshBrokers() {
+      alert("Schema Registry: جميع مخططات Protobuf و Avro محدثة ومتوافقة مع إصدار الإنتاج v4.18");
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      startLiveStreamLoop();
+    });
+  </script>
+</body>
+</html>
