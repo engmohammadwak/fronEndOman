@@ -18,7 +18,7 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
-  <!-- Header (مدمج مباشرة) -->
+  <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
@@ -56,18 +56,24 @@
           </div>
         </div>
 
+        <!-- الأزرار: المفضلة، السلة، حسابي -->
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <!-- المفضلة -->
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
             <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
-            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+            <span id="wishlist-count" class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold" style="display: none;">0</span>
           </a>
+          
+          <!-- السلة -->
           <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
             <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
-              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
-              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+              <span id="cart-count" class="text-xs text-secondary-fixed-dim">سلة المشتريات (0)</span>
+              <span id="cart-total" class="text-sm font-bold text-surface-container-lowest font-mono">0 ر.ع.</span>
             </div>
           </a>
+          
+          <!-- حسابي -->
           <a aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
             <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">حسابي</span>
@@ -99,8 +105,93 @@
     <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl">
       <h1 class="text-2xl font-bold text-on-surface mb-4">محتوى الصفحة الرئيسية</h1>
       <p class="text-secondary">الهيدر شغال! ✅</p>
+      
+      <!-- أزرار تجريبية للسلة والمفضلة -->
+      <div class="mt-8 space-y-4">
+        <button onclick="addToCart(150)" class="px-6 py-3 bg-primary-container text-on-primary font-bold rounded-lg hover:bg-primary transition-colors">
+          إضافة منتج للسلة (150 ر.ع.)
+        </button>
+        <button onclick="addToWishlist()" class="px-6 py-3 bg-tertiary-container text-on-tertiary font-bold rounded-lg hover:bg-tertiary transition-colors">
+          إضافة للمفضلة
+        </button>
+        <button onclick="clearCart()" class="px-6 py-3 bg-error text-on-error font-bold rounded-lg hover:bg-error/90 transition-colors">
+          إفراغ السلة
+        </button>
+      </div>
     </div>
   </main>
+
+  <!-- JavaScript للسلة والمفضلة -->
+  <script>
+    // تهيئة السلة والمفضلة
+    let cart = [];
+    let wishlist = [];
+
+    // تحديث عرض السلة
+    function updateCartDisplay() {
+      const cartCount = document.getElementById('cart-count');
+      const cartTotal = document.getElementById('cart-total');
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      
+      cartCount.textContent = `سلة المشتريات (${cart.length})`;
+      cartTotal.textContent = `${total.toFixed(2)} ر.ع.`;
+      
+      // حفظ في localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // تحديث عرض المفضلة
+    function updateWishlistDisplay() {
+      const wishlistCount = document.getElementById('wishlist-count');
+      
+      if (wishlist.length > 0) {
+        wishlistCount.textContent = wishlist.length;
+        wishlistCount.style.display = 'flex';
+      } else {
+        wishlistCount.style.display = 'none';
+      }
+      
+      // حفظ في localStorage
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    }
+
+    // إضافة منتج للسلة
+    function addToCart(price) {
+      cart.push({ price: price });
+      updateCartDisplay();
+      console.log(`تمت الإضافة للسلة: ${price} ر.ع.`);
+    }
+
+    // إضافة للمفضلة
+    function addToWishlist() {
+      wishlist.push({ id: Date.now() });
+      updateWishlistDisplay();
+      console.log(`تمت الإضافة للمفضلة: ${wishlist.length} منتجات`);
+    }
+
+    // إفراغ السلة
+    function clearCart() {
+      cart = [];
+      updateCartDisplay();
+      console.log('تم إفراغ السلة');
+    }
+
+    // تحميل البيانات من localStorage عند فتح الصفحة
+    window.addEventListener('DOMContentLoaded', function() {
+      const savedCart = localStorage.getItem('cart');
+      const savedWishlist = localStorage.getItem('wishlist');
+      
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCartDisplay();
+      }
+      
+      if (savedWishlist) {
+        wishlist = JSON.parse(savedWishlist);
+        updateWishlistDisplay();
+      }
+    });
+  </script>
 
 </body>
 </html>
