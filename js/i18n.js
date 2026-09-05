@@ -124,6 +124,27 @@ const translations = {
     refurb_product_4_version: 'نسخة الأقراص',
     refurb_product_4_old_price: '2,399 ر.ع.',
     
+    // Customer Reviews
+    reviews_title: 'ماذا يقول عملاؤنا عن تيك برو؟',
+    reviews_desc: 'تجارب حقيقية موثقة لعملاء حصلوا على أجهزة جديدة ومجددة مع خدمات الضمان',
+    review_1_text: '"اشتريت آيفون 14 برو ماكس مستعمل مجدد، الصراحة الجهاز وصل بدون أي خدش نهائياً والبطارية 96%! التغليف فخم والتوصيل أخذ أقل من 24 ساعة للرياض."',
+    review_1_name: 'فيصل الشهري',
+    review_1_badge: 'مشترٍ موثق - الرياض',
+    review_2_text: '"تجربة شراء ماك بوك برو M3 الجديد كانت ممتازة. السعر أقل من الوكيل بـ 400 ريال مع تقسيط ميسر عن طريق تمارا بدون فوائد وخدمة عملاء ردوا فوراً."',
+    review_2_name: 'نورة القحطاني',
+    review_2_badge: 'مشترية موثقة - جدة',
+    review_3_text: '"برنامج الاستبدال وفر علي وقت كبير، استبدلت جهازي القديم بقيمة عادلة جداً وأخذت بلايستيشن 5 مجدد مع الضمان. متجر تيك برو أصبح خياري الأول."',
+    review_3_name: 'عبدالعزيز المنصور',
+    review_3_badge: 'مشترٍ موثق - الدمام',
+    
+    // Newsletter
+    newsletter_badge: 'كوبون 50 ريال لطلبك الأول',
+    newsletter_title: 'انضم إلى مجتمع تيك برو السري',
+    newsletter_desc: 'اشترك ليصلك إشعار فوري فور نزول دفعات الأجهزة المجددة النادرة وتخفيضات الفلاش الأسبوعية الحصرية قبل الجميع.',
+    newsletter_placeholder: 'name@example.com',
+    newsletter_btn: 'اشترك الآن',
+    newsletter_success: 'تم اشتراكك بنجاح! تم إرسال كوبون الخصم 50 ريال إلى بريدك.',
+    
     // Main Content
     main_title: 'محتوى الصفحة الرئيسية',
     main_desc: 'الهيدر والفوتر يتم تحميلهم ديناميكياً! ✅',
@@ -277,6 +298,27 @@ const translations = {
     refurb_product_4_controllers: '🎮 2 Original Controllers',
     refurb_product_4_version: 'Disc version',
     refurb_product_4_old_price: '2,399 OMR',
+    
+    // Customer Reviews
+    reviews_title: 'What Our Customers Say About TechPro?',
+    reviews_desc: 'Real documented experiences from customers who got new and refurbished devices with warranty services',
+    review_1_text: '"I bought a refurbished iPhone 14 Pro Max used, honestly the device arrived without any scratches at all and battery 96%! Packaging was premium and delivery took less than 24 hours to Riyadh."',
+    review_1_name: 'Faisal Al-Shahri',
+    review_1_badge: 'Verified Buyer - Riyadh',
+    review_2_text: '"The experience of buying the new MacBook Pro M3 was excellent. Price was 400 OMR less than the dealer with easy installments via Tamara interest-free and customer service responded immediately."',
+    review_2_name: 'Noura Al-Qahtani',
+    review_2_badge: 'Verified Buyer - Jeddah',
+    review_3_text: '"The trade-in program saved me a lot of time, I traded my old device for a very fair value and got a refurbished PlayStation 5 with warranty. TechPro store has become my first choice."',
+    review_3_name: 'Abdulaziz Al-Mansour',
+    review_3_badge: 'Verified Buyer - Dammam',
+    
+    // Newsletter
+    newsletter_badge: '50 OMR Coupon for Your First Order',
+    newsletter_title: 'Join TechPro Secret Community',
+    newsletter_desc: 'Subscribe to get instant notifications when rare refurbished device batches drop and exclusive weekly flash discounts before everyone else.',
+    newsletter_placeholder: 'name@example.com',
+    newsletter_btn: 'Subscribe Now',
+    newsletter_success: 'Successfully subscribed! 50 OMR discount coupon sent to your email.',
     
     // Main Content
     main_title: 'Homepage Content',
