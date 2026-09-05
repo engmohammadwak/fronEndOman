@@ -16,7 +16,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/variables.css">
 </head>
-<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen flex flex-col">
 
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
@@ -107,7 +107,7 @@
   </header>
 
   <!-- Main Content -->
-  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)] flex-grow">
     <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl">
       <h1 class="text-2xl font-bold text-on-surface mb-4" data-i18n="main_title">محتوى الصفحة الرئيسية</h1>
       <p class="text-secondary" data-i18n="main_desc">الهيدر شغال! ✅</p>
@@ -127,64 +127,96 @@
     </div>
   </main>
 
+  <!-- Footer -->
+  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base" data-i18n="footer_about_title">عن تيك برو TechPro</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs" data-i18n="footer_about_desc">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
+        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
+          <span data-i18n="footer_about_verified">سجل تجاري موثق وترخيص رسمي</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base" data-i18n="footer_support_title">خدمة العملاء والدعم</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#" data-i18n="footer_support_help">مركز المساعدة والأسئلة الشائعة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#" data-i18n="footer_support_track">تتبع حالة الطلب</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#" data-i18n="footer_support_whatsapp">التواصل عبر واتساب المباشر</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#" data-i18n="footer_support_service">مراكز الصيانة المعتمدة</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base" data-i18n="footer_policies_title">سياسات الشراء والضمان</h3>
+        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#" data-i18n="footer_policies_warranty">شروط الضمان الذهبي لعامين</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#" data-i18n="footer_policies_return">سياسة الاستبدال والاسترجاع السهل</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#" data-i18n="footer_policies_inspection">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" href="#" data-i18n="footer_policies_privacy">سياسة الخصوصية وأمان البيانات</a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-space-sm">
+        <h3 class="text-surface-container-lowest font-bold text-base" data-i18n="footer_payment_title">طرق الدفع والشحن</h3>
+        <p class="text-secondary-fixed-dim leading-relaxed text-xs" data-i18n="footer_payment_desc">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
+        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold" data-i18n="payment_mada">مدى</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold" data-i18n="payment_visa">فيزا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold" data-i18n="payment_mastercard">ماستركارد</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold" data-i18n="payment_tabi">تابي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold" data-i18n="payment_tamara">تمارا</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold" data-i18n="payment_apple">أبل باي</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
+      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
+        <span data-i18n="footer_copyright">جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
+        <span data-i18n="footer_tech">صُمم بأحدث التقنيات السريعة والآمنة</span>
+      </div>
+    </div>
+  </footer>
+
   <!-- JavaScript للسلة والمفضلة + اللغة -->
   <script>
-    // تهيئة السلة والمفضلة
     let cart = [];
     let wishlist = [];
 
-    // تحديث عرض السلة
     function updateCartDisplay() {
       const cartCount = document.getElementById('cart-count');
       const cartTotal = document.getElementById('cart-total');
       const total = cart.reduce((sum, item) => sum + item.price, 0);
-      
-      cartCount.textContent = currentLang === 'ar' 
-        ? `سلة المشتريات (${cart.length})` 
-        : `Shopping Cart (${cart.length})`;
+      cartCount.textContent = currentLang === 'ar' ? `سلة المشتريات (${cart.length})` : `Shopping Cart (${cart.length})`;
       cartTotal.textContent = `${total.toFixed(2)} ${currentLang === 'ar' ? 'ر.ع.' : 'OMR'}`;
-      
-      // حفظ في localStorage
       localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    // تحديث عرض المفضلة
     function updateWishlistDisplay() {
       const wishlistCount = document.getElementById('wishlist-count');
-      
       if (wishlist.length > 0) {
         wishlistCount.textContent = wishlist.length;
         wishlistCount.style.display = 'flex';
       } else {
         wishlistCount.style.display = 'none';
       }
-      
-      // حفظ في localStorage
       localStorage.setItem('wishlist', JSON.stringify(wishlist));
     }
 
-    // إضافة منتج للسلة
     function addToCart(price) {
       cart.push({ price: price });
       updateCartDisplay();
-      console.log(`تمت الإضافة للسلة: ${price} ر.ع.`);
     }
 
-    // إضافة للمفضلة
     function addToWishlist() {
       wishlist.push({ id: Date.now() });
       updateWishlistDisplay();
-      console.log(`تمت الإضافة للمفضلة: ${wishlist.length} منتجات`);
     }
 
-    // إفراغ السلة
     function clearCart() {
       cart = [];
       updateCartDisplay();
-      console.log('تم إفراغ السلة');
     }
 
-    // قاموس الترجمة
     const translations = {
       ar: {
         banner_text: 'شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين',
@@ -208,7 +240,30 @@
         btn_add_cart: 'إضافة منتج للسلة (150 ر.ع.)',
         btn_add_wishlist: 'إضافة للمفضلة',
         btn_clear_cart: 'إفراغ السلة',
-        lang_btn: 'English'
+        lang_btn: 'English',
+        footer_about_title: 'عن تيك برو TechPro',
+        footer_about_desc: 'منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.',
+        footer_about_verified: 'سجل تجاري موثق وترخيص رسمي',
+        footer_support_title: 'خدمة العملاء والدعم',
+        footer_support_help: 'مركز المساعدة والأسئلة الشائعة',
+        footer_support_track: 'تتبع حالة الطلب',
+        footer_support_whatsapp: 'التواصل عبر واتساب المباشر',
+        footer_support_service: 'مراكز الصيانة المعتمدة',
+        footer_policies_title: 'سياسات الشراء والضمان',
+        footer_policies_warranty: 'شروط الضمان الذهبي لعامين',
+        footer_policies_return: 'سياسة الاستبدال والاسترجاع السهل',
+        footer_policies_inspection: 'معايير فحص الأجهزة المجددة',
+        footer_policies_privacy: 'سياسة الخصوصية وأمان البيانات',
+        footer_payment_title: 'طرق الدفع والشحن',
+        footer_payment_desc: 'خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.',
+        payment_mada: 'مدى',
+        payment_visa: 'فيزا',
+        payment_mastercard: 'ماستركارد',
+        payment_tabi: 'تابي',
+        payment_tamara: 'تمارا',
+        payment_apple: 'أبل باي',
+        footer_copyright: 'جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.',
+        footer_tech: 'صُمم بأحدث التقنيات السريعة والآمنة'
       },
       en: {
         banner_text: 'Free shipping on all orders over 200 OMR | 2-year Gold Warranty',
@@ -232,87 +287,87 @@
         btn_add_cart: 'Add to Cart (150 OMR)',
         btn_add_wishlist: 'Add to Wishlist',
         btn_clear_cart: 'Clear Cart',
-        lang_btn: 'عربي'
+        lang_btn: 'عربي',
+        footer_about_title: 'About TechPro',
+        footer_about_desc: 'Leading platform for trading modern and refurbished devices and tech products with highest quality standards and certified warranty in the Middle East.',
+        footer_about_verified: 'Verified commercial registration and official license',
+        footer_support_title: 'Customer Service & Support',
+        footer_support_help: 'Help Center & FAQs',
+        footer_support_track: 'Track Order Status',
+        footer_support_whatsapp: 'Direct WhatsApp Contact',
+        footer_support_service: 'Certified Service Centers',
+        footer_policies_title: 'Purchase & Warranty Policies',
+        footer_policies_warranty: '2-Year Gold Warranty Terms',
+        footer_policies_return: 'Easy Return & Exchange Policy',
+        footer_policies_inspection: 'Refurbished Devices Inspection Standards',
+        footer_policies_privacy: 'Privacy Policy & Data Security',
+        footer_payment_title: 'Payment & Shipping Methods',
+        footer_payment_desc: 'Secure electronic payment options and flexible installments with our certified partners.',
+        payment_mada: 'Mada',
+        payment_visa: 'Visa',
+        payment_mastercard: 'Mastercard',
+        payment_tabi: 'Tabby',
+        payment_tamara: 'Tamara',
+        payment_apple: 'Apple Pay',
+        footer_copyright: 'All rights reserved © 2026 TechPro. Registered in Saudi Business Center.',
+        footer_tech: 'Designed with latest fast and secure technologies'
       }
     };
 
-    // تغيير اللغة
     let currentLang = 'ar';
     
     function toggleLanguage() {
       const html = document.documentElement;
       const langText = document.getElementById('lang-text');
-      
       if (currentLang === 'ar') {
-        // تحويل لإنجليزي
         html.setAttribute('dir', 'ltr');
         html.setAttribute('lang', 'en');
         currentLang = 'en';
       } else {
-        // تحويل لعربي
         html.setAttribute('dir', 'rtl');
         html.setAttribute('lang', 'ar');
         currentLang = 'ar';
       }
-      
-      // تحديث كل النصوص
       updateAllTexts();
-      
-      // تحديث زر اللغة
       langText.textContent = translations[currentLang].lang_btn;
-      
-      // حفظ اللغة في localStorage
       localStorage.setItem('lang', currentLang);
     }
 
-    // تحديث كل النصوص بناءً على اللغة
     function updateAllTexts() {
-      // تحديث النصوص
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[currentLang][key]) {
           el.textContent = translations[currentLang][key];
         }
       });
-      
-      // تحديث الـ placeholders
       document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
         if (translations[currentLang][key]) {
           el.placeholder = translations[currentLang][key];
         }
       });
-      
-      // تحديث السلة والمفضلة
       updateCartDisplay();
     }
 
-    // تحميل البيانات من localStorage عند فتح الصفحة
     window.addEventListener('DOMContentLoaded', function() {
       const savedCart = localStorage.getItem('cart');
       const savedWishlist = localStorage.getItem('wishlist');
       const savedLang = localStorage.getItem('lang');
-      
       if (savedCart) {
         cart = JSON.parse(savedCart);
         updateCartDisplay();
       }
-      
       if (savedWishlist) {
         wishlist = JSON.parse(savedWishlist);
         updateWishlistDisplay();
       }
-      
       if (savedLang) {
         currentLang = savedLang;
         const langText = document.getElementById('lang-text');
         const html = document.documentElement;
-        
         html.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
         html.setAttribute('lang', savedLang);
         langText.textContent = translations[savedLang].lang_btn;
-        
-        // تحديث كل النصوص
         updateAllTexts();
       }
     });
