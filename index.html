@@ -21,8 +21,6 @@
   <style>
     [dir="ltr"] .hero-content { text-align: left; }
     [dir="rtl"] .hero-content { text-align: right; }
-    [dir="ltr"] .hero-badges { flex-direction: row; }
-    [dir="rtl"] .hero-badges { flex-direction: row-reverse; }
   </style>
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen flex flex-col">
@@ -98,7 +96,7 @@
             احصل على أقوى أجهزة iPhone 15 Pro Max ولابتوبات MacBook Pro مع رقاقة M3 فائقة القوة بتوفير يصل حتى 35% مع باقة هدايا تيك برو الحصرية.
           </p>
 
-          <div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto text-xs font-bold hero-badges">
+          <div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto text-xs font-bold">
             <a class="w-full sm:w-auto text-center px-6 py-3 rounded-lg bg-surface-container-lowest text-primary shadow-xl hover:bg-surface-container-low transition-all active:scale-95" href="#" data-i18n="hero_btn_new">
               تسوق الأجهزة الجديدة الآن
             </a>
@@ -107,7 +105,7 @@
             </a>
           </div>
 
-          <div class="flex items-center gap-3 mt-2 p-2 bg-surface-container-lowest/10 backdrop-blur-md rounded-xl text-xs hero-badges">
+          <div class="flex items-center gap-3 mt-2 p-2 bg-surface-container-lowest/10 backdrop-blur-md rounded-xl text-xs">
             <div class="flex -space-x-2 space-x-reverse">
               <span class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface font-bold flex items-center justify-center ring-2 ring-surface-container-lowest text-[11px]">★</span>
               <span class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary font-bold flex items-center justify-center ring-2 ring-surface-container-lowest text-[11px]">A+</span>
@@ -134,25 +132,213 @@
         </div>
       </div>
     </section>
-    
-    <!-- Main Page Content -->
-    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl">
-      <h1 class="text-2xl font-bold text-on-surface mb-4" data-i18n="main_title">محتوى الصفحة الرئيسية</h1>
-      <p class="text-secondary" data-i18n="main_desc">الهيدر والفوتر يتم تحميلهم ديناميكياً! ✅</p>
-      
-      <!-- أزرار تجريبية للسلة والمفضلة -->
-      <div class="mt-8 space-y-4">
-        <button onclick="addToCart(150)" class="px-6 py-3 bg-primary-container text-on-primary font-bold rounded-lg hover:bg-primary transition-colors" data-i18n="btn_add_cart">
-          إضافة منتج للسلة (150 ر.ع.)
-        </button>
-        <button onclick="addToWishlist()" class="px-6 py-3 bg-tertiary-container text-on-tertiary font-bold rounded-lg hover:bg-tertiary transition-colors" data-i18n="btn_add_wishlist">
-          إضافة للمفضلة
-        </button>
-        <button onclick="clearCart()" class="px-6 py-3 bg-error text-on-error font-bold rounded-lg hover:bg-error/90 transition-colors" data-i18n="btn_clear_cart">
-          إفراغ السلة
-        </button>
+
+    <!-- Categories Grid -->
+    <section class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-2xl text-xs">
+      <div class="flex items-center justify-between mb-space-lg">
+        <div>
+          <h2 class="text-lg font-bold text-on-surface" data-i18n="categories_title">تسوق حسب الفئات</h2>
+          <p class="text-secondary text-[11px] mt-0.5" data-i18n="categories_desc">اختر مجالك وتصفح آلاف الأجهزة الحديثة والمجددة</p>
+        </div>
+        <a class="text-primary font-bold hover:underline flex items-center gap-1" href="#">
+          <span data-i18n="categories_view_all">تصفح الكل</span>
+          <span class="material-symbols-outlined text-sm rotate-180" aria-hidden="true">arrow_forward</span>
+        </a>
       </div>
-    </div>
+
+      <div class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-space-md">
+        <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
+          <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">smartphone</span>
+          </div>
+          <span class="font-bold text-on-surface group-hover:text-primary" data-i18n="cat_phones">هواتف ذكية</span>
+          <span class="text-secondary text-[10px]" data-i18n="cat_phones_count">1,420 جهاز</span>
+        </a>
+
+        <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
+          <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">laptop_mac</span>
+          </div>
+          <span class="font-bold text-on-surface group-hover:text-primary" data-i18n="cat_laptops">حواسيب ولابتوبات</span>
+          <span class="text-secondary text-[10px]" data-i18n="cat_laptops_count">840 جهاز</span>
+        </a>
+
+        <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
+          <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">tablet_mac</span>
+          </div>
+          <span class="font-bold text-on-surface group-hover:text-primary" data-i18n="cat_tablets">أجهزة لوحية</span>
+          <span class="text-secondary text-[10px]" data-i18n="cat_tablets_count">320 جهاز</span>
+        </a>
+
+        <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
+          <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">watch</span>
+          </div>
+          <span class="font-bold text-on-surface group-hover:text-primary" data-i18n="cat_watches">ساعات وسماعات</span>
+          <span class="text-secondary text-[10px]" data-i18n="cat_watches_count">615 جهاز</span>
+        </a>
+
+        <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
+          <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">cable</span>
+          </div>
+          <span class="font-bold text-on-surface group-hover:text-primary" data-i18n="cat_accessories">ملحقات وإكسسوارات</span>
+          <span class="text-secondary text-[10px]" data-i18n="cat_accessories_count">2,100 منتج</span>
+        </a>
+
+        <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
+          <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">sports_esports</span>
+          </div>
+          <span class="font-bold text-on-surface group-hover:text-primary" data-i18n="cat_gaming">شاشات وألعاب</span>
+          <span class="text-secondary text-[10px]" data-i18n="cat_gaming_count">480 جهاز</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-xl text-xs">
+      <div class="flex items-center justify-between mb-space-lg">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-6 bg-primary-container rounded-full"></span>
+          <div>
+            <h2 class="text-base font-bold text-on-surface" data-i18n="new_arrivals_title">أحدث الأجهزة الجديدة كلياً</h2>
+            <span class="text-tertiary font-bold text-[11px]" data-i18n="new_arrivals_subtitle">● أصلي 100% بضمان الوكيل المعتمد سنتين</span>
+          </div>
+        </div>
+        <a class="px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface font-bold transition-colors flex items-center gap-1 border border-outline-variant/10" href="#">
+          <span data-i18n="view_all">عرض الكل</span>
+          <span class="material-symbols-outlined text-sm rotate-180" aria-hidden="true">arrow_forward</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+        <!-- Product 1 -->
+        <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary text-[10px] font-bold" data-i18n="badge_new">جديد</span>
+            <button aria-label="إضافة للمفضلة" class="w-7 h-7 rounded-full bg-surface-container-low text-secondary hover:text-error transition-colors flex items-center justify-center cursor-pointer bg-transparent border-none" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span>
+            </button>
+          </div>
+          <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
+            <img class="w-full h-full object-contain group-hover:scale-105 transition-transform p-2" alt="آيفون 15 برو تيتانيوم" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxiKwuYNFuk0d-8B4L_Vurbbh4mDLOhku3uTwOSKtWPtNperXc4KkghVycgasTVn8oWnoewAdQTzJ5FyozYpk9j_jtUs0euMoUU2Rrsq4KW1c4auSzDY4rrCLq5kn5Zyn_EaV91aoRI3Yq8iGPJMycxvaKrT9i8tjqQdzzfwl3dIMKrVzKyTEwBYla0sM0YIVADb7tqMfdJcrahvtqY1OUaXb-apY2ZM4zozka1PXIyv_USY0wV4fYWQ">
+          </div>
+          <div class="flex items-center gap-1 text-secondary mb-1">
+            <span class="material-symbols-outlined text-xs text-amber-500" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
+            <span class="font-bold text-on-surface">4.9</span>
+            <span class="text-[11px] text-secondary">(128 تقييم)</span>
+          </div>
+          <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed" data-i18n="product_1_name">آبل آيفون 15 برو - تيتانيوم طبيعي سعة 256 جيجابايت</h3>
+          <div class="flex items-center gap-1 text-tertiary mb-3 text-[11px] font-bold">
+            <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            <span data-i18n="product_1_stock">متوفر في المستودع الرئيسي (+50 نقطة)</span>
+          </div>
+          <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+            <span class="text-sm font-black text-primary">4,699 <span class="text-xs font-normal font-sans text-secondary">ر.ع.</span></span>
+            <button class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
+              <span class="font-sans" data-i18n="add_to_cart">إضافة</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary text-[10px] font-bold" data-i18n="badge_new">جديد</span>
+            <button aria-label="إضافة للمفضلة" class="w-7 h-7 rounded-full bg-surface-container-low text-secondary hover:text-error transition-colors flex items-center justify-center cursor-pointer bg-transparent border-none" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span>
+            </button>
+          </div>
+          <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
+            <img class="w-full h-full object-contain group-hover:scale-105 transition-transform p-2" alt="ماك بوك برو M3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD81RIVCanEtE0Ty0Gfa__H-n6egIbsoeWcx6XEuDA1lxDVV1zIoibEzG6FFDms-c7dbXJAUxDLdaWs31G5URkP1NI3PBP31IkVqmNCDuzJiNstf2wTFNIa1xegrpT6Wfmi8S0RZT3dzVRlGoI2GJHJcoZjQBBt1nGvDj8yEaRKEWoHXjXk9LDICk6c9S-NSuebWRkVamrJfCAuqqjMArNpU2_Em7J0xvxqYtlhQvcq2nUKNHW-LVjMWQ">
+          </div>
+          <div class="flex items-center gap-1 text-secondary mb-1">
+            <span class="material-symbols-outlined text-xs text-amber-500" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
+            <span class="font-bold text-on-surface">5.0</span>
+            <span class="text-[11px] text-secondary">(74 تقييم)</span>
+          </div>
+          <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed" data-i18n="product_2_name">ماك بوك برو M3 بشاشة 14 إنش - رامات 18GB و 512GB SSD</h3>
+          <div class="flex items-center gap-1 text-tertiary mb-3 text-[11px] font-bold">
+            <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            <span data-i18n="product_2_stock">متوفر في المستودع (+80 نقطة)</span>
+          </div>
+          <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+            <span class="text-sm font-black text-primary">7,299 <span class="text-xs font-normal font-sans text-secondary">ر.ع.</span></span>
+            <button class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
+              <span class="font-sans" data-i18n="add_to_cart">إضافة</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2 py-0.5 rounded-full bg-error text-on-error text-[10px] font-bold" data-i18n="badge_discount">خصم 18%</span>
+            <button aria-label="إضافة للمفضلة" class="w-7 h-7 rounded-full bg-surface-container-low text-secondary hover:text-error transition-colors flex items-center justify-center cursor-pointer bg-transparent border-none" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span>
+            </button>
+          </div>
+          <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
+            <img class="w-full h-full object-contain group-hover:scale-105 transition-transform p-2" alt="ساعة سامسونج جالاكسي" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4DngFbmZBlKbwCjBhRZsX0xRWWSWdQcxOiVOxUSeuoT5HFo4fQx54A4oXnf4gGsuVYm-VdqIOgfxSo1UFFhUsvacWOuULAnG9JbSsxeBrX1PheAeOu48sPBHxvsHyLXO_kXOgW5WtkVaafjXIau6khaANf0ULOa_TAA9mwfa9vRRUDNR1XnRlcxhZ8gHwCkbYeK3pXuykyzqPy1tHUgKYk06tI5ZhG10XiAyhXIcsyu5wsUEcI-8G8Q">
+          </div>
+          <div class="flex items-center gap-1 text-secondary mb-1">
+            <span class="material-symbols-outlined text-xs text-amber-500" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
+            <span class="font-bold text-on-surface">4.7</span>
+            <span class="text-[11px] text-secondary">(92 تقييم)</span>
+          </div>
+          <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed" data-i18n="product_3_name">ساعة سامسونج جالاكسي ووتش 6 كلاسيك مقاس 47 مم</h3>
+          <div class="flex items-center gap-1 text-tertiary mb-3 text-[11px] font-bold">
+            <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            <span data-i18n="product_3_stock">متوفر في المستودع (+30 نقطة)</span>
+          </div>
+          <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+            <div>
+              <span class="text-sm font-black text-primary">1,149 <span class="text-xs font-normal font-sans text-secondary">ر.ع.</span></span>
+              <span class="text-[10px] text-secondary line-through font-sans mr-1">1,399 ر.ع.</span>
+            </div>
+            <button class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
+              <span class="font-sans" data-i18n="add_to_cart">إضافة</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary text-[10px] font-bold" data-i18n="badge_new">جديد</span>
+            <button aria-label="إضافة للمفضلة" class="w-7 h-7 rounded-full bg-surface-container-low text-secondary hover:text-error transition-colors flex items-center justify-center cursor-pointer bg-transparent border-none" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span>
+            </button>
+          </div>
+          <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
+            <img class="w-full h-full object-contain group-hover:scale-105 transition-transform p-2" alt="سماعات سوني" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0uWNGnGLzXvr_3smeWRyzp4XBQNvk1FZ7kpcHiiokRJqxF9Zjg3EYAeEEHUgpItCGq0Pxji5CojDheLQkH7tfBIOBmfcpjPjWYohdA8QdAiqInicYrOvTX_PjtSm3CV7H1rMSCaVOKQ8BgG3DX2ZL5oHsakQtnN8wEtIHRRs_HBGehHYl0h7BSErUkOX03umkRSp73poRH6PcKtT-aw73qHaARluHJv33M19oblr7twh1myeZ_Mzp7A">
+          </div>
+          <div class="flex items-center gap-1 text-secondary mb-1">
+            <span class="material-symbols-outlined text-xs text-amber-500" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
+            <span class="font-bold text-on-surface">4.8</span>
+            <span class="text-[11px] text-secondary">(215 تقييم)</span>
+          </div>
+          <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed" data-i18n="product_4_name">سماعات سوني WH-1000XM5 اللاسلكية العازلة للضوضاء</h3>
+          <div class="flex items-center gap-1 text-tertiary mb-3 text-[11px] font-bold">
+            <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            <span data-i18n="product_4_stock">متوفر في المستودع (+40 نقطة)</span>
+          </div>
+          <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+            <span class="text-sm font-black text-primary">1,299 <span class="text-xs font-normal font-sans text-secondary">ر.ع.</span></span>
+            <button class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
+              <span class="font-sans" data-i18n="add_to_cart">إضافة</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer Container -->
