@@ -1,5 +1,3 @@
-// js/tailwind-config.js - إعدادات Tailwind الموحدة
-
 tailwind.config = {
   darkMode: "class",
   theme: {
