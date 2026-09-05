@@ -1,73 +1,87 @@
-# فهرس شاشات fronEndOman
+💬 بروتوكول الطلب القادم (Prompt Protocol)
+في المرات القادمة، يكفي أن ترسل الكود مباشرة مع العبارة التالية:
 
-## الملفات المؤكدة (من القراءة المباشرة)
+"فكك هذا الكود ووزعه طبقاً لملف WORKFLOW_GUIDE.md"
 
-| الملف | الوظيفة / العنوان |
-|-------|-------------------|
-| `code.html` | شعار TechPro (SVG) |
-| `code_1.html` | محطة تجهيز وتغليف وشحن الطلبات (WMS Packing Station) |
-| `code_2.html` | بوابة الموردين وسلاسل التوريد B2B (SCM / Vendor Portal) |
-| `code_12.html` | لوحة التحكم المركزية وإدارة المخزون (Inventory Dashboard) |
-| `code_22.html` | مركز مراقبة الخوادم والأنظمة (SRE Hub / DevOps Monitoring) |
-| `code_42.html` | مركز العمليات الأمنية والدفاع السيبراني (SOC / Security Operations) |
-| `ruun.py` | سكربت Git Manager (upload/download/reset) |
+وسيقوم المساعد فوراً بالآتي:
 
-## الملفات المتبقية (41 ملف)
+إعطاؤك مسار واسم ملف الـ HTML النظيف داخل المجلد المناسب.
 
-هذي الملفات تحتاج قراءة لاستخراج العناوين من الـ `<h1>` في كل ملف:
+استخراج كود الـ CSS إن وُجد، وتحديد الملف المناسب لوضعه فيه.
 
-- code_3.html
-- code_4.html
-- code_5.html
-- code_6.html
-- code_7.html
-- code_8.html
-- code_9.html
-- code_10.html
-- code_11.html
-- code_13.html
-- code_14.html
-- code_15.html
-- code_16.html
-- code_17.html
-- code_18.html
-- code_19.html
-- code_20.html
-- code_21.html
-- code_23.html
-- code_24.html
-- code_25.html
-- code_26.html
-- code_27.html
-- code_28.html
-- code_29.html
-- code_30.html
-- code_31.html
-- code_32.html
-- code_33.html
-- code_34.html
-- code_35.html
-- code_36.html
-- code_37.html
-- code_38.html
-- code_39.html
-- code_40.html
-- code_41.html
-- code_43.html
-- code_44.html
-- code_45.html
+استخراج كود الـ JS الخاص بالصفحة ووضعه في js/pages/[اسم-الملف].js.
 
-## ملاحظات عامة
+التحقق من سلامة المسارات النسبية للصور والملفات.
 
-- كل الشاشات تستخدم نفس الـ header والـ colors (Material 3 + Tailwind CDN)
-- جميع الصفحات مستقلة 100% (مو تطبيق Laravel/Blade)
-- الأزرار كلها `alert()` أو `confirm()` (محاكاة فقط)
-- الصور من روابط Google الخارجية (lh3.googleusercontent.com)
-- النصوص كلها للسعودية (الرياض، ريال سعودي) مو عُمان
+///////////////////////////////////////////////////////
 
-## الخطوة التالية
+"فكك هذا الكود ووزعه طبقاً لملف WORKFLOW_GUIDE.md"
 
-تحويل الشاشات إلى هيكل Laravel Blade:
-1. layout واحد للـ header/footer
-2. مكونات للألوان والـ KPIs
-3. ربط الأزرار بـ API حقيقية
+
+"Please refactor and break down this code according to the WORKFLOW_GUIDE.md specifications. Separate the HTML, extract page-specific JS/CSS into their designated folders, and ensure all relative paths match the project structure."
+
+"Refactor and split this code strictly following WORKFLOW_GUIDE.md."
+
+///////////////////////////////////////////////////////
+
+
+انسخ الكود أعلاه وضعه في ملف باسم **`WORKFLOW_GUIDE.md`** في جذر مشروعك، وكلما أردت تفكيك صفحة جديدة فقط الصق الكود واطلب التفكيك بناءً على هذا الملف وسننجز الصفحات الـ 45 واحدة تلو الأخرى بنفس المعيار.
+
+
+
+
+
+
+"Read the source file at All/about.html, refactor and split it strictly following WORKFLOW_GUIDE.md. Extract the clean HTML into its designated path under pages/, separate any inline CSS into css/, and move any script logic into js/pages/. Make sure all relative asset paths are corrected based on the new file depth."
+
+
+"Refactor All/[file_name].html according to WORKFLOW_GUIDE.md and generate the separated files in the main structure."
+
+
+
+Read the source file at "All/{file_name}.html". Refactor and split it strictly following WORKFLOW_GUIDE.md:
+1. Identify the designated subfolder under "pages/" according to the project specification and place the cleaned HTML there.
+2. Extract any inline CSS into the proper file inside "css/".
+3. Move page-specific scripts into "js/pages/{FILE_NAME}.js".
+4. Update and fix all relative paths (CSS, JS, assets/images) to match the new folder depth (e.g., use "../../" where appropriate).
+
+
+
+أمثلة سريعة للاستخدام:
+لصفحة تسجيل الدخول:
+
+Read the source file at "All/login.html". Refactor and split it strictly following WORKFLOW_GUIDE.md...
+
+لصفحة تفاصيل المنتج:
+
+Read the source file at "All/product-details.html". Refactor and split it strictly following WORKFLOW_GUIDE.md...
+
+لصفحة من نحن:
+
+Read the source file at "All/about.html". Refactor and split it strictly following WORKFLOW_GUIDE.md...
+
+
+
+# 🤖 دليل تشغيل الذكاء الاصطناعي لإعادة هيكلة الملفات (AI Automation Guide)
+
+يوضح هذا الدليل كيفية توجيه أدوات البرمجة الذكية (مثل Cursor، Windsurf، Copilot) لقراءة الملفات المجمعة من مجلد `All/` وتفكيكها تلقائياً داخل الهيكل الرئيسي للمشروع طبقاً لمعايير `WORKFLOW_GUIDE.md`.
+
+---
+
+## 📋 المتطلبات الأساسية قبل البدء
+* وجود مجلد `All/` في جذر المشروع محتوياً على ملفات الـ HTML الأصلية (`login.html`, `about.html`, إلخ).
+* وجود ملف `WORKFLOW_GUIDE.md` في المجلد الرئيسي.
+* استخدام محرر يدعم فهم ملفات المستودع (Workspace-aware AI).
+
+---
+
+## 🎯 بروتوكول الأمر الرئيسي (Standard Master Prompt)
+
+انسخ النص التالي وضعه في صندوق محادثة الأداة الذكية مع استبدال اسم الملف فقط:
+
+```text
+Read the source file at "All/{FILE_NAME}.html". Refactor and split it strictly following WORKFLOW_GUIDE.md:
+1. Identify the designated subfolder under "pages/" according to the project specification and place the cleaned HTML there.
+2. Extract any inline CSS into the proper file inside "css/".
+3. Move page-specific scripts into "js/pages/{FILE_NAME}.js".
+4. Update and fix all relative paths (CSS, JS, assets/images) to match the new folder depth (e.g., use "../../" where appropriate).
