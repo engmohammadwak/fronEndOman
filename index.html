@@ -1,76 +1,40 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oman Frontend - الصفحة الرئيسية</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>تيك برو TechPro - الصفحة الرئيسية</title>
   
-  <!-- الخطوط والرموز -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   
-  <!-- ملفات CSS المنفصلة -->
-  <link rel="stylesheet" href="css/variables.css">
-  
-  <!-- Tailwind CDN & Config -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="js/tailwind-config.js"></script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
-  
-  <!-- حاوية Toast -->
-  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
-  
-  <!-- مكان الهيدر -->
+
+  <!-- Header Component -->
   <div id="header-container"></div>
-  
-  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
-    <section class="hero-section" id="home">
-      <h1>مرحباً بك في منصة Oman Frontend</h1>
-      <p>منصة متكاملة لتطوير واجهات أمامية احترافية بتقنيات حديثة</p>
-      <button class="cta-button" onclick="showWelcome()">ابدأ الآن</button>
-    </section>
-    
-    <section class="features-grid" id="features">
-      <div class="feature-card">
-        <h3>تصميم متجاوب</h3>
-        <p>واجهات تعمل على جميع الأجهزة والشاشات بكفاءة عالية</p>
-      </div>
-      <div class="feature-card">
-        <h3>أداء سريع</h3>
-        <p>تحسين الأداء وسرعة التحميل بأفضل الممارسات</p>
-      </div>
-      <div class="feature-card">
-        <h3>كود نظيف</h3>
-        <p>هيكلية منظمة وكود قابل للصيانة والتطوير</p>
-      </div>
-    </section>
-    
-    <section class="cta-section" id="about">
-      <h2>جاهز تبدأ مشروعك؟</h2>
-      <p>تواصل معنا الآن للحصول على استشارة مجانية</p>
-      <button class="cta-button" onclick="contactUs()">تواصل معنا</button>
-    </section>
-  </main>
-  
-  <!-- مكان الفوتر -->
-  <div id="footer-container"></div>
-  
-  <!-- السكربتات الموحدة -->
-  <script src="js/utils/helpers.js" defer></script>
-  <script src="js/main.js" defer></script>
-  
-  <!-- كود الصفحة الخاصة -->
   <script>
-    function showWelcome() {
-      showToast('مرحباً بك في منصة Oman Frontend!', 'success');
-      console.log('User clicked welcome button');
-    }
-    
-    function contactUs() {
-      window.location.href = '#contact';
-      console.log('User wants to contact us');
-    }
+    fetch('components/header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-container').innerHTML = data;
+      });
   </script>
+
+  <!-- Main Content -->
+  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
+    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl">
+      <h1 class="text-2xl font-bold text-on-surface mb-4">محتوى الصفحة الرئيسية</h1>
+      <p class="text-secondary">الهيدر شغال! ✅</p>
+    </div>
+  </main>
+
 </body>
 </html>
