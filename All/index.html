@@ -1,921 +1,467 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>تيك برو | متجر الأجهزة والتقنية المعتمد</title>
   
-  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Prices, Timers & SKU Data) -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
-
-  <style>
-    @layer base {
-      html, body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Cairo', sans-serif;
-      }
-      body {
-        overscroll-behavior: none;
-      }
-      main > :first-child { margin-top: 0 !important; }
-      main > :last-child { margin-bottom: 0 !important; }
-    }
-    ::-webkit-scrollbar { display: none; }
-  </style>
+  <!-- الخطوط والأيقونات -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script id="tailwind-config">
+  <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
-          colors: {
-            "secondary-fixed": "#d8e3fb",
-            "error-container": "#ffdad6",
-            "on-tertiary-container": "#67f4b7",
-            "tertiary": "#005338",
-            "surface-container-low": "#f2f4f6",
-            "secondary": "#545f73",
-            "on-tertiary": "#ffffff",
-            "surface-bright": "#f7f9fb",
-            "tertiary-container": "#006e4b",
-            "surface": "#f7f9fb",
-            "on-surface-variant": "#464555",
-            "on-secondary-fixed-variant": "#3c475a",
-            "tertiary-fixed-dim": "#4edea3",
-            "surface-variant": "#e0e3e5",
-            "inverse-surface": "#2d3133",
-            "inverse-on-surface": "#eff1f3",
-            "on-tertiary-fixed": "#002113",
-            "primary": "#3525cd",
-            "error": "#ba1a1a",
-            "surface-container": "#eceef0",
-            "secondary-fixed-dim": "#bcc7de",
-            "inverse-primary": "#c3c0ff",
-            "tertiary-fixed": "#6ffbbe",
-            "on-secondary-fixed": "#111c2d",
-            "secondary-container": "#d5e0f8",
-            "on-primary-fixed-variant": "#3323cc",
-            "primary-container": "#4f46e5",
-            "outline-variant": "#c7c4d8",
-            "surface-container-high": "#e6e8ea",
-            "on-secondary": "#ffffff",
-            "on-primary-container": "#dad7ff",
-            "on-background": "#191c1e",
-            "surface-tint": "#4d44e3",
-            "on-primary": "#ffffff",
-            "on-tertiary-fixed-variant": "#005236",
-            "outline": "#777587",
-            "surface-container-highest": "#e0e3e5",
-            "primary-fixed-dim": "#c3c0ff",
-            "background": "#f7f9fb",
-            "surface-dim": "#d8dadc",
-            "primary-fixed": "#e2dfff",
-            "on-error-container": "#93000a",
-            "on-primary-fixed": "#0f0069",
-            "on-error": "#ffffff",
-            "surface-container-lowest": "#ffffff",
-            "on-surface": "#191c1e",
-            "on-secondary-container": "#586377"
-          },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          spacing: {
-            "gutter-mobile": "1rem",
-            "gutter-desktop": "1.5rem",
-            "margin-mobile": "1rem",
-            "space-2xl": "3rem",
-            "space-xs": "0.5rem",
-            "space-3xl": "4rem",
-            "space-2xs": "0.25rem",
-            "space-sm": "0.75rem",
-            "space-md": "1rem",
-            "space-lg": "1.5rem",
-            "space-xl": "2rem",
-            "margin-desktop": "2.5rem"
-          },
           fontFamily: {
-            sans: ["Cairo", "sans-serif"],
-            mono: ["JetBrains Mono", "monospace"]
+            sans: ['Tajawal', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#1e1b4b',
+            }
           }
         }
       }
     };
   </script>
+
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .material-symbols-filled {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
 </head>
-<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
-  <!-- Toast Notification Container -->
-  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-brand-500 selection:text-white">
 
-  <!-- Header -->
-  <header class="fixed top-0 w-full z-50 shadow-md">
-    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
-      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
-        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
+  <!-- Header Section -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200/80 shadow-xs transition-all">
+    <!-- Top Bar -->
+    <div class="bg-slate-950 text-slate-300 py-1.5 px-4 text-xs font-medium">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm text-emerald-400">verified_user</span>
+          <span>جميع الأجهزة جديدة ومختومة بضمان محلي معتمد لمدة عامين</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-4 text-slate-400">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">local_shipping</span> شحن سريع مجاني</span>
+          <span class="h-3 w-px bg-slate-800"></span>
+          <a href="#" class="hover:text-white transition-colors">تتبع شحنتك</a>
+        </div>
       </div>
     </div>
 
-    <div class="bg-inverse-surface text-inverse-on-surface">
-      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
-        <div class="flex items-center gap-space-md shrink-0">
-          <img alt="صورة الملف الشخصي" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE"/>
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-4 lg:gap-8">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 shrink-0 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <span class="material-symbols-outlined text-2xl">devices</span>
+          </div>
           <div class="flex flex-col">
-            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
-            <span class="text-xs text-secondary-fixed-dim">متجر الأجهزة والتقنية المعتمد</span>
+            <span class="text-xl font-black tracking-tight text-slate-900 leading-none">تيك برو</span>
+            <span class="text-[11px] font-semibold text-slate-600 tracking-wider mt-1">TECHPRO OFFICIAL</span>
           </div>
-        </div>
+        </a>
 
-        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
-          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
-              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
-              <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
-              <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
-              <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
-            </select>
-            <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
-            <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors cursor-pointer bg-transparent border-none" type="button">
-              <span class="material-symbols-outlined text-xl" aria-hidden="true">mic</span>
-            </button>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
-              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
+        <!-- Search Bar -->
+        <div class="hidden md:flex flex-1 max-w-xl">
+          <div class="relative w-full">
+            <input 
+              type="text" 
+              placeholder="ابحث عن هاتف، لابتوب، أو مواصفات محددة..."
+              class="w-full bg-slate-100 hover:bg-slate-100/80 focus:bg-white text-sm text-slate-800 placeholder-slate-600 rounded-full py-2.5 pr-11 pl-28 border border-transparent focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all"
+            >
+            <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-600 text-xl pointer-events-none">search</span>
+            <button class="absolute left-1.5 top-1/2 -translate-y-1/2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-4 py-1.5 rounded-full transition-colors">
+              بحث
             </button>
           </div>
         </div>
 
-        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
-          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
-            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
-            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
-          </a>
-          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
-            <div class="hidden sm:flex flex-col text-right">
-              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
-              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+        <!-- Actions -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Wishlist -->
+          <button aria-label="المفضلة" class="relative p-2.5 rounded-full text-slate-600 hover:bg-slate-100 transition-colors">
+            <span class="material-symbols-outlined text-2xl leading-none">favorite</span>
+            <span class="absolute top-1 right-1 w-4 h-4 bg-rose-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center">3</span>
+          </button>
+
+          <!-- Cart -->
+          <button class="flex items-center gap-2 p-2 sm:px-3 sm:py-2 rounded-full text-slate-800 bg-slate-100 hover:bg-slate-200/80 transition-colors">
+            <span class="material-symbols-outlined text-2xl text-slate-700 leading-none">shopping_bag</span>
+            <div class="hidden sm:flex flex-col text-right leading-none">
+              <span class="text-[10px] text-slate-600 font-bold">السلة</span>
+              <span class="text-xs font-bold text-slate-900 mt-0.5">1,849 ر.س</span>
             </div>
-          </a>
-          <a aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
-            <span class="hidden sm:inline">حسابي</span>
+          </button>
+
+          <!-- Account -->
+          <a href="#" class="hidden sm:flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-2.5 px-4 rounded-full transition-colors shadow-xs">
+            <span class="material-symbols-outlined text-base">person</span>
+            <span>حسابي</span>
           </a>
         </div>
       </div>
 
-      <div class="bg-inverse-surface border-t border-outline-variant/20">
-        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
-            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">الرئيسية</a>
-            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة</a>
-            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة المستعملة والمجددة</a>
-            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">العروض الخاصة</a>
-            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الماركات</a>
-            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">خدمة العملاء</a>
-          </nav>
-          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">bolt</span>
-            <span>توصيل سريع خلال 24 ساعة</span>
-          </div>
-        </div>
-      </div>
+      <!-- Categories Links Bar -->
+      <nav class="flex items-center gap-6 overflow-x-auto py-2.5 border-t border-slate-100 text-sm font-semibold text-slate-600">
+        <a href="#" class="text-brand-600 font-bold whitespace-nowrap">كل الأجهزة 2025</a>
+        <a href="#" class="hover:text-slate-900 whitespace-nowrap transition-colors">جوالات ذكية</a>
+        <a href="#" class="hover:text-slate-900 whitespace-nowrap transition-colors">أجهزة لابتوب</a>
+        <a href="#" class="hover:text-slate-900 whitespace-nowrap transition-colors">الأجهزة اللوحية</a>
+        <a href="#" class="hover:text-slate-900 whitespace-nowrap transition-colors">ساعات وسماعات</a>
+        <a href="#" class="hover:text-slate-900 whitespace-nowrap transition-colors">أجهزة القيمنق</a>
+        <a href="#" class="mr-auto text-emerald-600 hover:text-emerald-700 whitespace-nowrap flex items-center gap-1 font-bold">
+          <span class="material-symbols-outlined text-base">local_offer</span>
+          <span>عروض التصفية</span>
+        </a>
+      </nav>
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
-  <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
-    <div class="flex flex-col w-full text-on-surface">
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-20">
+    
+    <!-- Hero Showcase Section -->
+    <section class="relative rounded-3xl overflow-hidden bg-slate-950 text-white shadow-2xl mb-12">
+      <!-- Ambient Glows -->
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-500/25 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
       
-      <!-- 1. Value Propositions Strip -->
-      <section class="w-full bg-surface-container-low py-space-sm px-space-md lg:px-space-xl border-b border-outline-variant/10 text-xs">
-        <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-space-sm lg:gap-space-md">
-          <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10">
-            <div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center shrink-0 text-primary-container">
-              <span class="material-symbols-outlined text-xl" aria-hidden="true">bolt</span>
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 sm:p-12 lg:p-14">
+        <!-- Content -->
+        <div class="lg:col-span-7 flex flex-col items-start gap-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-xs font-semibold text-emerald-400 backdrop-blur">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>إصدارات جديدة كلياً بتغليف المصنع الأصلي</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            قمة التقنية لعام 2025 <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-l from-brand-100 via-indigo-200 to-white">
+              بأفضل الأسعار وضمان وكيل معتمد
+            </span>
+          </h1>
+
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl">
+            استمتع بأحدث التقنيات مع تجربة تسوق موثوقة بنسبة 100%. أجهزة جديدة بالكرتون غير مفتوحة مع شحن آمن وسريع لجميع المدن وخيارات دفع وتقسيط مريحة.
+          </p>
+
+          <!-- Badges -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-lg">
+            <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10">
+              <span class="material-symbols-outlined text-emerald-400 text-xl">verified</span>
+              <span class="text-xs font-bold text-slate-200">ضمان عامين</span>
             </div>
-            <div class="flex flex-col">
-              <span class="font-bold text-on-surface">شحن سريع 24 ساعة</span>
-              <span class="text-secondary text-[11px]">توصيل آمن لجميع مدن المملكة</span>
+            <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10">
+              <span class="material-symbols-outlined text-indigo-400 text-xl">inventory_2</span>
+              <span class="text-xs font-bold text-slate-200">مختوم أصلياً</span>
+            </div>
+            <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10">
+              <span class="material-symbols-outlined text-amber-400 text-xl">credit_card</span>
+              <span class="text-xs font-bold text-slate-200">تقسيط 0%</span>
+            </div>
+            <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10">
+              <span class="material-symbols-outlined text-sky-400 text-xl">electric_bolt</span>
+              <span class="text-xs font-bold text-slate-200">توصيل 24h</span>
             </div>
           </div>
 
-          <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10">
-            <div class="w-10 h-10 rounded-full bg-tertiary-container/15 flex items-center justify-center shrink-0 text-tertiary">
-              <span class="material-symbols-outlined text-xl" aria-hidden="true">verified</span>
-            </div>
-            <div class="flex flex-col">
-              <span class="font-bold text-on-surface">ضمان ذهبي معتمد</span>
-              <span class="text-secondary text-[11px]">سنتان للجديد و 6 أشهر للمستعمل</span>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 text-primary">
-              <span class="material-symbols-outlined text-xl" aria-hidden="true">published_with_changes</span>
-            </div>
-            <div class="flex flex-col">
-              <span class="font-bold text-on-surface">فحص تقني 40 نقطة</span>
-              <span class="text-secondary text-[11px]">اعتماد هندسي للأجهزة المجددة</span>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10">
-            <div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0 text-on-secondary-fixed">
-              <span class="material-symbols-outlined text-xl" aria-hidden="true">credit_card</span>
-            </div>
-            <div class="flex flex-col">
-              <span class="font-bold text-on-surface">تقسيط تابي وتمارا</span>
-              <span class="text-secondary text-[11px]">قسّم فاتورتك بدون فوائد</span>
-            </div>
+          <!-- Buttons -->
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#catalog" class="bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm px-6 py-3 rounded-full transition-all shadow-lg shadow-brand-600/30 active:scale-95">
+              تصفح المنتجات المتوفرة
+            </a>
+            <a href="#" class="bg-white/10 hover:bg-white/15 text-white font-medium text-sm px-6 py-3 rounded-full transition-colors border border-white/10">
+              سياسة الضمان والاستبدال
+            </a>
           </div>
         </div>
-      </section>
 
-      <!-- 2. Hero Section -->
-      <section class="relative w-full overflow-hidden bg-gradient-to-l from-inverse-surface via-primary to-primary-container text-surface-container-lowest py-space-2xl lg:py-space-3xl px-space-md lg:px-space-xl">
-        <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-tertiary-fixed-dim/20 blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-primary-fixed-dim/15 blur-3xl pointer-events-none"></div>
-        
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center relative z-10">
-          <div class="lg:col-span-7 flex flex-col items-start gap-space-md text-right">
-            <div class="inline-flex items-center gap-1.5 bg-surface-container-lowest/15 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-tertiary-fixed">
-              <span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-ping"></span>
-              <span>تخفيضات الموسم الكبرى 2026</span>
-            </div>
-            
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-              عصر التكنولوجيا بأسعار استثنائية
-              <span class="block text-secondary-fixed mt-2">جديد ومجدد بموثوقية 100%</span>
-            </h1>
-            <p class="text-sm sm:text-base text-on-primary-container max-w-xl leading-relaxed">
-              احصل على أقوى أجهزة iPhone 15 Pro Max ولابتوبات MacBook Pro مع رقاقة M3 فائقة القوة بتوفير يصل حتى 35% مع باقة هدايا تيك برو الحصرية.
-            </p>
+        <!-- Floating Hero Showcase Visual -->
+        <div class="lg:col-span-5 relative flex items-center justify-center">
+          <div class="absolute inset-0 bg-gradient-to-tr from-brand-600/30 to-indigo-400/10 rounded-full blur-3xl scale-90 pointer-events-none"></div>
 
-            <div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto text-xs font-bold">
-              <a class="w-full sm:w-auto text-center px-6 py-3 rounded-lg bg-surface-container-lowest text-primary shadow-xl hover:bg-surface-container-low transition-all active:scale-95" href="#">
-                تسوق الأجهزة الجديدة الآن
-              </a>
-              <a class="w-full sm:w-auto text-center px-6 py-3 rounded-lg bg-inverse-surface/30 backdrop-blur-sm text-surface-container-lowest shadow-md hover:bg-inverse-surface/50 transition-all active:scale-95" href="#">
-                الأجهزة المستعملة المضمونة
-              </a>
-            </div>
-
-            <div class="flex items-center gap-3 mt-2 p-2 bg-surface-container-lowest/10 backdrop-blur-md rounded-xl text-xs">
-              <div class="flex -space-x-2 space-x-reverse">
-                <span class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface font-bold flex items-center justify-center ring-2 ring-surface-container-lowest text-[11px]">★</span>
-                <span class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary font-bold flex items-center justify-center ring-2 ring-surface-container-lowest text-[11px]">A+</span>
-                <span class="w-7 h-7 rounded-full bg-primary text-on-primary font-bold flex items-center justify-center ring-2 ring-surface-container-lowest text-[11px]">40</span>
-              </div>
-              <span class="font-bold">أكثر من 150,000 عميل يثقون بجودة أجهزتنا المعتمدة</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 relative flex justify-center items-center">
-            <div class="relative w-full max-w-md aspect-square rounded-2xl overflow-hidden shadow-2xl bg-surface-container-high/10 p-4 backdrop-blur-sm">
-              <img class="w-full h-full object-cover rounded-xl" alt="أحدث الأجهزة التقنية المجددة" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxKw7NihNDeQybKsisbS920qGx1EGDqgeQHYWcqbqJ2rSvtZk4hqhFRnXbmGQrLa-w33QW2vcLSpsmg97vvAJGn8s5DBzei9OGxIpBYnr8pW289L5WPVakydxSMBmHsXW1WS7Pn4_PpVJ6zBopmn4573C2wkbYXMWvpwGda-socDca2DzraphkxJ-R8KPUQ0QX5YFs6JmQYy13lnFwOXr0HW1O7DC3-FG2SLbZtTLJZp8gjpyrRZcufQ"/>
+          <div class="relative w-full max-w-md flex flex-col items-center">
+            <div class="relative w-full h-80 sm:h-96 flex items-center justify-center group">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ3e6-JZGFxQQIyBx7832WAtFE3y3XU7Lq7vdDe9XTEwd8gcdBJRuU0vybRCcnIEL54tohQLAKMfig7VK0Prnea-fa5w2IxDM8Kp9o7AlTZseGVk-GWkagn1SSbjIQVMSJNNQW6-HGEitXeUOkDXXxNWnZxlV7BYx1KyfM4gXaAbt_MWGB5DAE5N2USX0j84ZZZ2_OMn2Ji2zylxTLIHe3Qmw1SaUkRjofPVrCB53R0o4pLpw_TxHeRw" 
+                alt="إصدارات الأجهزة الذكية 2025" 
+                class="w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-700 ease-out"
+              >
               
-              <div class="absolute bottom-4 right-4 bg-surface-container-lowest/95 backdrop-blur-md p-3 rounded-xl shadow-xl flex items-center gap-3 text-on-surface text-xs">
-                <div class="w-10 h-10 rounded-lg bg-tertiary-container flex items-center justify-center text-on-tertiary shrink-0">
-                  <span class="material-symbols-outlined text-xl" aria-hidden="true">verified_user</span>
-                </div>
-                <div class="flex flex-col">
-                  <span class="font-bold">فحص دقيق مجاز</span>
-                  <span class="text-tertiary text-[11px]">مع بطاقة التقرير الإلكتروني</span>
-                </div>
+              <div class="absolute top-4 right-2 bg-slate-900/90 border border-white/10 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg shadow-black/40">
+                <span class="material-symbols-outlined text-emerald-400 text-sm">bolt</span>
+                <span>جاهز للشحن الفوري</span>
+              </div>
+
+              <div class="absolute bottom-4 left-2 bg-slate-900/90 border border-white/10 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg shadow-black/40">
+                <span class="material-symbols-outlined text-amber-400 text-sm">verified</span>
+                <span>كرتون المصنع الأصلي</span>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 3. Categories Grid -->
-      <section class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-2xl text-xs">
-        <div class="flex items-center justify-between mb-space-lg">
+    <!-- Filters & Sort -->
+    <div id="catalog" class="flex flex-col gap-4 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">
+        <!-- Filter Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
+          <button class="bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-xl whitespace-nowrap">الكل (34)</button>
+          <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-xl whitespace-nowrap transition-colors">آيفون</button>
+          <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-xl whitespace-nowrap transition-colors">سامسونج Galaxy</button>
+          <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-xl whitespace-nowrap transition-colors">أجهزة Mac ولابتوب</button>
+          <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-xl whitespace-nowrap transition-colors">أجهزة لوحية</button>
+        </div>
+
+        <!-- Sort -->
+        <div class="flex items-center gap-2 self-end sm:self-auto shrink-0">
+          <span class="text-xs font-semibold text-slate-600">ترتيب:</span>
+          <select class="bg-slate-100 hover:bg-slate-200/80 text-xs font-bold text-slate-800 rounded-xl px-3 py-2 border-none outline-none cursor-pointer">
+            <option>وصل حديثاً (2025)</option>
+            <option>الأكثر مبيعاً</option>
+            <option>السعر: من الأقل</option>
+            <option>السعر: من الأعلى</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Product 1 -->
+      <div class="group bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-xs hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col">
+        <div class="relative bg-slate-100 aspect-square overflow-hidden flex items-center justify-center p-4">
+          <div class="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
+            <span class="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs">مختوم 100%</span>
+            <span class="bg-rose-50 text-rose-600 border border-rose-200 text-[10px] font-bold px-2 py-0.5 rounded-full">وفر 500 ر.س</span>
+          </div>
+          <button aria-label="أضف للمفضلة" class="absolute top-3 left-3 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center transition-colors shadow-xs">
+            <span class="material-symbols-outlined text-lg">favorite</span>
+          </button>
+          <img 
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm3BOu15RpLr3-2sxD39Esf7Fqksbl-rB4b58Hj4oQ1a45EyZgkiX-fpU__r0vUCNQuZJaDe37C5rliV30jPQu4ym3KuME-sylCd4IgWwLzrPydUtmoU5It3B8T3bbOiCzb4FxrP53uk6BJyW-Oy1Km-dkDE1V8C4BBs7J76bAEX1hz7pnS9uBATEhdWnLD9RFJogzNiiH37iaScNkp8zY5ixd0Y3hTamyp1rHZxvbFJX97KtHYDNtxg" 
+            alt="iPhone 16 Pro Max"
+            class="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500"
+          >
+        </div>
+
+        <div class="p-4 flex-1 flex flex-col justify-between">
           <div>
-            <h2 class="text-lg font-bold text-on-surface">تسوق حسب الفئات</h2>
-            <p class="text-secondary text-[11px] mt-0.5">اختر مجالك وتصفح آلاف الأجهزة الحديثة والمجددة</p>
-          </div>
-          <a class="text-primary font-bold hover:underline flex items-center gap-1" href="#">
-            <span>تصفح الكل</span>
-            <span class="material-symbols-outlined text-sm rotate-180" aria-hidden="true">arrow_forward</span>
-          </a>
-        </div>
+            <span class="text-[11px] font-bold tracking-wider text-slate-600 uppercase">APPLE • ضمان محلي</span>
+            <h2 class="font-bold text-slate-900 text-base mt-1 line-clamp-1 group-hover:text-brand-600 transition-colors">iPhone 16 Pro Max تيتانيوم</h2>
+            <p class="text-xs text-slate-600 mt-1 line-clamp-1">256GB | شريحة A18 Pro | تيتانيوم صحراوي</p>
 
-        <div class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-space-md">
-          <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
-            <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
-              <span class="material-symbols-outlined text-2xl" aria-hidden="true">smartphone</span>
-            </div>
-            <span class="font-bold text-on-surface group-hover:text-primary">هواتف ذكية</span>
-            <span class="text-secondary text-[10px]">1,420 جهاز</span>
-          </a>
-
-          <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
-            <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
-              <span class="material-symbols-outlined text-2xl" aria-hidden="true">laptop_mac</span>
-            </div>
-            <span class="font-bold text-on-surface group-hover:text-primary">حواسيب ولابتوبات</span>
-            <span class="text-secondary text-[10px]">840 جهاز</span>
-          </a>
-
-          <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
-            <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
-              <span class="material-symbols-outlined text-2xl" aria-hidden="true">tablet_mac</span>
-            </div>
-            <span class="font-bold text-on-surface group-hover:text-primary">أجهزة لوحية</span>
-            <span class="text-secondary text-[10px]">320 جهاز</span>
-          </a>
-
-          <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
-            <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
-              <span class="material-symbols-outlined text-2xl" aria-hidden="true">watch</span>
-            </div>
-            <span class="font-bold text-on-surface group-hover:text-primary">ساعات وسماعات</span>
-            <span class="text-secondary text-[10px]">615 جهاز</span>
-          </a>
-
-          <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
-            <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
-              <span class="material-symbols-outlined text-2xl" aria-hidden="true">cable</span>
-            </div>
-            <span class="font-bold text-on-surface group-hover:text-primary">ملحقات وإكسسوارات</span>
-            <span class="text-secondary text-[10px]">2,100 منتج</span>
-          </a>
-
-          <a class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container-lowest shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all text-center" href="#">
-            <div class="w-14 h-14 rounded-full bg-primary-container/10 group-hover:bg-primary-container group-hover:text-on-primary text-primary-container transition-all flex items-center justify-center">
-              <span class="material-symbols-outlined text-2xl" aria-hidden="true">sports_esports</span>
-            </div>
-            <span class="font-bold text-on-surface group-hover:text-primary">شاشات وألعاب</span>
-            <span class="text-secondary text-[10px]">480 جهاز</span>
-          </a>
-        </div>
-      </section>
-
-      <!-- 4. New Arrivals Section -->
-      <section class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-xl text-xs">
-        <div class="flex items-center justify-between mb-space-lg">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-6 bg-primary-container rounded-full"></span>
-            <div>
-              <h2 class="text-base font-bold text-on-surface">أحدث الأجهزة الجديدة كلياً</h2>
-              <span class="text-tertiary font-bold text-[11px]">● أصلي 100% بضمان الوكيل المعتمد سنتين</span>
-            </div>
-          </div>
-          <a class="px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface font-bold transition-colors flex items-center gap-1 border border-outline-variant/10" href="#">
-            <span>عرض الكل</span>
-            <span class="material-symbols-outlined text-sm rotate-180" aria-hidden="true">arrow_forward</span>
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
-          <!-- Product 1 -->
-          <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
-            <div class="flex items-center justify-between mb-2">
-              <span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary text-[10px] font-bold">جديد</span>
-              <button aria-label="إضافة للمفضلة" class="w-7 h-7 rounded-full bg-surface-container-low text-secondary hover:text-error transition-colors flex items-center justify-center cursor-pointer bg-transparent border-none" onclick="showToast('تمت إضافة المنتج إلى قائمة المفضلة.', 'success')" title="المفضلة" type="button">
-                <span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span>
-              </button>
-            </div>
-            <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
-              <img class="w-full h-full object-contain group-hover:scale-105 transition-transform p-2" alt="آيفون 15 برو تيتانيوم" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxiKwuYNFuk0d-8B4L_Vurbbh4mDLOhku3uTwOSKtWPtNperXc4KkghVycgasTVn8oWnoewAdQTzJ5FyozYpk9j_jtUs0euMoUU2Rrsq4KW1c4auSzDY4rrCLq5kn5Zyn_EaV91aoRI3Yq8iGPJMycxvaKrT9i8tjqQdzzfwl3dIMKrVzKyTEwBYla0sM0YIVADb7tqMfdJcrahvtqY1OUaXb-apY2ZM4zozka1PXIyv_USY0wV4fYWQ"/>
-            </div>
-            <div class="flex items-center gap-1 text-secondary mb-1">
-              <span class="material-symbols-outlined text-xs text-amber-500" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
-              <span class="font-bold text-on-surface">4.9</span>
-              <span class="text-[11px] text-secondary">(128 تقييم)</span>
-            </div>
-            <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed">آبل آيفون 15 برو - تيتانيوم طبيعي سعة 256 جيجابايت</h3>
-            <div class="flex items-center gap-1 text-tertiary mb-3 text-[11px] font-bold">
-              <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-              <span>متوفر في المستودع الرئيسي (+50 نقطة)</span>
-            </div>
-            <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
-              <span class="text-sm font-black text-primary">4,699 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-              <button onclick="showToast('تمت إضافة أبل آيفون 15 برو إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
-                <span class="font-sans">إضافة</span>
-              </button>
+            <div class="flex items-center gap-1.5 mt-2">
+              <span class="material-symbols-filled text-amber-400 text-sm">star</span>
+              <span class="text-xs font-bold text-slate-800">5.0</span>
+              <span class="text-xs text-slate-600">(84 تقييم)</span>
             </div>
           </div>
 
-          <!-- Product 2 -->
-          <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
-            <div class="flex items-center justify-between mb-2">
-              <span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary text-[10px] font-bold">جديد</span>
-              <button aria-label="إضافة للمفضلة" class="w-7 h-7 rounded-full bg-surface-container-low text-secondary hover:text-error transition-colors flex items-center justify-center cursor-pointer bg-transparent border-none" onclick="showToast('تمت إضافة المنتج إلى قائمة المفضلة.', 'success')" title="المفضلة" type="button">
-                <span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span>
-              </button>
-            </div>
-            <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
-              <img class="w-full h-full object-contain group-hover:scale-105 transition-transform p-2" alt="ماك بوك برو M3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD81RIVCanEtE0Ty0Gfa__H-n6egIbsoeWcx6XEuDA1lxDVV1zIoibEzG6FFDms-c7dbXJAUxDLdaWs31G5URkP1NI3PBP31IkVqmNCDuzJiNstf2wTFNIa1xegrpT6Wfmi8S0RZT3dzVRlGoI2GJHJcoZjQBBt1nGvDj8yEaRKEWoHXjXk9LDICk6c9S-NSuebWRkVamrJfCAuqqjMArNpU2_Em7J0xvxqYtlhQvcq2nUKNHW-LVjMWQ"/>
-            </div>
-            <div class="flex items-center gap-1 text-secondary mb-1">
-              <span class="material-symbols-outlined text-xs text-amber-500" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
-              <span class="font-bold text-on-surface">5.0</span>
-              <span class="text-[11px] text-secondary">(74 تقييم)</span>
-            </div>
-            <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed">ماك بوك برو M3 بشاشة 14 إنش - رامات 18GB و 512GB SSD</h3>
-            <div class="flex items-center gap-1 text-tertiary mb-3 text-[11px] font-bold">
-              <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-              <span>متوفر في المستودع (+80 نقطة)</span>
-            </div>
-            <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
-              <span class="text-sm font-black text-primary">7,299 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-              <button onclick="showToast('تمت إضافة ماك بوك برو إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
-                <span class="font-sans">إضافة</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Product 3 -->
-          <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
-            <div class="flex items-center justify-between mb-2">
-              <span class="px-2 py-0.5 rounded-full bg-error text-on-error text-[10px] font-bold">خصم 18%</span>
-              <button aria-label="إضافة للمفضلة" class="w-7 h-7 rounded-full bg-surface-container-low text-secondary hover:text-error transition-colors flex items-center justify-center cursor-pointer bg-transparent border-none" onclick="showToast('تمت إضافة المنتج إلى قائمة المفضلة.', 'success')" title="المفضلة" type="button">
-                <span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span>
-              </button>
-            </div>
-            <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
-              <img class="w-full h-full object-contain group-hover:scale-105 transition-transform p-2" alt="ساعة سامسونج جالاكسي" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4DngFbmZBlKbwCjBhRZsX0xRWWSWdQcxOiVOxUSeuoT5HFo4fQx54A4oXnf4gGsuVYm-VdqIOgfxSo1UFFhUsvacWOuULAnG9JbSsxeBrX1PheAeOu48sPBHxvsHyLXO_kXOgW5WtkVaafjXIau6khaANf0ULOa_TAA9mwfa9vRRUDNR1XnRlcxhZ8gHwCkbYeK3pXuykyzqPy1tHUgKYk06tI5ZhG10XiAyhXIcsyu5wsUEcI-8G8Q"/>
-            </div>
-            <div class="flex items-center gap-1 text-secondary mb-1">
-              <span class="material-symbols-outlined text-xs text-amber-500" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
-              <span class="font-bold text-on-surface">4.7</span>
-              <span class="text-[11px] text-secondary">(92 تقييم)</span>
-            </div>
-            <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed">ساعة سامسونج جالاكسي ووتش 6 كلاسيك مقاس 47 مم</h3>
-            <div class="flex items-center gap-1 text-tertiary mb-3 text-[11px] font-bold">
-              <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-              <span>متوفر في المستودع (+30 نقطة)</span>
-            </div>
-            <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
-              <div>
-                <span class="text-sm font-black text-primary">1,149 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-                <span class="text-[10px] text-secondary line-through font-sans mr-1">1,399 ر.س</span>
-              </div>
-              <button onclick="showToast('تمت إضافة ساعة سامسونج إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
-                <span class="font-sans">إضافة</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Product 4 -->
-          <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
-            <div class="flex items-center justify-between mb-2">
-              <span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary text-[10px] font-bold">جديد</span>
-              <button aria-label="إضافة للمفضلة" class="w-7 h-7 rounded-full bg-surface-container-low text-secondary hover:text-error transition-colors flex items-center justify-center cursor-pointer bg-transparent border-none" onclick="showToast('تمت إضافة المنتج إلى قائمة المفضلة.', 'success')" title="المفضلة" type="button">
-                <span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span>
-              </button>
-            </div>
-            <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
-              <img class="w-full h-full object-contain group-hover:scale-105 transition-transform p-2" alt="سماعات سوني" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0uWNGnGLzXvr_3smeWRyzp4XBQNvk1FZ7kpcHiiokRJqxF9Zjg3EYAeEEHUgpItCGq0Pxji5CojDheLQkH7tfBIOBmfcpjPjWYohdA8QdAiqInicYrOvTX_PjtSm3CV7H1rMSCaVOKQ8BgG3DX2ZL5oHsakQtnN8wEtIHRRs_HBGehHYl0h7BSErUkOX03umkRSp73poRH6PcKtT-aw73qHaARluHJv33M19oblr7twh1myeZ_Mzp7A"/>
-            </div>
-            <div class="flex items-center gap-1 text-secondary mb-1">
-              <span class="material-symbols-outlined text-xs text-amber-500" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
-              <span class="font-bold text-on-surface">4.8</span>
-              <span class="text-[11px] text-secondary">(215 تقييم)</span>
-            </div>
-            <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed">سماعات سوني WH-1000XM5 اللاسلكية العازلة للضوضاء</h3>
-            <div class="flex items-center gap-1 text-tertiary mb-3 text-[11px] font-bold">
-              <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-              <span>متوفر في المستودع (+40 نقطة)</span>
-            </div>
-            <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
-              <span class="text-sm font-black text-primary">1,299 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-              <button onclick="showToast('تمت إضافة سماعات سوني إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
-                <span class="font-sans">إضافة</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- 5. Promotional Banners -->
-      <section class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-xl text-xs">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
-          
-          <div class="bg-gradient-to-r from-inverse-surface to-primary text-surface-container-lowest p-space-xl rounded-2xl relative overflow-hidden flex flex-col justify-between min-h-[260px] shadow-lg">
-            <div>
-              <div class="inline-flex items-center gap-1 px-3 py-1 bg-error text-on-error rounded-full font-bold mb-3">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">local_fire_department</span>
-                <span>عروض الفلاش الأسبوعية</span>
-              </div>
-              <h3 class="text-lg lg:text-xl font-black text-surface-container-lowest">خصم 25% على شاشات وكروت شاشة القيمنق</h3>
-              <p class="text-secondary-fixed mt-1 leading-relaxed">عِش تجربة اللعب القصوى بمعدل تحديث 240Hz وتقنيات OLED الرائدة.</p>
-            </div>
-
-            <!-- Countdown Timer -->
-            <div class="flex items-center gap-3 my-4 font-mono">
-              <div class="flex flex-col items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-md rounded-lg">
-                <span class="text-base font-bold text-surface-container-lowest" id="timer-hours">14</span>
-                <span class="text-[10px] text-secondary-fixed font-sans">ساعة</span>
-              </div>
-              <span class="text-lg font-bold">:</span>
-              <div class="flex flex-col items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-md rounded-lg">
-                <span class="text-base font-bold text-surface-container-lowest" id="timer-minutes">38</span>
-                <span class="text-[10px] text-secondary-fixed font-sans">دقيقة</span>
-              </div>
-              <span class="text-lg font-bold">:</span>
-              <div class="flex flex-col items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-md rounded-lg">
-                <span class="text-base font-bold text-tertiary-fixed" id="timer-seconds">42</span>
-                <span class="text-[10px] text-secondary-fixed font-sans">ثانية</span>
-              </div>
-            </div>
-
-            <div>
-              <a class="inline-flex items-center gap-1 px-5 py-2.5 bg-surface-container-lowest text-on-surface font-bold rounded-lg hover:bg-surface-container-low transition-colors shadow-md" href="#">
-                <span>تسوق عروض القيمنق</span>
-                <span class="material-symbols-outlined text-base rotate-180" aria-hidden="true">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="bg-gradient-to-r from-tertiary-container to-tertiary text-on-tertiary p-space-xl rounded-2xl relative overflow-hidden flex flex-col justify-between min-h-[260px] shadow-lg">
-            <div>
-              <div class="inline-flex items-center gap-1 px-3 py-1 bg-white/20 backdrop-blur-md text-surface-container-lowest rounded-full font-bold mb-3">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">autorenew</span>
-                <span>برنامج الاستبدال السريع</span>
-              </div>
-              <h3 class="text-lg lg:text-xl font-black text-surface-container-lowest">بدّل جهازك القديم بقسيمة تصل إلى 2,000 ريال</h3>
-              <p class="text-secondary-fixed mt-1 leading-relaxed">قيّم هاتفك أو حاسوبك خلال دقائق واستلم فوراً رصيد تيك برو لشراء جهازك المفضل.</p>
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <div class="flex items-baseline gap-2">
+              <span class="text-xl font-black text-slate-900">5,199 <span class="text-xs font-bold text-slate-600">ر.س</span></span>
+              <span class="text-xs text-slate-600 line-through">5,699 ر.س</span>
             </div>
             
-            <div class="flex items-center gap-3 my-4">
-              <div class="flex items-center gap-1 bg-white/15 px-3 py-1.5 rounded-lg font-bold">
-                <span class="material-symbols-outlined text-tertiary-fixed text-sm" aria-hidden="true">speed</span>
-                <span>تقييم خلال دقيقتين</span>
-              </div>
-              <div class="flex items-center gap-1 bg-white/15 px-3 py-1.5 rounded-lg font-bold">
-                <span class="material-symbols-outlined text-tertiary-fixed text-sm" aria-hidden="true">local_shipping</span>
-                <span>استلام مجاني من بابك</span>
-              </div>
+            <div class="mt-2 text-[11px] bg-slate-50 p-2 rounded-xl text-slate-600 flex items-center justify-between border border-slate-100">
+              <span>أو <strong>1,299 ر.س</strong> / 4 أشهر</span>
+              <span class="font-bold text-slate-800">تمارا / تابي</span>
             </div>
 
-            <div>
-              <a class="inline-flex items-center gap-1 px-5 py-2.5 bg-surface-container-lowest text-tertiary font-bold rounded-lg hover:bg-surface-container-low transition-colors shadow-md" href="#">
-                <span>ابدأ تقييم جهازك الآن</span>
-                <span class="material-symbols-outlined text-base rotate-180" aria-hidden="true">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- 6. Certified Refurbished Section -->
-      <section class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-2xl text-xs">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
-          <div class="flex items-start gap-3">
-            <span class="w-2.5 h-8 bg-tertiary-container rounded-full mt-1"></span>
-            <div>
-              <div class="inline-flex items-center gap-1 text-tertiary font-bold mb-1">
-                <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
-                <span>معتمدة من مختبرات تيك برو الهندسية</span>
-              </div>
-              <h2 class="text-lg lg:text-xl font-bold text-on-surface">أجهزة مجددة ومستعملة بجودة كالجديدة</h2>
-              <p class="text-secondary text-[11px]">فحص 40 نقطة تقنية مع ضمان 6 أشهر وحق الاسترجاع لمدة 14 يوماً</p>
-            </div>
-          </div>
-          <a class="px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface font-bold transition-colors flex items-center gap-1 border border-outline-variant/10 self-start md:self-auto" href="#">
-            <span>استكشف سوق المستعمل</span>
-            <span class="material-symbols-outlined text-sm rotate-180" aria-hidden="true">arrow_forward</span>
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
-          
-          <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
-            <div class="flex items-center justify-between mb-2">
-              <span class="px-2.5 py-0.5 rounded-full bg-tertiary-container text-on-tertiary text-[10px] font-bold">كالجديد A+</span>
-              <span class="text-error font-bold text-[10px] bg-error-container/60 px-1.5 py-0.5 rounded">وفرت 1,550 ر.س</span>
-            </div>
-            <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
-              <img class="w-full h-full object-contain p-2" alt="آيفون 14 برو ماكس بنفسجي عميق مجدد" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJQ7Kbf_imzAYLBmlN6sahHsItdRNAm-hIWBsrJ28teww7-sc1P7-z_A28E_0hZBhKFHFlTcMcR4KXGQ-Q8mi8KGh00QA1Mg01O5ZyM6ApKto4x9OJbiBFEnRXFqRfpdXbMcEP_R7ksMWMdK9qlK30bvOSoqZZsd9Ulc91v0fhTaN7qaVdmuoUZxDf0_r5WqKN0FJNBlAFnQCigogzNUgu3YNyFtw7yEogvIV-aVUPYC2ddGeDTHnncA"/>
-            </div>
-            <div class="flex items-center gap-1 text-secondary mb-2 flex-wrap font-semibold">
-              <span class="bg-surface-container px-2 py-0.5 rounded">🔋 بطارية 95%</span>
-              <span class="bg-surface-container px-2 py-0.5 rounded">256GB</span>
-            </div>
-            <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed">آيفون 14 برو ماكس 256 جيجابايت - بنفسجي عميق (مجدد معتمد)</h3>
-            <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
-              <div>
-                <span class="text-sm font-black text-primary">3,250 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-                <span class="text-[10px] text-secondary line-through font-sans mr-1">4,800 ر.س</span>
-              </div>
-              <button aria-label="شراء" onclick="showToast('تمت إضافة آيفون 14 برو ماكس إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
-                <span class="font-sans">شراء</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
-            <div class="flex items-center justify-between mb-2">
-              <span class="px-2.5 py-0.5 rounded-full bg-secondary text-on-secondary text-[10px] font-bold">ممتاز A</span>
-              <span class="text-tertiary font-bold text-[10px] bg-tertiary-container/10 px-1.5 py-0.5 rounded">مع العلبة الأصلية</span>
-            </div>
-            <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
-              <img class="w-full h-full object-contain p-2" alt="لابتوب ديل XPS 13" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA--HJe7mBe3EOE08JDf-Hzxw8EL7jTGhbYXcYprzUHE5OUPBtvmm3S3y8wxNaboqfNfuF_Ke-Vr_SWk5MZThaCOY-3WBMb7Fwcf3IFp-ZbmNLNW8w0wsKOgDDEMoqB3P0G1vhciuYwNvE6CGQ35l5HL3IQ9oWeHnS-iOKGXnysI2IfkF_tPcdvRUfcIbpBRJ0QRnKw1JNT2tJwRoay-itRbYhxyXmXdHh0yO34_5vLjezxI3ZjBYsSA"/>
-            </div>
-            <div class="flex items-center gap-1 text-secondary mb-2 flex-wrap font-semibold">
-              <span class="bg-surface-container px-2 py-0.5 rounded">🔋 بطارية 100%</span>
-              <span class="bg-surface-container px-2 py-0.5 rounded">i7 • 16GB</span>
-            </div>
-            <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed">لابتوب ديل XPS 13 إنتل كور i7 - شاشة 4K لمسية مجدد</h3>
-            <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
-              <div>
-                <span class="text-sm font-black text-primary">3,100 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-                <span class="text-[10px] text-secondary line-through font-sans mr-1">4,650 ر.س</span>
-              </div>
-              <button aria-label="شراء" onclick="showToast('تمت إضافة لابتوب ديل إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
-                <span class="font-sans">شراء</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
-            <div class="flex items-center justify-between mb-2">
-              <span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold">جيد جداً B+</span>
-              <span class="text-primary font-bold text-[10px] bg-primary-fixed/50 px-1.5 py-0.5 rounded">+ قلم آبل هدية</span>
-            </div>
-            <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
-              <img class="w-full h-full object-contain p-2" alt="آيباد برو 11 M2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuug7nrwpbjW9TJEUPTL_jwva09AIuB_tbXAD0y8F6DXhNO5tq2li2J-0q_xf1a1R2m2xC7kJqsR54tGznw41P9ui9xh2dMKLKdxcDgytt_QYXtRIuhJCw29fyiozs7EqyDift7rLTyJlZXJKmjdnkzCTQDLGPMjqu9noBn9-Rza6VUFrUrI0FPpi39r0koYBy8k8dg3IxwrNJYr7u1unnWv6pmZ2siEhn968H6IiWHmgr20C18_BiAA"/>
-            </div>
-            <div class="flex items-center gap-1 text-secondary mb-2 flex-wrap font-semibold">
-              <span class="bg-surface-container px-2 py-0.5 rounded">🔋 بطارية 91%</span>
-              <span class="bg-surface-container px-2 py-0.5 rounded">Apple M2</span>
-            </div>
-            <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed">آيباد برو 11 إنش شريحة M2 مساحة 128GB مع قلم ذكي</h3>
-            <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
-              <div>
-                <span class="text-sm font-black text-primary">2,400 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-                <span class="text-[10px] text-secondary line-through font-sans mr-1">3,499 ر.س</span>
-              </div>
-              <button aria-label="شراء" onclick="showToast('تمت إضافة آيباد برو إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
-                <span class="font-sans">شراء</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
-            <div class="flex items-center justify-between mb-2">
-              <span class="px-2.5 py-0.5 rounded-full bg-tertiary-container text-on-tertiary text-[10px] font-bold">كالجديد A+</span>
-              <span class="text-tertiary font-bold text-[10px] bg-tertiary-container/10 px-1.5 py-0.5 rounded">مع يدين تحكم</span>
-            </div>
-            <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
-              <img class="w-full h-full object-contain p-2" alt="بلايستيشن 5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClWgdZfjowMmVXTkpG_zgThPd-9AESWBaXozrWzWa95TlWnvT_8NA2NJMvtzpvrMF539ii4yAq2IJFeK5E1toqtFI_L93Fd-Ht_ib76UorNuyCH0iz13zb9lQ_Ms8Xq6ukGe6PB71575elh1u92C00CNTGmENyGbfI3tbsT4LJFCzo9om-r7WdEUXgwvVyW9mi-xf_JcpvLHYem5q3dIDJ578S7OOfGgBQ2LnOJ_UM8mxevN89d4mFBA"/>
-            </div>
-            <div class="flex items-center gap-1 text-secondary mb-2 flex-wrap font-semibold">
-              <span class="bg-surface-container px-2 py-0.5 rounded">🎮 2 يد أصلية</span>
-              <span class="bg-surface-container px-2 py-0.5 rounded">نسخة الأقراص</span>
-            </div>
-            <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed">بلايستيشن 5 نسخة الأقراص مستعمل ومفحوص مع يدين تحكم</h3>
-            <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
-              <div>
-                <span class="text-sm font-black text-primary">1,650 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-                <span class="text-[10px] text-secondary line-through font-sans mr-1">2,399 ر.س</span>
-              </div>
-              <button aria-label="شراء" onclick="showToast('تمت إضافة بلايستيشن 5 إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
-                <span class="font-sans">شراء</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- 7. Customer Reviews -->
-      <section class="w-full bg-surface-container-low py-space-2xl px-space-md lg:px-space-xl border-t border-outline-variant/10 text-xs">
-        <div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
-          <div class="text-center max-w-2xl mx-auto">
-            <h2 class="text-xl font-bold text-on-surface">ماذا يقول عملاؤنا عن تيك برو؟</h2>
-            <p class="text-secondary mt-1">تجارب حقيقية موثقة لعملاء حصلوا على أجهزة جديدة ومجددة مع خدمات الضمان</p>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
-            
-            <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center gap-1 text-amber-500 mb-3" aria-hidden="true">
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                </div>
-                <p class="text-on-surface leading-relaxed mb-4">
-                  "اشتريت آيفون 14 برو ماكس مستعمل مجدد، الصراحة الجهاز وصل بدون أي خدش نهائياً والبطارية 96%! التغليف فخم والتوصيل أخذ أقل من 24 ساعة للرياض."
-                </p>
-              </div>
-              <div class="flex items-center gap-3 pt-3 border-t border-outline-variant/10">
-                <div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs">ف.ش</div>
-                <div class="flex flex-col">
-                  <span class="font-bold text-on-surface">فيصل الشهري</span>
-                  <span class="text-tertiary text-[11px]">مشترٍ موثق - الرياض</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center gap-1 text-amber-500 mb-3" aria-hidden="true">
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                </div>
-                <p class="text-on-surface leading-relaxed mb-4">
-                  "تجربة شراء ماك بوك برو M3 الجديد كانت ممتازة. السعر أقل من الوكيل بـ 400 ريال مع تقسيط ميسر عن طريق تمارا بدون فوائد وخدمة عملاء ردوا فوراً."
-                </p>
-              </div>
-              <div class="flex items-center gap-3 pt-3 border-t border-outline-variant/10">
-                <div class="w-9 h-9 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-bold text-xs">ن.ق</div>
-                <div class="flex flex-col">
-                  <span class="font-bold text-on-surface">نورة القحطاني</span>
-                  <span class="text-tertiary text-[11px]">مشترية موثقة - جدة</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center gap-1 text-amber-500 mb-3" aria-hidden="true">
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-                </div>
-                <p class="text-on-surface leading-relaxed mb-4">
-                  "برنامج الاستبدال وفر علي وقت كبير، استبدلت جهازي القديم بقيمة عادلة جداً وأخذت بلايستيشن 5 مجدد مع الضمان. متجر تيك برو أصبح خياري الأول."
-                </p>
-              </div>
-              <div class="flex items-center gap-3 pt-3 border-t border-outline-variant/10">
-                <div class="w-9 h-9 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-xs">ع.م</div>
-                <div class="flex flex-col">
-                  <span class="font-bold text-on-surface">عبدالعزيز المنصور</span>
-                  <span class="text-tertiary text-[11px]">مشترٍ موثق - الدمام</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- 8. Newsletter Signup -->
-      <section class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-2xl text-xs">
-        <div class="bg-gradient-to-l from-primary-container via-primary to-inverse-surface rounded-2xl p-space-xl text-surface-container-lowest flex flex-col lg:flex-row items-center justify-between gap-space-xl relative overflow-hidden shadow-xl">
-          <div class="absolute -bottom-16 -left-16 w-64 h-64 bg-tertiary-fixed-dim/20 rounded-full blur-3xl pointer-events-none"></div>
-          
-          <div class="flex flex-col max-w-xl text-right z-10">
-            <div class="inline-flex items-center gap-1 px-3 py-1 bg-surface-container-lowest/15 rounded-full text-tertiary-fixed mb-2 font-bold w-fit">
-              <span class="material-symbols-outlined text-sm" aria-hidden="true">redeem</span>
-              <span>كوبون 50 ريال لطلبك الأول</span>
-            </div>
-            <h3 class="text-xl lg:text-2xl font-black text-surface-container-lowest">انضم إلى مجتمع تيك برو السري</h3>
-            <p class="text-secondary-fixed mt-1 leading-relaxed">
-              اشترك ليصلك إشعار فوري فور نزول دفعات الأجهزة المجددة النادرة وتخفيضات الفلاش الأسبوعية الحصرية قبل الجميع.
-            </p>
-          </div>
-
-          <div class="w-full lg:max-w-md flex flex-col sm:flex-row items-center gap-2 z-10">
-            <input aria-label="البريد الإلكتروني للاشتراك" class="w-full h-11 px-3 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none shadow-md text-xs font-mono" placeholder="name@example.com" type="email"/>
-            <button onclick="showToast('تم اشتراكك بنجاح! تم إرسال كوبون الخصم 50 ريال إلى بريدك.', 'success')" class="w-full sm:w-auto h-11 px-6 bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold rounded-lg shadow-lg whitespace-nowrap transition-all active:scale-95 cursor-pointer border-none" type="button">
-              اشترك الآن
+            <button class="mt-3 w-full bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-colors shadow-xs active:scale-95">
+              <span class="material-symbols-outlined text-base">shopping_bag</span>
+              <span>إضافة إلى السلة</span>
             </button>
           </div>
         </div>
-      </section>
+      </div>
 
-    </div>
+      <!-- Product 2 -->
+      <div class="group bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-xs hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col">
+        <div class="relative bg-slate-100 aspect-square overflow-hidden flex items-center justify-center p-4">
+          <div class="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
+            <span class="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs">مختوم 100%</span>
+            <span class="bg-rose-50 text-rose-600 border border-rose-200 text-[10px] font-bold px-2 py-0.5 rounded-full">وفر 600 ر.س</span>
+          </div>
+          <button aria-label="أضف للمفضلة" class="absolute top-3 left-3 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center transition-colors shadow-xs">
+            <span class="material-symbols-outlined text-lg">favorite</span>
+          </button>
+          <img 
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzN3MH7GygArdW7PeeHi2T2k3QQgnuwmelQ_i4i-yCgOf4X5fMv-H0mGOdKCWHGfo_iK11aACKZh4RRpODvPJlWPKASDIrxr5oXTHOhLCS-n6etpqF8KehCc0fgrs0fAeWC0HUg-NzaKc_zOY5E6OZhJVnfgDiB9Y3bcKFs3m6Di6oPcnH_tpTkXo_QIlNTb7M5vW02b0Qyx_1PZDMkf-0cHPfZsjAzyWdJk2elUj_QJPM392cWnCS1g" 
+            alt="Galaxy S24 Ultra"
+            class="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500"
+          >
+        </div>
+
+        <div class="p-4 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-bold tracking-wider text-slate-600 uppercase">SAMSUNG • وكيل معتمد</span>
+            <h2 class="font-bold text-slate-900 text-base mt-1 line-clamp-1 group-hover:text-brand-600 transition-colors">Galaxy S24 Ultra تيتانيوم</h2>
+            <p class="text-xs text-slate-600 mt-1 line-clamp-1">512GB | رام 12GB | قلم S-Pen مدمج</p>
+
+            <div class="flex items-center gap-1.5 mt-2">
+              <span class="material-symbols-filled text-amber-400 text-sm">star</span>
+              <span class="text-xs font-bold text-slate-800">4.9</span>
+              <span class="text-xs text-slate-600">(62 تقييم)</span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <div class="flex items-baseline gap-2">
+              <span class="text-xl font-black text-slate-900">4,499 <span class="text-xs font-bold text-slate-600">ر.س</span></span>
+              <span class="text-xs text-slate-600 line-through">5,099 ر.س</span>
+            </div>
+            
+            <div class="mt-2 text-[11px] bg-slate-50 p-2 rounded-xl text-slate-600 flex items-center justify-between border border-slate-100">
+              <span>أو <strong>1,124 ر.س</strong> / 4 أشهر</span>
+              <span class="font-bold text-slate-800">بدون فوائد</span>
+            </div>
+
+            <button class="mt-3 w-full bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-colors shadow-xs active:scale-95">
+              <span class="material-symbols-outlined text-base">shopping_bag</span>
+              <span>إضافة إلى السلة</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="group bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-xs hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col">
+        <div class="relative bg-slate-100 aspect-square overflow-hidden flex items-center justify-center p-4">
+          <div class="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
+            <span class="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs">مختوم 100%</span>
+            <span class="bg-rose-50 text-rose-600 border border-rose-200 text-[10px] font-bold px-2 py-0.5 rounded-full">وفر 800 ر.س</span>
+          </div>
+          <button aria-label="أضف للمفضلة" class="absolute top-3 left-3 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center transition-colors shadow-xs">
+            <span class="material-symbols-outlined text-lg">favorite</span>
+          </button>
+          <img 
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2dSXoLrAucnftW2ITCN4r4753sn3uczUZtOL7AeXd5bhNOcB2fAHJUBgOgVuFz8ovgqJgl5BF4vG7Z7xJ0oeng3YwOs-dc47BiFkw6pFFWREJotdkMQgL9i03ftN0VwmPRooDDlRBQI7XRbQgeJI9YqadMENh0XFROJ3VN9heu-94rkPRRrLvjKm_TCPSW18P3iUkyq95qhlQlFnrhto21VuEfI467UWHD24b2zbvVN8S9tjBG5kTaA" 
+            alt="MacBook Pro"
+            class="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500"
+          >
+        </div>
+
+        <div class="p-4 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-bold tracking-wider text-slate-600 uppercase">APPLE MACBOOK • ضمان عامين</span>
+            <h2 class="font-bold text-slate-900 text-base mt-1 line-clamp-1 group-hover:text-brand-600 transition-colors">MacBook Pro 14 M3 Pro</h2>
+            <p class="text-xs text-slate-600 mt-1 line-clamp-1">شريحة 11-Core | رام 18GB | تخزين 512GB SSD</p>
+
+            <div class="flex items-center gap-1.5 mt-2">
+              <span class="material-symbols-filled text-amber-400 text-sm">star</span>
+              <span class="text-xs font-bold text-slate-800">5.0</span>
+              <span class="text-xs text-slate-600">(41 تقييم)</span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <div class="flex items-baseline gap-2">
+              <span class="text-xl font-black text-slate-900">8,499 <span class="text-xs font-bold text-slate-600">ر.س</span></span>
+              <span class="text-xs text-slate-600 line-through">9,299 ر.س</span>
+            </div>
+            
+            <div class="mt-2 text-[11px] bg-slate-50 p-2 rounded-xl text-slate-600 flex items-center justify-between border border-slate-100">
+              <span>أو <strong>2,124 ر.س</strong> / 4 أشهر</span>
+              <span class="font-bold text-slate-800">تمارا / تابي</span>
+            </div>
+
+            <button class="mt-3 w-full bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-colors shadow-xs active:scale-95">
+              <span class="material-symbols-outlined text-base">shopping_bag</span>
+              <span>إضافة إلى السلة</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="group bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-xs hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col">
+        <div class="relative bg-slate-100 aspect-square overflow-hidden flex items-center justify-center p-4">
+          <div class="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
+            <span class="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs">مختوم 100%</span>
+            <span class="bg-rose-50 text-rose-600 border border-rose-200 text-[10px] font-bold px-2 py-0.5 rounded-full">وفر 400 ر.س</span>
+          </div>
+          <button aria-label="أضف للمفضلة" class="absolute top-3 left-3 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center transition-colors shadow-xs">
+            <span class="material-symbols-outlined text-lg">favorite</span>
+          </button>
+          <div class="w-full h-full flex flex-col items-center justify-center text-slate-400 group-hover:scale-105 transition-transform duration-500">
+            <span class="material-symbols-outlined text-6xl text-brand-500/40">tablet_mac</span>
+            <span class="text-[11px] font-semibold text-slate-400 mt-2">Ultra Retina XDR</span>
+          </div>
+        </div>
+
+        <div class="p-4 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-bold tracking-wider text-slate-600 uppercase">APPLE • ضمان سنتين</span>
+            <h2 class="font-bold text-slate-900 text-base mt-1 line-clamp-1 group-hover:text-brand-600 transition-colors">iPad Pro 11 M4 أنحف تصميم</h2>
+            <p class="text-xs text-slate-600 mt-1 line-clamp-1">شاشة OLED فائقة الدقة | سعة 256GB | واي فاي</p>
+
+            <div class="flex items-center gap-1.5 mt-2">
+              <span class="material-symbols-filled text-amber-400 text-sm">star</span>
+              <span class="text-xs font-bold text-slate-800">4.9</span>
+              <span class="text-xs text-slate-600">(38 تقييم)</span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <div class="flex items-baseline gap-2">
+              <span class="text-xl font-black text-slate-900">3,999 <span class="text-xs font-bold text-slate-600">ر.س</span></span>
+              <span class="text-xs text-slate-600 line-through">4,399 ر.س</span>
+            </div>
+            
+            <div class="mt-2 text-[11px] bg-slate-50 p-2 rounded-xl text-slate-600 flex items-center justify-between border border-slate-100">
+              <span>أو <strong>999 ر.س</strong> / 4 أشهر</span>
+              <span class="font-bold text-slate-800">تمارا / تابي</span>
+            </div>
+
+            <button class="mt-3 w-full bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-colors shadow-xs active:scale-95">
+              <span class="material-symbols-outlined text-base">shopping_bag</span>
+              <span>إضافة إلى السلة</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
-    <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
-      <div class="flex flex-col gap-space-sm">
-        <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
-        <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
-        <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
-          <span>سجل تجاري موثق وترخيص رسمي</span>
-        </div>
-      </div>
-      <div class="flex flex-col gap-space-sm">
-        <h3 class="text-surface-container-lowest font-bold text-base">خدمة العملاء والدعم</h3>
-        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
-          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مركز المساعدة والأسئلة الشائعة</a></li>
-          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">تتبع حالة الطلب</a></li>
-          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">التواصل عبر واتساب المباشر</a></li>
-          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">مراكز الصيانة المعتمدة</a></li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-space-sm">
-        <h3 class="text-surface-container-lowest font-bold text-base">سياسات الشراء والضمان</h3>
-        <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
-          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">شروط الضمان الذهبي لعامين</a></li>
-          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
-          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
-          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-space-sm">
-        <h3 class="text-surface-container-lowest font-bold text-base">طرق الدفع والشحن</h3>
-        <p class="text-secondary-fixed-dim leading-relaxed text-xs">خيارات دفع إلكتروني آمنة وتقسيط مرن مع شركائنا المعتمدين.</p>
-        <div class="grid grid-cols-3 gap-space-xs mt-space-xs text-xs">
-          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">مدى</div>
-          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">فيزا</div>
-          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
-          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
-          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
-          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
-        </div>
-      </div>
-    </div>
-    <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
-      <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
-        <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
-        <span>صُمم بأحدث التقنيات السريعة والآمنة</span>
+  <!-- Footer Simple -->
+  <footer class="bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 تيك برو (TechPro). جميع الحقوق محفوظة - متجر معتمد للأجهزة الذكية.</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-slate-900">الشروط والأحكام</a>
+        <a href="#" class="hover:text-slate-900">سياسة الخصوصية</a>
+        <a href="#" class="hover:text-slate-900">الدعم الفني</a>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script>
-    // Toast Notification System
-    function showToast(message, type = 'success') {
-      const container = document.getElementById('toast-container');
-      if (!container) return;
-      const toast = document.createElement('div');
-      
-      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
-      let icon = 'info';
-      
-      if (type === 'success') {
-        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
-        icon = 'check_circle';
-      } else if (type === 'error') {
-        bgClass = 'bg-error text-on-error border-error-container';
-        icon = 'error';
-      }
-
-      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
-      toast.innerHTML = `
-        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
-        <span class="flex-1">${message}</span>
-      `;
-      
-      container.appendChild(toast);
-      
-      setTimeout(() => {
-        toast.classList.remove('translate-y-2', 'opacity-0');
-      }, 10);
-
-      setTimeout(() => {
-        toast.classList.add('translate-y-2', 'opacity-0');
-        setTimeout(() => toast.remove(), 300);
-      }, 3500);
-    }
-
-    (function initCountdown() {
-      let totalSeconds = 14 * 3600 + 38 * 60 + 42;
-      const hoursEl = document.getElementById('timer-hours');
-      const minutesEl = document.getElementById('timer-minutes');
-      const secondsEl = document.getElementById('timer-seconds');
-
-      if (!hoursEl || !minutesEl || !secondsEl) return;
-
-      setInterval(() => {
-        if (totalSeconds <= 0) {
-          totalSeconds = 24 * 3600;
-        }
-        totalSeconds--;
-
-        const h = Math.floor(totalSeconds / 3600);
-        const m = Math.floor((totalSeconds % 3600) / 60);
-        const s = totalSeconds % 60;
-
-        hoursEl.textContent = String(h).padStart(2, '0');
-        minutesEl.textContent = String(m).padStart(2, '0');
-        secondsEl.textContent = String(s).padStart(2, '0');
-      }, 1000);
-    })();
-  </script>
 </body>
 </html>
