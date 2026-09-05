@@ -1,0 +1,82 @@
+// js/tailwind-config.js - إعدادات Tailwind الموحدة
+
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "secondary-fixed": "#d8e3fb",
+        "error-container": "#ffdad6",
+        "on-tertiary-container": "#67f4b7",
+        "tertiary": "#005338",
+        "surface-container-low": "#f2f4f6",
+        "secondary": "#545f73",
+        "on-tertiary": "#ffffff",
+        "surface-bright": "#f7f9fb",
+        "tertiary-container": "#006e4b",
+        "surface": "#f7f9fb",
+        "on-surface-variant": "#464555",
+        "on-secondary-fixed-variant": "#3c475a",
+        "tertiary-fixed-dim": "#4edea3",
+        "surface-variant": "#e0e3e5",
+        "inverse-surface": "#2d3133",
+        "inverse-on-surface": "#eff1f3",
+        "on-tertiary-fixed": "#002113",
+        "primary": "#3525cd",
+        "error": "#ba1a1a",
+        "surface-container": "#eceef0",
+        "secondary-fixed-dim": "#bcc7de",
+        "inverse-primary": "#c3c0ff",
+        "tertiary-fixed": "#6ffbbe",
+        "on-secondary-fixed": "#111c2d",
+        "secondary-container": "#d5e0f8",
+        "on-primary-fixed-variant": "#3323cc",
+        "primary-container": "#4f46e5",
+        "outline-variant": "#c7c4d8",
+        "surface-container-high": "#e6e8ea",
+        "on-secondary": "#ffffff",
+        "on-primary-container": "#dad7ff",
+        "on-background": "#191c1e",
+        "surface-tint": "#4d44e3",
+        "on-primary": "#ffffff",
+        "on-tertiary-fixed-variant": "#005236",
+        "outline": "#777587",
+        "surface-container-highest": "#e0e3e5",
+        "primary-fixed-dim": "#c3c0ff",
+        "background": "#f7f9fb",
+        "surface-dim": "#d8dadc",
+        "primary-fixed": "#e2dfff",
+        "on-error-container": "#93000a",
+        "on-primary-fixed": "#0f0069",
+        "on-error": "#ffffff",
+        "surface-container-lowest": "#ffffff",
+        "on-surface": "#191c1e",
+        "on-secondary-container": "#586377"
+      },
+      borderRadius: {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      spacing: {
+        "gutter-mobile": "1rem",
+        "gutter-desktop": "1.5rem",
+        "margin-mobile": "1rem",
+        "space-2xl": "3rem",
+        "space-xs": "0.5rem",
+        "space-3xl": "4rem",
+        "space-2xs": "0.25rem",
+        "space-sm": "0.75rem",
+        "space-md": "1rem",
+        "space-lg": "1.5rem",
+        "space-xl": "2rem",
+        "margin-desktop": "2.5rem"
+      },
+      fontFamily: {
+        sans: ["Cairo", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"]
+      }
+    }
+  }
+};
