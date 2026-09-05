@@ -18,15 +18,81 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
-  <!-- Header Component -->
-  <div id="header-container"></div>
-  <script>
-    fetch('components/header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-container').innerHTML = data;
-      });
-  </script>
+  <!-- Header (مدمج مباشرة) -->
+  <header class="fixed top-0 w-full z-50 shadow-md">
+    <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
+        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
+      </div>
+    </div>
+
+    <div class="bg-inverse-surface text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-md shrink-0">
+          <img alt="شعار تيك برو" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE">
+          <div class="flex flex-col">
+            <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
+            <span class="text-xs text-secondary-fixed-dim">متجر الأجهزة والتقنية المعتمد</span>
+          </div>
+        </div>
+
+        <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
+          <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
+            <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
+            </select>
+            <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text">
+            <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors cursor-pointer bg-transparent border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">mic</span>
+            </button>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
+          <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
+            <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+          </a>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
+            <div class="hidden sm:flex flex-col text-right">
+              <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
+              <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
+            </div>
+          </a>
+          <a aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
+            <span class="hidden sm:inline">حسابي</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-inverse-surface border-t border-outline-variant/20">
+        <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="index.html">الرئيسية</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة المستعملة والمجددة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">العروض الخاصة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الماركات</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">خدمة العملاء</a>
+          </nav>
+          <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">bolt</span>
+            <span>توصيل سريع خلال 24 ساعة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <!-- Main Content -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
