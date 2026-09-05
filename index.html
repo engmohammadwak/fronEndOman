@@ -23,8 +23,14 @@
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
         <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
-        <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
+        <span data-i18n="banner_text">شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
         <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
+        
+        <!-- زر تغيير اللغة -->
+        <button onclick="toggleLanguage()" class="flex items-center gap-space-2xs bg-white/10 hover:bg-white/20 text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" type="button" aria-label="Change Language">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">language</span>
+          <span id="lang-text">English</span>
+        </button>
       </div>
     </div>
 
@@ -34,19 +40,19 @@
           <img alt="شعار تيك برو" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE">
           <div class="flex flex-col">
             <span class="text-xl text-surface-container-lowest font-black leading-tight">تيك برو TechPro</span>
-            <span class="text-xs text-secondary-fixed-dim">متجر الأجهزة والتقنية المعتمد</span>
+            <span class="text-xs text-secondary-fixed-dim" data-i18n="store_desc">متجر الأجهزة والتقنية المعتمد</span>
           </div>
         </div>
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
             <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
-              <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
-              <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
-              <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
-              <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="all" data-i18n="all_departments">جميع الأقسام</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="phones" data-i18n="phones">الجوالات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="laptops" data-i18n="laptops">اللابتوبات</option>
+              <option class="bg-inverse-surface text-inverse-on-surface" value="accessories" data-i18n="accessories">الإكسسوارات</option>
             </select>
-            <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text">
+            <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" data-i18n-placeholder="search_placeholder" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text">
             <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors cursor-pointer bg-transparent border-none" type="button">
               <span class="material-symbols-outlined text-xl" aria-hidden="true">mic</span>
             </button>
@@ -68,7 +74,7 @@
           <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
             <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
-              <span id="cart-count" class="text-xs text-secondary-fixed-dim">سلة المشتريات (0)</span>
+              <span id="cart-count" class="text-xs text-secondary-fixed-dim" data-i18n="cart_label">سلة المشتريات (0)</span>
               <span id="cart-total" class="text-sm font-bold text-surface-container-lowest font-mono">0 ر.ع.</span>
             </div>
           </a>
@@ -76,7 +82,7 @@
           <!-- حسابي -->
           <a aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
             <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
-            <span class="hidden sm:inline">حسابي</span>
+            <span class="hidden sm:inline" data-i18n="my_account">حسابي</span>
           </a>
         </div>
       </div>
@@ -84,16 +90,16 @@
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
           <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
-            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="index.html">الرئيسية</a>
-            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة</a>
-            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة المستعملة والمجددة</a>
-            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">العروض الخاصة</a>
-            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الماركات</a>
-            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">خدمة العملاء</a>
+            <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="index.html" data-i18n="nav_home">الرئيسية</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#" data-i18n="nav_new_devices">الأجهزة الجديدة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#" data-i18n="nav_refurbished">الأجهزة المستعملة والمجددة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#" data-i18n="nav_special_offers">العروض الخاصة</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#" data-i18n="nav_brands">الماركات</a>
+            <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#" data-i18n="nav_customer_service">خدمة العملاء</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
             <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">bolt</span>
-            <span>توصيل سريع خلال 24 ساعة</span>
+            <span data-i18n="fast_delivery">توصيل سريع خلال 24 ساعة</span>
           </div>
         </div>
       </div>
@@ -103,25 +109,25 @@
   <!-- Main Content -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl">
-      <h1 class="text-2xl font-bold text-on-surface mb-4">محتوى الصفحة الرئيسية</h1>
-      <p class="text-secondary">الهيدر شغال! ✅</p>
+      <h1 class="text-2xl font-bold text-on-surface mb-4" data-i18n="main_title">محتوى الصفحة الرئيسية</h1>
+      <p class="text-secondary" data-i18n="main_desc">الهيدر شغال! ✅</p>
       
       <!-- أزرار تجريبية للسلة والمفضلة -->
       <div class="mt-8 space-y-4">
-        <button onclick="addToCart(150)" class="px-6 py-3 bg-primary-container text-on-primary font-bold rounded-lg hover:bg-primary transition-colors">
+        <button onclick="addToCart(150)" class="px-6 py-3 bg-primary-container text-on-primary font-bold rounded-lg hover:bg-primary transition-colors" data-i18n="btn_add_cart">
           إضافة منتج للسلة (150 ر.ع.)
         </button>
-        <button onclick="addToWishlist()" class="px-6 py-3 bg-tertiary-container text-on-tertiary font-bold rounded-lg hover:bg-tertiary transition-colors">
+        <button onclick="addToWishlist()" class="px-6 py-3 bg-tertiary-container text-on-tertiary font-bold rounded-lg hover:bg-tertiary transition-colors" data-i18n="btn_add_wishlist">
           إضافة للمفضلة
         </button>
-        <button onclick="clearCart()" class="px-6 py-3 bg-error text-on-error font-bold rounded-lg hover:bg-error/90 transition-colors">
+        <button onclick="clearCart()" class="px-6 py-3 bg-error text-on-error font-bold rounded-lg hover:bg-error/90 transition-colors" data-i18n="btn_clear_cart">
           إفراغ السلة
         </button>
       </div>
     </div>
   </main>
 
-  <!-- JavaScript للسلة والمفضلة -->
+  <!-- JavaScript للسلة والمفضلة + اللغة -->
   <script>
     // تهيئة السلة والمفضلة
     let cart = [];
@@ -133,8 +139,10 @@
       const cartTotal = document.getElementById('cart-total');
       const total = cart.reduce((sum, item) => sum + item.price, 0);
       
-      cartCount.textContent = `سلة المشتريات (${cart.length})`;
-      cartTotal.textContent = `${total.toFixed(2)} ر.ع.`;
+      cartCount.textContent = currentLang === 'ar' 
+        ? `سلة المشتريات (${cart.length})` 
+        : `Shopping Cart (${cart.length})`;
+      cartTotal.textContent = `${total.toFixed(2)} ${currentLang === 'ar' ? 'ر.ع.' : 'OMR'}`;
       
       // حفظ في localStorage
       localStorage.setItem('cart', JSON.stringify(cart));
@@ -176,10 +184,114 @@
       console.log('تم إفراغ السلة');
     }
 
+    // قاموس الترجمة
+    const translations = {
+      ar: {
+        banner_text: 'شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين',
+        store_desc: 'متجر الأجهزة والتقنية المعتمد',
+        all_departments: 'جميع الأقسام',
+        phones: 'الجوالات',
+        laptops: 'اللابتوبات',
+        accessories: 'الإكسسوارات',
+        search_placeholder: 'ابحث عن جهاز، علامة تجارية، أو مواصفات...',
+        cart_label: 'سلة المشتريات (0)',
+        my_account: 'حسابي',
+        nav_home: 'الرئيسية',
+        nav_new_devices: 'الأجهزة الجديدة',
+        nav_refurbished: 'الأجهزة المستعملة والمجددة',
+        nav_special_offers: 'العروض الخاصة',
+        nav_brands: 'الماركات',
+        nav_customer_service: 'خدمة العملاء',
+        fast_delivery: 'توصيل سريع خلال 24 ساعة',
+        main_title: 'محتوى الصفحة الرئيسية',
+        main_desc: 'الهيدر شغال! ✅',
+        btn_add_cart: 'إضافة منتج للسلة (150 ر.ع.)',
+        btn_add_wishlist: 'إضافة للمفضلة',
+        btn_clear_cart: 'إفراغ السلة',
+        lang_btn: 'English'
+      },
+      en: {
+        banner_text: 'Free shipping on all orders over 200 OMR | 2-year Gold Warranty',
+        store_desc: 'Certified Devices & Technology Store',
+        all_departments: 'All Departments',
+        phones: 'Phones',
+        laptops: 'Laptops',
+        accessories: 'Accessories',
+        search_placeholder: 'Search for a device, brand, or specs...',
+        cart_label: 'Shopping Cart (0)',
+        my_account: 'My Account',
+        nav_home: 'Home',
+        nav_new_devices: 'New Devices',
+        nav_refurbished: 'Refurbished Devices',
+        nav_special_offers: 'Special Offers',
+        nav_brands: 'Brands',
+        nav_customer_service: 'Customer Service',
+        fast_delivery: 'Fast delivery within 24 hours',
+        main_title: 'Homepage Content',
+        main_desc: 'Header is working! ✅',
+        btn_add_cart: 'Add to Cart (150 OMR)',
+        btn_add_wishlist: 'Add to Wishlist',
+        btn_clear_cart: 'Clear Cart',
+        lang_btn: 'عربي'
+      }
+    };
+
+    // تغيير اللغة
+    let currentLang = 'ar';
+    
+    function toggleLanguage() {
+      const html = document.documentElement;
+      const langText = document.getElementById('lang-text');
+      
+      if (currentLang === 'ar') {
+        // تحويل لإنجليزي
+        html.setAttribute('dir', 'ltr');
+        html.setAttribute('lang', 'en');
+        currentLang = 'en';
+      } else {
+        // تحويل لعربي
+        html.setAttribute('dir', 'rtl');
+        html.setAttribute('lang', 'ar');
+        currentLang = 'ar';
+      }
+      
+      // تحديث كل النصوص
+      updateAllTexts();
+      
+      // تحديث زر اللغة
+      langText.textContent = translations[currentLang].lang_btn;
+      
+      // حفظ اللغة في localStorage
+      localStorage.setItem('lang', currentLang);
+    }
+
+    // تحديث كل النصوص بناءً على اللغة
+    function updateAllTexts() {
+      // تحديث النصوص
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+      
+      // تحديث الـ placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[currentLang][key]) {
+          el.placeholder = translations[currentLang][key];
+        }
+      });
+      
+      // تحديث السلة والمفضلة
+      updateCartDisplay();
+    }
+
     // تحميل البيانات من localStorage عند فتح الصفحة
     window.addEventListener('DOMContentLoaded', function() {
       const savedCart = localStorage.getItem('cart');
       const savedWishlist = localStorage.getItem('wishlist');
+      const savedLang = localStorage.getItem('lang');
       
       if (savedCart) {
         cart = JSON.parse(savedCart);
@@ -189,6 +301,19 @@
       if (savedWishlist) {
         wishlist = JSON.parse(savedWishlist);
         updateWishlistDisplay();
+      }
+      
+      if (savedLang) {
+        currentLang = savedLang;
+        const langText = document.getElementById('lang-text');
+        const html = document.documentElement;
+        
+        html.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+        html.setAttribute('lang', savedLang);
+        langText.textContent = translations[savedLang].lang_btn;
+        
+        // تحديث كل النصوص
+        updateAllTexts();
       }
     });
   </script>
