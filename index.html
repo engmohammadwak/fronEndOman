@@ -339,6 +339,203 @@
       </div>
     </section>
 
+    <!-- Promotional Banners -->
+    <section class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-xl text-xs">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+        
+        <div class="bg-gradient-to-r from-inverse-surface to-primary text-surface-container-lowest p-space-xl rounded-2xl relative overflow-hidden flex flex-col justify-between min-h-[260px] shadow-lg">
+          <div>
+            <div class="inline-flex items-center gap-1 px-3 py-1 bg-error text-on-error rounded-full font-bold mb-3">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">local_fire_department</span>
+              <span data-i18n="promo_flash_title">عروض الفلاش الأسبوعية</span>
+            </div>
+            <h3 class="text-lg lg:text-xl font-black text-surface-container-lowest" data-i18n="promo_flash_desc">خصم 25% على شاشات وكروت شاشة القيمنق</h3>
+            <p class="text-secondary-fixed mt-1 leading-relaxed" data-i18n="promo_flash_subdesc">عِش تجربة اللعب القصوى بمعدل تحديث 240Hz وتقنيات OLED الرائدة.</p>
+          </div>
+
+          <!-- Countdown Timer -->
+          <div class="flex items-center gap-3 my-4 font-mono">
+            <div class="flex flex-col items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-md rounded-lg">
+              <span class="text-base font-bold text-surface-container-lowest" id="timer-hours">14</span>
+              <span class="text-[10px] text-secondary-fixed font-sans" data-i18n="promo_flash_hours">ساعة</span>
+            </div>
+            <span class="text-lg font-bold">:</span>
+            <div class="flex flex-col items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-md rounded-lg">
+              <span class="text-base font-bold text-surface-container-lowest" id="timer-minutes">38</span>
+              <span class="text-[10px] text-secondary-fixed font-sans" data-i18n="promo_flash_minutes">دقيقة</span>
+            </div>
+            <span class="text-lg font-bold">:</span>
+            <div class="flex flex-col items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-md rounded-lg">
+              <span class="text-base font-bold text-tertiary-fixed" id="timer-seconds">11</span>
+              <span class="text-[10px] text-secondary-fixed font-sans" data-i18n="promo_flash_seconds">ثانية</span>
+            </div>
+          </div>
+
+          <div>
+            <a class="inline-flex items-center gap-1 px-5 py-2.5 bg-surface-container-lowest text-on-surface font-bold rounded-lg hover:bg-surface-container-low transition-colors shadow-md" href="#" data-i18n="promo_flash_btn">
+              <span>تسوق عروض القيمنق</span>
+              <span class="material-symbols-outlined text-base rotate-180" aria-hidden="true">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-tertiary-container to-tertiary text-on-tertiary p-space-xl rounded-2xl relative overflow-hidden flex flex-col justify-between min-h-[260px] shadow-lg">
+          <div>
+            <div class="inline-flex items-center gap-1 px-3 py-1 bg-white/20 backdrop-blur-md text-surface-container-lowest rounded-full font-bold mb-3">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">autorenew</span>
+              <span data-i18n="promo_trade_title">برنامج الاستبدال السريع</span>
+            </div>
+            <h3 class="text-lg lg:text-xl font-black text-surface-container-lowest" data-i18n="promo_trade_desc">بدّل جهازك القديم بقسيمة تصل إلى 2,000 ريال</h3>
+            <p class="text-secondary-fixed mt-1 leading-relaxed" data-i18n="promo_trade_subdesc">قيّم هاتفك أو حاسوبك خلال دقائق واستلم فوراً رصيد تيك برو لشراء جهازك المفضل.</p>
+          </div>
+          
+          <div class="flex items-center gap-3 my-4">
+            <div class="flex items-center gap-1 bg-white/15 px-3 py-1.5 rounded-lg font-bold">
+              <span class="material-symbols-outlined text-tertiary-fixed text-sm" aria-hidden="true">speed</span>
+              <span data-i18n="promo_trade_speed">تقييم خلال دقيقتين</span>
+            </div>
+            <div class="flex items-center gap-1 bg-white/15 px-3 py-1.5 rounded-lg font-bold">
+              <span class="material-symbols-outlined text-tertiary-fixed text-sm" aria-hidden="true">local_shipping</span>
+              <span data-i18n="promo_trade_pickup">استلام مجاني من بابك</span>
+            </div>
+          </div>
+
+          <div>
+            <a class="inline-flex items-center gap-1 px-5 py-2.5 bg-surface-container-lowest text-tertiary font-bold rounded-lg hover:bg-surface-container-low transition-colors shadow-md" href="#" data-i18n="promo_trade_btn">
+              <span>ابدأ تقييم جهازك الآن</span>
+              <span class="material-symbols-outlined text-base rotate-180" aria-hidden="true">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Certified Refurbished Section -->
+    <section class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-2xl text-xs">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+        <div class="flex items-start gap-3">
+          <span class="w-2.5 h-8 bg-tertiary-container rounded-full mt-1"></span>
+          <div>
+            <div class="inline-flex items-center gap-1 text-tertiary font-bold mb-1">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
+              <span data-i18n="refurbished_badge">معتمدة من مختبرات تيك برو الهندسية</span>
+            </div>
+            <h2 class="text-lg lg:text-xl font-bold text-on-surface" data-i18n="refurbished_title">أجهزة مجددة ومستعملة بجودة كالجديدة</h2>
+            <p class="text-secondary text-[11px]" data-i18n="refurbished_desc">فحص 40 نقطة تقنية مع ضمان 6 أشهر وحق الاسترجاع لمدة 14 يوماً</p>
+          </div>
+        </div>
+        <a class="px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface font-bold transition-colors flex items-center gap-1 border border-outline-variant/10 self-start md:self-auto" href="#" data-i18n="refurbished_view_all">
+          <span>استكشف سوق المستعمل</span>
+          <span class="material-symbols-outlined text-sm rotate-180" aria-hidden="true">arrow_forward</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+        
+        <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-tertiary-container text-on-tertiary text-[10px] font-bold" data-i18n="condition_a_plus">كالجديد A+</span>
+            <span class="text-error font-bold text-[10px] bg-error-container/60 px-1.5 py-0.5 rounded"><span data-i18n="savings_label">وفرت</span> 1,550 ر.ع.</span>
+          </div>
+          <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
+            <img class="w-full h-full object-contain p-2" alt="آيفون 14 برو ماكس بنفسجي عميق مجدد" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJQ7Kbf_imzAYLBmlN6sahHsItdRNAm-hIWBsrJ28teww7-sc1P7-z_A28E_0hZBhKFHFlTcMcR4KXGQ-Q8mi8KGh00QA1Mg01O5ZyM6ApKto4x9OJbiBFEnRXFqRfpdXbMcEP_R7ksMWMdK9qlK30bvOSoqZZsd9Ulc91v0fhTaN7qaVdmuoUZxDf0_r5WqKN0FJNBlAFnQCigogzNUgu3YNyFtw7yEogvIV-aVUPYC2ddGeDTHnncA">
+          </div>
+          <div class="flex items-center gap-1 text-secondary mb-2 flex-wrap font-semibold">
+            <span class="bg-surface-container px-2 py-0.5 rounded" data-i18n="refurb_product_1_battery">🔋 بطارية 95%</span>
+            <span class="bg-surface-container px-2 py-0.5 rounded" data-i18n="refurb_product_1_storage">256GB</span>
+          </div>
+          <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed" data-i18n="refurb_product_1_name">آيفون 14 برو ماكس 256 جيجابايت - بنفسجي عميق (مجدد معتمد)</h3>
+          <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+            <div>
+              <span class="text-sm font-black text-primary">3,250 <span class="text-xs font-normal font-sans text-secondary">ر.ع.</span></span>
+              <span class="text-[10px] text-secondary line-through font-sans mr-1" data-i18n="refurb_product_1_old_price">4,800 ر.ع.</span>
+            </div>
+            <button aria-label="شراء" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
+              <span class="font-sans" data-i18n="buy_now">شراء</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-secondary text-on-secondary text-[10px] font-bold" data-i18n="condition_a">ممتاز A</span>
+            <span class="text-tertiary font-bold text-[10px] bg-tertiary-container/10 px-1.5 py-0.5 rounded" data-i18n="with_original_box">مع العلبة الأصلية</span>
+          </div>
+          <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
+            <img class="w-full h-full object-contain p-2" alt="لابتوب ديل XPS 13" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA--HJe7mBe3EOE08JDf-Hzxw8EL7jTGhbYXcYprzUHE5OUPBtvmm3S3y8wxNaboqfNfuF_Ke-Vr_SWk5MZThaCOY-3WBMb7Fwcf3IFp-ZbmNLNW8w0wsKOgDDEMoqB3P0G1vhciuYwNvE6CGQ35l5HL3IQ9oWeHnS-iOKGXnysI2IfkF_tPcdvRUfcIbpBRJ0QRnKw1JNT2tJwRoay-itRbYhxyXmXdHh0yO34_5vLjezxI3ZjBYsSA">
+          </div>
+          <div class="flex items-center gap-1 text-secondary mb-2 flex-wrap font-semibold">
+            <span class="bg-surface-container px-2 py-0.5 rounded" data-i18n="refurb_product_2_battery">🔋 بطارية 100%</span>
+            <span class="bg-surface-container px-2 py-0.5 rounded" data-i18n="refurb_product_2_specs">i7 • 16GB</span>
+          </div>
+          <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed" data-i18n="refurb_product_2_name">لابتوب ديل XPS 13 إنتل كور i7 - شاشة 4K لمسية مجدد</h3>
+          <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+            <div>
+              <span class="text-sm font-black text-primary">3,100 <span class="text-xs font-normal font-sans text-secondary">ر.ع.</span></span>
+              <span class="text-[10px] text-secondary line-through font-sans mr-1" data-i18n="refurb_product_2_old_price">4,650 ر.ع.</span>
+            </div>
+            <button aria-label="شراء" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
+              <span class="font-sans" data-i18n="buy_now">شراء</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold" data-i18n="condition_b_plus">جيد جداً B+</span>
+            <span class="text-primary font-bold text-[10px] bg-primary-fixed/50 px-1.5 py-0.5 rounded" data-i18n="with_apple_pencil">+ قلم آبل هدية</span>
+          </div>
+          <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
+            <img class="w-full h-full object-contain p-2" alt="آيباد برو 11 M2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuug7nrwpbjW9TJEUPTL_jwva09AIuB_tbXAD0y8F6DXhNO5tq2li2J-0q_xf1a1R2m2xC7kJqsR54tGznw41P9ui9xh2dMKLKdxcDgytt_QYXtRIuhJCw29fyiozs7EqyDift7rLTyJlZXJKmjdnkzCTQDLGPMjqu9noBn9-Rza6VUFrUrI0FPpi39r0koYBy8k8dg3IxwrNJYr7u1unnWv6pmZ2siEhn968H6IiWHmgr20C18_BiAA">
+          </div>
+          <div class="flex items-center gap-1 text-secondary mb-2 flex-wrap font-semibold">
+            <span class="bg-surface-container px-2 py-0.5 rounded" data-i18n="refurb_product_3_battery">🔋 بطارية 91%</span>
+            <span class="bg-surface-container px-2 py-0.5 rounded" data-i18n="refurb_product_3_specs">Apple M2</span>
+          </div>
+          <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed" data-i18n="refurb_product_3_name">آيباد برو 11 إنش شريحة M2 مساحة 128GB مع قلم ذكي</h3>
+          <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+            <div>
+              <span class="text-sm font-black text-primary">2,400 <span class="text-xs font-normal font-sans text-secondary">ر.ع.</span></span>
+              <span class="text-[10px] text-secondary line-through font-sans mr-1" data-i18n="refurb_product_3_old_price">3,499 ر.ع.</span>
+            </div>
+            <button aria-label="شراء" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
+              <span class="font-sans" data-i18n="buy_now">شراء</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-col bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all relative group">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-tertiary-container text-on-tertiary text-[10px] font-bold" data-i18n="condition_a_plus">كالجديد A+</span>
+            <span class="text-tertiary font-bold text-[10px] bg-tertiary-container/10 px-1.5 py-0.5 rounded" data-i18n="with_controllers">مع يدين تحكم</span>
+          </div>
+          <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
+            <img class="w-full h-full object-contain p-2" alt="بلايستيشن 5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClWgdZfjowMmVXTkpG_zgThPd-9AESWBaXozrWzWa95TlWnvT_8NA2NJMvtzpvrMF539ii4yAq2IJFeK5E1toqtFI_L93Fd-Ht_ib76UorNuyCH0iz13zb9lQ_Ms8Xq6ukGe6PB71575elh1u92C00CNTGmENyGbfI3tbsT4LJFCzo9om-r7WdEUXgwvVyW9mi-xf_JcpvLHYem5q3dIDJ578S7OOfGgBQ2LnOJ_UM8mxevN89d4mFBA">
+          </div>
+          <div class="flex items-center gap-1 text-secondary mb-2 flex-wrap font-semibold">
+            <span class="bg-surface-container px-2 py-0.5 rounded" data-i18n="refurb_product_4_controllers">🎮 2 يد أصلية</span>
+            <span class="bg-surface-container px-2 py-0.5 rounded" data-i18n="refurb_product_4_version">نسخة الأقراص</span>
+          </div>
+          <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed" data-i18n="refurb_product_4_name">بلايستيشن 5 نسخة الأقراص مستعمل ومفحوص مع يدين تحكم</h3>
+          <div class="mt-auto pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
+            <div>
+              <span class="text-sm font-black text-primary">1,650 <span class="text-xs font-normal font-sans text-secondary">ر.ع.</span></span>
+              <span class="text-[10px] text-secondary line-through font-sans mr-1" data-i18n="refurb_product_4_old_price">2,399 ر.ع.</span>
+            </div>
+            <button aria-label="شراء" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-bold transition-all flex items-center gap-1 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">shopping_cart</span>
+              <span class="font-sans" data-i18n="buy_now">شراء</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer Container -->
