@@ -1,7 +1,24 @@
-/*
-============================================================
-TechPro
-============================================================
-*/
+/* Newsletter text alignment */
+[dir="rtl"] .newsletter-content {
+  text-align: right;
+  align-items: flex-start;
+}
 
+[dir="ltr"] .newsletter-content {
+  text-align: left;
+  align-items: flex-start;
+}
 
+/* Newsletter banner gradient direction */
+[dir="ltr"] .newsletter-banner {
+  background-image: linear-gradient(
+    to right,
+    var(--tw-gradient-stops, #4f46e5, #3525cd, #2d3133)
+  );
+}
+
+/* Newsletter decorative glow positioning */
+[dir="ltr"] .newsletter-glow {
+  left: auto;
+  right: -4rem;
+}
