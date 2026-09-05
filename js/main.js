@@ -67,71 +67,22 @@ function clearCart() {
 }
 
 // ========================================
-// Internationalization (i18n)
-// ========================================
-const translations = {
-  ar: {
-    main_title: 'محتوى الصفحة الرئيسية',
-    main_desc: 'الهيدر والفوتر يتم تحميلهم ديناميكياً! ✅',
-    btn_add_cart: 'إضافة منتج للسلة (150 ر.ع.)',
-    btn_add_wishlist: 'إضافة للمفضلة',
-    btn_clear_cart: 'إفراغ السلة',
-    lang_btn: 'English'
-  },
-  en: {
-    main_title: 'Homepage Content',
-    main_desc: 'Header and footer loaded dynamically! ✅',
-    btn_add_cart: 'Add to Cart (150 OMR)',
-    btn_add_wishlist: 'Add to Wishlist',
-    btn_clear_cart: 'Clear Cart',
-    lang_btn: 'عربي'
-  }
-};
-
-let currentLang = 'ar';
-
-function toggleLanguage() {
-  const html = document.documentElement;
-  const langText = document.getElementById('lang-text');
-  
-  if (currentLang === 'ar') {
-    html.setAttribute('dir', 'ltr');
-    html.setAttribute('lang', 'en');
-    currentLang = 'en';
-  } else {
-    html.setAttribute('dir', 'rtl');
-    html.setAttribute('lang', 'ar');
-    currentLang = 'ar';
-  }
-  
-  updateAllTexts();
-  if (langText) langText.textContent = translations[currentLang].lang_btn;
-  localStorage.setItem('lang', currentLang);
-}
-
-function updateAllTexts() {
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (translations[currentLang][key]) {
-      el.textContent = translations[currentLang][key];
-    }
-  });
-  
-  updateCartDisplay();
-}
-
-// ========================================
 // Initialize App
 // ========================================
 document.addEventListener('DOMContentLoaded', async function() {
+  // Load saved language first
+  loadSavedLanguage();
+  
   // Load components
   await loadComponent('#header-container', 'components/header.html');
   await loadComponent('#footer-container', 'components/footer.html');
   
+  // Update all texts after components loaded
+  updateAllTexts();
+  
   // Load saved state
   const savedCart = localStorage.getItem('cart');
   const savedWishlist = localStorage.getItem('wishlist');
-  const savedLang = localStorage.getItem('lang');
   
   if (savedCart) {
     cart = JSON.parse(savedCart);
@@ -141,17 +92,5 @@ document.addEventListener('DOMContentLoaded', async function() {
   if (savedWishlist) {
     wishlist = JSON.parse(savedWishlist);
     updateWishlistDisplay();
-  }
-  
-  if (savedLang) {
-    currentLang = savedLang;
-    const langText = document.getElementById('lang-text');
-    const html = document.documentElement;
-    
-    html.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
-    html.setAttribute('lang', savedLang);
-    if (langText) langText.textContent = translations[savedLang].lang_btn;
-    
-    updateAllTexts();
   }
 });
