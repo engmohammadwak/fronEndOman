@@ -32,6 +32,17 @@ const translations = {
     value_installment_title: 'تقسيط تابي وتمارا',
     value_installment_desc: 'قسّم فاتورتك بدون فوائد',
     
+    // Hero Section
+    hero_badge: 'تخفيضات الموسم الكبرى 2026',
+    hero_title: 'عصر التكنولوجيا بأسعار استثنائية',
+    hero_subtitle: 'جديد ومجدد بموثوقية 100%',
+    hero_desc: 'احصل على أقوى أجهزة iPhone 15 Pro Max ولابتوبات MacBook Pro مع رقاقة M3 فائقة القوة بتوفير يصل حتى 35% مع باقة هدايا تيك برو الحصرية.',
+    hero_btn_new: 'تسوق الأجهزة الجديدة الآن',
+    hero_btn_refurbished: 'الأجهزة المستعملة المضمونة',
+    hero_trust: 'أكثر من 150,000 عميل يثقون بجودة أجهزتنا المعتمدة',
+    hero_image_badge_title: 'فحص دقيق مجاز',
+    hero_image_badge_desc: 'مع بطاقة التقرير الإلكتروني',
+    
     // Main Content
     main_title: 'محتوى الصفحة الرئيسية',
     main_desc: 'الهيدر والفوتر يتم تحميلهم ديناميكياً! ✅',
@@ -93,6 +104,17 @@ const translations = {
     value_inspection_desc: 'Engineering approval for refurbished devices',
     value_installment_title: 'Tabby & Tamara Installments',
     value_installment_desc: 'Split your bill interest-free',
+    
+    // Hero Section
+    hero_badge: 'Biggest Season Sale 2026',
+    hero_title: 'The Era of Technology at Exceptional Prices',
+    hero_subtitle: 'New & Refurbished with 100% Reliability',
+    hero_desc: 'Get the most powerful iPhone 15 Pro Max and MacBook Pro laptops with M3 ultra-powerful chip with up to 35% savings plus exclusive TechPro gift bundle.',
+    hero_btn_new: 'Shop New Devices Now',
+    hero_btn_refurbished: 'Certified Refurbished Devices',
+    hero_trust: 'Over 150,000 customers trust our certified device quality',
+    hero_image_badge_title: 'Certified Precision Inspection',
+    hero_image_badge_desc: 'With electronic report card',
     
     // Main Content
     main_title: 'Homepage Content',
