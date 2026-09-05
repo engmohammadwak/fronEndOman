@@ -77,8 +77,14 @@ document.addEventListener('DOMContentLoaded', async function() {
   await loadComponent('#header-container', 'components/header.html');
   await loadComponent('#footer-container', 'components/footer.html');
   
-  // Update all texts after components loaded
-  updateAllTexts();
+  // Update all texts after header and footer are inserted into the page
+  if (typeof updateAllTexts === 'function') {
+    updateAllTexts();
+  }
+
+  // Tell i18n that dynamically loaded components are ready
+  document.dispatchEvent(new CustomEvent('componentsLoaded'));
+
   
   // Load saved state
   const savedCart = localStorage.getItem('cart');

@@ -426,3 +426,16 @@ function loadSavedLanguage() {
     updateAllTexts();
   }
 }
+
+// Re-apply the current language after dynamic components
+// such as header and footer finish loading.
+document.addEventListener('componentsLoaded', () => {
+  if (typeof updateAllTexts === 'function') {
+    updateAllTexts();
+  }
+
+  const langText = document.getElementById('lang-text');
+  if (langText && translations[currentLang]) {
+    langText.textContent = translations[currentLang].lang_btn;
+  }
+});
