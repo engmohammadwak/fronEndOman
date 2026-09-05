@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -132,33 +135,36 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors cursor-pointer bg-transparent border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">mic</span>
+            </button>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">حسابي</span>
           </a>
         </div>
@@ -166,7 +172,7 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة والمجددة</a>
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">سلة المشتريات وإتمام الطلب</a>
@@ -174,7 +180,7 @@
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">خدمة العملاء</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">bolt</span>
             <span>توصيل سريع خلال 24 ساعة</span>
           </div>
         </div>
@@ -198,7 +204,7 @@
             
             <div class="flex items-center gap-2 bg-surface-container-lowest px-2 z-10">
               <div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold shadow-md">
-                <span class="material-symbols-outlined text-base">shopping_cart</span>
+                <span class="material-symbols-outlined text-base" aria-hidden="true">shopping_cart</span>
               </div>
               <div class="flex flex-col text-right">
                 <span class="font-bold text-primary-container">سلة المشتريات</span>
@@ -208,7 +214,7 @@
 
             <div class="flex items-center gap-2 bg-surface-container-lowest px-2 z-10 opacity-70">
               <div class="w-9 h-9 rounded-full bg-surface-container-high text-secondary flex items-center justify-center">
-                <span class="material-symbols-outlined text-base">local_shipping</span>
+                <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
               </div>
               <div class="flex flex-col text-right hidden sm:flex">
                 <span class="font-bold text-on-surface">الشحن والتوصيل</span>
@@ -218,7 +224,7 @@
 
             <div class="flex items-center gap-2 bg-surface-container-lowest px-2 z-10 opacity-70">
               <div class="w-9 h-9 rounded-full bg-surface-container-high text-secondary flex items-center justify-center">
-                <span class="material-symbols-outlined text-base">lock</span>
+                <span class="material-symbols-outlined text-base" aria-hidden="true">lock</span>
               </div>
               <div class="flex flex-col text-right hidden sm:flex">
                 <span class="font-bold text-on-surface">الدفع الآمن</span>
@@ -237,7 +243,7 @@
             <!-- Free Shipping Progress -->
             <div class="bg-tertiary/10 rounded-xl p-space-md flex items-center gap-space-md shadow-sm border border-tertiary/20">
               <div class="w-11 h-11 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-2xl">electric_bolt</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">electric_bolt</span>
               </div>
               <div class="flex-1">
                 <div class="flex items-center justify-between mb-1">
@@ -257,8 +263,8 @@
                 <span class="text-sm">قائمة المنتجات المحجوزة</span>
                 <span class="bg-primary-container/10 text-primary px-2 py-0.5 rounded-full text-[11px]">3 أجهزة تقنية</span>
               </div>
-              <button class="flex items-center gap-1 text-secondary hover:text-error transition-colors font-bold cursor-pointer" id="clear-cart-btn" type="button">
-                <span class="material-symbols-outlined text-base">delete_sweep</span>
+              <button class="flex items-center gap-1 text-secondary hover:text-error transition-colors font-bold cursor-pointer bg-transparent border-none" id="clear-cart-btn" type="button">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">delete_sweep</span>
                 <span>تفريغ محتويات السلة</span>
               </button>
             </div>
@@ -288,12 +294,12 @@
 
                   <div class="flex flex-wrap items-center justify-between gap-2 pt-3 mt-2 border-t border-outline-variant/10">
                     <div class="flex items-center gap-1 bg-surface-container-low rounded-lg p-1 border border-outline-variant/10">
-                      <button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer" onclick="adjustQty(1, -1)" type="button">-</button>
+                      <button aria-label="تقليل الكمية" class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer border-none" onclick="adjustQty(1, -1)" type="button">-</button>
                       <span class="w-7 text-center font-bold font-mono" id="qty-item-1">1</span>
-                      <button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer" onclick="adjustQty(1, 1)" type="button">+</button>
+                      <button aria-label="زيادة الكمية" class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer border-none" onclick="adjustQty(1, 1)" type="button">+</button>
                     </div>
-                    <button onclick="removeItem('cart-item-1')" class="text-secondary hover:text-error transition-colors flex items-center gap-1 cursor-pointer font-bold" type="button">
-                      <span class="material-symbols-outlined text-base">delete</span>
+                    <button onclick="removeItem('cart-item-1')" class="text-secondary hover:text-error transition-colors flex items-center gap-1 cursor-pointer font-bold bg-transparent border-none" type="button">
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">delete</span>
                       <span>حذف</span>
                     </button>
                   </div>
@@ -303,7 +309,7 @@
               <!-- Warranty Upgrade Addon -->
               <label class="flex items-center justify-between p-2.5 bg-surface-container-low rounded-lg cursor-pointer transition-colors border border-outline-variant/10">
                 <div class="flex items-center gap-2">
-                  <input class="w-4 h-4 text-primary-container rounded cursor-pointer accent-primary" onchange="toggleAddon(this, 149)" type="checkbox"/>
+                  <input aria-label="تمديد الضمان الذهبي" class="w-4 h-4 text-primary-container rounded cursor-pointer accent-primary" onchange="toggleAddon(this, 149)" type="checkbox"/>
                   <div class="flex flex-col text-right">
                     <span class="font-bold text-on-surface">تمديد الضمان الذهبي لـ 24 شهراً شاملاً البطارية والشاشة</span>
                     <span class="text-secondary text-[11px]">استبدال فوري للجهاز بدون انتظار الإصلاح</span>
@@ -336,12 +342,12 @@
 
                   <div class="flex flex-wrap items-center justify-between gap-2 pt-3 mt-2 border-t border-outline-variant/10">
                     <div class="flex items-center gap-1 bg-surface-container-low rounded-lg p-1 border border-outline-variant/10">
-                      <button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer" onclick="adjustQty(2, -1)" type="button">-</button>
+                      <button aria-label="تقليل الكمية" class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer border-none" onclick="adjustQty(2, -1)" type="button">-</button>
                       <span class="w-7 text-center font-bold font-mono" id="qty-item-2">1</span>
-                      <button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer" onclick="adjustQty(2, 1)" type="button">+</button>
+                      <button aria-label="زيادة الكمية" class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer border-none" onclick="adjustQty(2, 1)" type="button">+</button>
                     </div>
-                    <button onclick="removeItem('cart-item-2')" class="text-secondary hover:text-error transition-colors flex items-center gap-1 cursor-pointer font-bold" type="button">
-                      <span class="material-symbols-outlined text-base">delete</span>
+                    <button onclick="removeItem('cart-item-2')" class="text-secondary hover:text-error transition-colors flex items-center gap-1 cursor-pointer font-bold bg-transparent border-none" type="button">
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">delete</span>
                       <span>حذف</span>
                     </button>
                   </div>
@@ -351,7 +357,7 @@
               <!-- AppleCare Addon -->
               <label class="flex items-center justify-between p-2.5 bg-surface-container-low rounded-lg cursor-pointer transition-colors border border-outline-variant/10">
                 <div class="flex items-center gap-2">
-                  <input class="w-4 h-4 text-primary-container rounded cursor-pointer accent-primary" onchange="toggleAddon(this, 399)" type="checkbox"/>
+                  <input aria-label="باقة AppleCare+" class="w-4 h-4 text-primary-container rounded cursor-pointer accent-primary" onchange="toggleAddon(this, 399)" type="checkbox"/>
                   <div class="flex flex-col text-right">
                     <span class="font-bold text-on-surface">باقة AppleCare+ المعتمدة (حماية شاملة ضد السوائل والحوادث لـ 3 سنوات)</span>
                     <span class="text-secondary text-[11px]">صيانة أصلية لدى مراكز الخدمة المعتمدة</span>
@@ -385,12 +391,12 @@
 
                   <div class="flex flex-wrap items-center justify-between gap-space-sm pt-3 mt-2 border-t border-outline-variant/10">
                     <div class="flex items-center gap-1 bg-surface-container-low rounded-lg p-1 border border-outline-variant/10">
-                      <button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer" onclick="adjustQty(3, -1)" type="button">-</button>
+                      <button aria-label="تقليل الكمية" class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer border-none" onclick="adjustQty(3, -1)" type="button">-</button>
                       <span class="w-7 text-center font-bold font-mono" id="qty-item-3">1</span>
-                      <button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer" onclick="adjustQty(3, 1)" type="button">+</button>
+                      <button aria-label="زيادة الكمية" class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant flex items-center justify-center font-bold cursor-pointer border-none" onclick="adjustQty(3, 1)" type="button">+</button>
                     </div>
-                    <button onclick="removeItem('cart-item-3')" class="text-secondary hover:text-error transition-colors flex items-center gap-1 cursor-pointer font-bold" type="button">
-                      <span class="material-symbols-outlined text-base">delete</span>
+                    <button onclick="removeItem('cart-item-3')" class="text-secondary hover:text-error transition-colors flex items-center gap-1 cursor-pointer font-bold bg-transparent border-none" type="button">
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">delete</span>
                       <span>حذف</span>
                     </button>
                   </div>
@@ -402,7 +408,7 @@
             <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/10">
               <div class="flex items-center justify-between mb-3 font-bold">
                 <div class="flex items-center gap-1.5 text-on-surface">
-                  <span class="material-symbols-outlined text-primary text-base">auto_awesome</span>
+                  <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">auto_awesome</span>
                   <span class="text-xs">إكسسوارات موصى بها لأجهزتك المختارة</span>
                 </div>
                 <span class="text-tertiary text-[11px]">تُضاف مجاناً لنفس الشحنة</span>
@@ -412,21 +418,21 @@
                   <div class="font-bold text-on-surface text-xs">شاحن Anker 30W فائق السرعة</div>
                   <div class="flex items-center justify-between mt-2 font-mono text-xs">
                     <span class="text-primary font-bold">69 ر.س</span>
-                    <button onclick="alert('تمت الإضافة للسلة')" class="bg-primary-container text-on-primary px-2 py-1 rounded font-bold cursor-pointer text-[11px]">إضافة</button>
+                    <button onclick="showToast('تمت إضافة شاحن Anker إلى السلة.', 'success')" class="bg-primary-container text-on-primary px-2 py-1 rounded font-bold cursor-pointer text-[11px] border-none" type="button">إضافة</button>
                   </div>
                 </div>
                 <div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col justify-between border border-outline-variant/10">
                   <div class="font-bold text-on-surface text-xs">حامي شاشة سيراميك ضد الكسر</div>
                   <div class="flex items-center justify-between mt-2 font-mono text-xs">
                     <span class="text-primary font-bold">49 ر.س</span>
-                    <button onclick="alert('تمت الإضافة للسلة')" class="bg-primary-container text-on-primary px-2 py-1 rounded font-bold cursor-pointer text-[11px]">إضافة</button>
+                    <button onclick="showToast('تمت إضافة حامي الشاشة إلى السلة.', 'success')" class="bg-primary-container text-on-primary px-2 py-1 rounded font-bold cursor-pointer text-[11px] border-none" type="button">إضافة</button>
                   </div>
                 </div>
                 <div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col justify-between border border-outline-variant/10">
                   <div class="font-bold text-on-surface text-xs">حقيبة Tomtoc لجهاز ماك بوك</div>
                   <div class="flex items-center justify-between mt-2 font-mono text-xs">
                     <span class="text-primary font-bold">119 ر.س</span>
-                    <button onclick="alert('تمت الإضافة للسلة')" class="bg-primary-container text-on-primary px-2 py-1 rounded font-bold cursor-pointer text-[11px]">إضافة</button>
+                    <button onclick="showToast('تمت إضافة الحقيبة إلى السلة.', 'success')" class="bg-primary-container text-on-primary px-2 py-1 rounded font-bold cursor-pointer text-[11px] border-none" type="button">إضافة</button>
                   </div>
                 </div>
               </div>
@@ -435,7 +441,7 @@
           </div>
 
           <!-- Right Column: Cart Summary Sticky (4 Cols) -->
-          <div class="lg:col-span-4 lg:sticky lg:top-40 flex flex-col gap-space-md text-xs">
+          <aside class="lg:col-span-4 lg:sticky lg:top-40 flex flex-col gap-space-md text-xs">
             <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md border border-outline-variant/10 flex flex-col gap-3">
               <h2 class="text-sm font-bold text-on-surface pb-2 border-b border-outline-variant/10">ملخص الحساب والطلب</h2>
               
@@ -458,7 +464,7 @@
                 </div>
                 
                 <div class="bg-secondary-fixed/50 rounded-lg p-2.5 flex items-center justify-between font-bold text-on-secondary-fixed">
-                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-primary">stars</span> نقاط الولاء المكتسبة:</span>
+                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-primary" aria-hidden="true">stars</span> نقاط الولاء المكتسبة:</span>
                   <span class="text-primary font-mono">+240 نقطة (24 ر.س)</span>
                 </div>
               </div>
@@ -466,8 +472,8 @@
               <!-- Promo Code -->
               <div class="pt-1">
                 <div class="flex items-center gap-1">
-                  <input class="flex-1 bg-surface-container-low px-3 py-2 rounded-lg text-xs text-on-surface focus:outline-none border border-outline-variant/20 font-mono" id="promo-input" placeholder="كود الخصم (TECH2025)" type="text"/>
-                  <button onclick="applyPromo()" class="bg-secondary hover:bg-on-surface text-on-secondary px-3 py-2 rounded-lg font-bold transition-colors cursor-pointer">تطبيق</button>
+                  <input aria-label="كود الخصم" class="flex-1 bg-surface-container-low px-3 py-2 rounded-lg text-xs text-on-surface focus:outline-none border border-outline-variant/20 font-mono" id="promo-input" placeholder="كود الخصم (TECH2025)" type="text"/>
+                  <button onclick="applyPromo()" class="bg-secondary hover:bg-on-surface text-on-secondary px-3 py-2 rounded-lg font-bold transition-colors cursor-pointer border-none" type="button">تطبيق</button>
                 </div>
                 <div class="hidden mt-1 text-tertiary font-bold text-[11px]" id="promo-msg">تم تطبيق كود الخصم بنجاح (-100 ر.س)</div>
               </div>
@@ -475,7 +481,7 @@
               <!-- Loyalty Points Redeem -->
               <label class="flex items-center justify-between p-2.5 bg-surface-container-low rounded-lg cursor-pointer border border-outline-variant/10">
                 <div class="flex items-center gap-2">
-                  <input class="w-4 h-4 text-primary-container rounded cursor-pointer accent-primary" id="loyalty-checkbox" onchange="toggleLoyaltyPoints(this)" type="checkbox"/>
+                  <input aria-label="استبدال 150 نقطة من رصيدك" class="w-4 h-4 text-primary-container rounded cursor-pointer accent-primary" id="loyalty-checkbox" onchange="toggleLoyaltyPoints(this)" type="checkbox"/>
                   <span class="font-bold text-on-surface">استبدال 150 نقطة من رصيدك</span>
                 </div>
                 <span class="font-bold text-tertiary font-mono">-15 ر.س</span>
@@ -484,9 +490,9 @@
               <!-- Grand Total -->
               <div class="pt-2 border-t border-outline-variant/10 flex flex-col gap-1">
                 <div class="flex items-baseline justify-between">
-                  <span class="text-sm font-bold text-on-surface">المجموع النهائي:</span>
+                  <span class="text-sm font-bold text-on-surface">المبلغ النهائي المستحق:</span>
                   <div class="flex items-baseline gap-1 font-mono">
-                    <span class="text-2xl text-primary font-black" id="total-amount">12,697</span>
+                    <span class="text-2xl text-primary font-black" id="final-total">12,697</span>
                     <span class="text-xs text-on-surface font-bold font-sans">ر.س</span>
                   </div>
                 </div>
@@ -496,8 +502,8 @@
               <!-- CTA Buttons -->
               <div class="flex flex-col gap-2 pt-2 font-bold">
                 <a class="w-full bg-primary-container hover:bg-primary text-on-primary py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.99] text-center" href="#">
-                  <span class="material-symbols-outlined text-lg">lock</span>
-                  <span>متابعة إتمام الطلب والدفع الآمن</span>
+                  <span class="material-symbols-outlined text-lg" aria-hidden="true">lock</span>
+                  <span>متابعة إتمام الطلب والدفع الآمن (12,697 ر.س)</span>
                 </a>
               </div>
 
@@ -518,13 +524,13 @@
 
               <!-- Security Badges -->
               <div class="flex items-center justify-center gap-4 text-secondary text-[11px] pt-1">
-                <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs text-tertiary">check_circle</span> ضمان ذهبي</span>
-                <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs text-tertiary">sync</span> استرجاع 14 يوم</span>
-                <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs text-tertiary">security</span> دفع مشفر</span>
+                <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">check_circle</span> ضمان ذهبي</span>
+                <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">sync</span> استرجاع 14 يوم</span>
+                <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">security</span> دفع مشفر</span>
               </div>
 
             </div>
-          </div>
+          </aside>
 
         </div>
 
@@ -540,7 +546,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -585,6 +591,41 @@
 
   <!-- Interactive JavaScript -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     let baseCartTotal = 12697;
     let activeAddonsSum = 0;
     let promoDiscount = 0;
@@ -592,7 +633,7 @@
 
     function recalculateTotal() {
       const finalTotal = Math.max(0, baseCartTotal + activeAddonsSum - promoDiscount - loyaltyDiscount);
-      const totalEl = document.getElementById('total-amount');
+      const totalEl = document.getElementById('final-total');
       const splitEl = document.getElementById('split-payment-amount');
       const addonsRow = document.getElementById('addons-row');
       const addonsAmount = document.getElementById('addons-amount');
@@ -620,6 +661,7 @@
       qty += delta;
       if (qty < 1) qty = 1;
       qtyEl.textContent = qty;
+      showToast(`تم تحديث كمية المنتج بنجاح.`, 'info');
     }
 
     function removeItem(elementId) {
@@ -630,6 +672,7 @@
         item.style.transform = 'translateY(15px)';
         setTimeout(() => {
           item.remove();
+          showToast('تمت إزالة المنتج من السلة بنجاح.', 'error');
         }, 400);
       }
     }
@@ -637,14 +680,21 @@
     function toggleAddon(checkbox, amount) {
       if (checkbox.checked) {
         activeAddonsSum += amount;
+        showToast('تمت إضافة خدمة الضمان الإضافي.', 'success');
       } else {
         activeAddonsSum -= amount;
+        showToast('تم إزالة خدمة الضمان الإضافي.', 'info');
       }
       recalculateTotal();
     }
 
     function toggleLoyaltyPoints(checkbox) {
       loyaltyDiscount = checkbox.checked ? 15 : 0;
+      if (checkbox.checked) {
+        showToast('تم استبدال 150 نقطة (-15 ر.س).', 'success');
+      } else {
+        showToast('تم إلغاء استخدام نقاط الولاء.', 'info');
+      }
       recalculateTotal();
     }
 
@@ -655,6 +705,9 @@
         promoDiscount = 100;
         if (promoMsg) promoMsg.classList.remove('hidden');
         recalculateTotal();
+        showToast('تم تطبيق كود الخصم بنجاح (-100 ر.س).', 'success');
+      } else {
+        showToast('يرجى إدخال كود خصم صالح.', 'error');
       }
     }
 
@@ -669,6 +722,7 @@
       const subtotalEl = document.getElementById('subtotal-amount');
       if (subtotalEl) subtotalEl.textContent = '0 ر.س';
       recalculateTotal();
+      showToast('تم تفريغ محتويات سلة المشتريات بالكامل.', 'error');
     });
   </script>
 </body>

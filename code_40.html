@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -132,32 +135,32 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر الجداول" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الجداول</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="sales">المبيعات الإجمالية</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="forecast">التنبؤ بالطلب</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث في مستودع البيانات الكبرى..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث في مستودع البيانات" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث في مستودع البيانات الكبرى..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="حساب مهندس البيانات" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">مهندس البيانات (Data Architect)</span>
           </a>
         </div>
@@ -172,7 +175,7 @@
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">محرر الاستعلامات ClickHouse</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">dataset</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">dataset</span>
             <span>بنية تحليلات Data Lakehouse v4.2</span>
           </div>
         </div>
@@ -180,7 +183,7 @@
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
+  <!-- Main Content -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
       
@@ -190,7 +193,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-2 border-b border-outline-variant/10 text-xs">
           <div class="flex items-center gap-1 text-secondary font-bold">
             <a class="hover:text-primary transition-colors" href="#">لوحة القيادة الرئيسية</a>
-            <span class="material-symbols-outlined text-xs rotate-180 text-outline">chevron_right</span>
+            <span class="material-symbols-outlined text-xs rotate-180 text-outline" aria-hidden="true">chevron_right</span>
             <span class="text-on-surface">مستودع البيانات الكبرى واستخبارات الأعمال (Big Data BI)</span>
           </div>
           
@@ -212,16 +215,16 @@
           </div>
 
           <div class="flex flex-wrap items-center gap-2 shrink-0 text-xs font-bold">
-            <button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-2.5 rounded-lg transition-all shadow-sm border border-outline-variant/10 cursor-pointer flex items-center gap-1" id="refreshPipelineBtn" type="button">
-              <span class="material-symbols-outlined text-base text-primary">sync</span>
+            <button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-2.5 rounded-lg transition-all shadow-sm border border-outline-variant/10 cursor-pointer flex items-center gap-1 border-none" id="refreshPipelineBtn" type="button">
+              <span class="material-symbols-outlined text-base text-primary" aria-hidden="true">sync</span>
               <span>تحديث المقاييس</span>
             </button>
-            <button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-2.5 rounded-lg transition-all shadow-sm border border-outline-variant/10 cursor-pointer flex items-center gap-1" id="runDbtTrigger" type="button">
-              <span class="material-symbols-outlined text-base text-tertiary">play_arrow</span>
+            <button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-2.5 rounded-lg transition-all shadow-sm border border-outline-variant/10 cursor-pointer flex items-center gap-1 border-none" id="runDbtTrigger" type="button">
+              <span class="material-symbols-outlined text-base text-tertiary" aria-hidden="true">play_arrow</span>
               <span>تشغيل dbt Run</span>
             </button>
-            <button onclick="alert('جاري إعداد التقرير التنفيذي الشامل بصيغة PDF')" class="bg-primary-container hover:bg-primary text-on-primary px-4 py-2.5 rounded-lg shadow-md transition-all active:scale-95 cursor-pointer flex items-center gap-1" type="button">
-              <span class="material-symbols-outlined text-base">download</span>
+            <button onclick="showToast('جاري إعداد التقرير التنفيذي الشامل بصيغة PDF...', 'info')" class="bg-primary-container hover:bg-primary text-on-primary px-4 py-2.5 rounded-lg shadow-md transition-all active:scale-95 cursor-pointer flex items-center gap-1 border-none" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">download</span>
               <span>تصدير التقرير التنفيذي</span>
             </button>
           </div>
@@ -233,12 +236,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-start justify-between text-secondary font-bold">
               <span>البيانات المجمعة (Parquet)</span>
-              <div class="p-2 bg-primary-fixed text-on-primary-fixed rounded-lg"><span class="material-symbols-outlined text-lg">database</span></div>
+              <div class="p-2 bg-primary-fixed text-on-primary-fixed rounded-lg"><span class="material-symbols-outlined text-lg" aria-hidden="true">database</span></div>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-on-surface font-mono">48.6 <span class="text-xs font-normal text-secondary font-sans">TB</span></div>
               <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">arrow_upward</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_upward</span>
                 <span>+2.4 TB اليوم</span>
               </div>
             </div>
@@ -251,12 +254,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-start justify-between text-secondary font-bold">
               <span>معدل التدفق (Kafka)</span>
-              <div class="p-2 bg-tertiary/10 text-tertiary rounded-lg"><span class="material-symbols-outlined text-lg">stream</span></div>
+              <div class="p-2 bg-tertiary/10 text-tertiary rounded-lg"><span class="material-symbols-outlined text-lg" aria-hidden="true">stream</span></div>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-on-surface font-mono">185K <span class="text-xs font-normal text-secondary font-sans">حدث/ث</span></div>
               <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">speed</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">speed</span>
                 <span>تأخير P99: 14ms</span>
               </div>
             </div>
@@ -269,12 +272,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-start justify-between text-secondary font-bold">
               <span>استعلامات BI المنفذة</span>
-              <div class="p-2 bg-secondary-fixed text-on-secondary-fixed rounded-lg"><span class="material-symbols-outlined text-lg">query_stats</span></div>
+              <div class="p-2 bg-secondary-fixed text-on-secondary-fixed rounded-lg"><span class="material-symbols-outlined text-lg" aria-hidden="true">query_stats</span></div>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-on-surface font-mono">42,890</div>
               <div class="flex items-center gap-1 text-primary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">timer</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">timer</span>
                 <span>متوسط زمن 118ms</span>
               </div>
             </div>
@@ -287,12 +290,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-start justify-between text-secondary font-bold">
               <span>دقة التنبؤ بالطلب</span>
-              <div class="p-2 bg-tertiary-fixed text-on-tertiary-fixed rounded-lg"><span class="material-symbols-outlined text-lg">psychology</span></div>
+              <div class="p-2 bg-tertiary-fixed text-on-tertiary-fixed rounded-lg"><span class="material-symbols-outlined text-lg" aria-hidden="true">psychology</span></div>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-on-surface font-mono">97.4%</div>
               <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">check_circle</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">check_circle</span>
                 <span>Prophet + XGBoost</span>
               </div>
             </div>
@@ -305,12 +308,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between sm:col-span-2 lg:col-span-1">
             <div class="flex items-start justify-between text-secondary font-bold">
               <span>توفير التخزين البارد</span>
-              <div class="p-2 bg-primary-fixed text-on-primary-fixed rounded-lg"><span class="material-symbols-outlined text-lg">savings</span></div>
+              <div class="p-2 bg-primary-fixed text-on-primary-fixed rounded-lg"><span class="material-symbols-outlined text-lg" aria-hidden="true">savings</span></div>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-primary font-mono">42% <span class="text-xs font-normal text-secondary font-sans">وفر مالي</span></div>
               <div class="flex items-center gap-1 text-secondary mt-1">
-                <span class="material-symbols-outlined text-sm text-tertiary">cloud_sync</span>
+                <span class="material-symbols-outlined text-sm text-tertiary" aria-hidden="true">cloud_sync</span>
                 <span>ترحيل تلقائي S3 Cold</span>
               </div>
             </div>
@@ -338,7 +341,7 @@
               <div class="space-y-2">
                 <div class="flex items-center justify-between font-bold">
                   <span class="bg-surface-container text-secondary px-2 py-0.5 rounded text-[10px]">01. المصادر</span>
-                  <span class="material-symbols-outlined text-primary text-lg">sensors</span>
+                  <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">sensors</span>
                 </div>
                 <h3 class="font-bold text-on-surface">المدخلات (Ingestion)</h3>
                 <ul class="space-y-1 text-secondary text-[11px]">
@@ -355,7 +358,7 @@
               <div class="space-y-2">
                 <div class="flex items-center justify-between font-bold">
                   <span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded text-[10px]">02. وسيط التدفقات</span>
-                  <span class="material-symbols-outlined text-primary text-lg">alt_route</span>
+                  <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">alt_route</span>
                 </div>
                 <h3 class="font-bold text-on-surface">عنقود Apache Kafka</h3>
                 <ul class="space-y-1 text-secondary text-[11px]">
@@ -372,12 +375,12 @@
               <div class="space-y-2">
                 <div class="flex items-center justify-between font-bold">
                   <span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded text-[10px]">03. محرك المعالجة</span>
-                  <span class="material-symbols-outlined text-tertiary text-lg">bolt</span>
+                  <span class="material-symbols-outlined text-tertiary text-lg" aria-hidden="true">bolt</span>
                 </div>
                 <h3 class="font-bold text-on-surface">Apache Flink & Enrichment</h3>
                 <ul class="space-y-1 text-secondary text-[11px]">
-                  <li class="flex items-center gap-1"><span class="material-symbols-outlined text-xs text-tertiary">verified</span> كشف الاحتيال اللحظي</li>
-                  <li class="flex items-center gap-1"><span class="material-symbols-outlined text-xs text-tertiary">verified</span> إثراء الجلسات بالبيانات</li>
+                  <li class="flex items-center gap-1"><span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">verified</span> كشف الاحتيال اللحظي</li>
+                  <li class="flex items-center gap-1"><span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">verified</span> إثراء الجلسات بالبيانات</li>
                 </ul>
               </div>
               <div class="mt-4 pt-2 border-t border-outline-variant/10 flex justify-between text-[10px] text-secondary">
@@ -389,7 +392,7 @@
               <div class="space-y-2">
                 <div class="flex items-center justify-between font-bold">
                   <span class="bg-secondary-container text-on-secondary-fixed px-2 py-0.5 rounded text-[10px]">04. التخزين والاستعلام</span>
-                  <span class="material-symbols-outlined text-secondary text-lg">insights</span>
+                  <span class="material-symbols-outlined text-secondary text-lg" aria-hidden="true">insights</span>
                 </div>
                 <h3 class="font-bold text-on-surface">ClickHouse & S3 Lake</h3>
                 <ul class="space-y-1 text-secondary text-[11px]">
@@ -511,7 +514,7 @@
         <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/10 text-xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-3 mb-4 border-b border-outline-variant/10 font-bold">
             <div class="flex items-center gap-2 text-on-surface">
-              <span class="material-symbols-outlined text-primary text-base">filter_alt</span>
+              <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">filter_alt</span>
               <span>مسار التحويل اللحظي ونسب التسرب (E-Commerce Funnel Leakage)</span>
             </div>
             <span class="text-secondary font-mono">جلسات التحليل: 482,100 زيارة</span>
@@ -625,8 +628,8 @@
                 </div>
 
                 <div class="p-2.5 bg-surface-container-low rounded-lg space-y-1 border border-outline-variant/10">
-                  <div class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-sm text-tertiary">lock</span> تشفير PII للجوالات والبطاقات AES-256</div>
-                  <div class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-sm text-tertiary">verified</span> استضافة البيانات محلياً داخل المملكة</div>
+                  <div class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-sm text-tertiary" aria-hidden="true">lock</span> تشفير PII للجوالات والبطاقات AES-256</div>
+                  <div class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-sm text-tertiary" aria-hidden="true">verified</span> استضافة البيانات محلياً داخل المملكة</div>
                 </div>
               </div>
             </div>
@@ -648,7 +651,7 @@
             </div>
             
             <div class="flex items-center gap-2 font-bold">
-              <button onclick="alert('تصدير التقرير بصيغة Excel')" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-1.5 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer">
+              <button onclick="showToast('تم تصدير النتائج بصيغة Excel بنجاح.', 'success')" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-1.5 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer" type="button">
                 تصدير Excel
               </button>
             </div>
@@ -665,7 +668,7 @@
             
             <div class="mt-3 pt-2 flex items-center justify-between border-t border-white/10 font-sans">
               <span class="text-secondary-fixed-dim">استعلم عن 24,109,240 سجل في 0.048 ثانية فقط</span>
-              <button class="bg-primary-container hover:bg-primary text-on-primary px-3 py-1.5 rounded font-bold transition-all cursor-pointer" id="runQueryBtn" type="button">
+              <button class="bg-primary-container hover:bg-primary text-on-primary px-3 py-1.5 rounded font-bold transition-all cursor-pointer border-none" id="runQueryBtn" type="button">
                 تنفيذ الاستعلام
               </button>
             </div>
@@ -711,7 +714,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -749,13 +752,48 @@
     <div class="border-t border-outline-variant/20 py-space-md text-center text-xs text-secondary-fixed-dim">
       <div class="max-w-7xl mx-auto px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-xs">
         <span>جميع الحقوق محفوظة © 2026 تيك برو TechPro. موثق في المركز السعودي للأعمال.</span>
-        <span>مستودع البيانات الكبرى واستخبارات الأعمال (Big Data BI)</span>
+        <span>بنية تحليلات Data Lakehouse v4.2</span>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     (function initBigDataHub() {
       const refreshBtn = document.getElementById('refreshPipelineBtn');
       const dbtBtn = document.getElementById('runDbtTrigger');
@@ -765,8 +803,10 @@
         refreshBtn.addEventListener('click', function() {
           const icon = this.querySelector('.material-symbols-outlined');
           if (icon) icon.classList.add('animate-spin');
+          showToast('جاري تحديث المقاييس اللحظية...', 'info');
           setTimeout(() => {
             if (icon) icon.classList.remove('animate-spin');
+            showToast('تم تحديث البيانات بنجاح.', 'success');
           }, 900);
         });
       }
@@ -774,9 +814,11 @@
       if (dbtBtn) {
         dbtBtn.addEventListener('click', function() {
           const originalText = this.innerHTML;
-          this.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin text-tertiary-container">progress_activity</span><span>جاري التشغيل...</span>';
+          this.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin text-tertiary-container" aria-hidden="true">progress_activity</span><span>جاري التشغيل...</span>';
+          showToast('تم بدء تشغيل نماذج dbt (Data Build Tool).', 'info');
           setTimeout(() => {
             this.innerHTML = originalText;
+            showToast('اكتمل بناء النماذج (dbt run) بنجاح.', 'success');
           }, 1800);
         });
       }
@@ -784,9 +826,11 @@
       if (queryBtn) {
         queryBtn.addEventListener('click', function() {
           const originalHTML = this.innerHTML;
-          this.innerHTML = '<span class="material-symbols-outlined text-xs animate-spin">refresh</span><span>تنفيذ...</span>';
+          this.innerHTML = '<span class="material-symbols-outlined text-xs animate-spin" aria-hidden="true">refresh</span><span>تنفيذ...</span>';
+          showToast('جاري تنفيذ استعلام ClickHouse...', 'info');
           setTimeout(() => {
             this.innerHTML = originalHTML;
+            showToast('اكتمل الاستعلام في 0.048 ثانية.', 'success');
           }, 400);
         });
       }

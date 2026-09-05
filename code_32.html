@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -132,33 +135,33 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر التكوينات" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع التكوينات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="secrets">الأسرار المشفرة</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="flags">مفاتيح الميزات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="env">متغيرات البيئة</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن مفتاح ميزة، سر مشفر، أو متغير بيئي..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث عن مفتاح أو سر" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن مفتاح ميزة، سر مشفر، أو متغير بيئي..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="مسؤول الخزنة" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">مسؤول الخزنة (Vault Admin)</span>
           </a>
         </div>
@@ -166,14 +169,14 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">إدارة التكوينات والأسرار</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">مفاتيح الميزات (Feature Flags)</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">خزنة الأسرار (Secrets Vault)</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">سجل الوصول والتدقيق (Audit)</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">lock</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">lock</span>
             <span>خزنة مقفلة وآمنة (HashiCorp Vault / KMS)</span>
           </div>
         </div>
@@ -184,19 +187,6 @@
   <!-- Main Content with corrected top padding -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
-      
-      <!-- Interactive Notification Toast -->
-      <div class="hidden fixed bottom-6 left-6 z-50 transition-all duration-300 max-w-lg w-full px-space-md" id="actionNotification">
-        <div class="bg-tertiary-container text-on-tertiary p-3 rounded-xl flex items-center justify-between shadow-xl border border-tertiary/30 text-xs">
-          <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-tertiary-fixed text-lg">check_circle</span>
-            <span class="font-bold" id="notificationText">تم تطبيق التغييرات بنجاح على بيئة التشغيل الفعلي (Production).</span>
-          </div>
-          <button class="text-on-tertiary/80 hover:text-on-tertiary p-1 cursor-pointer" onclick="document.getElementById('actionNotification').classList.add('hidden')">
-            <span class="material-symbols-outlined text-base">close</span>
-          </button>
-        </div>
-      </div>
 
       <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-lg flex flex-col gap-space-xl">
         
@@ -204,9 +194,9 @@
         <div class="flex flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10">
           <div class="flex flex-wrap items-center justify-between gap-space-sm pb-2 border-b border-outline-variant/10 text-xs">
             <div class="flex items-center gap-1 text-secondary font-bold">
-              <span class="material-symbols-outlined text-base text-primary">cloud_done</span>
+              <span class="material-symbols-outlined text-base text-primary" aria-hidden="true">cloud_done</span>
               <span>لوحة التحكم السحابية</span>
-              <span class="material-symbols-outlined text-xs rotate-180 text-outline">chevron_right</span>
+              <span class="material-symbols-outlined text-xs rotate-180 text-outline" aria-hidden="true">chevron_right</span>
               <span class="text-on-surface">إدارة التكوينات والأسرار (Cloud Config & Vault)</span>
             </div>
             
@@ -216,7 +206,7 @@
                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary"></span>
               </span>
               <span>الخزنة المشفرة مقفلة وآمنة (AES-256 GCM)</span>
-              <span class="material-symbols-outlined text-sm">lock</span>
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">lock</span>
             </div>
           </div>
 
@@ -233,20 +223,20 @@
 
             <!-- Quick Actions Toolbar -->
             <div class="flex flex-wrap items-center gap-2 shrink-0 text-xs font-bold">
-              <button onclick="triggerRotationModal()" class="flex items-center gap-1 bg-surface-container-high hover:bg-surface-variant text-on-surface px-3 py-2.5 rounded-lg transition-all active:scale-95 shadow-sm border border-outline-variant/10 cursor-pointer" type="button">
-                <span class="material-symbols-outlined text-base text-secondary">cached</span>
+              <button onclick="triggerRotationModal()" class="flex items-center gap-1 bg-surface-container-high hover:bg-surface-variant text-on-surface px-3 py-2.5 rounded-lg transition-all active:scale-95 shadow-sm border border-outline-variant/10 cursor-pointer border-none" type="button">
+                <span class="material-symbols-outlined text-base text-secondary" aria-hidden="true">cached</span>
                 <span>تدوير المفاتيح العام</span>
               </button>
-              <button onclick="exportConfigPayload()" class="flex items-center gap-1 bg-surface-container-high hover:bg-surface-variant text-on-surface px-3 py-2.5 rounded-lg transition-all active:scale-95 shadow-sm border border-outline-variant/10 cursor-pointer" type="button">
-                <span class="material-symbols-outlined text-base text-secondary">file_download</span>
+              <button onclick="exportConfigPayload()" class="flex items-center gap-1 bg-surface-container-high hover:bg-surface-variant text-on-surface px-3 py-2.5 rounded-lg transition-all active:scale-95 shadow-sm border border-outline-variant/10 cursor-pointer border-none" type="button">
+                <span class="material-symbols-outlined text-base text-secondary" aria-hidden="true">file_download</span>
                 <span>تصدير الحزمة</span>
               </button>
-              <button onclick="openSecretModal()" class="flex items-center gap-1 bg-surface-container-highest hover:bg-outline-variant/50 text-on-surface px-3 py-2.5 rounded-lg transition-all active:scale-95 shadow-sm cursor-pointer" type="button">
-                <span class="material-symbols-outlined text-base text-primary">add_moderator</span>
+              <button onclick="openSecretModal()" class="flex items-center gap-1 bg-surface-container-highest hover:bg-outline-variant/50 text-on-surface px-3 py-2.5 rounded-lg transition-all active:scale-95 shadow-sm cursor-pointer border-none" type="button">
+                <span class="material-symbols-outlined text-base text-primary" aria-hidden="true">add_moderator</span>
                 <span>إضافة سر مشفر</span>
               </button>
-              <button onclick="openFlagModal()" class="flex items-center gap-1 bg-primary-container hover:bg-primary text-on-primary px-4 py-2.5 rounded-lg transition-all active:scale-95 shadow-md cursor-pointer" type="button">
-                <span class="material-symbols-outlined text-base">flag</span>
+              <button onclick="openFlagModal()" class="flex items-center gap-1 bg-primary-container hover:bg-primary text-on-primary px-4 py-2.5 rounded-lg transition-all active:scale-95 shadow-md cursor-pointer border-none" type="button">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">flag</span>
                 <span>إنشاء مفتاح ميزة</span>
               </button>
             </div>
@@ -259,7 +249,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>إجمالي المتغيرات والتكوينات</span>
-              <span class="material-symbols-outlined text-primary text-lg">settings_suggest</span>
+              <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">settings_suggest</span>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-on-surface font-mono">1,248</div>
@@ -275,7 +265,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>الأسرار المشفرة (Secrets)</span>
-              <span class="material-symbols-outlined text-primary text-lg">vpn_key</span>
+              <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">vpn_key</span>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-on-surface font-mono">342</div>
@@ -289,7 +279,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>مفاتيح الميزات (Feature Flags)</span>
-              <span class="material-symbols-outlined text-primary text-lg">toggle_on</span>
+              <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">toggle_on</span>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-on-surface font-mono">28</div>
@@ -307,7 +297,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>تدوير المفاتيح (Rotations)</span>
-              <span class="material-symbols-outlined text-tertiary text-lg">autorenew</span>
+              <span class="material-symbols-outlined text-tertiary text-lg" aria-hidden="true">autorenew</span>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-on-surface font-mono">100%</div>
@@ -321,7 +311,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between sm:col-span-2 lg:col-span-1">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>نسبة التزامن السحابي</span>
-              <span class="material-symbols-outlined text-primary text-lg">sync_saved_locally</span>
+              <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">sync_saved_locally</span>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-tertiary font-mono">99.99%</div>
@@ -335,23 +325,23 @@
         <!-- Main Navigation Tabs -->
         <div class="bg-surface-container-low p-1.5 rounded-xl shadow-sm border border-outline-variant/10 flex items-center justify-between overflow-x-auto text-xs font-bold">
           <div class="flex items-center gap-1 min-w-max">
-            <button class="tab-btn active px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all bg-surface-container-lowest text-primary shadow-sm cursor-pointer" id="tab-btn-flags" onclick="switchTab('flags')" type="button">
-              <span class="material-symbols-outlined text-lg">toggle_on</span>
+            <button class="tab-btn active px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all bg-surface-container-lowest text-primary shadow-sm cursor-pointer border-none" id="tab-btn-flags" onclick="switchTab('flags')" type="button">
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">toggle_on</span>
               <span>مفاتيح الميزات اللحظية (Feature Flags)</span>
               <span class="bg-primary/10 text-primary px-2 py-0.5 rounded-full font-mono text-[10px]">28</span>
             </button>
-            <button class="tab-btn px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all text-secondary hover:text-on-surface cursor-pointer" id="tab-btn-vault" onclick="switchTab('vault')" type="button">
-              <span class="material-symbols-outlined text-lg">encrypted</span>
+            <button class="tab-btn px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none" id="tab-btn-vault" onclick="switchTab('vault')" type="button">
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">encrypted</span>
               <span>خزنة الأسرار المشفرة (Vault)</span>
               <span class="bg-surface-container-highest text-secondary px-2 py-0.5 rounded-full font-mono text-[10px]">342</span>
             </button>
-            <button class="tab-btn px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all text-secondary hover:text-on-surface cursor-pointer" id="tab-btn-env" onclick="switchTab('env')" type="button">
-              <span class="material-symbols-outlined text-lg">data_object</span>
+            <button class="tab-btn px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none" id="tab-btn-env" onclick="switchTab('env')" type="button">
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">data_object</span>
               <span>متغيرات البيئة (Env Vars)</span>
               <span class="bg-surface-container-highest text-secondary px-2 py-0.5 rounded-full font-mono text-[10px]">8 بيئات</span>
             </button>
-            <button class="tab-btn px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all text-secondary hover:text-on-surface cursor-pointer" id="tab-btn-audit" onclick="switchTab('audit')" type="button">
-              <span class="material-symbols-outlined text-lg">history_toggle_off</span>
+            <button class="tab-btn px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none" id="tab-btn-audit" onclick="switchTab('audit')" type="button">
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">history_toggle_off</span>
               <span>سجل الوصول والتدقيق (Audit Log)</span>
             </button>
           </div>
@@ -370,12 +360,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col md:flex-row md:items-center justify-between gap-space-md font-bold">
             <div class="flex-1 flex items-center gap-2">
               <div class="relative flex-1 max-w-md">
-                <span class="material-symbols-outlined absolute top-2 right-3 text-secondary text-base">search</span>
-                <input class="w-full bg-surface-container-low text-on-surface pl-3 pr-9 py-2 rounded-lg focus:outline-none border border-outline-variant/20 focus:border-primary transition-all font-mono text-xs" id="flagSearchInput" onkeyup="filterFlags()" placeholder="البحث بالاسم البرمجي أو الوصف..." type="text"/>
+                <span class="material-symbols-outlined absolute top-2 right-3 text-secondary text-base" aria-hidden="true">search</span>
+                <input aria-label="البحث في مفاتيح الميزات" class="w-full bg-surface-container-low text-on-surface pl-3 pr-9 py-2 rounded-lg focus:outline-none border border-outline-variant/20 focus:border-primary transition-all font-mono text-xs" id="flagSearchInput" onkeyup="filterFlags()" placeholder="البحث بالاسم البرمجي أو الوصف..." type="text"/>
               </div>
             </div>
             <div class="flex items-center gap-2 text-tertiary">
-              <span class="material-symbols-outlined text-base">bolt</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">bolt</span>
               <span>انتشار التبديل الفوري عبر Redis Cluster (&lt; 15ms)</span>
             </div>
           </div>
@@ -387,7 +377,7 @@
             <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
               <div class="flex items-start gap-space-md">
                 <div class="w-10 h-10 rounded-xl bg-tertiary-container/10 flex items-center justify-center text-tertiary shrink-0 mt-1">
-                  <span class="material-symbols-outlined text-xl">credit_card</span>
+                  <span class="material-symbols-outlined text-xl" aria-hidden="true">credit_card</span>
                 </div>
                 <div class="flex flex-col gap-1">
                   <div class="flex flex-wrap items-center gap-2">
@@ -409,7 +399,7 @@
                 <div class="flex flex-col items-end gap-1 text-[11px]">
                   <span class="text-secondary">التحكم اللحظي</span>
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input checked="" class="sr-only peer" onchange="toggleFlagState('CHECKOUT_APPLE_PAY_ONECLICK', this.checked)" type="checkbox"/>
+                    <input aria-label="التحكم اللحظي بـ Apple Pay" checked="" class="sr-only peer" onchange="toggleFlagState('CHECKOUT_APPLE_PAY_ONECLICK', this.checked)" type="checkbox"/>
                     <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                   </label>
                 </div>
@@ -420,7 +410,7 @@
             <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
               <div class="flex items-start gap-space-md">
                 <div class="w-10 h-10 rounded-xl bg-primary-fixed/50 flex items-center justify-center text-primary shrink-0 mt-1">
-                  <span class="material-symbols-outlined text-xl">neurology</span>
+                  <span class="material-symbols-outlined text-xl" aria-hidden="true">neurology</span>
                 </div>
                 <div class="flex flex-col gap-1 w-full">
                   <div class="flex flex-wrap items-center gap-2">
@@ -444,13 +434,13 @@
                 </div>
               </div>
               <div class="flex items-center gap-4 self-end lg:self-center shrink-0 font-bold">
-                <button onclick="modifyCanaryRollout('RECOMMENDER_LLM_PROD_V2')" class="bg-surface-container hover:bg-surface-container-high text-on-surface px-3 py-1.5 rounded-lg border border-outline-variant/10 cursor-pointer">
+                <button onclick="modifyCanaryRollout('RECOMMENDER_LLM_PROD_V2')" class="bg-surface-container hover:bg-surface-container-high text-on-surface px-3 py-1.5 rounded-lg border border-outline-variant/10 cursor-pointer border-none" type="button">
                   تعديل النسبة
                 </button>
                 <div class="flex flex-col items-end gap-1 text-[11px]">
                   <span class="text-secondary">الحالة</span>
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input checked="" class="sr-only peer" onchange="toggleFlagState('RECOMMENDER_LLM_PROD_V2', this.checked)" type="checkbox"/>
+                    <input aria-label="الحالة" checked="" class="sr-only peer" onchange="toggleFlagState('RECOMMENDER_LLM_PROD_V2', this.checked)" type="checkbox"/>
                     <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                   </label>
                 </div>
@@ -466,14 +456,14 @@
           <div class="bg-tertiary-container/10 p-space-md rounded-xl flex items-center justify-between gap-space-md border border-tertiary/20">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-xl bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-xl">shield_locked</span>
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">shield_locked</span>
               </div>
               <div class="flex flex-col">
                 <span class="font-bold text-on-surface text-sm">فاحص تسريب المفاتيح السحابي (Secret Leakage Scanner)</span>
                 <span class="text-secondary text-[11px]">تم مسح 42 مستودع وحزم NPM. لم يتم رصد أي تسريب غير مصرح لمفاتيح API.</span>
               </div>
             </div>
-            <button onclick="runLeakScanNow()" class="bg-surface-container-lowest hover:bg-surface-container text-tertiary px-3 py-2 rounded-lg font-bold shadow-sm transition-all cursor-pointer border border-outline-variant/10 shrink-0">
+            <button onclick="runLeakScanNow()" class="bg-surface-container-lowest hover:bg-surface-container text-tertiary px-3 py-2 rounded-lg font-bold shadow-sm transition-all cursor-pointer border border-outline-variant/10 shrink-0 border-none" type="button">
               بدء فحص فوري
             </button>
           </div>
@@ -501,13 +491,13 @@
                     <td class="py-3 px-space-md">
                       <div class="flex items-center gap-2">
                         <span class="tracking-widest text-secondary font-bold" id="secret-val-1">••••••••••••••••••••••••</span>
-                        <button onclick="toggleSecretVisibility('secret-val-1', 'postgres://admin:h9F$kL9@db.techpro.sa:5432/main')" class="text-secondary hover:text-primary cursor-pointer"><span class="material-symbols-outlined text-base">visibility</span></button>
-                        <button onclick="copySecret('postgres://admin:h9F$kL9@db.techpro.sa:5432/main')" class="text-secondary hover:text-primary cursor-pointer"><span class="material-symbols-outlined text-base">content_copy</span></button>
+                        <button aria-label="إظهار القيمة السرية" onclick="toggleSecretVisibility('secret-val-1', 'postgres://admin:h9F$kL9@db.techpro.sa:5432/main')" class="text-secondary hover:text-primary cursor-pointer bg-transparent border-none" type="button"><span class="material-symbols-outlined text-base" aria-hidden="true">visibility</span></button>
+                        <button aria-label="نسخ السر المشفر" onclick="copySecret('postgres://admin:h9F$kL9@db.techpro.sa:5432/main')" class="text-secondary hover:text-primary cursor-pointer bg-transparent border-none" type="button"><span class="material-symbols-outlined text-base" aria-hidden="true">content_copy</span></button>
                       </div>
                     </td>
                     <td class="py-3 px-space-md font-sans text-[11px]"><span class="text-tertiary font-bold">تدوير قبل 14 يوماً</span></td>
                     <td class="py-3 px-space-md text-center font-sans">
-                      <button onclick="triggerSingleRotation('DATABASE_MASTER_CREDENTIALS')" class="bg-surface-container-high px-2.5 py-1 rounded font-bold cursor-pointer">تدوير فوري</button>
+                      <button onclick="triggerSingleRotation('DATABASE_MASTER_CREDENTIALS')" class="bg-surface-container-high px-2.5 py-1 rounded font-bold cursor-pointer border-none" type="button">تدوير فوري</button>
                     </td>
                   </tr>
 
@@ -517,7 +507,7 @@
                     <td class="py-3 px-space-md"><span class="bg-surface-container px-2 py-0.5 rounded text-secondary text-[11px]">NON_EXTRACTABLE_HSM</span></td>
                     <td class="py-3 px-space-md font-sans text-[11px]"><span class="text-tertiary font-bold">معتمد من ZATCA</span></td>
                     <td class="py-3 px-space-md text-center font-sans">
-                      <button onclick="verifyHsmIntegrity()" class="bg-surface-container-high px-2.5 py-1 rounded font-bold cursor-pointer">فحص السلامة</button>
+                      <button onclick="verifyHsmIntegrity()" class="bg-surface-container-high px-2.5 py-1 rounded font-bold cursor-pointer border-none" type="button">فحص السلامة</button>
                     </td>
                   </tr>
                 </tbody>
@@ -534,8 +524,8 @@
                 <h2 class="text-sm font-bold text-on-surface">متغيرات التكوين لبيئة الإنتاج (Production ConfigMap)</h2>
                 <p class="text-secondary text-[11px] mt-0.5">حقن المتغيرات ديناميكياً داخل حاويات كوبرنيتيس (K8s Pods) بدون إعادة تشغيل.</p>
               </div>
-              <button onclick="addNewEnvVar()" class="bg-primary-container hover:bg-primary text-on-primary px-3 py-2 rounded-lg font-bold flex items-center gap-1 transition-colors cursor-pointer shadow-sm">
-                <span class="material-symbols-outlined text-base">add</span>
+              <button onclick="addNewEnvVar()" class="bg-primary-container hover:bg-primary text-on-primary px-3 py-2 rounded-lg font-bold flex items-center gap-1 transition-colors cursor-pointer shadow-sm border-none" type="button">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">add</span>
                 <span>إضافة متغير بيئي</span>
               </button>
             </div>
@@ -546,7 +536,7 @@
                   <span>APP_ENV</span>
                   <span class="bg-tertiary-container/20 text-tertiary px-2 py-0.5 rounded text-[10px]">ثابت</span>
                 </div>
-                <input class="bg-surface-container-lowest px-3 py-1.5 rounded font-mono text-secondary border border-outline-variant/10" readonly="" type="text" value="production"/>
+                <input aria-label="بيئة التطبيق" class="bg-surface-container-lowest px-3 py-1.5 rounded font-mono text-secondary border border-outline-variant/10" readonly="" type="text" value="production"/>
               </div>
 
               <div class="bg-surface-container-low p-3 rounded-lg flex flex-col gap-1 border border-outline-variant/10">
@@ -554,13 +544,13 @@
                   <span>DEFAULT_CURRENCY</span>
                   <span class="bg-primary-fixed/40 text-primary px-2 py-0.5 rounded text-[10px]">قابل للتعديل</span>
                 </div>
-                <input class="bg-surface-container-lowest px-3 py-1.5 rounded font-mono text-on-surface border border-outline-variant/20 focus:outline-none" type="text" value="SAR"/>
+                <input aria-label="العملة الافتراضية" class="bg-surface-container-lowest px-3 py-1.5 rounded font-mono text-on-surface border border-outline-variant/20 focus:outline-none" type="text" value="SAR"/>
               </div>
             </div>
 
             <div class="flex justify-end gap-2 pt-2 border-t border-outline-variant/10 font-bold">
-              <button class="bg-surface-container hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-lg cursor-pointer">إلغاء</button>
-              <button onclick="saveEnvConfigs()" class="bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded-lg shadow-sm cursor-pointer">حفظ ونشر التكوين</button>
+              <button class="bg-surface-container hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-lg cursor-pointer border-none" type="button">إلغاء</button>
+              <button onclick="saveEnvConfigs()" class="bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded-lg shadow-sm cursor-pointer border-none" type="button">حفظ ونشر التكوين</button>
             </div>
           </div>
         </div>
@@ -586,19 +576,19 @@
         <div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-lg shadow-2xl flex flex-col gap-space-md border border-outline-variant/20 text-xs" onclick="event.stopPropagation()">
           <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/15 font-bold text-on-surface">
             <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-lg" id="modalIcon">lock</span>
+              <span class="material-symbols-outlined text-primary text-lg" id="modalIcon" aria-hidden="true">lock</span>
               <h3 class="text-sm font-bold" id="modalTitle">إضافة سر مشفر جديد</h3>
             </div>
-            <button class="p-1 rounded text-secondary hover:text-on-surface cursor-pointer" onclick="closeModal()">
-              <span class="material-symbols-outlined text-lg">close</span>
+            <button aria-label="إغلاق النافذة" class="p-1 rounded text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none" onclick="closeModal()" type="button">
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">close</span>
             </button>
           </div>
           
           <div class="flex flex-col gap-2 text-secondary" id="modalBody"></div>
           
           <div class="flex items-center justify-end gap-2 pt-2 border-t border-outline-variant/15 font-bold">
-            <button class="px-3 py-2 rounded-lg text-secondary hover:text-on-surface cursor-pointer" onclick="closeModal()">إلغاء</button>
-            <button class="bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded-lg transition-colors shadow-sm cursor-pointer" onclick="confirmModalAction()">تأكيد الإجراء</button>
+            <button class="px-3 py-2 rounded-lg text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none" onclick="closeModal()" type="button">إلغاء</button>
+            <button class="bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded-lg transition-colors shadow-sm cursor-pointer border-none" onclick="confirmModalAction()" type="button">تأكيد الإجراء</button>
           </div>
         </div>
       </div>
@@ -613,7 +603,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -658,6 +648,41 @@
 
   <!-- Scripts -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     function switchTab(tabId) {
       document.querySelectorAll('.tab-panel').forEach(panel => {
         panel.classList.add('hidden');
@@ -680,18 +705,7 @@
         activeBtn.classList.remove('text-secondary');
         activeBtn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
       }
-    }
-
-    function showNotification(msg) {
-      const bar = document.getElementById('actionNotification');
-      const text = document.getElementById('notificationText');
-      if (bar && text) {
-        text.innerText = msg;
-        bar.classList.remove('hidden');
-        setTimeout(() => {
-          bar.classList.add('hidden');
-        }, 4000);
-      }
+      showToast(`تم التبويب إلى قسم [${tabId}].`, 'info');
     }
 
     function toggleSecretVisibility(elementId, realValue) {
@@ -701,7 +715,7 @@
         el.innerText = realValue;
         el.classList.remove('tracking-widest', 'text-secondary');
         el.classList.add('text-on-surface');
-        showNotification('تم إظهار القيمة الحساسة وتسجيل هذا الاستعلام في سجل التدقيق الأمني (Audit Log).');
+        showToast('تم إظهار القيمة الحساسة وتوثيق الطلب في سجل التدقيق الأمني.', 'success');
       } else {
         el.innerText = '••••••••••••••••••••••••';
         el.classList.add('tracking-widest', 'text-secondary');
@@ -710,13 +724,15 @@
     }
 
     function copySecret(val) {
-      navigator.clipboard.writeText(val);
-      showNotification('تم نسخ السر المشفر إلى الحافظة بأمان.');
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(val);
+      }
+      showToast('تم نسخ السر المشفر إلى الحافظة بأمان.', 'success');
     }
 
     function toggleFlagState(flagName, isEnabled) {
       const stateStr = isEnabled ? 'تفعيل' : 'إيقاف';
-      showNotification(`تم ${stateStr} المفتاح ${flagName} فورياً عبر خوادم Edge وتحديث الكاش بنجاح.`);
+      showToast(`تم ${stateStr} المفتاح ${flagName} فورياً عبر خوادم Edge.`, 'success');
     }
 
     function filterFlags() {
@@ -746,14 +762,14 @@
       modalTitle.innerText = "إضافة سر مشفر جديد (Vault Secret)";
       modalIcon.innerText = "add_moderator";
       modalBody.innerHTML = `
-        <label class="font-bold text-on-surface">اسم المفتاح البرمجي (Key Name)</label>
-        <input type="text" placeholder="مثال: PAYMENT_GATEWAY_PRIVATE_KEY" class="bg-surface-container-low p-2 rounded text-right font-mono text-xs text-on-surface focus:outline-none border border-outline-variant/20" />
+        <label class="font-bold text-on-surface" for="modal-key-name">اسم المفتاح البرمجي (Key Name)</label>
+        <input id="modal-key-name" type="text" placeholder="مثال: PAYMENT_GATEWAY_PRIVATE_KEY" class="bg-surface-container-low p-2 rounded text-right font-mono text-xs text-on-surface focus:outline-none border border-outline-variant/20" />
         
-        <label class="font-bold text-on-surface mt-1">القيمة السرية الحساسة (Secret Value)</label>
-        <textarea rows="3" placeholder="أدخل القيمة المشفرة أو المفتاح الخاص هنا..." class="bg-surface-container-low p-2 rounded text-right font-mono text-xs text-on-surface focus:outline-none border border-outline-variant/20 resize-none"></textarea>
+        <label class="font-bold text-on-surface mt-1" for="modal-secret-val">القيمة السرية الحساسة (Secret Value)</label>
+        <textarea id="modal-secret-val" rows="3" placeholder="أدخل القيمة المشفرة أو المفتاح الخاص هنا..." class="bg-surface-container-low p-2 rounded text-right font-mono text-xs text-on-surface focus:outline-none border border-outline-variant/20 resize-none"></textarea>
         
-        <label class="font-bold text-on-surface mt-1">طريقة التشفير والمستودع</label>
-        <select class="bg-surface-container-low p-2 rounded text-right text-xs text-on-surface focus:outline-none border border-outline-variant/20 cursor-pointer">
+        <label class="font-bold text-on-surface mt-1" for="modal-encryption-select">طريقة التشفير والمستودع</label>
+        <select id="modal-encryption-select" class="bg-surface-container-low p-2 rounded text-right text-xs text-on-surface focus:outline-none border border-outline-variant/20 cursor-pointer">
           <option>AWS KMS Hardware Security Module (AES-256)</option>
           <option>HashiCorp Vault KV Engine v2</option>
           <option>CloudHSM FIPS 140-2 Level 3</option>
@@ -762,30 +778,31 @@
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.classList.add('overflow-hidden');
+      showToast('فتح نافذة إضافة سر مشفر جديد.', 'info');
     }
 
     function openFlagModal() {
       modalTitle.innerText = "إنشاء مفتاح ميزة جديد (Feature Flag)";
       modalIcon.innerText = "flag";
       modalBody.innerHTML = `
-        <label class="font-bold text-on-surface">اسم الميزة باللغة العربية</label>
-        <input type="text" placeholder="مثال: تفعيل تقسيط تابي على صفحة السلة" class="bg-surface-container-low p-2 rounded text-right text-xs text-on-surface focus:outline-none border border-outline-variant/20" />
+        <label class="font-bold text-on-surface" for="modal-flag-name">اسم الميزة باللغة العربية</label>
+        <input id="modal-flag-name" type="text" placeholder="مثال: تفعيل تقسيط تابي على صفحة السلة" class="bg-surface-container-low p-2 rounded text-right text-xs text-on-surface focus:outline-none border border-outline-variant/20" />
         
-        <label class="font-bold text-on-surface mt-1">المعرف البرمجي (Flag Key)</label>
-        <input type="text" placeholder="FEATURE_TABBY_CHECKOUT_WIDGET" class="bg-surface-container-low p-2 rounded text-right font-mono text-xs text-on-surface focus:outline-none border border-outline-variant/20" />
+        <label class="font-bold text-on-surface mt-1" for="modal-flag-key">المعرف البرمجي (Flag Key)</label>
+        <input id="modal-flag-key" type="text" placeholder="FEATURE_TABBY_CHECKOUT_WIDGET" class="bg-surface-container-low p-2 rounded text-right font-mono text-xs text-on-surface focus:outline-none border border-outline-variant/20" />
         
         <div class="grid grid-cols-2 gap-2 mt-1">
           <div>
-            <label class="font-bold text-on-surface">نوع الإطلاق</label>
-            <select class="w-full bg-surface-container-low p-2 rounded text-right text-xs text-on-surface focus:outline-none border border-outline-variant/20 cursor-pointer">
+            <label class="font-bold text-on-surface" for="modal-rollout-type">نوع الإطلاق</label>
+            <select id="modal-rollout-type" class="w-full bg-surface-container-low p-2 rounded text-right text-xs text-on-surface focus:outline-none border border-outline-variant/20 cursor-pointer">
               <option>Boolean (تشغيل / إيقاف)</option>
               <option>نسبة تدريجية (Canary Rollout %)</option>
               <option>تجربة مقارنة (A/B Experiment)</option>
             </select>
           </div>
           <div>
-            <label class="font-bold text-on-surface">البيئة المستهدفة</label>
-            <select class="w-full bg-surface-container-low p-2 rounded text-right text-xs text-on-surface focus:outline-none border border-outline-variant/20 cursor-pointer">
+            <label class="font-bold text-on-surface" for="modal-env-target">البيئة المستهدفة</label>
+            <select id="modal-env-target" class="w-full bg-surface-container-low p-2 rounded text-right text-xs text-on-surface focus:outline-none border border-outline-variant/20 cursor-pointer">
               <option>Production (الإنتاج الفعلي)</option>
               <option>Staging (بيئة التجارب)</option>
             </select>
@@ -795,6 +812,7 @@
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.classList.add('overflow-hidden');
+      showToast('فتح نافذة إنشاء مفتاح ميزة جديد.', 'info');
     }
 
     function triggerRotationModal() {
@@ -805,23 +823,12 @@
           <strong>تنبيه أمني:</strong> تدوير المفاتيح العام سيولد مفاتيح جديدة لجميع قواعد البيانات ومستودعات Redis. سيتم الحفاظ على المفاتيح القديمة لمدة 10 دقائق لضمان عدم انقطاع أي جلسات دفع حالية.
         </div>
         <p class="mt-1">يتطلب هذا الإجراء مصادقة أمنية متعددة العوامل (MFA / Hardware Token).</p>
-        <input type="password" placeholder="أدخل رمز TOTP من تطبيق المصادقة..." class="bg-surface-container-low p-2.5 rounded text-right font-mono text-xs text-on-surface focus:outline-none border border-outline-variant/20 mt-1" />
+        <input aria-label="رمز المصادقة الثنائية" type="password" placeholder="أدخل رمز TOTP من تطبيق المصادقة..." class="bg-surface-container-low p-2.5 rounded text-right font-mono text-xs text-on-surface focus:outline-none border border-outline-variant/20 mt-1" />
       `;
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.classList.add('overflow-hidden');
-    }
-
-    function confirmActivationModal(flagKey) {
-      modalTitle.innerText = "تأكيد تشغيل الميزة الحساسة";
-      modalIcon.innerText = "warning";
-      modalBody.innerHTML = `
-        <p>أنت على وشك تفعيل: <code class="text-primary font-bold font-mono">${flagKey}</code></p>
-        <p class="mt-1">وفقاً لسياسة الحوكمة (Dual-Approval)، تم إرسال طلب اعتماد فوري للمشرف المناوب. هل تريد إرسال التنبيه الآن؟</p>
-      `;
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      document.body.classList.add('overflow-hidden');
+      showToast('تحذير: طلب تدوير عام لكافة المفاتيح.', 'error');
     }
 
     function modifyCanaryRollout(flagKey) {
@@ -830,7 +837,7 @@
       modalBody.innerHTML = `
         <p>حدد نسبة الترافيك الموجهة للمحرك الجديد (${flagKey}):</p>
         <div class="flex items-center gap-4 my-3">
-          <input type="range" min="0" max="100" value="25" class="flex-1 accent-primary cursor-pointer" oninput="document.getElementById('canaryVal').innerText = this.value + '%'">
+          <input aria-label="نسبة الترافيك" type="range" min="0" max="100" value="25" class="flex-1 accent-primary cursor-pointer" oninput="document.getElementById('canaryVal').innerText = this.value + '%'">
           <span id="canaryVal" class="text-base font-bold text-primary font-mono">25%</span>
         </div>
         <span class="text-secondary text-[10px]">سيتم توجيه حركة المرور المحددة تلقائياً عبر موجه الشبكة (Envoy Mesh).</span>
@@ -838,47 +845,36 @@
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.classList.add('overflow-hidden');
-    }
-
-    function concludeExperiment(flagKey) {
-      showNotification(`تم إنهاء تجربة ${flagKey} بنجاح وترقية النسخة الفائزة (3D Viewer) لتعمل بنسبة 100% لكافة العملاء.`);
-    }
-
-    function activateNowAlert(flagKey) {
-      showNotification(`تم كسر الجدولة وتنشيط الحملة ${flagKey} يدوياً في جميع فروع المتجر الإلكتروني.`);
+      showToast(`تعديل نسبة إطلاق الـ Canary لـ [${flagKey}]`, 'info');
     }
 
     function runLeakScanNow() {
-      showNotification('جاري تشغيل الفاحص السحابي عبر كافة المستودعات... اكتمل الفحص: 0 تسريبات مكتشفة.');
+      showToast('جاري تشغيل الفاحص السحابي عبر كافة المستودعات... اكتمل الفحص: 0 تسريبات مكتشفة.', 'success');
     }
 
     function triggerSingleRotation(secretName) {
-      showNotification(`تم تدوير السر المشفر ${secretName} بنجاح وحقن القيمة في الكونسول.`);
-    }
-
-    function testConnection(secretName) {
-      showNotification(`تم إرسال اختبار تحقق بنجاح للمفتاح ${secretName} (زمن الاستجابة 32ms - اتصال سليم).`);
+      showToast(`تم تدوير السر المشفر ${secretName} بنجاح وحقن القيمة في الكونسول.`, 'success');
     }
 
     function verifyHsmIntegrity() {
-      showNotification('وحدة العتاد المشفر HSM تعمل بأمان تام وتوافق معايير هيئة الزكاة والضريبة (ZATCA Stage 2).');
+      showToast('وحدة العتاد المشفر HSM تعمل بأمان تام وتوافق معايير هيئة الزكاة والضريبة (ZATCA Stage 2).', 'success');
     }
 
     function exportConfigPayload() {
-      showNotification('تم تجهيز وتشفير حزمة التكوين (techpro-config-export.enc) وجاري التحميل.');
+      showToast('تم تجهيز وتشفير حزمة التكوين (techpro-config-export.enc) وجاري التحميل.', 'success');
     }
 
     function saveEnvConfigs() {
-      showNotification('تم حفظ المتغيرات وتحديث ConfigMaps بنجاح على بيئة Production.');
+      showToast('تم حفظ المتغيرات وتحديث ConfigMaps بنجاح على بيئة Production.', 'success');
     }
 
     function addNewEnvVar() {
-      showNotification('يرجى كتابة اسم وقيمة المتغير الجديد في الحقول الإضافية.');
+      showToast('يرجى كتابة اسم وقيمة المتغير الجديد في الحقول الإضافية.', 'info');
     }
 
     function confirmModalAction() {
       closeModal();
-      showNotification('تم تسجيل وتطبيق الإجراء المطلوب بنجاح على السحابة.');
+      showToast('تم تسجيل وتطبيق الإجراء المطلوب بنجاح على السحابة.', 'success');
     }
 
     document.addEventListener('keydown', (e) => {

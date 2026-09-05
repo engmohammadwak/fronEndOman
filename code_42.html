@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -132,33 +135,33 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر التهديدات" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">كافة التهديدات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="waf">قواعد WAF</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="ddos">هجمات DDoS</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="audit">سجل الحوادث</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث برقم IP، Ray ID، أو نوع الهجوم..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث برقم IP أو Ray ID" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث برقم IP، Ray ID، أو نوع الهجوم..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" data-path="account" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="مسؤول الأمان" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" data-path="account" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">مسؤول الأمان (CISO)</span>
           </a>
         </div>
@@ -166,14 +169,14 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">مركز العمليات الأمنية (SOC)</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">قواعد جدار الحماية WAF</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">ذكاء التهديدات AI</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">امتثال NCA ECC</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">shield_locked</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">shield_locked</span>
             <span>حماية نشطة ضد الهجمات السيبرانية</span>
           </div>
         </div>
@@ -199,8 +202,8 @@
             
             <div class="flex items-center gap-2 flex-wrap mt-0.5">
               <div class="flex items-center gap-1 bg-tertiary-container/30 text-tertiary-fixed-dim px-2.5 py-0.5 rounded-full font-bold">
-                <span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-ping"></span>
-                <span class="material-symbols-outlined text-xs">shield_locked</span>
+                <span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span>
+                <span class="material-symbols-outlined text-xs" aria-hidden="true">shield_locked</span>
                 <span>جدار حماية WAF والـ DDoS: حماية نشطة 100%</span>
               </div>
               <span class="text-secondary-fixed-dim">مستوى التهديد: <strong class="text-tertiary-fixed font-bold">منخفض (Tier 1 Safe)</strong></span>
@@ -208,16 +211,16 @@
           </div>
 
           <div class="flex items-center gap-1 bg-surface-container-highest/15 p-1 rounded-xl w-full md:w-auto overflow-x-auto font-bold">
-            <button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary shadow-sm whitespace-nowrap flex items-center gap-1 cursor-pointer" type="button">
-              <span class="material-symbols-outlined text-base">radar</span>
+            <button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary shadow-sm whitespace-nowrap flex items-center gap-1 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">radar</span>
               <span>الرصد اللحظي (SOC)</span>
             </button>
-            <button class="px-3 py-1.5 rounded-lg text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap flex items-center gap-1 cursor-pointer" type="button">
-              <span class="material-symbols-outlined text-base">security</span>
+            <button onclick="showToast('جاري استعراض قواعد WAF النشطة...', 'info')" class="px-3 py-1.5 rounded-lg text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap flex items-center gap-1 cursor-pointer bg-transparent border-none" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">security</span>
               <span>قواعد WAF</span>
             </button>
-            <button class="px-3 py-1.5 rounded-lg text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap flex items-center gap-1 cursor-pointer" type="button">
-              <span class="material-symbols-outlined text-base">policy</span>
+            <button onclick="showToast('جاري عرض تقارير الامتثال...', 'info')" class="px-3 py-1.5 rounded-lg text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap flex items-center gap-1 cursor-pointer bg-transparent border-none" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">policy</span>
               <span>الامتثال NCA</span>
             </button>
           </div>
@@ -230,7 +233,7 @@
         <div class="bg-surface-container-lowest rounded-xl p-space-md lg:p-space-lg shadow-sm border border-outline-variant/10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md text-xs">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shrink-0">
-              <span class="material-symbols-outlined text-2xl">shield_with_heart</span>
+              <span class="material-symbols-outlined text-2xl" aria-hidden="true">shield_with_heart</span>
             </div>
             <div class="flex flex-col">
               <span class="font-bold text-on-surface text-sm">وحدة السيطرة اللحظية والتحقيق الجنائي</span>
@@ -240,20 +243,20 @@
 
           <div class="flex flex-wrap items-center gap-2 font-bold">
             <div class="flex items-center bg-surface-container-low rounded-lg px-2 py-1 border border-outline-variant/20 flex-1 sm:flex-initial">
-              <span class="material-symbols-outlined text-secondary text-base">block</span>
-              <input class="bg-transparent text-xs text-on-surface placeholder:text-secondary focus:outline-none px-2 font-mono" id="quick-ip-block" placeholder="إضافة IP / CIDR للحظر..." type="text"/>
-              <button class="bg-error text-on-error px-3 py-1 rounded hover:opacity-90 transition-opacity cursor-pointer" id="btn-block-ip" type="button">
+              <span class="material-symbols-outlined text-secondary text-base" aria-hidden="true">block</span>
+              <input aria-label="إضافة IP للحظر" class="bg-transparent text-xs text-on-surface placeholder:text-secondary focus:outline-none px-2 font-mono" id="quick-ip-block" placeholder="إضافة IP / CIDR للحظر..." type="text"/>
+              <button class="bg-error text-on-error px-3 py-1 rounded hover:opacity-90 transition-opacity cursor-pointer border-none" id="btn-block-ip" type="button">
                 حظر فوراً
               </button>
             </div>
             
-            <button class="bg-error-container hover:bg-error hover:text-on-error text-on-error-container px-3 py-2 rounded-lg transition-all shadow-sm cursor-pointer flex items-center gap-1" id="under-attack-btn" type="button">
-              <span class="material-symbols-outlined text-base animate-spin">cyclone</span>
+            <button class="bg-error-container hover:bg-error hover:text-on-error text-on-error-container px-3 py-2 rounded-lg transition-all shadow-sm cursor-pointer border-none" id="under-attack-btn" type="button">
+              <span class="material-symbols-outlined text-base animate-spin" aria-hidden="true">cyclone</span>
               <span>وضع «تحت الهجوم»</span>
             </button>
 
-            <button onclick="alert('تم تجهيز وتنزيل تقرير الامتثال السيبراني المعتمد (NCA-ECC-Report.pdf)')" class="bg-surface-container-high hover:bg-surface-variant text-on-surface px-3 py-2 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer flex items-center gap-1" type="button">
-              <span class="material-symbols-outlined text-base text-primary">download</span>
+            <button onclick="showToast('تم تجهيز وتنزيل تقرير الامتثال السيبراني المعتمد (NCA-ECC-Report.pdf)', 'success')" class="bg-surface-container-high hover:bg-surface-variant text-on-surface px-3 py-2 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-base text-primary" aria-hidden="true">download</span>
               <span>تقرير NCA (PDF)</span>
             </button>
           </div>
@@ -265,12 +268,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>الهجمات المحظورة اليوم</span>
-              <span class="material-symbols-outlined text-error text-xl">gpp_bad</span>
+              <span class="material-symbols-outlined text-error text-xl" aria-hidden="true">gpp_bad</span>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-error font-mono" id="counter-blocked">128,450</div>
               <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">arrow_downward</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_downward</span>
                 <span>انخفاض 14.2% عن بالأمس</span>
               </div>
             </div>
@@ -280,12 +283,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>زمن الاستجابة للاعتراض</span>
-              <span class="material-symbols-outlined text-primary text-xl">speed</span>
+              <span class="material-symbols-outlined text-primary text-xl" aria-hidden="true">speed</span>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-on-surface font-mono">4.2 <span class="text-xs font-normal text-secondary font-sans">ملي/ثانية</span></div>
               <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">bolt</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">bolt</span>
                 <span>تفتيش سحابي سريع</span>
               </div>
             </div>
@@ -295,7 +298,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>نسبة الزيارات الموثوقة</span>
-              <span class="material-symbols-outlined text-tertiary text-xl">verified</span>
+              <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">verified</span>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-tertiary font-mono">98.7%</div>
@@ -309,12 +312,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>امتثال الأمن السيبراني NCA</span>
-              <span class="material-symbols-outlined text-primary text-xl">fact_check</span>
+              <span class="material-symbols-outlined text-primary text-xl" aria-hidden="true">fact_check</span>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-primary font-mono">99.4%</div>
               <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">check_circle</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">check_circle</span>
                 <span>ECC-1:2018 معتمد</span>
               </div>
             </div>
@@ -324,12 +327,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between sm:col-span-2 lg:col-span-1">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>تحييد روبوتات الكشط</span>
-              <span class="material-symbols-outlined text-secondary text-xl">smart_toy</span>
+              <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">smart_toy</span>
             </div>
             <div class="my-2">
               <div class="text-2xl font-black text-on-surface font-mono">34,180</div>
               <div class="flex items-center gap-1 text-secondary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">security_update_good</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">security_update_good</span>
                 <span>حماية أسعار وكوبونات المتجر</span>
               </div>
             </div>
@@ -344,7 +347,7 @@
           <div class="lg:col-span-8 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/10 flex flex-col gap-space-md">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs pb-2 border-b border-outline-variant/10">
               <div class="flex items-center gap-2 font-bold text-on-surface">
-                <span class="material-symbols-outlined text-primary text-lg">public</span>
+                <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">public</span>
                 <span class="text-sm">خريطة الهجمات الجغرافية ومسار التخفيف الفوري</span>
               </div>
               <div class="flex items-center gap-2 font-bold">
@@ -404,7 +407,7 @@
           <div class="lg:col-span-4 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/10 flex flex-col gap-3">
             <div class="flex items-center justify-between pb-2 border-b border-outline-variant/10 font-bold text-on-surface">
               <span>أعلى مصادر الاعتراض</span>
-              <span class="material-symbols-outlined text-secondary text-base">flag</span>
+              <span class="material-symbols-outlined text-secondary text-base" aria-hidden="true">flag</span>
             </div>
             <p class="text-secondary text-[11px]">قائمة النطاقات الجغرافية الأكثر استهدافاً لمتجر تيك برو خلال 24 ساعة.</p>
 
@@ -434,10 +437,10 @@
         <div class="flex flex-col gap-space-md text-xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-outline-variant/10">
             <div class="flex items-center gap-2 font-bold text-on-surface">
-              <span class="material-symbols-outlined text-primary text-lg">rule</span>
+              <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">rule</span>
               <span class="text-sm">محرك قواعد جدار الحماية الذكي والتصدي للثغرات (WAF Engines)</span>
             </div>
-            <button onclick="alert('فتح معالج إضافة قاعدة حماية مخصصة')" class="bg-primary text-on-primary px-3 py-1.5 rounded-lg font-bold hover:bg-primary-container transition-colors cursor-pointer" type="button">
+            <button onclick="showToast('جاري فتح معالج إضافة قاعدة حماية مخصصة...', 'info')" class="bg-primary text-on-primary px-3 py-1.5 rounded-lg font-bold hover:bg-primary-container transition-colors cursor-pointer border-none" type="button">
               إضافة قاعدة حماية مخصصة
             </button>
           </div>
@@ -448,19 +451,19 @@
               <div class="flex items-start justify-between gap-2">
                 <div class="flex items-center gap-2">
                   <div class="w-9 h-9 rounded-lg bg-error-container text-on-error-container flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-base">credit_card_off</span>
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">credit_card_off</span>
                   </div>
                   <div>
                     <span class="font-bold text-on-surface text-sm">حماية بوابات الدفع (Carding / BIN Shield)</span>
                     <span class="text-tertiary font-bold text-[10px] block">SEC-RULE-PAY-901 • مفعل صارم</span>
                   </div>
                 </div>
-                <input checked="" class="accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+                <input aria-label="حماية بوابات الدفع" checked="" class="accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
               </div>
               <p class="text-secondary text-[11px] leading-relaxed">اعتراض هجمات تجربة البطاقات المسروقة على مدى وفيزا مع تجميد فوري لعنوان الـ IP والبصمة الرقمية.</p>
               <div class="bg-surface-container-low p-2 rounded flex items-center justify-between text-[11px] border border-outline-variant/10">
                 <span class="text-secondary">الاعتراضات: <strong class="text-error font-mono font-bold">1,480 هجمة</strong></span>
-                <span class="text-primary font-bold cursor-pointer hover:underline" onclick="alert('سجل معاملات بطاقات الدفع')">سجل المعاملات</span>
+                <button onclick="showToast('عرض سجل معاملات بطاقات الدفع...', 'info')" class="text-primary font-bold hover:underline cursor-pointer bg-transparent border-none p-0 text-xs" type="button">سجل المعاملات</button>
               </div>
             </div>
 
@@ -468,19 +471,19 @@
               <div class="flex items-start justify-between gap-2">
                 <div class="flex items-center gap-2">
                   <div class="w-9 h-9 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-base">passkey</span>
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">passkey</span>
                   </div>
                   <div>
                     <span class="font-bold text-on-surface text-sm">منع حشو بيانات الاعتماد (Credential Stuffing)</span>
                     <span class="text-tertiary font-bold text-[10px] block">SEC-RULE-AUTH-412 • مفعل صارم</span>
                   </div>
                 </div>
-                <input checked="" class="accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+                <input aria-label="منع حشو بيانات الاعتماد" checked="" class="accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
               </div>
               <p class="text-secondary text-[11px] leading-relaxed">مراقبة محاولات تسجيل الدخول بالقوائم المسربة، وفرض رمز تحقق ثنائي (OTP) تلقائياً.</p>
               <div class="bg-surface-container-low p-2 rounded flex items-center justify-between text-[11px] border border-outline-variant/10">
                 <span class="text-secondary">الاعتراضات: <strong class="text-error font-mono font-bold">19,320 محاولة</strong></span>
-                <span class="text-primary font-bold cursor-pointer hover:underline" onclick="alert('سجل تسجيل الدخول')">السجل</span>
+                <button onclick="showToast('عرض سجل تسجيل الدخول...', 'info')" class="text-primary font-bold hover:underline cursor-pointer bg-transparent border-none p-0 text-xs" type="button">السجل</button>
               </div>
             </div>
 
@@ -491,7 +494,7 @@
         <div class="bg-surface-container-lowest rounded-xl p-space-md lg:p-space-lg shadow-sm border border-outline-variant/10 flex flex-col gap-space-md text-xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-outline-variant/10 font-bold">
             <div class="flex items-center gap-2 text-on-surface">
-              <span class="material-symbols-outlined text-error text-base animate-pulse">crisis_alert</span>
+              <span class="material-symbols-outlined text-error text-base animate-pulse" aria-hidden="true">crisis_alert</span>
               <span class="text-sm">سجل رصد التهديدات والأحداث المباشرة (Live Stream)</span>
             </div>
             <div class="flex items-center gap-2 text-secondary">
@@ -540,7 +543,7 @@
         <div class="bg-gradient-to-r from-primary-fixed/20 via-surface-container to-surface-container-low rounded-xl p-space-md lg:p-space-lg shadow-sm border border-outline-variant/10 flex flex-col md:flex-row items-center justify-between gap-space-md text-xs">
           <div class="flex items-center gap-3">
             <div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 shadow-md">
-              <span class="material-symbols-outlined text-2xl">verified_user</span>
+              <span class="material-symbols-outlined text-2xl" aria-hidden="true">verified_user</span>
             </div>
             <div class="flex flex-col">
               <h3 class="font-bold text-on-surface text-sm">شهادة درع الحماية الوطني الموثوق (Saudi Cyber Trust)</h3>
@@ -554,7 +557,7 @@
               <span class="text-secondary text-[10px]">التدقيق الدوري القادم</span>
               <span class="text-on-surface">15 أبريل 2026</span>
             </div>
-            <button onclick="alert('شهادة الامتثال لضوابط NCA سارية وموثقة')" class="bg-primary text-on-primary px-3 py-2 rounded-lg hover:bg-primary-container transition-colors cursor-pointer" type="button">
+            <button onclick="showToast('شهادة الامتثال لضوابط NCA سارية وموثقة.', 'success')" class="bg-primary text-on-primary px-3 py-2 rounded-lg hover:bg-primary-container transition-colors cursor-pointer border-none" type="button">
               عرض الشهادة
             </button>
           </div>
@@ -572,7 +575,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -590,8 +593,8 @@
         <ul class="flex flex-col gap-space-xs text-secondary-fixed text-xs">
           <li><a class="hover:text-surface-container-lowest transition-colors" data-path="warranty-policy" href="#">شروط الضمان الذهبي لعامين</a></li>
           <li><a class="hover:text-surface-container-lowest transition-colors" data-path="return-policy" href="#">سياسة الاستبدال والاسترجاع السهل</a></li>
-          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">معايير فحص الأجهزة المجددة</a></li>
-          <li><a class="hover:text-surface-container-lowest transition-colors" href="#">سياسة الخصوصية وأمان البيانات</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" data-path="refurbished-devices" href="#">معايير فحص الأجهزة المجددة</a></li>
+          <li><a class="hover:text-surface-container-lowest transition-colors" data-path="privacy-policy" href="#">سياسة الخصوصية وأمان البيانات</a></li>
         </ul>
       </div>
       <div class="flex flex-col gap-space-sm">
@@ -617,6 +620,41 @@
 
   <!-- Scripts -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     (function() {
       const underAttackBtn = document.getElementById('under-attack-btn');
       let isUnderAttack = false;
@@ -625,11 +663,13 @@
         underAttackBtn.addEventListener('click', function() {
           isUnderAttack = !isUnderAttack;
           if (isUnderAttack) {
-            this.className = 'bg-error text-on-error px-3 py-2 rounded-lg transition-all shadow-sm cursor-pointer flex items-center gap-1 font-bold';
-            this.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">warning</span><span>وضع تحت الهجوم: نشط</span>';
+            this.className = 'bg-error text-on-error px-3 py-2 rounded-lg transition-all shadow-sm cursor-pointer flex items-center gap-1 font-bold border-none';
+            this.innerHTML = '<span class="material-symbols-outlined text-base animate-spin" aria-hidden="true">warning</span><span>وضع تحت الهجوم: نشط</span>';
+            showToast('تنبيه أمني: تم تفعيل وضع تحت الهجوم (Under Attack Mode) بنجاح عند الحافة.', 'error');
           } else {
-            this.className = 'bg-error-container hover:bg-error hover:text-on-error text-on-error-container px-3 py-2 rounded-lg transition-all shadow-sm cursor-pointer flex items-center gap-1 font-bold';
-            this.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">cyclone</span><span>وضع «تحت الهجوم»</span>';
+            this.className = 'bg-error-container hover:bg-error hover:text-on-error text-on-error-container px-3 py-2 rounded-lg transition-all shadow-sm cursor-pointer flex items-center gap-1 font-bold border-none';
+            this.innerHTML = '<span class="material-symbols-outlined text-base animate-spin" aria-hidden="true">cyclone</span><span>وضع «تحت الهجوم»</span>';
+            showToast('تم إلغاء وضع تحت الهجوم وعادت قواعد الحماية للوضع الاعتيادي.', 'success');
           }
         });
       }
@@ -642,7 +682,7 @@
         btnBlock.addEventListener('click', function() {
           const val = inputIp.value.trim();
           if (!val) {
-            alert('يرجى كتابة عنوان IP أو نطاق صالح للحظر');
+            showToast('يرجى كتابة عنوان IP أو نطاق صالح للحظر.', 'error');
             return;
           }
 
@@ -662,6 +702,7 @@
 
           incidentBody.insertBefore(newRow, incidentBody.firstChild);
           inputIp.value = '';
+          showToast(`تم حظر العنوان [${val}] فوراً من كافة عقد الشبكة.`, 'success');
 
           const counterEl = document.getElementById('counter-blocked');
           if (counterEl) {

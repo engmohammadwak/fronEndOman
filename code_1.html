@@ -129,13 +129,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Fixed Store Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>بوابة الشحن الداخلي والتخزين الفوري | تيك برو لوجستكس</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -153,14 +156,14 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر مسار الشحن" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">كل المسارات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="express">شحنات VIP (ساعتين)</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="standard">شحنات عادية</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث برقم الشحنة، البوليصة أو السيريال..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="بحث عن الشحنات" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث برقم الشحنة، البوليصة أو السيريال..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
@@ -182,7 +185,7 @@
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">مخزون الصناديق والأشرطة الأمنية</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">warehouse</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">warehouse</span>
             <span>مستودع السلي المركزي • الرياض</span>
           </div>
         </div>
@@ -190,7 +193,7 @@
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
+  <!-- Main Content -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
       
@@ -199,7 +202,7 @@
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-lowest p-space-md lg:p-space-lg rounded-xl shadow-sm border border-outline-variant/10">
           <div class="flex items-center gap-space-md">
             <div class="w-14 h-14 rounded-xl bg-primary-container/10 flex items-center justify-center text-primary-container shrink-0">
-              <span class="material-symbols-outlined text-3xl">inventory_2</span>
+              <span class="material-symbols-outlined text-3xl" aria-hidden="true">inventory_2</span>
             </div>
             <div class="flex flex-col">
               <div class="flex items-center gap-space-xs flex-wrap">
@@ -216,12 +219,12 @@
           </div>
 
           <div class="flex items-center gap-space-sm self-stretch md:self-auto">
-            <button onclick="alert('تمت معايرة ميزان الطرود وكاميرا التوثيق بنجاح.')" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-xs font-bold transition-colors" type="button">
-              <span class="material-symbols-outlined text-lg">tune</span>
+            <button onclick="showToast('تمت معايرة ميزان الطرود وكاميرا التوثيق بنجاح.', 'success')" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-xs font-bold transition-colors" type="button">
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">tune</span>
               <span>معايرة الميزان</span>
             </button>
-            <button onclick="document.getElementById('barcodeScannerInput').focus()" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container hover:bg-primary text-on-primary text-xs font-bold shadow-sm transition-transform active:scale-95" type="button">
-              <span class="material-symbols-outlined text-lg">qr_code_scanner</span>
+            <button onclick="document.getElementById('barcodeScannerInput').focus(); showToast('تم تنشيط الماسح الضوئي، بانتظار إدخال الكود.', 'info')" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container hover:bg-primary text-on-primary text-xs font-bold shadow-sm transition-transform active:scale-95" type="button">
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">qr_code_scanner</span>
               <span>تفعيل الماسح</span>
             </button>
           </div>
@@ -238,7 +241,7 @@
                 <span class="text-3xl font-black text-on-surface mt-1" id="pending-orders-count">34</span>
               </div>
               <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
-                <span class="material-symbols-outlined text-2xl">pending_actions</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">pending_actions</span>
               </div>
             </div>
             <div class="flex items-center justify-between mt-space-sm pt-space-xs text-xs">
@@ -257,11 +260,11 @@
                 </div>
               </div>
               <div class="w-10 h-10 rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center">
-                <span class="material-symbols-outlined text-2xl">timer</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">timer</span>
               </div>
             </div>
             <div class="flex items-center gap-space-xs mt-space-sm pt-space-xs text-tertiary text-xs font-semibold">
-              <span class="material-symbols-outlined text-sm">trending_down</span>
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">trending_down</span>
               <span>أسرع بـ 35 ثانية من المعدل المعتمد</span>
             </div>
           </div>
@@ -273,7 +276,7 @@
                 <span class="text-3xl font-black text-tertiary mt-1">99.98%</span>
               </div>
               <div class="w-10 h-10 rounded-lg bg-tertiary-container/15 text-tertiary flex items-center justify-center">
-                <span class="material-symbols-outlined text-2xl">verified</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">verified</span>
               </div>
             </div>
             <div class="flex items-center justify-between mt-space-sm pt-space-xs text-xs">
@@ -292,7 +295,7 @@
                 </div>
               </div>
               <div class="w-10 h-10 rounded-lg bg-secondary-container/40 text-secondary flex items-center justify-center">
-                <span class="material-symbols-outlined text-2xl">local_shipping</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">local_shipping</span>
               </div>
             </div>
             <div class="flex items-center gap-space-xs mt-space-sm pt-space-xs text-secondary text-xs">
@@ -308,23 +311,23 @@
         <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10">
           <div class="flex flex-col lg:flex-row items-center gap-space-md">
             <div class="flex items-center gap-space-xs text-primary-container shrink-0">
-              <span class="material-symbols-outlined text-2xl animate-pulse">barcode_scanner</span>
+              <span class="material-symbols-outlined text-2xl animate-pulse" aria-hidden="true">barcode_scanner</span>
               <span class="text-base font-bold text-on-surface">مسح كود الشحنة أو السيريال الفوري:</span>
             </div>
             <div class="flex-1 w-full flex items-center bg-surface-container-low rounded-lg px-space-sm py-1 border border-outline-variant/30 focus-within:border-primary-container transition-all">
-              <span class="material-symbols-outlined text-secondary text-xl">search</span>
-              <input class="w-full bg-transparent px-space-sm py-1 font-mono text-base text-on-surface placeholder:text-secondary focus:outline-none" id="barcodeScannerInput" placeholder="وجّه الماسح الضوئي أو أدخل السيريال يدوياً..." type="text" value="TP-2025-98340"/>
+              <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">search</span>
+              <input aria-label="حقل مسح الباركود أو إدخال السيريال" autofocus class="w-full bg-transparent px-space-sm py-1 font-mono text-base text-on-surface placeholder:text-secondary focus:outline-none" id="barcodeScannerInput" placeholder="وجّه الماسح الضوئي أو أدخل السيريال يدوياً..." type="text" value="TP-2025-98340"/>
               <span class="inline-flex items-center px-space-xs py-0.5 rounded bg-surface-container-high text-secondary text-xs font-semibold">
                 ENTER للتأكيد
               </span>
             </div>
             <div class="flex items-center gap-space-xs shrink-0 w-full sm:w-auto">
               <button onclick="triggerVerification()" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-space-2xs px-space-md py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary text-xs font-bold transition-colors" type="button">
-                <span class="material-symbols-outlined text-base">check_circle</span>
+                <span class="material-symbols-outlined text-base" aria-hidden="true">check_circle</span>
                 <span>مطابقة فورية</span>
               </button>
-              <button onclick="document.getElementById('barcodeScannerInput').value=''; document.getElementById('barcodeScannerInput').focus();" class="inline-flex items-center justify-center p-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary transition-colors" title="إعادة ضبط الماسح" type="button">
-                <span class="material-symbols-outlined text-lg">refresh</span>
+              <button onclick="document.getElementById('barcodeScannerInput').value=''; document.getElementById('barcodeScannerInput').focus(); showToast('تم مسح الحقل وإعادة تركيز الماسح.', 'info');" class="inline-flex items-center justify-center p-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary transition-colors" title="إعادة ضبط الماسح" type="button" aria-label="إعادة ضبط الماسح">
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">refresh</span>
               </button>
             </div>
           </div>
@@ -341,23 +344,23 @@
             <!-- Tabs -->
             <div class="bg-surface-container-lowest p-space-2xs rounded-xl shadow-sm overflow-x-auto border border-outline-variant/10">
               <div class="flex items-center gap-space-xs min-w-max text-xs font-bold">
-                <button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary shadow-sm">
-                  <span class="material-symbols-outlined text-base">bolt</span>
+                <button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary shadow-sm" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">bolt</span>
                   <span>عاجل VIP (توصيل ساعتين)</span>
                   <span class="px-1.5 py-0.2 rounded-full bg-on-primary text-primary-container font-black">8</span>
                 </button>
-                <button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg text-secondary hover:bg-surface-container-low transition-colors">
-                  <span class="material-symbols-outlined text-base">fact_check</span>
+                <button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg text-secondary hover:bg-surface-container-low transition-colors" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">fact_check</span>
                   <span>التقاط القطع (Picking)</span>
                   <span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-secondary">14</span>
                 </button>
-                <button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg text-secondary hover:bg-surface-container-low transition-colors">
-                  <span class="material-symbols-outlined text-base">package_2</span>
+                <button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg text-secondary hover:bg-surface-container-low transition-colors" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">package_2</span>
                   <span>قيد التغليف (Packing)</span>
                   <span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-secondary">12</span>
                 </button>
-                <button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg text-secondary hover:bg-surface-container-low transition-colors">
-                  <span class="material-symbols-outlined text-base">local_shipping</span>
+                <button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg text-secondary hover:bg-surface-container-low transition-colors" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
                   <span>بانتظار المندوب (Handover)</span>
                   <span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-secondary">26</span>
                 </button>
@@ -386,7 +389,7 @@
                       <span>الوجهة: <strong class="text-on-surface">الرياض - حي النخيل الغربي</strong></span>
                       <span>•</span>
                       <span class="text-tertiary font-bold flex items-center gap-0.5">
-                        <span class="material-symbols-outlined text-sm">check_circle</span>
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">check_circle</span>
                         مدفوع بالكامل (4,299 ر.س)
                       </span>
                     </div>
@@ -394,7 +397,7 @@
                 </div>
                 <div class="flex items-center gap-space-xs shrink-0 self-start sm:self-auto">
                   <span class="inline-flex items-center gap-1 text-error text-xs font-bold px-space-xs py-1 rounded bg-error-container/40">
-                    <span class="material-symbols-outlined text-sm">alarm</span>
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">alarm</span>
                     متبقي 28 دقيقة للمندوب
                   </span>
                 </div>
@@ -403,21 +406,21 @@
               <!-- Box Specs -->
               <div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
                 <div class="p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-sm">
-                  <span class="material-symbols-outlined text-primary text-2xl">box</span>
+                  <span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">box</span>
                   <div class="flex flex-col">
                     <span class="text-xs text-secondary">حجم الكرتون المعتمد</span>
                     <span class="text-sm font-bold text-on-surface">كرتون تيك برو فاخر (حجم M)</span>
                   </div>
                 </div>
                 <div class="p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-sm">
-                  <span class="material-symbols-outlined text-tertiary text-2xl">air</span>
+                  <span class="material-symbols-outlined text-tertiary text-2xl" aria-hidden="true">air</span>
                   <div class="flex flex-col">
                     <span class="text-xs text-secondary">حماية الصدمات</span>
                     <span class="text-sm font-bold text-on-surface">وسائد هوائية معتمدة</span>
                   </div>
                 </div>
                 <div class="p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-sm">
-                  <span class="material-symbols-outlined text-secondary text-2xl">lock</span>
+                  <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">lock</span>
                   <div class="flex flex-col">
                     <span class="text-xs text-secondary">ملصق أمان ليزري</span>
                     <span class="text-sm font-bold text-on-surface">Seal #SL-8849 (تم التعيين)</span>
@@ -429,7 +432,7 @@
               <div class="flex flex-col gap-space-sm mt-space-xs">
                 <div class="flex items-center justify-between">
                   <h3 class="text-base font-bold text-on-surface flex items-center gap-space-xs">
-                    <span class="material-symbols-outlined text-primary-container">checklist</span>
+                    <span class="material-symbols-outlined text-primary-container" aria-hidden="true">checklist</span>
                     <span>فحص وتطابق محتويات الشحنة بالسيريال:</span>
                   </h3>
                   <span class="text-xs text-secondary font-semibold" id="checklist-progress">مكتمل 4 من 4 عناصر (100%)</span>
@@ -455,7 +458,7 @@
                   </div>
                   <div class="flex items-center gap-space-xs self-end sm:self-auto shrink-0">
                     <span class="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-tertiary/10 text-tertiary text-xs font-bold">
-                      <span class="material-symbols-outlined text-sm">task_alt</span>
+                      <span class="material-symbols-outlined text-sm" aria-hidden="true">task_alt</span>
                       تم التحقق بالسكانر
                     </span>
                   </div>
@@ -479,7 +482,7 @@
                   </div>
                   <div class="flex items-center gap-space-xs self-end sm:self-auto shrink-0">
                     <span class="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-tertiary/10 text-tertiary text-xs font-bold">
-                      <span class="material-symbols-outlined text-sm">task_alt</span>
+                      <span class="material-symbols-outlined text-sm" aria-hidden="true">task_alt</span>
                       تم التحقق بالسكانر
                     </span>
                   </div>
@@ -489,7 +492,7 @@
                 <div class="p-space-sm rounded-lg bg-surface-container-lowest shadow-sm border border-outline-variant/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
                   <div class="flex items-center gap-space-sm">
                     <div class="w-14 h-14 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary shrink-0">
-                      <span class="material-symbols-outlined text-3xl">verified_user</span>
+                      <span class="material-symbols-outlined text-3xl" aria-hidden="true">verified_user</span>
                     </div>
                     <div class="flex flex-col">
                       <span class="text-sm font-bold text-on-surface">بطاقة الضمان الذهبي لعامين (شامل الشاشة والمكونات)</span>
@@ -502,7 +505,7 @@
                   </div>
                   <div class="flex items-center gap-space-xs self-end sm:self-auto shrink-0">
                     <span class="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-tertiary/10 text-tertiary text-xs font-bold">
-                      <span class="material-symbols-outlined text-sm">task_alt</span>
+                      <span class="material-symbols-outlined text-sm" aria-hidden="true">task_alt</span>
                       تم الإرفاق
                     </span>
                   </div>
@@ -521,15 +524,15 @@
                   <div class="flex flex-col">
                     <div class="flex items-center gap-space-xs">
                       <span class="text-sm font-bold text-on-surface">توثيق صورة محتويات الشحنة الذكية</span>
-                      <span class="material-symbols-outlined text-tertiary text-base">check_circle</span>
+                      <span class="material-symbols-outlined text-tertiary text-base" aria-hidden="true">check_circle</span>
                     </div>
                     <p class="text-xs text-secondary mt-0.5">
                       تم حفظ صورة الشحنة رقم (IMG-98340-QC.jpg) في سجل العميل وسيرفر الضمان لتوثيق الحالة قبل الشحن.
                     </p>
                   </div>
                 </div>
-                <button onclick="alert('جاري إعادة تشغيل كاميرا التوثيق...')" class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-xs font-bold transition-colors shrink-0" type="button">
-                  <span class="material-symbols-outlined text-base">photo_camera</span>
+                <button onclick="showToast('جاري إعادة تشغيل كاميرا التوثيق والتقاط صورة جديدة...', 'info')" class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-xs font-bold transition-colors shrink-0" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">photo_camera</span>
                   <span>إعادة التقاط</span>
                 </button>
               </div>
@@ -544,7 +547,7 @@
             <div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md border border-outline-variant/10">
               <div class="flex items-center justify-between border-b pb-space-xs border-outline-variant/15">
                 <div class="flex items-center gap-space-xs">
-                  <span class="material-symbols-outlined text-primary-container text-xl">receipt_long</span>
+                  <span class="material-symbols-outlined text-primary-container text-xl" aria-hidden="true">receipt_long</span>
                   <h2 class="text-base font-bold text-on-surface">معاينة بوليصة الشحن الحرارية</h2>
                 </div>
                 <span class="px-2 py-0.5 rounded bg-surface-container text-secondary text-xs font-bold">
@@ -620,7 +623,7 @@
                     <span class="font-bold text-on-surface">ZATCA Qualified</span>
                   </div>
                   <div class="w-8 h-8 bg-inverse-surface text-inverse-on-surface rounded p-1 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-xl">qr_code_2</span>
+                    <span class="material-symbols-outlined text-xl" aria-hidden="true">qr_code_2</span>
                   </div>
                 </div>
               </div>
@@ -628,11 +631,11 @@
               <!-- Thermal Printing Action -->
               <div class="flex flex-col gap-space-xs">
                 <button onclick="window.print()" class="w-full py-space-sm px-space-md rounded-lg bg-primary-container hover:bg-primary text-on-primary text-xs font-bold flex items-center justify-center gap-space-xs shadow-sm transition-transform active:scale-95" type="button">
-                  <span class="material-symbols-outlined text-lg">print</span>
+                  <span class="material-symbols-outlined text-lg" aria-hidden="true">print</span>
                   <span>طباعة بوليصة الشحن الحرارية AWB</span>
                 </button>
-                <button onclick="alert('جاري إرسال إيصال الضمان والفاتورة إلى طابعة الفواتير...')" class="w-full py-space-xs px-space-md rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface text-xs font-semibold flex items-center justify-center gap-space-xs transition-colors" type="button">
-                  <span class="material-symbols-outlined text-base">receipt</span>
+                <button onclick="showToast('جاري إرسال إيصال الضمان والفاتورة إلى طابعة الفواتير الحرارية...', 'success')" class="w-full py-space-xs px-space-md rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface text-xs font-semibold flex items-center justify-center gap-space-xs transition-colors" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">receipt</span>
                   <span>طباعة إيصال الفاتورة والضمان</span>
                 </button>
               </div>
@@ -640,7 +643,7 @@
               <!-- Dispatch Button -->
               <div class="pt-space-xs">
                 <button id="dispatch-confirm-btn" onclick="confirmDispatch()" class="w-full py-space-md px-space-md rounded-xl bg-tertiary hover:bg-tertiary-container text-on-tertiary text-base font-bold flex items-center justify-center gap-space-sm shadow-md transition-transform active:scale-95" type="button">
-                  <span class="material-symbols-outlined text-2xl">verified</span>
+                  <span class="material-symbols-outlined text-2xl" aria-hidden="true">verified</span>
                   <span>تأكيد إغلاق الطرد وجاهزية التسليم</span>
                 </button>
                 <p class="text-xs text-secondary text-center mt-space-xs">
@@ -652,7 +655,7 @@
             <!-- API Gateways -->
             <div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-sm border border-outline-variant/10 text-xs">
               <h3 class="text-sm font-bold text-on-surface flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-secondary">hub</span>
+                <span class="material-symbols-outlined text-secondary" aria-hidden="true">hub</span>
                 <span>بوابات الشحن والربط الآلي (Live API)</span>
               </h3>
               <div class="space-y-1.5">
@@ -682,15 +685,15 @@
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm border-b border-outline-variant/20">
             <div class="flex items-center gap-space-sm">
               <div class="w-10 h-10 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
-                <span class="material-symbols-outlined text-2xl">rv_hookup</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">rv_hookup</span>
               </div>
               <div class="flex flex-col">
                 <h2 class="text-base lg:text-lg font-bold text-on-surface">كشوف تسليم الشحنات للمناديب وشركات النقل</h2>
                 <span class="text-xs text-secondary">إدارة تسليم الشحنات الحية حسب مسار وسيارات اليوم</span>
               </div>
             </div>
-            <button onclick="alert('جاري إنشاء وطباعة كشف المانيفست المجمع بصيغة PDF...')" class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-xs font-bold transition-colors" type="button">
-              <span class="material-symbols-outlined text-base">description</span>
+            <button onclick="showToast('جاري تجهيز وطباعة كشف المانيفست المجمع بصيغة PDF...', 'success')" class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-xs font-bold transition-colors" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">description</span>
               <span>طباعة كشف تسليم مجمع (PDF)</span>
             </button>
           </div>
@@ -731,7 +734,7 @@
                     </span>
                   </td>
                   <td class="py-space-md px-space-md text-center">
-                    <button onclick="alert('تم توقيع واستلام الشحنات بواسطة الكابتن ماجد.')" class="px-space-sm py-1 rounded bg-primary-container hover:bg-primary text-on-primary font-bold transition-colors" type="button">
+                    <button onclick="showToast('تم توقيع واستلام الشحنات بواسطة الكابتن ماجد بنجاح.', 'success')" class="px-space-sm py-1 rounded bg-primary-container hover:bg-primary text-on-primary font-bold transition-colors" type="button">
                       توقيع وتسليم
                     </button>
                   </td>
@@ -759,7 +762,7 @@
                     </span>
                   </td>
                   <td class="py-space-md px-space-md text-center">
-                    <button onclick="alert('عرض مانيفست سمسا #MNF-SM-90204')" class="px-space-sm py-1 rounded bg-surface-container-high hover:bg-surface-variant text-on-surface font-bold transition-colors" type="button">
+                    <button onclick="showToast('تم فتح مانيفست سمسا #MNF-SM-90204 للمراجعة.', 'info')" class="px-space-sm py-1 rounded bg-surface-container-high hover:bg-surface-variant text-on-surface font-bold transition-colors" type="button">
                       معاينة الكشف
                     </button>
                   </td>
@@ -783,30 +786,66 @@
 
   <!-- Interactive JavaScript Logic -->
   <script>
+    // Toast Notification System replacing window.alert
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      // Trigger smooth entrance
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      // Remove after 3.5 seconds
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     function triggerVerification() {
       const input = document.getElementById('barcodeScannerInput');
       const val = input.value.trim();
       if (!val) {
-        alert('يرجى مسح أو إدخال السيريال أو كود الشحنة.');
+        showToast('يرجى مسح أو إدخال السيريال أو كود الشحنة.', 'error');
         return;
       }
       
       input.classList.add('bg-tertiary/20');
       setTimeout(() => {
         input.classList.remove('bg-tertiary/20');
-        alert(`تم التعرف على الشحنة [${val}] ومطابقة كافة محتوياتها بالسيريال بنجاح!`);
-      }, 350);
+        showToast(`تم التعرف على الشحنة [${val}] ومطابقة كافة محتوياتها بالسيريال بنجاح!`, 'success');
+      }, 300);
     }
 
     function confirmDispatch() {
       const btn = document.getElementById('dispatch-confirm-btn');
-      if (confirm('هل تم لصق الشريط الأمني الليزري والتأكد من وضع بوليصة الشحن على الصندوق؟')) {
-        btn.classList.remove('bg-tertiary', 'hover:bg-tertiary-container');
+      if (window.confirm('هل تم لصق الشريط الأمني الليزري والتأكد من وضع بوليصة الشحن على الصندوق؟')) {
+        btn.classList.remove('bg-tertiary', 'hover:bg-tertiator-container');
         btn.classList.add('bg-surface-container-high', 'text-secondary', 'cursor-not-allowed');
         btn.disabled = true;
-        btn.innerHTML = '<span class="material-symbols-outlined text-xl">check_circle</span> تم الإغلاق وجاهز للنقل';
+        btn.innerHTML = '<span class="material-symbols-outlined text-xl" aria-hidden="true">check_circle</span> تم الإغلاق وجاهز للنقل';
 
-        // Update counters
+        // Update counters dynamically
         const readyCount = document.getElementById('ready-packages-count');
         readyCount.innerText = parseInt(readyCount.innerText) + 1;
 
@@ -816,13 +855,16 @@
         const captainCount = document.getElementById('captain-packages-count');
         captainCount.innerText = '19 طرد';
 
-        alert('تم بنجاح! نُقلت الشحنة رقم #TP-2025-98340 إلى بيان شحنات الكابتن ماجد العتيبي.');
+        showToast('تم بنجاح! نُقلت الشحنة رقم #TP-2025-98340 إلى بيان شحنات الكابتن ماجد العتيبي.', 'success');
       }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       const scannerInput = document.getElementById('barcodeScannerInput');
       if (scannerInput) {
+        // Focus automatically on page load for immediate scanning
+        scannerInput.focus();
+        
         scannerInput.addEventListener('keydown', (e) => {
           if (e.key === 'Enter') {
             e.preventDefault();

@@ -4,7 +4,6 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   
-  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Financials & ZATCA UUIDs) -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
 
@@ -110,7 +109,6 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
-  <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
@@ -134,33 +132,33 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن تقرير، فاتورة، أو رقم ضريبي..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="بحث في النظام المالي" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن تقرير، فاتورة، أو رقم ضريبي..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="حساب المدير المالي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">المدير المالي</span>
           </a>
         </div>
@@ -168,14 +166,14 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">التقارير المالية وإقرارات ZATCA</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الفواتير الإلكترونية المشفرة</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">تسويات بوابات الدفع</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">إقفال العهد النقدية POS</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">account_balance</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">account_balance</span>
             <span>معتمد رسمياً من هيئة الزكاة والضريبة والجمارك</span>
           </div>
         </div>
@@ -183,13 +181,11 @@
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
       
-      <!-- Interactive Notification Toast -->
       <div class="fixed bottom-6 left-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-space-sm bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-xl shadow-2xl border border-outline-variant/30 text-xs" id="toastNotification">
-        <span class="material-symbols-outlined text-tertiary-fixed-dim text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        <span class="material-symbols-outlined text-tertiary-fixed-dim text-xl" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">check_circle</span>
         <div class="flex flex-col text-right">
           <span class="font-bold" id="toastTitle">تمت العملية بنجاح</span>
           <span class="text-secondary-fixed text-[11px]" id="toastDesc">تم تحديث البيانات المالية</span>
@@ -198,16 +194,15 @@
 
       <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-lg flex flex-col gap-space-xl">
         
-        <!-- Page Header & Action Bar -->
         <header class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg bg-surface-container-lowest p-space-xl rounded-xl shadow-sm border border-outline-variant/10">
           <div class="space-y-space-xs max-w-3xl">
             <div class="flex flex-wrap items-center gap-space-xs text-xs">
               <span class="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-bold">
-                <span class="material-symbols-outlined text-sm">account_balance</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">account_balance</span>
                 بوابة الإدارة المالية والضريبية
               </span>
               <span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-bold">
-                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">verified</span>
                 اعتماد ZATCA الفوري - المرحلة الثانية (الربط والتكامل)
               </span>
             </div>
@@ -217,78 +212,72 @@
             </p>
           </div>
 
-          <!-- Action Cluster -->
           <div class="flex flex-wrap items-center gap-space-xs shrink-0 text-xs font-bold">
             <button onclick="triggerToast('جاري تصدير جرد الأرصدة والتقارير المالية بصيغة Excel...')" class="inline-flex items-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2.5 rounded-lg transition-all active:scale-95 shadow-sm border border-outline-variant/10 cursor-pointer" type="button">
-              <span class="material-symbols-outlined text-base text-secondary">table_view</span>
+              <span class="material-symbols-outlined text-base text-secondary" aria-hidden="true">table_view</span>
               <span>تصدير Excel</span>
             </button>
-            <button onclick="alert('جاري إنشاء تقرير PDF المالي الشامل للربع الأول')" class="inline-flex items-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2.5 rounded-lg transition-all active:scale-95 shadow-sm border border-outline-variant/10 cursor-pointer" type="button">
-              <span class="material-symbols-outlined text-base text-secondary">picture_as_pdf</span>
+            <button onclick="triggerToast('جاري إنشاء تقرير PDF المالي الشامل للربع الأول...')" class="inline-flex items-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2.5 rounded-lg transition-all active:scale-95 shadow-sm border border-outline-variant/10 cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base text-secondary" aria-hidden="true">picture_as_pdf</span>
               <span>تقرير PDF مفصل</span>
             </button>
-            <button onclick="alert('تم إرسال الإقرار الضريبي المعتمد إلى بوابة فاتورة (ZATCA) بنجاح')" class="inline-flex items-center gap-1 bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2.5 rounded-lg transition-all active:scale-95 shadow-md cursor-pointer" type="button">
-              <span class="material-symbols-outlined text-base">verified_user</span>
+            <button onclick="triggerToast('تم إرسال الإقرار الضريبي المعتمد إلى بوابة فاتورة (ZATCA) بنجاح.')" class="inline-flex items-center gap-1 bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2.5 rounded-lg transition-all active:scale-95 shadow-md cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">verified_user</span>
               <span>إصدار الإقرار الضريبي المعتمد</span>
             </button>
           </div>
         </header>
 
-        <!-- Filters & Range Strip -->
         <section class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 text-xs">
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-space-md items-center">
             
-            <!-- Date Selector -->
             <div class="lg:col-span-4 flex flex-col gap-1">
               <label class="font-bold text-secondary flex items-center gap-1" for="date-range">
-                <span class="material-symbols-outlined text-sm">calendar_month</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">calendar_month</span>
                 <span>الفترة المحاسبية</span>
               </label>
               <div class="relative flex items-center">
-                <select class="w-full bg-surface-container-low text-on-surface font-bold rounded-lg px-3 py-2 appearance-none focus:outline-none border border-outline-variant/20 focus:border-primary-container transition-all cursor-pointer" id="date-range">
+                <select aria-label="الفترة المحاسبية" class="w-full bg-surface-container-low text-on-surface font-bold rounded-lg px-3 py-2 appearance-none focus:outline-none border border-outline-variant/20 focus:border-primary-container transition-all cursor-pointer" id="date-range">
                   <option selected="" value="q1-2025">الربع الأول 2025 (يناير - مارس 2025)</option>
                   <option value="q4-2024">الربع الرابع 2024 (أكتوبر - ديسمبر 2024)</option>
                   <option value="m-march-2025">شهر مارس 2025 الحصري</option>
                 </select>
-                <span class="material-symbols-outlined absolute left-2 pointer-events-none text-secondary">expand_more</span>
+                <span class="material-symbols-outlined absolute left-2 pointer-events-none text-secondary" aria-hidden="true">expand_more</span>
               </div>
             </div>
 
-            <!-- Branch Selector -->
             <div class="lg:col-span-3 flex flex-col gap-1">
               <label class="font-bold text-secondary flex items-center gap-1" for="branch-filter">
-                <span class="material-symbols-outlined text-sm">storefront</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">storefront</span>
                 <span>الفرع / القناة البيعية</span>
               </label>
               <div class="relative flex items-center">
-                <select class="w-full bg-surface-container-low text-on-surface font-bold rounded-lg px-3 py-2 appearance-none focus:outline-none border border-outline-variant/20 focus:border-primary-container transition-all cursor-pointer" id="branch-filter">
+                <select aria-label="الفرع أو القناة البيعية" class="w-full bg-surface-container-low text-on-surface font-bold rounded-lg px-3 py-2 appearance-none focus:outline-none border border-outline-variant/20 focus:border-primary-container transition-all cursor-pointer" id="branch-filter">
                   <option selected="" value="all">كافة الفروع والمتجر الإلكتروني</option>
                   <option value="online">المتجر الإلكتروني (تطبيق وموقع)</option>
                   <option value="riyadh">فرع الرياض - طريق الملك فهد</option>
                   <option value="jeddah">فرع جدة - طريق التحلية</option>
                   <option value="khobar">فرع الخبر - حي اليرموك</option>
                 </select>
-                <span class="material-symbols-outlined absolute left-2 pointer-events-none text-secondary">expand_more</span>
+                <span class="material-symbols-outlined absolute left-2 pointer-events-none text-secondary" aria-hidden="true">expand_more</span>
               </div>
             </div>
 
-            <!-- Tax Clearance Filter -->
             <div class="lg:col-span-3 flex flex-col gap-1">
               <label class="font-bold text-secondary flex items-center gap-1" for="tax-status">
-                <span class="material-symbols-outlined text-sm">task_alt</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">task_alt</span>
                 <span>حالة فواتير ZATCA</span>
               </label>
               <div class="relative flex items-center">
-                <select class="w-full bg-surface-container-low text-on-surface font-bold rounded-lg px-3 py-2 appearance-none focus:outline-none border border-outline-variant/20 focus:border-primary-container transition-all cursor-pointer" id="tax-status">
+                <select aria-label="حالة فواتير الزكاة والضريبة" class="w-full bg-surface-container-low text-on-surface font-bold rounded-lg px-3 py-2 appearance-none focus:outline-none border border-outline-variant/20 focus:border-primary-container transition-all cursor-pointer" id="tax-status">
                   <option selected="" value="all-cleared">مصرحة ومعتمدة 100% (Cleared)</option>
                   <option value="reported">مبلّغ عنها بالختم الرقمي (Reported)</option>
                   <option value="pending-sync">بانتظار المزامنة الدفعية (0)</option>
                 </select>
-                <span class="material-symbols-outlined absolute left-2 pointer-events-none text-secondary">expand_more</span>
+                <span class="material-symbols-outlined absolute left-2 pointer-events-none text-secondary" aria-hidden="true">expand_more</span>
               </div>
             </div>
 
-            <!-- Real-time Sync Meta -->
             <div class="lg:col-span-2 flex flex-col justify-center items-start lg:items-end gap-1 pt-1">
               <span class="text-[11px] text-secondary">آخر مزامنة مع بوابة "فاتورة"</span>
               <div class="inline-flex items-center gap-1 font-bold text-tertiary">
@@ -300,9 +289,7 @@
           </div>
         </section>
 
-        <!-- Financial KPI Metric Cards -->
         <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
-          <!-- KPI 1 -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 relative overflow-hidden flex flex-col justify-between">
             <div class="flex items-start justify-between">
               <div class="space-y-1">
@@ -310,12 +297,12 @@
                 <div class="text-2xl font-black text-on-surface tracking-tight font-mono">1,248,500 <span class="text-xs font-normal text-secondary font-sans">ر.س</span></div>
               </div>
               <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-2xl">trending_up</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">trending_up</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs border-t border-outline-variant/10 flex items-center justify-between text-xs">
               <div class="flex items-center gap-1 text-tertiary font-bold">
-                <span class="material-symbols-outlined text-sm">arrow_upward</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_upward</span>
                 <span class="font-mono">+18.4%</span>
                 <span class="text-secondary text-[11px] font-normal">عن السابق</span>
               </div>
@@ -323,7 +310,6 @@
             </div>
           </div>
 
-          <!-- KPI 2 -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 relative overflow-hidden flex flex-col justify-between">
             <div class="flex items-start justify-between">
               <div class="space-y-1">
@@ -331,19 +317,18 @@
                 <div class="text-2xl font-black text-on-surface tracking-tight font-mono">342,800 <span class="text-xs font-normal text-secondary font-sans">ر.س</span></div>
               </div>
               <div class="w-12 h-12 rounded-lg bg-tertiary-container/10 text-tertiary flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-2xl">payments</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">payments</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs border-t border-outline-variant/10 flex items-center justify-between text-xs">
               <div class="flex items-center gap-1 text-tertiary font-bold">
-                <span class="material-symbols-outlined text-sm">pie_chart</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">pie_chart</span>
                 <span class="font-mono">هامش ربح 27.5%</span>
               </div>
               <span class="text-[11px] text-secondary bg-surface-container px-2 py-0.5 rounded">بعد التكاليف</span>
             </div>
           </div>
 
-          <!-- KPI 3 -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 relative overflow-hidden flex flex-col justify-between">
             <div class="flex items-start justify-between">
               <div class="space-y-1">
@@ -351,19 +336,18 @@
                 <div class="text-2xl font-black text-primary tracking-tight font-mono">162,847.82 <span class="text-xs font-normal text-secondary font-sans">ر.س</span></div>
               </div>
               <div class="w-12 h-12 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-2xl">verified</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">verified</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs border-t border-outline-variant/10 flex items-center justify-between text-xs">
               <div class="flex items-center gap-1 text-tertiary font-bold">
-                <span class="material-symbols-outlined text-sm">check_circle</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">check_circle</span>
                 <span>100% مطابقة معايير ZATCA</span>
               </div>
               <span class="text-[11px] text-secondary bg-surface-container px-2 py-0.5 rounded">المرحلة 2</span>
             </div>
           </div>
 
-          <!-- KPI 4 -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 relative overflow-hidden flex flex-col justify-between">
             <div class="flex items-start justify-between">
               <div class="space-y-1">
@@ -371,12 +355,12 @@
                 <div class="text-2xl font-black text-on-surface tracking-tight font-mono">3,650 <span class="text-xs font-normal text-secondary font-sans">ر.س</span></div>
               </div>
               <div class="w-12 h-12 rounded-lg bg-secondary-container text-on-secondary-fixed flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-2xl">shopping_basket</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">shopping_basket</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs border-t border-outline-variant/10 flex items-center justify-between text-xs">
               <div class="flex items-center gap-1 text-primary font-bold">
-                <span class="material-symbols-outlined text-sm">auto_graph</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">auto_graph</span>
                 <span>مدفوعة بأجهزة +A المجددة</span>
               </div>
               <span class="text-[11px] text-secondary bg-surface-container px-2 py-0.5 rounded">طلب استثنائي</span>
@@ -384,7 +368,6 @@
           </div>
         </section>
 
-        <!-- Recent Cryptographic Invoices Table (ZATCA Cleared) -->
         <section class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm border border-outline-variant/10 space-y-space-md overflow-hidden">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
             <div>
@@ -396,7 +379,6 @@
             </div>
           </div>
 
-          <!-- Table Wrapper -->
           <div class="w-full overflow-x-auto">
             <table class="w-full text-right border-collapse text-xs">
               <thead>
@@ -415,7 +397,7 @@
                 <tr class="hover:bg-surface-container-low/60 transition-colors">
                   <td class="p-space-sm">
                     <div class="flex items-center gap-2">
-                      <span class="material-symbols-outlined text-base text-primary">qr_code_2</span>
+                      <span class="material-symbols-outlined text-base text-primary" aria-hidden="true">qr_code_2</span>
                       <div>
                         <span class="font-bold block font-mono">INV-2025-08941</span>
                         <span class="text-secondary text-[10px] font-mono">c94f71a2-8e10-4f9a...</span>
@@ -426,7 +408,7 @@
                   <td class="p-space-sm font-bold">سلطان عبد العزيز الدوسري</td>
                   <td class="p-space-sm">
                     <span class="inline-flex items-center gap-1 text-[11px] bg-surface-container px-2 py-0.5 rounded font-semibold">
-                      <span class="material-symbols-outlined text-xs text-primary">shopping_bag</span> متجر أونلاين
+                      <span class="material-symbols-outlined text-xs text-primary" aria-hidden="true">shopping_bag</span> متجر أونلاين
                     </span>
                   </td>
                   <td class="p-space-sm font-mono font-semibold">4,346.96 ر.س</td>
@@ -434,7 +416,7 @@
                   <td class="p-space-sm font-bold text-primary font-mono text-sm">4,999.00 ر.س</td>
                   <td class="p-space-sm text-center">
                     <span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-full text-[11px] font-bold">
-                      <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">done_all</span>
+                      <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">done_all</span>
                       <span>مصرحة ومشفرة</span>
                     </span>
                   </td>
@@ -443,7 +425,7 @@
                 <tr class="hover:bg-surface-container-low/60 transition-colors">
                   <td class="p-space-sm">
                     <div class="flex items-center gap-2">
-                      <span class="material-symbols-outlined text-base text-primary">qr_code_2</span>
+                      <span class="material-symbols-outlined text-base text-primary" aria-hidden="true">qr_code_2</span>
                       <div>
                         <span class="font-bold block font-mono">INV-2025-08940</span>
                         <span class="text-secondary text-[10px] font-mono">f18b32d0-55ac-47bb...</span>
@@ -454,7 +436,7 @@
                   <td class="p-space-sm font-bold">شركة الأفق للحلول الرقمية</td>
                   <td class="p-space-sm">
                     <span class="inline-flex items-center gap-1 text-[11px] bg-surface-container px-2 py-0.5 rounded font-semibold">
-                      <span class="material-symbols-outlined text-xs text-tertiary">store</span> فرع الرياض
+                      <span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">store</span> فرع الرياض
                     </span>
                   </td>
                   <td class="p-space-sm font-mono font-semibold">16,000.00 ر.س</td>
@@ -462,7 +444,7 @@
                   <td class="p-space-sm font-bold text-primary font-mono text-sm">18,400.00 ر.س</td>
                   <td class="p-space-sm text-center">
                     <span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-full text-[11px] font-bold">
-                      <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">done_all</span>
+                      <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">done_all</span>
                       <span>مصرحة ومشفرة</span>
                     </span>
                   </td>
@@ -474,27 +456,25 @@
           <div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-xs text-xs text-secondary border-t border-outline-variant/10">
             <span>يتم حفظ التشفير الرقمي CSID وتوقيع ECDSA في سجلات غير قابلة للتلاعب متطابقة مع متطلبات نظام الفوترة.</span>
             <div class="flex items-center gap-1 font-bold">
-              <button class="px-3 py-1 bg-surface-container-low hover:bg-surface-container rounded text-on-surface" type="button">السابق</button>
+              <button class="px-3 py-1 bg-surface-container-low hover:bg-surface-container rounded text-on-surface cursor-pointer" type="button">السابق</button>
               <span class="px-2 text-primary">1 من 69</span>
-              <button class="px-3 py-1 bg-surface-container-low hover:bg-surface-container rounded text-on-surface" type="button">التالي</button>
+              <button class="px-3 py-1 bg-surface-container-low hover:bg-surface-container rounded text-on-surface cursor-pointer" type="button">التالي</button>
             </div>
           </div>
         </section>
 
-        <!-- Advanced Reconciliation & Settlement Controls -->
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
           
-          <!-- Payment Gateway Settlements -->
           <div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm border border-outline-variant/10 space-y-space-md text-xs">
             <div class="flex items-center justify-between pb-2 border-b border-outline-variant/10">
               <div class="flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-primary text-xl">sync_alt</span>
+                <span class="material-symbols-outlined text-primary text-xl" aria-hidden="true">sync_alt</span>
                 <div>
                   <h2 class="text-sm font-bold text-on-surface">تسويات بوابات الدفع الإلكتروني (Settlements)</h2>
                   <p class="text-secondary text-[11px]">حالة التحويل إلى الحسابات البنكية التجارية</p>
                 </div>
               </div>
-              <button onclick="triggerToast('تمت مزامنة حركات التسويات البنكية بنجاح')" class="text-xs font-bold text-primary hover:underline cursor-pointer" type="button">مزامنة فورية</button>
+              <button onclick="triggerToast('تمت مزامنة حركات التسويات البنكية بنجاح.')" class="text-xs font-bold text-primary hover:underline cursor-pointer" type="button">مزامنة فورية</button>
             </div>
 
             <div class="space-y-2">
@@ -533,11 +513,10 @@
             </div>
           </div>
 
-          <!-- POS Cash Handover Tracker -->
           <div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm border border-outline-variant/10 space-y-space-md text-xs">
             <div class="flex items-center justify-between pb-2 border-b border-outline-variant/10">
               <div class="flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-secondary text-xl">point_of_sale</span>
+                <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">point_of_sale</span>
                 <div>
                   <h2 class="text-sm font-bold text-on-surface">إقفال العهدة النقدية اليومية للفروع (Cash Reconciliation)</h2>
                   <p class="text-secondary text-[11px]">مطابقة النقد في الصندوق مع تقرير الكاشير X/Z Report</p>
@@ -558,7 +537,7 @@
                     <span class="block text-[10px] text-tertiary font-bold">مطابقة 100% (صفر عجز)</span>
                   </div>
                   <span class="w-7 h-7 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
-                    <span class="material-symbols-outlined text-sm">check</span>
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">check</span>
                   </span>
                 </div>
               </div>
@@ -574,15 +553,15 @@
                     <span class="block text-[10px] text-tertiary font-bold">مطابقة 100% (صفر عجز)</span>
                   </div>
                   <span class="w-7 h-7 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
-                    <span class="material-symbols-outlined text-sm">check</span>
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">check</span>
                   </span>
                 </div>
               </div>
             </div>
 
             <div class="pt-1">
-              <button onclick="triggerToast('تم تحميل سجل التسويات النقدية الشامل لجميع الفروع')" class="w-full py-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg font-bold transition-colors flex items-center justify-center gap-1 cursor-pointer border border-outline-variant/10">
-                <span class="material-symbols-outlined text-base">archive</span>
+              <button onclick="triggerToast('تم تحميل سجل التسويات النقدية الشامل لجميع الفروع بنجاح.')" class="w-full py-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg font-bold transition-colors flex items-center justify-center gap-1 cursor-pointer border border-outline-variant/10" type="button">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">archive</span>
                 <span>تحميل سجل التسويات النقدية الشامل</span>
               </button>
             </div>
@@ -590,11 +569,10 @@
 
         </section>
 
-        <!-- Visual Assurance Footer Callout -->
         <section class="bg-inverse-surface text-inverse-on-surface p-space-xl rounded-xl flex flex-col lg:flex-row items-center justify-between gap-space-lg shadow-md border border-outline-variant/20 text-xs">
           <div class="flex items-center gap-space-md">
             <div class="w-14 h-14 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-3xl">shield</span>
+              <span class="material-symbols-outlined text-3xl" aria-hidden="true">shield</span>
             </div>
             <div class="space-y-1">
               <h3 class="text-base font-bold text-surface-container-lowest">منظومة أمان الدفاتر والفوترة المتكاملة</h3>
@@ -604,7 +582,7 @@
             </div>
           </div>
           <div class="flex items-center gap-space-xs shrink-0 font-bold">
-            <button onclick="alert('إدارة مفاتيح الربط وتجديد شهادة تشفير الفواتير الإلكترونية CSID')" class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-2.5 rounded-lg transition-all shadow-md cursor-pointer">
+            <button onclick="triggerToast('جاري إدارة مفاتيح الربط وتجديد شهادة تشفير الفواتير الإلكترونية CSID...')" class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-2.5 rounded-lg transition-all shadow-md cursor-pointer" type="button">
               إدارة مفاتيح الربط وتجديد CSID
             </button>
           </div>
@@ -614,14 +592,13 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
     <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
       <div class="flex flex-col gap-space-sm">
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -664,7 +641,6 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
     function triggerToast(message) {
       const toast = document.getElementById('toastNotification');

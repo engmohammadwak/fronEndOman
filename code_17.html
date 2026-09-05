@@ -4,7 +4,6 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   
-  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (SKUs / Transfer IDs) -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
 
@@ -110,13 +109,12 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
-  <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -134,33 +132,33 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر مركز التخزين" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع المراكز</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="transfers">المناقلات النشطة</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="stock">المخزون المتوفر</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="alerts">التنبيهات الحرجة</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث برقم الإرسالية، المستودع، أو الصنف..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث برقم الإرسالية أو المستودع" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث برقم الإرسالية، المستودع، أو الصنف..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="حساب مدير الإمداد" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">مدير الإمداد</span>
           </a>
         </div>
@@ -175,7 +173,7 @@
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">أسطول التوزيع الميداني</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">hub</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">hub</span>
             <span>مزامنة جغرافية عبر 6 مدن بالمملكة</span>
           </div>
         </div>
@@ -183,23 +181,20 @@
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
       
-      <!-- Interactive Notification Toast -->
       <div class="fixed bottom-6 left-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-inverse-surface text-inverse-on-surface px-space-lg py-space-md rounded-xl shadow-2xl flex items-center gap-space-sm border border-outline-variant/30 text-xs" id="toastNotification">
-        <span class="material-symbols-outlined text-tertiary-fixed-dim text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        <span class="material-symbols-outlined text-tertiary-fixed-dim text-xl" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">check_circle</span>
         <span class="font-bold" id="toastMessage">تم الإجراء بنجاح في نظام إدارة المستودعات</span>
       </div>
 
       <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-lg flex flex-col gap-space-xl">
         
-        <!-- Top Bar: Navigation Context, Actions & Global Search -->
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10">
           <div class="flex flex-col gap-space-2xs">
             <div class="flex items-center gap-space-xs text-secondary text-xs font-semibold flex-wrap">
-              <span class="material-symbols-outlined text-base">hub</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">hub</span>
               <span>بوابة سلاسل الإمداد المركزية</span>
               <span class="text-outline-variant">/</span>
               <span class="text-primary font-bold">العمليات اللوجستية والمستودعات</span>
@@ -217,34 +212,33 @@
           </div>
 
           <div class="flex flex-wrap items-center gap-space-sm shrink-0 text-xs font-bold">
-            <button class="flex items-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2.5 rounded-lg transition-all active:scale-95 shadow-sm border border-outline-variant/10" onclick="triggerToast('جاري تصدير جرد الأرصدة الشامل بصيغة Excel/PDF...')">
-              <span class="material-symbols-outlined text-base text-secondary">file_download</span>
+            <button class="flex items-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2.5 rounded-lg transition-all active:scale-95 shadow-sm border border-outline-variant/10 cursor-pointer" onclick="triggerToast('جاري تصدير جرد الأرصدة الشامل بصيغة Excel/PDF...')" type="button">
+              <span class="material-symbols-outlined text-base text-secondary" aria-hidden="true">file_download</span>
               <span>تصدير الجرد الإجمالي</span>
             </button>
-            <button class="flex items-center gap-1 bg-primary hover:bg-primary-container text-on-primary px-space-lg py-2.5 rounded-lg transition-all active:scale-95 shadow-md" onclick="toggleTransferModal(true)">
-              <span class="material-symbols-outlined text-base">swap_horiz</span>
+            <button class="flex items-center gap-1 bg-primary hover:bg-primary-container text-on-primary px-space-lg py-2.5 rounded-lg transition-all active:scale-95 shadow-md cursor-pointer" onclick="toggleTransferModal(true)" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">swap_horiz</span>
               <span>+ إنشاء طلب مناقلة مخزون</span>
             </button>
           </div>
         </div>
 
-        <!-- Quick Filters & Multi-Dimension Selectors -->
         <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md bg-surface-container-low/70 p-space-md rounded-xl border border-outline-variant/10 text-xs">
           <div class="flex items-center gap-space-xs overflow-x-auto pb-1 md:pb-0">
             <span class="text-on-surface-variant whitespace-nowrap pl-2 flex items-center gap-1 font-bold">
-              <span class="material-symbols-outlined text-sm">filter_alt</span> المدينة:
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">filter_alt</span> المدينة:
             </span>
-            <button class="filter-city-btn active bg-primary text-on-primary px-space-md py-1 rounded-full font-bold whitespace-nowrap transition-colors shadow-sm" data-city="all">كافة المدن (6)</button>
-            <button class="filter-city-btn bg-surface-container-lowest text-secondary hover:text-on-surface px-space-md py-1 rounded-full font-bold whitespace-nowrap transition-colors border border-outline-variant/10" data-city="riyadh">الرياض (3)</button>
-            <button class="filter-city-btn bg-surface-container-lowest text-secondary hover:text-on-surface px-space-md py-1 rounded-full font-bold whitespace-nowrap transition-colors border border-outline-variant/10" data-city="jeddah">جدة (1)</button>
-            <button class="filter-city-btn bg-surface-container-lowest text-secondary hover:text-on-surface px-space-md py-1 rounded-full font-bold whitespace-nowrap transition-colors border border-outline-variant/10" data-city="eastern">المنطقة الشرقية (1)</button>
-            <button class="filter-city-btn bg-surface-container-lowest text-secondary hover:text-on-surface px-space-md py-1 rounded-full font-bold whitespace-nowrap transition-colors border border-outline-variant/10" data-city="makkah">مكة المكرمة (1)</button>
+            <button class="filter-city-btn active bg-primary text-on-primary px-space-md py-1 rounded-full font-bold whitespace-nowrap transition-colors shadow-sm cursor-pointer" data-city="all" type="button">كافة المدن (6)</button>
+            <button class="filter-city-btn bg-surface-container-lowest text-secondary hover:text-on-surface px-space-md py-1 rounded-full font-bold whitespace-nowrap transition-colors border border-outline-variant/10 cursor-pointer" data-city="riyadh" type="button">الرياض (3)</button>
+            <button class="filter-city-btn bg-surface-container-lowest text-secondary hover:text-on-surface px-space-md py-1 rounded-full font-bold whitespace-nowrap transition-colors border border-outline-variant/10 cursor-pointer" data-city="jeddah" type="button">جدة (1)</button>
+            <button class="filter-city-btn bg-surface-container-lowest text-secondary hover:text-on-surface px-space-md py-1 rounded-full font-bold whitespace-nowrap transition-colors border border-outline-variant/10 cursor-pointer" data-city="eastern" type="button">المنطقة الشرقية (1)</button>
+            <button class="filter-city-btn bg-surface-container-lowest text-secondary hover:text-on-surface px-space-md py-1 rounded-full font-bold whitespace-nowrap transition-colors border border-outline-variant/10 cursor-pointer" data-city="makkah" type="button">مكة المكرمة (1)</button>
           </div>
 
           <div class="flex items-center gap-space-sm shrink-0">
             <div class="flex items-center bg-surface-container-lowest rounded-lg px-2 py-1.5 shadow-sm border border-outline-variant/10">
-              <span class="material-symbols-outlined text-base text-secondary pl-1">warehouse</span>
-              <select class="bg-transparent text-xs font-bold text-on-surface focus:outline-none cursor-pointer">
+              <span class="material-symbols-outlined text-base text-secondary pl-1" aria-hidden="true">warehouse</span>
+              <select aria-label="اختر نمط المركز اللوجستي" class="bg-transparent text-xs font-bold text-on-surface focus:outline-none cursor-pointer">
                 <option value="all">كافة أنماط المراكز اللوجستية</option>
                 <option value="hub">مستودع إقليمي رئيسي (Hub)</option>
                 <option value="qa">مركز فحص الجودة والتوزيع</option>
@@ -252,20 +246,18 @@
                 <option value="retail">فرع صالة عرض ونقاط بيع (POS)</option>
               </select>
             </div>
-            <button aria-label="Refresh Data" class="bg-surface-container-lowest text-secondary hover:text-primary p-2 rounded-lg transition-colors shadow-sm border border-outline-variant/10" onclick="triggerToast('تم تحديث بيانات الأرصدة عبر الفروع لحظياً')">
-              <span class="material-symbols-outlined text-base">sync</span>
+            <button aria-label="تحديث البيانات" class="bg-surface-container-lowest text-secondary hover:text-primary p-2 rounded-lg transition-colors shadow-sm border border-outline-variant/10 cursor-pointer" onclick="triggerToast('تم تحديث بيانات الأرصدة عبر الفروع لحظياً')" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">sync</span>
             </button>
           </div>
         </div>
 
-        <!-- 4 Key Logistics & Inventory KPIs -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
-          <!-- KPI 1 -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-shadow flex flex-col justify-between">
             <div class="flex items-center justify-between text-xs">
               <span class="text-secondary font-bold">إجمالي الأجهزة المتاحة بالمستودعات</span>
               <span class="p-2 bg-primary-fixed text-primary rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">devices</span>
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">devices</span>
               </span>
             </div>
             <div class="mt-space-md">
@@ -274,7 +266,7 @@
                 <span class="text-xs text-on-surface-variant font-bold">جهاز مفحوص</span>
               </div>
               <div class="flex items-center gap-1 mt-1 text-tertiary text-xs font-bold">
-                <span class="material-symbols-outlined text-sm">trending_up</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">trending_up</span>
                 <span>+380 جهازاً هذا الأسبوع</span>
               </div>
             </div>
@@ -283,12 +275,11 @@
             </div>
           </div>
 
-          <!-- KPI 2 -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-shadow flex flex-col justify-between">
             <div class="flex items-center justify-between text-xs">
               <span class="text-secondary font-bold">القيمة الإجمالية للمخزون الجاهز</span>
               <span class="p-2 bg-secondary-fixed text-on-secondary-fixed rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">payments</span>
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">payments</span>
               </span>
             </div>
             <div class="mt-space-md">
@@ -297,7 +288,7 @@
                 <span class="text-sm font-bold text-primary">مليون ر.س</span>
               </div>
               <div class="flex items-center gap-1 mt-1 text-secondary text-xs">
-                <span class="material-symbols-outlined text-sm text-tertiary">verified_user</span>
+                <span class="material-symbols-outlined text-sm text-tertiary" aria-hidden="true">verified_user</span>
                 <span>مؤمن بالكامل لدى التعاونية</span>
               </div>
             </div>
@@ -306,12 +297,11 @@
             </div>
           </div>
 
-          <!-- KPI 3 -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-shadow flex flex-col justify-between">
             <div class="flex items-center justify-between text-xs">
               <span class="text-secondary font-bold">شحنات المناقلة النشطة (In-Transit)</span>
               <span class="p-2 bg-tertiary-fixed text-on-tertiary-fixed rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">local_shipping</span>
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">local_shipping</span>
               </span>
             </div>
             <div class="mt-space-md">
@@ -320,7 +310,7 @@
                 <span class="text-xs text-on-surface-variant font-bold">شحنة جارية</span>
               </div>
               <div class="flex items-center gap-1 mt-1 text-on-surface-variant text-xs">
-                <span class="material-symbols-outlined text-sm text-primary">timer</span>
+                <span class="material-symbols-outlined text-sm text-primary" aria-hidden="true">timer</span>
                 <span>متوسط سرعة الإنجاز <strong class="font-mono font-bold">3.4h</strong></span>
               </div>
             </div>
@@ -329,12 +319,11 @@
             </div>
           </div>
 
-          <!-- KPI 4 -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-shadow flex flex-col justify-between">
             <div class="flex items-center justify-between text-xs">
               <span class="text-secondary font-bold">تنبيهات انخفاض المخزون الحرج</span>
               <span class="p-2 bg-error-container text-error rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">warning</span>
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">warning</span>
               </span>
             </div>
             <div class="mt-space-md">
@@ -343,7 +332,7 @@
                 <span class="text-xs text-error font-bold">أصناف تحت حد الأمان</span>
               </div>
               <div class="flex items-center gap-1 mt-1 text-error text-xs font-bold">
-                <span class="material-symbols-outlined text-sm">near_me</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">near_me</span>
                 <span>العليا بالرياض وتحلية جدة</span>
               </div>
             </div>
@@ -353,7 +342,6 @@
           </div>
         </div>
 
-        <!-- Section: Warehouses & Branches Structural Grid -->
         <div class="flex flex-col gap-space-md">
           <div class="flex items-center justify-between">
             <div>
@@ -366,7 +354,6 @@
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-lg">
-            <!-- Warehouse Card 1: Riyadh Hub -->
             <div class="warehouse-card bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between overflow-hidden" data-city="riyadh">
               <div class="relative h-40 w-full overflow-hidden">
                 <img class="w-full h-full object-cover" alt="مستودع السلي المركزي التقني بالرياض" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOaiALGhp7etLK7Cc9Q8uvS4uGfHZ0onW0_o8MHwRynEm_KtsU_nO_rgIgygrR_nw4xw0pKnz-n4h3FNs_TZi1RXVd5ZOlGYGUIV4rgMS2P8fSCJBS-jn-fZGgSWpyubzWcymi7JcemjYV6Oie_Uf3oH1NARqagVP04oZWQ2oXxkA8XCmLVN_ym66Zb8IB90lKHpAwBta1SoImhTE82q5QSAsYbgyOdymHUuDJVK5Seo_xPZH_osDHIw"/>
@@ -381,7 +368,7 @@
               </div>
               <div class="p-space-md flex flex-col gap-space-sm flex-1 text-xs">
                 <div class="flex items-center justify-between text-secondary">
-                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">pin_drop</span> السلي اللوجستي</span>
+                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-base" aria-hidden="true">pin_drop</span> السلي اللوجستي</span>
                   <span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold">مركز رئيسي Hub</span>
                 </div>
                 <div class="flex items-center justify-between bg-surface-container-low p-2 rounded-lg border border-outline-variant/10">
@@ -401,15 +388,14 @@
                   يضم مختبر فحص الجودة المعتمد 64 نقطة ومقر تفريغ الشحنات الدولية.
                 </p>
                 <div class="pt-space-xs mt-auto">
-                  <button class="w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface py-2 rounded-lg font-bold transition-colors flex items-center justify-center gap-1 border border-outline-variant/10" onclick="triggerToast('تم فتح تفاصيل مخزون مستودع الرياض وإصدار أذونات الصرف')">
-                    <span class="material-symbols-outlined text-base">inventory_2</span>
+                  <button class="w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface py-2 rounded-lg font-bold transition-colors flex items-center justify-center gap-1 border border-outline-variant/10 cursor-pointer" onclick="triggerToast('تم فتح تفاصيل مخزون مستودع الرياض وإصدار أذونات الصرف')" type="button">
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">inventory_2</span>
                     <span>تفاصيل المخزون وأذونات الصرف</span>
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Warehouse Card 2: Jeddah Center -->
             <div class="warehouse-card bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between overflow-hidden" data-city="jeddah">
               <div class="relative h-40 w-full overflow-hidden">
                 <img class="w-full h-full object-cover" alt="فرع وصالة التحلية بجدة" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_SPJeMqBHDzGo6L3YlVx0l0B99pE9YauSeKRhy5pgZcEaS0jqazYWkp0ERvdWdeUzGtYX_R2LfF17PgRAb1897lqxyF52_LKk2kxWRcLhmOyEmgPC87UosfP5v1zXWFh5hCgGTXFKu7qEoqeeaf8JyWRBlmQHAIGXrWDAfDyAzZV1sMKeyLBgXRAmlqGfG0VYKlVPgu5Bn1Y6A-9Gy0pnaflOmbmeV5KLCKN8pH8lADQCX9EU2NuT0w"/>
@@ -424,7 +410,7 @@
               </div>
               <div class="p-space-md flex flex-col gap-space-sm flex-1 text-xs">
                 <div class="flex items-center justify-between text-secondary">
-                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">pin_drop</span> شارع التحلية</span>
+                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-base" aria-hidden="true">pin_drop</span> شارع التحلية</span>
                   <span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded text-[10px] font-bold">فرع + صيانة</span>
                 </div>
                 <div class="flex items-center justify-between bg-surface-container-low p-2 rounded-lg border border-outline-variant/10">
@@ -444,15 +430,14 @@
                   يدعم التوصيل الفوري السريع لمدينة جدة خلال ساعتين وخدمة الاستلام الذاتي.
                 </p>
                 <div class="pt-space-xs mt-auto">
-                  <button class="w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface py-2 rounded-lg font-bold transition-colors flex items-center justify-center gap-1 border border-outline-variant/10" onclick="triggerToast('تم فتح تفاصيل مخزون فرع التحلية جدة')">
-                    <span class="material-symbols-outlined text-base">inventory_2</span>
+                  <button class="w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface py-2 rounded-lg font-bold transition-colors flex items-center justify-center gap-1 border border-outline-variant/10 cursor-pointer" onclick="triggerToast('تم فتح تفاصيل مخزون فرع التحلية جدة')" type="button">
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">inventory_2</span>
                     <span>تفاصيل المخزون وأذونات الصرف</span>
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Warehouse Card 3: Khobar Eastern Province -->
             <div class="warehouse-card bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between overflow-hidden" data-city="eastern">
               <div class="relative h-40 w-full overflow-hidden">
                 <img class="w-full h-full object-cover" alt="مستودع الخبر بالمنطقة الشرقية" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASwvHsELDvRKVvwE93099C0SIAaMuO8pw_VxoAvarwkR3fcDSQ06sFyS7c5uFDKOLPHrx9uxH8Xpl-yQqaK2QFP2jqfbAuQ8VBEA1VLPOPFyUfhq7g-F6dYuIykKnw-yAwN-Vd59f2UlY8VtSnXovBeH5r1D2MlGZjkJZJIJytqmxIOPAEap7tojrQkQE3LfSgc27D8SXAIN2Znzh28s8xiGzj9bolqhUEZwMVWcF6000QYIJ3X4pn8Q"/>
@@ -467,7 +452,7 @@
               </div>
               <div class="p-space-md flex flex-col gap-space-sm flex-1 text-xs">
                 <div class="flex items-center justify-between text-secondary">
-                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">pin_drop</span> طريق الملك فهد</span>
+                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-base" aria-hidden="true">pin_drop</span> طريق الملك فهد</span>
                   <span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold">مستودع إقليمي</span>
                 </div>
                 <div class="flex items-center justify-between bg-surface-container-low p-2 rounded-lg border border-outline-variant/10">
@@ -487,15 +472,14 @@
                   تغطية متكاملة لمدن الخبر، الدمام، الجبيل، والظهران عبر 4 سيارات شحن نشطة.
                 </p>
                 <div class="pt-space-xs mt-auto">
-                  <button class="w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface py-2 rounded-lg font-bold transition-colors flex items-center justify-center gap-1 border border-outline-variant/10" onclick="triggerToast('تم فتح تفاصيل مخزون مستودع الشرقية')">
-                    <span class="material-symbols-outlined text-base">inventory_2</span>
+                  <button class="w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface py-2 rounded-lg font-bold transition-colors flex items-center justify-center gap-1 border border-outline-variant/10 cursor-pointer" onclick="triggerToast('تم فتح تفاصيل مخزون مستودع الشرقية')" type="button">
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">inventory_2</span>
                     <span>تفاصيل المخزون وأذونات الصرف</span>
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Warehouse Card 4: King Abdulaziz Showroom Riyadh -->
             <div class="warehouse-card bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between overflow-hidden" data-city="riyadh">
               <div class="relative h-40 w-full overflow-hidden">
                 <img class="w-full h-full object-cover" alt="صالة عرض طريق الملك عبدالعزيز بالرياض" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwG4aFsCCREb_ELkrT3XXdVNW5Q04gCJEI5ax2QRK-uXJ-wJw3zoE3V7g7y3Rp7kjoIMP6paU07qLbLiDNgwWvXhblQY99GPRTioNaMo0bSekuzY2ig61q5VghVCz2UB2_jtPthQ8Fk7t5uC4vK5NXNcmdCOhZLnpJvP6L7JV9GrP6oJ84H0HyovLHJDnrqRSiZ7pFdc-kSGt3jLFzNJcjPbWzfGrG7Fpdtfh7gcFHj54dh1SiHT6zXg"/>
@@ -510,7 +494,7 @@
               </div>
               <div class="p-space-md flex flex-col gap-space-sm flex-1 text-xs">
                 <div class="flex items-center justify-between text-secondary">
-                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">pin_drop</span> الرياض - المروج</span>
+                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-base" aria-hidden="true">pin_drop</span> الرياض - المروج</span>
                   <span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded text-[10px] font-bold">صالة VIP + POS</span>
                 </div>
                 <div class="flex items-center justify-between bg-surface-container-low p-2 rounded-lg border border-outline-variant/10">
@@ -530,8 +514,8 @@
                   مركز الاستبدال الفوري Trade-In ومبيعات التجزئة السريعة خلال 15 دقيقة.
                 </p>
                 <div class="pt-space-xs mt-auto">
-                  <button class="w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface py-2 rounded-lg font-bold transition-colors flex items-center justify-center gap-1 border border-outline-variant/10" onclick="triggerToast('تم فتح تفاصيل مخزون فرع طريق الملك عبدالعزيز')">
-                    <span class="material-symbols-outlined text-base">inventory_2</span>
+                  <button class="w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface py-2 rounded-lg font-bold transition-colors flex items-center justify-center gap-1 border border-outline-variant/10 cursor-pointer" onclick="triggerToast('تم فتح تفاصيل مخزون فرع طريق الملك عبدالعزيز')" type="button">
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">inventory_2</span>
                     <span>تفاصيل المخزون وأذونات الصرف</span>
                   </button>
                 </div>
@@ -540,12 +524,11 @@
           </div>
         </div>
 
-        <!-- Section: Smart AI Inventory Balancing -->
         <div class="bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-md">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
             <div class="flex items-center gap-space-sm">
               <div class="p-2 bg-primary-fixed text-primary rounded-lg">
-                <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">auto_awesome</span>
               </div>
               <div>
                 <h3 class="text-base font-bold text-on-surface">مصفوفة موازنة المخزون التلقائية (AI Inventory Rebalance & Restock)</h3>
@@ -554,18 +537,17 @@
             </div>
             <div class="flex items-center gap-space-xs self-end sm:self-auto">
               <span class="bg-tertiary-fixed text-on-tertiary-fixed text-xs px-3 py-1 rounded-full flex items-center gap-1 font-bold">
-                <span class="material-symbols-outlined text-base">psychology</span>
+                <span class="material-symbols-outlined text-base" aria-hidden="true">psychology</span>
                 توقع الطلب: دقة 96.8%
               </span>
             </div>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-md pt-space-xs text-xs">
-            <!-- Smart Proposal 1 -->
             <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-space-sm">
               <div class="flex items-start justify-between">
                 <div class="flex items-center gap-space-xs">
-                  <span class="material-symbols-outlined text-error text-lg">report_problem</span>
+                  <span class="material-symbols-outlined text-error text-lg" aria-hidden="true">report_problem</span>
                   <span class="font-bold text-on-surface text-xs">فرع التحلية (جدة) - عجز متوقع في آيفون 15</span>
                 </div>
                 <span class="bg-error-container text-error px-2 py-0.5 rounded text-[10px] font-bold">عالي الأولوية</span>
@@ -574,23 +556,22 @@
                 مؤشر الطلب على خدمة الاستبدال (Trade-In) بفرع جدة مرتفع. المتبقي فقط <strong>4 أجهزة iPhone 15 Pro Max 256GB</strong>. يُتوقع النفاذ التام خلال 18 ساعة.
               </p>
               <div class="bg-surface-container-low p-2 rounded-lg flex items-center justify-between text-[11px] border border-outline-variant/10">
-                <span class="text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-base text-primary">alt_route</span> التوصية الذكية:</span>
+                <span class="text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-base text-primary" aria-hidden="true">alt_route</span> التوصية الذكية:</span>
                 <span class="font-bold text-on-surface">نقل 20 جهازاً من مستودع الرياض إلى فرع التحلية</span>
               </div>
               <div class="flex items-center justify-end gap-space-sm pt-1 font-bold">
-                <button class="text-secondary hover:text-on-surface px-3 py-1" onclick="triggerToast('تم تأجيل التنبيه مؤقتاً')">تجاهل</button>
-                <button class="bg-primary text-on-primary hover:bg-primary-container px-space-md py-1.5 rounded-lg transition-colors flex items-center gap-1 shadow-sm" onclick="executeSmartRebalance('TR-2025-095', 'مستودع السلي الرياض', 'فرع التحلية جدة', '20× iPhone 15 Pro Max')">
-                  <span class="material-symbols-outlined text-sm">bolt</span>
+                <button class="text-secondary hover:text-on-surface px-3 py-1 cursor-pointer" onclick="triggerToast('تم تأجيل التنبيه مؤقتاً')" type="button">تجاهل</button>
+                <button class="bg-primary text-on-primary hover:bg-primary-container px-space-md py-1.5 rounded-lg transition-colors flex items-center gap-1 shadow-sm cursor-pointer" onclick="executeSmartRebalance('TR-2025-095', 'مستودع السلي الرياض', 'فرع التحلية جدة', '20× iPhone 15 Pro Max')" type="button">
+                  <span class="material-symbols-outlined text-sm" aria-hidden="true">bolt</span>
                   <span>تنفيذ المناقلة التلقائية</span>
                 </button>
               </div>
             </div>
 
-            <!-- Smart Proposal 2 -->
             <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-space-sm">
               <div class="flex items-start justify-between">
                 <div class="flex items-center gap-space-xs">
-                  <span class="material-symbols-outlined text-primary text-lg">swap_calls</span>
+                  <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">swap_calls</span>
                   <span class="font-bold text-on-surface text-xs">فرع الخبر - تعزيز مخزون أجهزة ماك بوك</span>
                 </div>
                 <span class="bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded text-[10px] font-bold">متوسط الأولوية</span>
@@ -599,13 +580,13 @@
                 تم رصد طلب متزايد من عملاء الشركات في الظهران على أجهزة <strong>MacBook Pro 16" M3 Max</strong>، الفرع يملك وحدتين فقط مع وجود 6 طلبيات مؤكدة.
               </p>
               <div class="bg-surface-container-low p-2 rounded-lg flex items-center justify-between text-[11px] border border-outline-variant/10">
-                <span class="text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-base text-primary">alt_route</span> التوصية الذكية:</span>
+                <span class="text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-base text-primary" aria-hidden="true">alt_route</span> التوصية الذكية:</span>
                 <span class="font-bold text-on-surface">مناقلة 12 جهازاً من مستودع السلي عبر شاحنة الشرقية</span>
               </div>
               <div class="flex items-center justify-end gap-space-sm pt-1 font-bold">
-                <button class="text-secondary hover:text-on-surface px-3 py-1" onclick="triggerToast('تم تأجيل تنبيه المنطقة الشرقية')">تجاهل</button>
-                <button class="bg-primary text-on-primary hover:bg-primary-container px-space-md py-1.5 rounded-lg transition-colors flex items-center gap-1 shadow-sm" onclick="executeSmartRebalance('TR-2025-096', 'مستودع السلي الرياض', 'فرع الخبر الشرقي', '12× MacBook Pro 16 M3')">
-                  <span class="material-symbols-outlined text-sm">bolt</span>
+                <button class="text-secondary hover:text-on-surface px-3 py-1 cursor-pointer" onclick="triggerToast('تم تأجيل تنبيه المنطقة الشرقية')" type="button">تجاهل</button>
+                <button class="bg-primary text-on-primary hover:bg-primary-container px-space-md py-1.5 rounded-lg transition-colors flex items-center gap-1 shadow-sm cursor-pointer" onclick="executeSmartRebalance('TR-2025-096', 'مستودع السلي الرياض', 'فرع الخبر الشرقي', '12× MacBook Pro 16 M3')" type="button">
+                  <span class="material-symbols-outlined text-sm" aria-hidden="true">bolt</span>
                   <span>تنفيذ وتأكيد الإرسال</span>
                 </button>
               </div>
@@ -613,7 +594,6 @@
           </div>
         </div>
 
-        <!-- Section: Active Stock Transfers Real-Time Table -->
         <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden flex flex-col">
           <div class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md border-b border-outline-variant/10">
             <div class="flex flex-col gap-1">
@@ -626,16 +606,15 @@
             
             <div class="flex items-center gap-space-xs text-xs">
               <div class="flex items-center bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant/20 focus-within:border-primary-container">
-                <span class="material-symbols-outlined text-secondary text-base">search</span>
-                <input id="transferSearchInput" onkeyup="filterTransfersTable()" class="bg-transparent text-on-surface text-xs px-2 focus:outline-none placeholder-secondary font-mono w-52" placeholder="بحث برقم المناقلة أو الصنف..." type="text"/>
+                <span class="material-symbols-outlined text-secondary text-base" aria-hidden="true">search</span>
+                <input aria-label="بحث في طلبات المناقلة" id="transferSearchInput" onkeyup="filterTransfersTable()" class="bg-transparent text-on-surface text-xs px-2 focus:outline-none placeholder-secondary font-mono w-52" placeholder="بحث برقم المناقلة أو الصنف..." type="text"/>
               </div>
-              <button class="bg-surface-container-low text-secondary hover:text-on-surface p-2 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer" onclick="triggerToast('جاري طباعة بوليصات الشحن المحددة')" title="طباعة بوالص الشحن">
-                <span class="material-symbols-outlined text-lg">print</span>
+              <button aria-label="طباعة بوالص الشحن" class="bg-surface-container-low text-secondary hover:text-on-surface p-2 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer" onclick="triggerToast('جاري طباعة بوليصات الشحن المحددة')" title="طباعة بوالص الشحن" type="button">
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">print</span>
               </button>
             </div>
           </div>
 
-          <!-- Transfers Data Table -->
           <div class="overflow-x-auto">
             <table class="w-full text-right border-collapse text-xs">
               <thead>
@@ -649,7 +628,6 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-outline-variant/10 text-on-surface" id="transfers-table-body">
-                <!-- Row 1 -->
                 <tr class="transfer-row hover:bg-surface-container-low/50 transition-colors">
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <div class="flex flex-col">
@@ -660,7 +638,7 @@
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <div class="flex items-center gap-1 font-bold">
                       <span class="text-on-surface">مستودع السلي الرياض</span>
-                      <span class="material-symbols-outlined text-xs text-secondary rotate-180">arrow_forward</span>
+                      <span class="material-symbols-outlined text-xs text-secondary rotate-180" aria-hidden="true">arrow_forward</span>
                       <span class="text-primary">فرع التحلية جدة</span>
                     </div>
                     <span class="text-[11px] text-secondary">950 كم • انطلقت 06:30 ص</span>
@@ -673,7 +651,7 @@
                   </td>
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <div class="flex items-center gap-1.5">
-                      <span class="material-symbols-outlined text-primary text-lg">local_shipping</span>
+                      <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">local_shipping</span>
                       <div class="flex flex-col">
                         <span class="font-bold">فان تيك برو #4 (مكيف)</span>
                         <span class="text-[10px] text-tertiary flex items-center gap-1 font-bold">
@@ -685,24 +663,23 @@
                   </td>
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <span class="bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1 w-max">
-                      <span class="material-symbols-outlined text-xs animate-spin">rotate_right</span>
+                      <span class="material-symbols-outlined text-xs animate-spin" aria-hidden="true">rotate_right</span>
                       قيد النقل بالطريق
                     </span>
                   </td>
                   <td class="py-space-md px-space-md whitespace-nowrap text-center">
                     <div class="inline-flex items-center gap-1">
-                      <button class="bg-primary text-on-primary hover:bg-primary-container px-2.5 py-1 rounded-lg text-xs font-bold transition-colors flex items-center gap-1 shadow-sm" onclick="triggerToast('تم فحص ومطابقة الباركود لشحنة TR-2025-089')">
-                        <span class="material-symbols-outlined text-sm">qr_code_scanner</span>
+                      <button class="bg-primary text-on-primary hover:bg-primary-container px-2.5 py-1 rounded-lg text-xs font-bold transition-colors flex items-center gap-1 shadow-sm cursor-pointer" onclick="triggerToast('تم فحص ومطابقة الباركود لشحنة TR-2025-089')" type="button">
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">qr_code_scanner</span>
                         <span>فحص</span>
                       </button>
-                      <button class="bg-surface-container hover:bg-surface-container-high text-secondary p-1 rounded-lg transition-colors" onclick="triggerToast('تم إرسال بيان الشحنة إلى طابعة المستودع')" title="طباعة البيان">
-                        <span class="material-symbols-outlined text-base">receipt_long</span>
+                      <button aria-label="طباعة البيان" class="bg-surface-container hover:bg-surface-container-high text-secondary p-1 rounded-lg transition-colors cursor-pointer" onclick="triggerToast('تم إرسال بيان الشحنة إلى طابعة المستودع')" title="طباعة البيان" type="button">
+                        <span class="material-symbols-outlined text-base" aria-hidden="true">receipt_long</span>
                       </button>
                     </div>
                   </td>
                 </tr>
 
-                <!-- Row 2 -->
                 <tr class="transfer-row hover:bg-surface-container-low/50 transition-colors">
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <div class="flex flex-col">
@@ -713,7 +690,7 @@
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <div class="flex items-center gap-1 font-bold">
                       <span class="text-on-surface">مستودع السلي الرياض</span>
-                      <span class="material-symbols-outlined text-xs text-secondary rotate-180">arrow_forward</span>
+                      <span class="material-symbols-outlined text-xs text-secondary rotate-180" aria-hidden="true">arrow_forward</span>
                       <span class="text-primary">فرع الملك عبدالعزيز</span>
                     </div>
                     <span class="text-[11px] text-secondary">28 كم • شحن محلي سريع</span>
@@ -726,7 +703,7 @@
                   </td>
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <div class="flex items-center gap-1.5">
-                      <span class="material-symbols-outlined text-secondary text-lg">electric_moped</span>
+                      <span class="material-symbols-outlined text-secondary text-lg" aria-hidden="true">electric_moped</span>
                       <div class="flex flex-col">
                         <span class="font-bold">دراجة تيك برو إكسبريس</span>
                         <span class="text-[10px] text-secondary">أحمد زكي</span>
@@ -735,19 +712,18 @@
                   </td>
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1 w-max">
-                      <span class="material-symbols-outlined text-xs">done_all</span>
+                      <span class="material-symbols-outlined text-xs" aria-hidden="true">done_all</span>
                       تم التسليم للعهدة
                     </span>
                   </td>
                   <td class="py-space-md px-space-md whitespace-nowrap text-center">
                     <span class="text-tertiary font-bold flex items-center justify-center gap-1 text-[11px]">
-                      <span class="material-symbols-outlined text-sm">verified</span>
+                      <span class="material-symbols-outlined text-sm" aria-hidden="true">verified</span>
                       مطابق 100%
                     </span>
                   </td>
                 </tr>
 
-                <!-- Row 3 -->
                 <tr class="transfer-row hover:bg-surface-container-low/50 transition-colors">
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <div class="flex flex-col">
@@ -758,7 +734,7 @@
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <div class="flex items-center gap-1 font-bold">
                       <span class="text-on-surface">فرع الخبر الشرقي</span>
-                      <span class="material-symbols-outlined text-xs text-secondary rotate-180">arrow_forward</span>
+                      <span class="material-symbols-outlined text-xs text-secondary rotate-180" aria-hidden="true">arrow_forward</span>
                       <span class="text-primary">مختبر الجودة المركزي</span>
                     </div>
                     <span class="text-[11px] text-secondary">أجهزة مستبدلة لفحص 64 معيار</span>
@@ -771,7 +747,7 @@
                   </td>
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <div class="flex items-center gap-1.5">
-                      <span class="material-symbols-outlined text-secondary text-lg">local_shipping</span>
+                      <span class="material-symbols-outlined text-secondary text-lg" aria-hidden="true">local_shipping</span>
                       <div class="flex flex-col">
                         <span class="font-bold">شاحنة إمداد الشرقية #2</span>
                         <span class="text-[10px] text-secondary">ناصر الشهراني</span>
@@ -780,13 +756,13 @@
                   </td>
                   <td class="py-space-md px-space-md whitespace-nowrap">
                     <span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1 w-max">
-                      <span class="material-symbols-outlined text-xs">inventory</span>
+                      <span class="material-symbols-outlined text-xs" aria-hidden="true">inventory</span>
                       قيد التجهيز
                     </span>
                   </td>
                   <td class="py-space-md px-space-md whitespace-nowrap text-center">
-                    <button class="bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface px-2.5 py-1 rounded-lg font-bold transition-colors flex items-center gap-1 mx-auto" onclick="triggerToast('تم توجيه أمر البدء بالتحميل والتغليف')">
-                      <span class="material-symbols-outlined text-sm">outbox</span>
+                    <button class="bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface px-2.5 py-1 rounded-lg font-bold transition-colors flex items-center gap-1 mx-auto cursor-pointer" onclick="triggerToast('تم توجيه أمر البدء بالتحميل والتغليف')" type="button">
+                      <span class="material-symbols-outlined text-sm" aria-hidden="true">outbox</span>
                       <span>بدء التحميل</span>
                     </button>
                   </td>
@@ -796,16 +772,14 @@
           </div>
         </div>
 
-        <!-- Section: Critical Inventory Balance & Minimum Stock Matrix -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
-          <!-- Critical Items Sub-Table -->
           <div class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-space-md text-xs">
             <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/10">
               <div>
                 <h3 class="text-sm font-bold text-on-surface">جدول الأصناف الأكثر طلباً وحدود إعادة الطلب (Stock Thresholds)</h3>
                 <p class="text-secondary text-[11px] mt-0.5">مراقبة دقيقة للأجهزة السريعة الدوران ومستوى الأمان في كل نقطة بيع</p>
               </div>
-              <span class="material-symbols-outlined text-xl text-secondary">tune</span>
+              <span class="material-symbols-outlined text-xl text-secondary" aria-hidden="true">tune</span>
             </div>
 
             <div class="overflow-x-auto">
@@ -871,18 +845,17 @@
             </div>
 
             <div class="pt-space-xs flex justify-end">
-              <button class="text-primary hover:text-primary-container font-bold flex items-center gap-1 text-xs cursor-pointer" onclick="triggerToast('تم فتح محرك قواعد إعادة التزويد الآلي')">
+              <button class="text-primary hover:text-primary-container font-bold flex items-center gap-1 text-xs cursor-pointer" onclick="triggerToast('تم فتح محرك قواعد إعادة التزويد الآلي')" type="button">
                 <span>تعديل سياسات وحدود إعادة الطلب لجميع الفروع</span>
-                <span class="material-symbols-outlined text-sm rotate-180">chevron_left</span>
+                <span class="material-symbols-outlined text-sm rotate-180" aria-hidden="true">chevron_left</span>
               </button>
             </div>
           </div>
 
-          <!-- Quick Dispatch Center -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-space-md text-xs">
             <div class="flex flex-col gap-1">
               <div class="flex items-center gap-space-xs text-primary font-bold">
-                <span class="material-symbols-outlined text-lg">speed</span>
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">speed</span>
                 <span class="text-sm">لوحة التوجيه السريع لأسطول النقل</span>
               </div>
               <p class="text-secondary text-[11px]">تخصيص مباشر للشاحنات وسائقي تيك برو المعتمدين</p>
@@ -891,7 +864,7 @@
             <div class="space-y-space-sm">
               <div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between border border-outline-variant/10">
                 <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-tertiary text-lg">local_shipping</span>
+                  <span class="material-symbols-outlined text-tertiary text-lg" aria-hidden="true">local_shipping</span>
                   <div>
                     <div class="font-bold text-on-surface">الأسطول المتاح حالياً</div>
                     <div class="text-[11px] text-secondary">6 سيارات جاهزة للتحميل الفوري</div>
@@ -902,7 +875,7 @@
 
               <div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between border border-outline-variant/10">
                 <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-primary text-lg">forklift</span>
+                  <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">forklift</span>
                   <div>
                     <div class="font-bold text-on-surface">فرق المناولة والتجهيز</div>
                     <div class="text-[11px] text-secondary">3 فرق نشطة بمستودع السلي</div>
@@ -913,7 +886,7 @@
 
               <div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between border border-outline-variant/10">
                 <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-secondary text-lg">lock</span>
+                  <span class="material-symbols-outlined text-secondary text-lg" aria-hidden="true">lock</span>
                   <div>
                     <div class="font-bold text-on-surface">الأقفال الإلكترونية (GPS)</div>
                     <div class="text-[11px] text-secondary">أقفال برمجية عبر الأقمار الصناعية</div>
@@ -923,8 +896,8 @@
               </div>
             </div>
 
-            <button class="w-full bg-inverse-surface hover:bg-on-surface text-inverse-on-surface py-2.5 rounded-lg font-bold transition-colors flex items-center justify-center gap-1 shadow-md cursor-pointer active:scale-95" onclick="triggerToast('تم توجيه نداء عام لفرق الحركة والتحميل اللوجستي')">
-              <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">campaign</span>
+            <button class="w-full bg-inverse-surface hover:bg-on-surface text-inverse-on-surface py-2.5 rounded-lg font-bold transition-colors flex items-center justify-center gap-1 shadow-md cursor-pointer active:scale-95" onclick="triggerToast('تم توجيه نداء عام لفرق الحركة والتحميل اللوجستي')" type="button">
+              <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">campaign</span>
               <span>إصدار نداء استنفار لوجستي فوري</span>
             </button>
           </div>
@@ -932,23 +905,22 @@
 
       </div>
 
-      <!-- Modal: Create Stock Transfer -->
       <div id="transferModal" class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm items-center justify-center p-space-md" onclick="toggleTransferModal(false)">
         <div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-lg shadow-2xl flex flex-col gap-space-md border border-outline-variant/20 text-xs" onclick="event.stopPropagation()">
           <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/15">
             <div class="flex items-center gap-space-xs font-bold text-on-surface">
-              <span class="material-symbols-outlined text-xl text-primary">swap_horiz</span>
+              <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">swap_horiz</span>
               <h3 class="text-sm font-bold">إنشاء طلب مناقلة بضاعة فوري بين الفروع</h3>
             </div>
-            <button class="p-1 rounded text-secondary hover:text-on-surface" onclick="toggleTransferModal(false)">
-              <span class="material-symbols-outlined text-xl">close</span>
+            <button aria-label="إغلاق" class="p-1 rounded text-secondary hover:text-on-surface cursor-pointer" onclick="toggleTransferModal(false)" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">close</span>
             </button>
           </div>
 
           <div class="flex flex-col gap-space-sm">
             <div class="grid grid-cols-2 gap-space-sm">
               <div>
-                <label class="font-bold text-on-surface block mb-1">المستودع المصدر (من):</label>
+                <label class="font-bold text-on-surface block mb-1" for="transfer-from-select">المستودع المصدر (من):</label>
                 <select id="transfer-from-select" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20">
                   <option value="مستودع السلي الرياض">مستودع السلي الرياض</option>
                   <option value="فرع التحلية جدة">فرع التحلية جدة</option>
@@ -956,7 +928,7 @@
                 </select>
               </div>
               <div>
-                <label class="font-bold text-on-surface block mb-1">المستودع الوجهة (إلى):</label>
+                <label class="font-bold text-on-surface block mb-1" for="transfer-to-select">المستودع الوجهة (إلى):</label>
                 <select id="transfer-to-select" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20">
                   <option value="فرع التحلية جدة">فرع التحلية جدة</option>
                   <option value="فرع الملك عبدالعزيز">فرع طريق الملك عبدالعزيز</option>
@@ -967,13 +939,13 @@
             </div>
 
             <div>
-              <label class="font-bold text-on-surface block mb-1">الصنف والموديل المنقول:</label>
+              <label class="font-bold text-on-surface block mb-1" for="transfer-items-input">الصنف والموديل المنقول:</label>
               <input id="transfer-items-input" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20" placeholder="مثال: 20× iPhone 15 Pro Max 256GB" type="text" value="15× iPhone 15 Pro Max مجدد فئة +A"/>
             </div>
 
             <div class="grid grid-cols-2 gap-space-sm">
               <div>
-                <label class="font-bold text-on-surface block mb-1">وسيلة الشحن المعتمدة:</label>
+                <label class="font-bold text-on-surface block mb-1" for="transfer-carrier-select">وسيلة الشحن المعتمدة:</label>
                 <select id="transfer-carrier-select" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20">
                   <option value="فان تيك برو #4 (مكيف)">فان تيك برو #4 (مكيف)</option>
                   <option value="شاحنة إمداد الشرقية #2">شاحنة إمداد الشرقية #2</option>
@@ -982,7 +954,7 @@
               </div>
               <div>
                 <label class="font-bold text-on-surface block mb-1">أولوية المناقلة:</label>
-                <select class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20">
+                <select aria-label="أولوية المناقلة" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20">
                   <option>أولوية عاجلة جداً</option>
                   <option>نقل اعتيادي دوري</option>
                   <option>إمداد فرع جديد</option>
@@ -992,10 +964,10 @@
           </div>
 
           <div class="flex items-center justify-end gap-space-xs pt-space-xs border-t border-outline-variant/15 font-bold">
-            <button class="px-space-md py-2 rounded-lg text-secondary hover:text-on-surface" onclick="toggleTransferModal(false)">
+            <button class="px-space-md py-2 rounded-lg text-secondary hover:text-on-surface cursor-pointer" onclick="toggleTransferModal(false)" type="button">
               إلغاء
             </button>
-            <button class="bg-primary hover:bg-primary-container text-on-primary px-space-lg py-2 rounded-lg transition-colors shadow-md" onclick="submitNewTransfer()">
+            <button class="bg-primary hover:bg-primary-container text-on-primary px-space-lg py-2 rounded-lg transition-colors shadow-md cursor-pointer" onclick="submitNewTransfer()" type="button">
               اعتماد وإصدار الإرسالية
             </button>
           </div>
@@ -1005,14 +977,13 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
     <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
       <div class="flex flex-col gap-space-sm">
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -1055,7 +1026,6 @@
     </div>
   </footer>
 
-  <!-- Interactive JavaScript Logic -->
   <script>
     function triggerToast(message) {
       const toast = document.getElementById('toastNotification');
@@ -1140,7 +1110,7 @@
         <td class="py-space-md px-space-md whitespace-nowrap">
           <div class="flex items-center gap-1 font-bold">
             <span class="text-on-surface">${from}</span>
-            <span class="material-symbols-outlined text-xs text-secondary rotate-180">arrow_forward</span>
+            <span class="material-symbols-outlined text-xs text-secondary rotate-180" aria-hidden="true">arrow_forward</span>
             <span class="text-primary">${to}</span>
           </div>
           <span class="text-[11px] text-secondary">إرسالية نشطة • الآن</span>
@@ -1153,7 +1123,7 @@
         </td>
         <td class="py-space-md px-space-md whitespace-nowrap">
           <div class="flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-primary text-lg">local_shipping</span>
+            <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">local_shipping</span>
             <div class="flex flex-col">
               <span class="font-bold">${carrier}</span>
               <span class="text-[10px] text-tertiary">محدد للرحلة</span>
@@ -1162,12 +1132,12 @@
         </td>
         <td class="py-space-md px-space-md whitespace-nowrap">
           <span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1 w-max">
-            <span class="material-symbols-outlined text-xs">schedule</span>
+            <span class="material-symbols-outlined text-xs" aria-hidden="true">schedule</span>
             قيد التحميل
           </span>
         </td>
         <td class="py-space-md px-space-md whitespace-nowrap text-center">
-          <button class="bg-primary text-on-primary hover:bg-primary-container px-2.5 py-1 rounded-lg text-xs font-bold transition-colors" onclick="triggerToast('تم فحص الإرسالية ${trId}')">
+          <button class="bg-primary text-on-primary hover:bg-primary-container px-2.5 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer" onclick="triggerToast('تم فحص الإرسالية ${trId}')" type="button">
             فحص
           </button>
         </td>
@@ -1200,7 +1170,7 @@
         <td class="py-space-md px-space-md whitespace-nowrap">
           <div class="flex items-center gap-1 font-bold">
             <span class="text-on-surface">${from}</span>
-            <span class="material-symbols-outlined text-xs text-secondary rotate-180">arrow_forward</span>
+            <span class="material-symbols-outlined text-xs text-secondary rotate-180" aria-hidden="true">arrow_forward</span>
             <span class="text-primary">${to}</span>
           </div>
           <span class="text-[11px] text-secondary">شحنة موازنة فورية</span>
@@ -1210,7 +1180,7 @@
         </td>
         <td class="py-space-md px-space-md whitespace-nowrap">
           <div class="flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-primary text-lg">local_shipping</span>
+            <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">local_shipping</span>
             <span class="font-bold">أسطول تيك برو إكسبريس</span>
           </div>
         </td>
@@ -1220,7 +1190,7 @@
           </span>
         </td>
         <td class="py-space-md px-space-md whitespace-nowrap text-center">
-          <button class="bg-primary text-on-primary px-2.5 py-1 rounded-lg text-xs font-bold" onclick="triggerToast('تم فحص وتأكيد الشحنة الذكية')">فحص</button>
+          <button class="bg-primary text-on-primary px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer" onclick="triggerToast('تم فحص وتأكيد الشحنة الذكية')" type="button">فحص</button>
         </td>
       `;
       tbody.insertBefore(tr, tbody.firstChild);

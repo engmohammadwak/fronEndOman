@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Fixed Store Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -134,15 +137,15 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر النموذج" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع النماذج</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="rec">محركات التوصية</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="pricing">التسعير الذكي</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="semantic">البحث الدلالي</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن استعلام دلالي، نموذج، أو كود خوارزمية..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث في النماذج" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن استعلام دلالي، نموذج، أو كود خوارزمية..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
@@ -157,14 +160,14 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">محركات التوصية والأسعار</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">تحليلات البحث الدلالي</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">محاكي الاستنتاج (Inference Sandbox)</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">ضوابط وحوكمة الذكاء الاصطناعي</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">psychology</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">psychology</span>
             <span>بنية تحتية متوافقة مع SDAIA</span>
           </div>
         </div>
@@ -172,7 +175,7 @@
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
+  <!-- Main Content -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
       
@@ -182,12 +185,12 @@
           <div class="flex flex-col gap-space-2xs">
             <div class="flex items-center gap-space-xs text-secondary text-xs font-semibold flex-wrap">
               <a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
-                <span class="material-symbols-outlined text-base">home</span>
+                <span class="material-symbols-outlined text-base" aria-hidden="true">home</span>
                 <span>الرئيسية</span>
               </a>
-              <span class="material-symbols-outlined text-xs rotate-180">chevron_left</span>
+              <span class="material-symbols-outlined text-xs rotate-180" aria-hidden="true">chevron_left</span>
               <span class="hover:text-primary transition-colors cursor-pointer">إدارة الذكاء الاصطناعي</span>
-              <span class="material-symbols-outlined text-xs rotate-180">chevron_left</span>
+              <span class="material-symbols-outlined text-xs rotate-180" aria-hidden="true">chevron_left</span>
               <span class="text-on-surface font-bold">محركات التوصيات والأسعار الذكية</span>
             </div>
             <div class="flex items-center gap-space-sm flex-wrap mt-1">
@@ -197,11 +200,11 @@
                 <span class="text-[10px] bg-tertiary/10 text-tertiary font-bold px-1.5 py-0.5 rounded-full">نشط لحظياً</span>
               </div>
               <div class="inline-flex items-center gap-space-xs bg-surface-container-lowest px-3 py-1 rounded-full shadow-sm border border-outline-variant/10">
-                <span class="material-symbols-outlined text-tertiary text-sm">verified</span>
+                <span class="material-symbols-outlined text-tertiary text-sm" aria-hidden="true">verified</span>
                 <span class="text-xs text-on-surface">دقة التنبؤ: <span class="font-bold font-mono text-tertiary">94.8%</span></span>
               </div>
               <div class="inline-flex items-center gap-space-xs bg-surface-container-lowest px-3 py-1 rounded-full shadow-sm border border-outline-variant/10">
-                <span class="material-symbols-outlined text-primary-container text-sm">speed</span>
+                <span class="material-symbols-outlined text-primary-container text-sm" aria-hidden="true">speed</span>
                 <span class="text-xs text-on-surface">زمن الاستنتاج: <span class="font-bold font-mono text-primary">18ms</span></span>
               </div>
             </div>
@@ -209,16 +212,16 @@
 
           <!-- Quick Action Controls -->
           <div class="flex items-center gap-space-xs sm:gap-space-sm flex-wrap text-xs font-bold">
-            <button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-2.5 rounded-lg transition-all shadow-sm active:scale-95 flex items-center gap-1" id="retrain-btn">
-              <span class="material-symbols-outlined text-base" id="retrain-icon">sync</span>
+            <button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-2.5 rounded-lg transition-all shadow-sm active:scale-95 flex items-center gap-1 cursor-pointer" id="retrain-btn" type="button">
+              <span class="material-symbols-outlined text-base" id="retrain-icon" aria-hidden="true">sync</span>
               <span id="retrain-text">إعادة تدريب النموذج الفوري</span>
             </button>
-            <button onclick="toggleAbModal(true)" class="bg-surface-container-lowest hover:bg-surface-variant text-on-surface px-space-md py-2.5 rounded-lg transition-colors shadow-sm flex items-center gap-1 border border-outline-variant/10 active:scale-95">
-              <span class="material-symbols-outlined text-base text-primary">science</span>
+            <button onclick="toggleAbModal(true)" class="bg-surface-container-lowest hover:bg-surface-variant text-on-surface px-space-md py-2.5 rounded-lg transition-colors shadow-sm flex items-center gap-1 border border-outline-variant/10 active:scale-95 cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base text-primary" aria-hidden="true">science</span>
               <span>اختبار A/B مباشر</span>
             </button>
-            <button onclick="alert('تم تنزيل تقرير الأثر المالي وتحويلات الذكاء الاصطناعي (TechPro-AI-Impact.pdf)')" class="bg-surface-container-lowest hover:bg-surface-variant text-secondary px-space-sm py-2.5 rounded-lg transition-colors shadow-sm flex items-center gap-1 border border-outline-variant/10 active:scale-95" title="تصدير التقرير">
-              <span class="material-symbols-outlined text-base">picture_as_pdf</span>
+            <button onclick="showToast('تم تنزيل تقرير الأثر المالي وتحويلات الذكاء الاصطناعي بنجاح.', 'success')" class="bg-surface-container-lowest hover:bg-surface-variant text-secondary px-space-sm py-2.5 rounded-lg transition-colors shadow-sm flex items-center gap-1 border border-outline-variant/10 active:scale-95 cursor-pointer" title="تصدير التقرير" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">picture_as_pdf</span>
               <span class="hidden sm:inline">تقرير الأثر</span>
             </button>
           </div>
@@ -237,12 +240,12 @@
                 <span class="text-2xl font-black text-on-surface mt-1 font-mono">4,820,500 <span class="text-xs text-secondary font-normal font-sans">ر.س</span></span>
               </div>
               <div class="p-2 bg-primary-fixed rounded-lg text-on-primary-fixed">
-                <span class="material-symbols-outlined text-xl">payments</span>
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">payments</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs flex items-center justify-between text-xs border-t border-outline-variant/10">
               <div class="flex items-center gap-1 text-tertiary font-bold">
-                <span class="material-symbols-outlined text-sm">trending_up</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">trending_up</span>
                 <span class="font-mono">+16.8%</span>
                 <span class="text-secondary text-[11px] font-normal">شهرياً</span>
               </div>
@@ -263,12 +266,12 @@
                 </div>
               </div>
               <div class="p-2 bg-secondary-fixed rounded-lg text-on-secondary-fixed">
-                <span class="material-symbols-outlined text-xl">ads_click</span>
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">ads_click</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs flex items-center justify-between text-xs border-t border-outline-variant/10">
               <div class="flex items-center gap-1 text-tertiary font-bold">
-                <span class="material-symbols-outlined text-sm">rocket_launch</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">rocket_launch</span>
                 <span class="font-mono">+2.4x</span>
                 <span class="text-secondary text-[11px] font-normal">المعدل</span>
               </div>
@@ -286,12 +289,12 @@
                 <span class="text-2xl font-black text-on-surface mt-1 font-mono">384,120</span>
               </div>
               <div class="p-2 bg-primary-fixed rounded-lg text-on-primary-fixed">
-                <span class="material-symbols-outlined text-xl">manage_search</span>
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">manage_search</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs flex items-center justify-between text-xs border-t border-outline-variant/10">
               <div class="flex items-center gap-1 text-secondary font-bold">
-                <span class="material-symbols-outlined text-sm text-primary">timer</span>
+                <span class="material-symbols-outlined text-sm text-primary" aria-hidden="true">timer</span>
                 <span class="font-mono">22ms زمن المطابقة</span>
               </div>
               <span class="text-[11px] text-tertiary font-bold bg-surface-container-low px-2 py-0.5 rounded-full">دقة 98.2%</span>
@@ -306,12 +309,12 @@
                 <span class="text-2xl font-black text-on-surface mt-1 font-mono">1,420 <span class="text-xs text-secondary font-normal font-sans">SKU</span></span>
               </div>
               <div class="p-2 bg-secondary-fixed rounded-lg text-on-secondary-fixed">
-                <span class="material-symbols-outlined text-xl">price_change</span>
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">price_change</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs flex items-center justify-between text-xs border-t border-outline-variant/10">
               <div class="flex items-center gap-1 text-tertiary font-bold">
-                <span class="material-symbols-outlined text-sm">shield</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">shield</span>
                 <span>حماية الهامش</span>
               </div>
               <span class="text-[11px] text-on-surface-variant font-bold bg-surface-container-low px-2 py-0.5 rounded-full">تحديث كل 10 د</span>
@@ -344,7 +347,7 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
                   <div class="flex items-center gap-space-sm">
                     <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary shrink-0">
-                      <span class="material-symbols-outlined">join_inner</span>
+                      <span class="material-symbols-outlined" aria-hidden="true">join_inner</span>
                     </div>
                     <div>
                       <div class="flex items-center gap-space-xs flex-wrap">
@@ -385,7 +388,7 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
                   <div class="flex items-center gap-space-sm">
                     <div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0">
-                      <span class="material-symbols-outlined">autorenew</span>
+                      <span class="material-symbols-outlined" aria-hidden="true">autorenew</span>
                     </div>
                     <div>
                       <div class="flex items-center gap-space-xs flex-wrap">
@@ -426,7 +429,7 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
                   <div class="flex items-center gap-space-sm">
                     <div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
-                      <span class="material-symbols-outlined">person_search</span>
+                      <span class="material-symbols-outlined" aria-hidden="true">person_search</span>
                     </div>
                     <div>
                       <div class="flex items-center gap-space-xs flex-wrap">
@@ -467,7 +470,7 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
                   <div class="flex items-center gap-space-sm">
                     <div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary shrink-0">
-                      <span class="material-symbols-outlined">trending_down</span>
+                      <span class="material-symbols-outlined" aria-hidden="true">trending_down</span>
                     </div>
                     <div>
                       <div class="flex items-center gap-space-xs flex-wrap">
@@ -512,7 +515,7 @@
                   <p class="text-xs text-secondary mt-0.5">كيف قام محرك المتجهات بمعالجة عمليات البحث وتوجيه المتسوقين للمنتجات بدقة 96.5%</p>
                 </div>
                 <div class="flex items-center gap-2 bg-tertiary/10 text-tertiary px-3 py-1 rounded-lg text-xs font-bold self-start sm:self-auto">
-                  <span class="material-symbols-outlined text-base">translate</span>
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">translate</span>
                   <span>معالجة اللهجات: نشط</span>
                 </div>
               </div>
@@ -523,13 +526,13 @@
                 <div class="bg-surface-container-low rounded-lg p-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md border border-outline-variant/10">
                   <div class="flex items-start gap-space-sm">
                     <div class="p-2 bg-surface-container-lowest rounded-lg text-primary shrink-0 shadow-sm border border-outline-variant/10">
-                      <span class="material-symbols-outlined text-base">search</span>
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">search</span>
                     </div>
                     <div>
                       <div class="flex items-center gap-space-xs flex-wrap">
                         <span class="font-bold text-on-surface text-xs">"جوال ضد المويه بطاريه يومين"</span>
                         <span class="text-[10px] bg-error/10 text-error px-2 py-0.5 rounded-full font-bold">صفر مطابقة حرفية</span>
-                        <span class="material-symbols-outlined text-xs text-tertiary rotate-180">arrow_forward</span>
+                        <span class="material-symbols-outlined text-xs text-tertiary rotate-180" aria-hidden="true">arrow_forward</span>
                         <span class="text-[10px] bg-tertiary/15 text-tertiary px-2 py-0.5 rounded-full font-bold">تم الفهم الدلالي</span>
                       </div>
                       <p class="text-xs text-secondary mt-1">
@@ -553,13 +556,13 @@
                 <div class="bg-surface-container-low rounded-lg p-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md border border-outline-variant/10">
                   <div class="flex items-start gap-space-sm">
                     <div class="p-2 bg-surface-container-lowest rounded-lg text-primary shrink-0 shadow-sm border border-outline-variant/10">
-                      <span class="material-symbols-outlined text-base">search</span>
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">search</span>
                     </div>
                     <div>
                       <div class="flex items-center gap-space-xs flex-wrap">
                         <span class="font-bold text-on-surface text-xs">"ايفون مستعمل نظيف ضمان سنتين"</span>
                         <span class="text-[10px] bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full font-bold">مركب</span>
-                        <span class="material-symbols-outlined text-xs text-tertiary rotate-180">arrow_forward</span>
+                        <span class="material-symbols-outlined text-xs text-tertiary rotate-180" aria-hidden="true">arrow_forward</span>
                         <span class="text-[10px] bg-tertiary/15 text-tertiary px-2 py-0.5 rounded-full font-bold">تطبيق فلاتر تلقائية</span>
                       </div>
                       <p class="text-xs text-secondary mt-1">
@@ -589,7 +592,7 @@
             <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 p-space-md sm:p-space-lg flex flex-col gap-space-md">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-space-xs">
-                  <span class="material-symbols-outlined text-primary text-2xl">science</span>
+                  <span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">science</span>
                   <h2 class="text-base font-bold text-on-surface">محاكي التوصية الفوري</h2>
                 </div>
                 <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold font-mono">Sandbox</span>
@@ -598,7 +601,7 @@
 
               <div class="flex flex-col gap-space-sm mt-space-2xs text-xs">
                 <div>
-                  <label class="block font-bold text-on-surface mb-1">ملف العميل الافتراضي (User Persona)</label>
+                  <label class="block font-bold text-on-surface mb-1" for="persona-select">ملف العميل الافتراضي (User Persona)</label>
                   <select class="w-full bg-surface-container-low text-on-surface p-2.5 rounded-lg border border-outline-variant/30 focus:border-primary focus:outline-none transition-colors" id="persona-select">
                     <option value="gamer">باحث عن أجهزة قيمنق وميزانية 7,000 ر.س</option>
                     <option value="apple-loyal">مستخدم Apple يبحث عن ترقية سنوية</option>
@@ -608,7 +611,7 @@
                 </div>
 
                 <div>
-                  <label class="block font-bold text-on-surface mb-1">مكان التوصية (Placement Context)</label>
+                  <label class="block font-bold text-on-surface mb-1" for="placement-select">مكان التوصية (Placement Context)</label>
                   <select class="w-full bg-surface-container-low text-on-surface p-2.5 rounded-lg border border-outline-variant/30 focus:border-primary focus:outline-none transition-colors" id="placement-select">
                     <option value="cart">سلة المشتريات (Pre-Checkout Drawer)</option>
                     <option value="pdp">صفحة تفاصيل المنتج (PDP Related)</option>
@@ -616,8 +619,8 @@
                   </select>
                 </div>
 
-                <button class="w-full bg-primary hover:bg-primary-container text-on-primary py-2.5 rounded-lg font-bold transition-all shadow-sm active:scale-95 flex items-center justify-center gap-space-xs mt-space-xs" id="run-inference-btn">
-                  <span class="material-symbols-outlined text-base" id="infer-icon">play_arrow</span>
+                <button class="w-full bg-primary hover:bg-primary-container text-on-primary py-2.5 rounded-lg font-bold transition-all shadow-sm active:scale-95 flex items-center justify-center gap-space-xs mt-space-xs cursor-pointer border-none" id="run-inference-btn" type="button">
+                  <span class="material-symbols-outlined text-base" id="infer-icon" aria-hidden="true">play_arrow</span>
                   <span id="infer-text">محاكاة التوصية (Run Inference)</span>
                 </button>
               </div>
@@ -626,7 +629,7 @@
               <div class="bg-surface-container-low rounded-lg p-space-md mt-space-2xs flex flex-col gap-space-sm border border-outline-variant/10 text-xs" id="result-box">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-1 text-tertiary font-bold">
-                    <span class="material-symbols-outlined text-base">check_circle</span>
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">check_circle</span>
                     <span>درجة الثقة: <span class="font-mono" id="conf-score">98.4%</span></span>
                   </div>
                   <span class="text-secondary font-mono">14ms</span>
@@ -648,7 +651,7 @@
 
                 <!-- XAI Explainability -->
                 <div class="bg-primary/5 rounded-lg p-space-xs flex items-start gap-space-xs border border-primary/10">
-                  <span class="material-symbols-outlined text-primary text-base shrink-0 mt-0.5">psychology</span>
+                  <span class="material-symbols-outlined text-primary text-base shrink-0 mt-0.5" aria-hidden="true">psychology</span>
                   <p class="text-[11px] text-on-surface-variant leading-relaxed" id="xai-reason">
                     <strong>تفسير الذكاء الاصطناعي (XAI):</strong> تم الاقتراح بناءً على إضافة لابتوب ASUS ROG Zephyrus للسلة وسجل تصفح ملحقات الألعاب بمعدل رغبة شراء عالي.
                   </p>
@@ -660,7 +663,7 @@
             <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 p-space-md sm:p-space-lg flex flex-col gap-space-md">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-space-xs">
-                  <span class="material-symbols-outlined text-tertiary text-2xl">gavel</span>
+                  <span class="material-symbols-outlined text-tertiary text-2xl" aria-hidden="true">gavel</span>
                   <h2 class="text-base font-bold text-on-surface">ضوابط وحوكمة الذكاء الاصطناعي</h2>
                 </div>
                 <span class="text-xs bg-tertiary/10 text-tertiary px-2 py-0.5 rounded-full font-bold">Guardrails Active</span>
@@ -670,7 +673,7 @@
                 <!-- Guardrail 1 -->
                 <div class="flex flex-col gap-1.5">
                   <div class="flex items-center justify-between">
-                    <span class="font-bold text-on-surface">حد أقصى لتخفيض السعر التلقائي (Floor Limit)</span>
+                    <label class="font-bold text-on-surface" for="floor-slider">حد أقصى لتخفيض السعر التلقائي (Floor Limit)</label>
                     <span class="font-mono font-bold text-primary" id="floor-val">12%</span>
                   </div>
                   <input class="w-full accent-primary h-2 bg-surface-container-high rounded-lg cursor-pointer" id="floor-slider" max="25" min="5" type="range" value="12"/>
@@ -684,7 +687,7 @@
                     <span class="text-[11px] text-secondary">تعتيم تام لمعرفات العملاء وتشفير التفضيلات</span>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer shrink-0">
-                    <input checked="" class="sr-only peer" disabled="" type="checkbox"/>
+                    <input aria-label="امتثال نظام حماية البيانات الشخصية" checked="" class="sr-only peer" disabled="" type="checkbox"/>
                     <div class="w-11 h-6 bg-primary peer-focus:outline-none rounded-full transition-colors after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:-translate-x-5 after:bg-white after:rounded-full after:h-5 after:w-5"></div>
                   </label>
                 </div>
@@ -696,7 +699,7 @@
                     <span class="text-[11px] text-secondary">منع اقتراح ملحقات غير متوافقة مع جهاز العميل</span>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer shrink-0">
-                    <input checked="" class="sr-only peer" type="checkbox"/>
+                    <input aria-label="فلتر التوافق الفيزيائي" checked="" class="sr-only peer" type="checkbox"/>
                     <div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:bg-primary transition-colors after:content-[''] after:absolute after:top-[2px] after:right-[2px] peer-checked:after:-translate-x-5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-transform"></div>
                   </label>
                 </div>
@@ -711,7 +714,7 @@
         <div class="w-full bg-surface-container-lowest rounded-xl p-space-md sm:p-space-lg shadow-sm border border-outline-variant/10 flex flex-col md:flex-row items-center justify-between gap-space-md">
           <div class="flex items-center gap-space-md">
             <div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0 shadow-sm">
-              <span class="material-symbols-outlined text-2xl">verified_user</span>
+              <span class="material-symbols-outlined text-2xl" aria-hidden="true">verified_user</span>
             </div>
             <div class="flex flex-col">
               <span class="text-sm font-bold text-on-surface">بنية تحتية سيادية مؤمنة لمعالجة نماذج الذكاء الاصطناعي</span>
@@ -723,7 +726,7 @@
           <div class="flex items-center gap-space-xs shrink-0 text-xs">
             <span class="font-bold bg-surface-container-high px-space-sm py-2 rounded-lg text-secondary border border-outline-variant/10">مراكز بيانات الرياض وجدة</span>
             <span class="font-bold bg-tertiary-fixed text-on-tertiary-fixed px-space-sm py-2 rounded-lg flex items-center gap-1">
-              <span class="material-symbols-outlined text-sm">lock</span>
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">lock</span>
               <span>مشفر AES-256</span>
             </span>
           </div>
@@ -736,18 +739,18 @@
         <div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-lg shadow-2xl flex flex-col gap-space-md border border-outline-variant/20" onclick="event.stopPropagation()">
           <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/15">
             <div class="flex items-center gap-space-xs">
-              <span class="material-symbols-outlined text-xl text-primary">science</span>
+              <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">science</span>
               <h3 class="text-base font-bold text-on-surface">إعداد اختبار A/B للنماذج الذكية</h3>
             </div>
-            <button class="p-1 rounded text-secondary hover:text-on-surface" onclick="toggleAbModal(false)">
-              <span class="material-symbols-outlined text-xl">close</span>
+            <button aria-label="إغلاق" class="p-1 rounded text-secondary hover:text-on-surface bg-transparent border-none cursor-pointer" onclick="toggleAbModal(false)" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">close</span>
             </button>
           </div>
 
           <div class="flex flex-col gap-space-sm text-xs">
             <div>
               <label class="font-bold text-on-surface block mb-1">النموذج التجريبي (Model Variant B)</label>
-              <select class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface focus:outline-none border border-outline-variant/20">
+              <select aria-label="النموذج التجريبي" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface focus:outline-none border border-outline-variant/20">
                 <option>Hybrid Collaborative + Content-Based (v3.5-Beta)</option>
                 <option>Transformer-based Sequential Rec (v4.0)</option>
               </select>
@@ -757,22 +760,22 @@
               <label class="font-bold text-on-surface block mb-1">نسبة توزيع الزوار (Traffic Split)</label>
               <div class="flex items-center gap-3">
                 <span class="font-bold font-mono" id="split-a-text">50% Champion</span>
-                <input class="flex-1 accent-primary h-2 bg-surface-container-high rounded cursor-pointer" id="split-slider" max="90" min="10" type="range" value="50"/>
+                <input aria-label="نسبة توزيع الزوار" class="flex-1 accent-primary h-2 bg-surface-container-high rounded cursor-pointer" id="split-slider" max="90" min="10" type="range" value="50"/>
                 <span class="font-bold font-mono" id="split-b-text">50% Challenger</span>
               </div>
             </div>
 
             <div class="p-space-xs bg-surface-container-low rounded-lg text-secondary text-[11px] flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-base">info</span>
+              <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">info</span>
               <span>سيتم قياس الأثر المباشر على معدل النقر (CTR) وقيمة السلة المتوسطة (AOV).</span>
             </div>
           </div>
 
           <div class="flex items-center justify-end gap-space-xs pt-space-xs border-t border-outline-variant/15 text-xs">
-            <button class="px-space-md py-2 rounded-lg text-secondary hover:text-on-surface font-bold" onclick="toggleAbModal(false)">
+            <button class="px-space-md py-2 rounded-lg text-secondary hover:text-on-surface font-bold cursor-pointer bg-transparent border-none" onclick="toggleAbModal(false)" type="button">
               إلغاء
             </button>
-            <button class="bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2 rounded-lg font-bold transition-colors shadow-md" onclick="alert('تم تفعيل تجربة A/B بنجاح وتوجيه الزوار وفق الحصص المحددة.'); toggleAbModal(false);">
+            <button class="bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2 rounded-lg font-bold transition-colors shadow-md cursor-pointer border-none" onclick="showToast('تم تفعيل تجربة A/B بنجاح وتوجيه الزوار وفق الحصص المحددة.', 'success'); toggleAbModal(false);" type="button">
               تفعيل التجربة
             </button>
           </div>
@@ -789,7 +792,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -834,6 +837,41 @@
 
   <!-- Scripts -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     function toggleAbModal(show) {
       const modal = document.getElementById('abTestModal');
       if (show) {
@@ -893,13 +931,12 @@
           retrainIcon.classList.add('animate-spin');
           retrainText.textContent = 'جارِ فحص البيانات وتحديث الأوزان...';
           retrainBtn.disabled = true;
+          showToast('بدأت عملية إعادة تدريب النماذج الفورية (Online Learning)...', 'info');
           setTimeout(function() {
             retrainIcon.classList.remove('animate-spin');
-            retrainText.textContent = 'تم التدريب بنجاح (v3.4.1)';
-            setTimeout(function() {
-              retrainText.textContent = 'إعادة تدريب النموذج الفوري';
-              retrainBtn.disabled = false;
-            }, 2500);
+            retrainText.textContent = 'إعادة تدريب النموذج الفوري';
+            retrainBtn.disabled = false;
+            showToast('تم تحديث أوزان النموذج بنجاح (v3.4.1).', 'success');
           }, 1500);
         });
       }
@@ -944,6 +981,7 @@
           inferIcon.classList.add('animate-spin');
           inferText.textContent = 'جارِ المعالجة في محرك المتجهات...';
           runBtn.disabled = true;
+          showToast('جاري تشغيل محاكي التوصية الفوري...', 'info');
 
           setTimeout(function() {
             const selected = personaSelect ? personaSelect.value : 'gamer';
@@ -961,6 +999,7 @@
             inferIcon.classList.remove('animate-spin');
             inferText.textContent = 'محاكاة التوصية (Run Inference)';
             runBtn.disabled = false;
+            showToast('اكتمل الاستنتاج بنجاح (زمن الاستجابة: 14ms).', 'success');
           }, 450);
         });
       }

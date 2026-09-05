@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -132,33 +135,33 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر العروض" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع العروض</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="flash">الفلاش سيل</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="coupons">الكوبونات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="bundles">الحزم الترويجية</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن حملة، كود خصم، أو منتج..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث عن حملة أو كود خصم" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن حملة، كود خصم، أو منتج..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="مدير التسويق" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">مدير التسويق</span>
           </a>
         </div>
@@ -166,14 +169,14 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">إدارة العروض والكوبونات</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">عروض الفلاش الحية</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">محرك القسائم والخصومات</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">تحليلات أثر الحملات (ROAS)</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">campaign</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">campaign</span>
             <span>محرك العروض المتقدم v4.2</span>
           </div>
         </div>
@@ -190,32 +193,32 @@
         <div class="bg-surface-container-lowest rounded-xl max-w-xl w-full p-space-lg shadow-2xl flex flex-col gap-space-md border border-outline-variant/20 text-xs" onclick="event.stopPropagation()">
           <div class="flex items-center justify-between pb-2 border-b border-outline-variant/15 font-bold text-on-surface">
             <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-lg">campaign</span>
+              <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">campaign</span>
               <h3 class="text-sm font-bold">إنشاء حملة تسويقية ذكية جديدة</h3>
             </div>
-            <button class="p-1 rounded text-secondary hover:text-on-surface cursor-pointer" onclick="toggleCampaignModal(false)">
-              <span class="material-symbols-outlined text-lg">close</span>
+            <button aria-label="إغلاق النافذة" class="p-1 rounded text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none" onclick="toggleCampaignModal(false)" type="button">
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">close</span>
             </button>
           </div>
 
           <div class="space-y-3">
             <div>
-              <label class="font-bold text-on-surface block mb-1">عنوان الحملة الترويجية</label>
-              <input class="w-full bg-surface-container-low px-3 py-2.5 rounded-lg text-on-surface focus:outline-none border border-outline-variant/20" placeholder="مثال: عروض نهاية الأسبوع للأجهزة المجددة الفاخرة" type="text"/>
+              <label class="font-bold text-on-surface block mb-1" for="campaign-title-input">عنوان الحملة الترويجية</label>
+              <input id="campaign-title-input" class="w-full bg-surface-container-low px-3 py-2.5 rounded-lg text-on-surface focus:outline-none border border-outline-variant/20" placeholder="مثال: عروض نهاية الأسبوع للأجهزة المجددة الفاخرة" type="text"/>
             </div>
             
             <div class="grid grid-cols-2 gap-2">
               <div>
-                <label class="font-bold text-on-surface block mb-1">نوع العرض</label>
-                <select class="w-full bg-surface-container-low px-3 py-2.5 rounded-lg text-on-surface focus:outline-none border border-outline-variant/20 cursor-pointer">
+                <label class="font-bold text-on-surface block mb-1" for="campaign-type-select">نوع العرض</label>
+                <select id="campaign-type-select" class="w-full bg-surface-container-low px-3 py-2.5 rounded-lg text-on-surface focus:outline-none border border-outline-variant/20 cursor-pointer">
                   <option>فلاش سيل موقوت (Flash Sale)</option>
                   <option>حزمة ملحقات (Bundle & Save)</option>
                   <option>كوبون ترويجي تلقائي</option>
                 </select>
               </div>
               <div>
-                <label class="font-bold text-on-surface block mb-1">الميزانية التقديرية (ر.س)</label>
-                <input class="w-full bg-surface-container-low px-3 py-2.5 rounded-lg text-on-surface font-mono focus:outline-none border border-outline-variant/20" placeholder="25000" type="number"/>
+                <label class="font-bold text-on-surface block mb-1" for="campaign-budget-input">الميزانية التقديرية (ر.س)</label>
+                <input id="campaign-budget-input" class="w-full bg-surface-container-low px-3 py-2.5 rounded-lg text-on-surface font-mono focus:outline-none border border-outline-variant/20" placeholder="25000" type="number"/>
               </div>
             </div>
 
@@ -230,16 +233,10 @@
           </div>
 
           <div class="flex items-center justify-end gap-2 pt-2 border-t border-outline-variant/15 font-bold">
-            <button class="px-3 py-2 rounded-lg text-secondary hover:text-on-surface cursor-pointer" onclick="toggleCampaignModal(false)">إلغاء</button>
-            <button class="bg-primary-container hover:bg-primary text-on-primary px-4 py-2 rounded-lg shadow-sm transition-all cursor-pointer" onclick="toggleCampaignModal(false); showToast('تم إطلاق مسودة الحملة بنجاح!')">نشر الحملة فوراً</button>
+            <button class="px-3 py-2 rounded-lg text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none" onclick="toggleCampaignModal(false)" type="button">إلغاء</button>
+            <button class="bg-primary-container hover:bg-primary text-on-primary px-4 py-2 rounded-lg shadow-sm transition-all cursor-pointer border-none" onclick="toggleCampaignModal(false); showToast('تم إطلاق مسودة الحملة بنجاح!', 'success')" type="button">نشر الحملة فوراً</button>
           </div>
         </div>
-      </div>
-
-      <!-- Toast Notification -->
-      <div class="fixed bottom-6 start-6 z-50 bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2 transform translate-y-24 opacity-0 transition-all duration-300 border border-outline-variant/30 text-xs" id="toast">
-        <span class="material-symbols-outlined text-tertiary-fixed text-base">check_circle</span>
-        <span class="font-bold" id="toast-text">تم تنفيذ العملية</span>
       </div>
 
       <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-lg flex flex-col gap-space-xl">
@@ -259,12 +256,12 @@
           </div>
 
           <div class="flex flex-wrap items-center gap-2 shrink-0 text-xs font-bold">
-            <button onclick="toggleCampaignModal(true)" class="flex items-center gap-1 bg-surface-container-high hover:bg-surface-variant text-on-surface px-3 py-2.5 rounded-lg shadow-sm transition-all border border-outline-variant/10 cursor-pointer" type="button">
-              <span class="material-symbols-outlined text-base text-primary">confirmation_number</span>
+            <button onclick="toggleCampaignModal(true)" class="flex items-center gap-1 bg-surface-container-high hover:bg-surface-variant text-on-surface px-3 py-2.5 rounded-lg shadow-sm transition-all border border-outline-variant/10 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-base text-primary" aria-hidden="true">confirmation_number</span>
               <span>إصدار كود خصم ذكي</span>
             </button>
-            <button onclick="toggleCampaignModal(true)" class="flex items-center gap-1 bg-primary hover:bg-primary-container text-on-primary px-4 py-2.5 rounded-lg shadow-md transition-all active:scale-95 cursor-pointer" type="button">
-              <span class="material-symbols-outlined text-base">add_box</span>
+            <button onclick="toggleCampaignModal(true)" class="flex items-center gap-1 bg-primary hover:bg-primary-container text-on-primary px-4 py-2.5 rounded-lg shadow-md transition-all active:scale-95 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">add_box</span>
               <span>إنشاء حملة ترويجية جديدة</span>
             </button>
           </div>
@@ -280,7 +277,7 @@
                 <div class="text-xl font-black text-on-surface font-mono">384,500 <span class="text-xs font-normal text-secondary font-sans">ر.س</span></div>
               </div>
               <div class="p-2 bg-primary-fixed text-on-primary-fixed rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">payments</span>
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">payments</span>
               </div>
             </div>
             <div class="mt-3 pt-2 border-t border-outline-variant/10 flex items-center gap-1">
@@ -296,7 +293,7 @@
                 <div class="text-xl font-black text-on-surface font-mono">12 <span class="text-xs font-normal text-secondary font-sans">كود فعال</span></div>
               </div>
               <div class="p-2 bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">loyalty</span>
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">loyalty</span>
               </div>
             </div>
             <div class="mt-3 pt-2 border-t border-outline-variant/10 flex items-center justify-between text-secondary">
@@ -312,7 +309,7 @@
                 <div class="text-xl font-black text-primary font-mono">5.8x</div>
               </div>
               <div class="p-2 bg-tertiary-fixed text-on-tertiary-fixed rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">trending_up</span>
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">trending_up</span>
               </div>
             </div>
             <div class="mt-3 pt-2 border-t border-outline-variant/10 flex items-center gap-1">
@@ -328,7 +325,7 @@
                 <div class="text-xl font-black text-on-surface font-mono">142,900 <span class="text-xs font-normal text-secondary font-sans">ر.س</span></div>
               </div>
               <div class="p-2 bg-error-container text-on-error-container rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">bolt</span>
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">bolt</span>
               </div>
             </div>
             <div class="mt-3 pt-2 border-t border-outline-variant/10 flex items-center justify-between">
@@ -346,11 +343,11 @@
               <span class="w-2.5 h-5 bg-error rounded-full"></span>
               <span class="text-sm">إدارة العروض الخاطفة الحية (Flash Sales Live Manager)</span>
               <span class="bg-error-container text-on-error-container px-2 py-0.5 rounded-full flex items-center gap-1 text-[10px]">
-                <span class="material-symbols-outlined text-xs">timer</span> مباشر الآن
+                <span class="material-symbols-outlined text-xs" aria-hidden="true">timer</span> مباشر الآن
               </span>
             </div>
-            <button onclick="showToast('تم تحديث المخزون اللحظي لعروض الفلاش')" class="text-primary font-bold hover:underline cursor-pointer flex items-center gap-1" type="button">
-              <span class="material-symbols-outlined text-sm">refresh</span> تحديث المخزون
+            <button onclick="showToast('تم تحديث المخزون اللحظي لعروض الفلاش.', 'success')" class="text-primary font-bold hover:underline cursor-pointer flex items-center gap-1 bg-transparent border-none" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">refresh</span> تحديث المخزون
             </button>
           </div>
 
@@ -362,10 +359,10 @@
               <div class="relative z-20 flex flex-col gap-3">
                 <div class="flex items-center justify-between">
                   <span class="bg-error text-on-error text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
-                    <span class="material-symbols-outlined text-xs">flash_on</span> Flash Weekend
+                    <span class="material-symbols-outlined text-xs" aria-hidden="true">flash_on</span> Flash Weekend
                   </span>
                   <div class="flex items-center gap-1 text-tertiary-fixed font-mono font-bold bg-white/10 px-2.5 py-1 rounded-lg">
-                    <span class="material-symbols-outlined text-sm">schedule</span>
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">schedule</span>
                     <span id="spotlight-timer">04:28:15</span>
                   </div>
                 </div>
@@ -390,10 +387,10 @@
               </div>
 
               <div class="relative z-20 flex items-center gap-2 mt-4 pt-3 border-t border-white/10 font-bold">
-                <button class="flex-1 py-2 px-2 bg-white/10 hover:bg-white/25 text-surface-container-lowest rounded-lg transition-colors text-center cursor-pointer" onclick="showToast('تم تمديد وقت العرض ساعتين')" type="button">
+                <button class="flex-1 py-2 px-2 bg-white/10 hover:bg-white/25 text-surface-container-lowest rounded-lg transition-colors text-center cursor-pointer border-none" onclick="showToast('تم تمديد وقت العرض ساعتين.', 'success')" type="button">
                   + تمديد ساعتين
                 </button>
-                <button class="flex-1 py-2 px-2 bg-primary text-on-primary hover:bg-primary-container rounded-lg transition-colors text-center shadow-md cursor-pointer" onclick="showToast('تمت إضافة 25 جهازاً لحصة الفلاش سيل')" type="button">
+                <button class="flex-1 py-2 px-2 bg-primary text-on-primary hover:bg-primary-container rounded-lg transition-colors text-center shadow-md cursor-pointer border-none" onclick="showToast('تمت إضافة 25 جهازاً لحصة الفلاش سيل.', 'success')" type="button">
                   + زيادة الحصة
                 </button>
               </div>
@@ -435,7 +432,7 @@
                         <div class="w-16 h-1 bg-surface-container rounded-full overflow-hidden mt-0.5"><div class="bg-error h-full w-[90%]"></div></div>
                       </td>
                       <td class="p-2.5 text-center">
-                        <button onclick="showToast('تم تعليق المنتج من الفلاش سيل')" class="p-1 rounded text-secondary hover:bg-surface-container hover:text-error transition-colors cursor-pointer" title="إيقاف مؤقت"><span class="material-symbols-outlined text-base">pause_circle</span></button>
+                        <button aria-label="إيقاف مؤقت للصنف" onclick="showToast('تم تعليق المنتج من الفلاش سيل مؤقتاً.', 'info')" class="p-1 rounded text-secondary hover:bg-surface-container hover:text-error transition-colors cursor-pointer bg-transparent border-none" title="إيقاف مؤقت" type="button"><span class="material-symbols-outlined text-base" aria-hidden="true">pause_circle</span></button>
                       </td>
                     </tr>
 
@@ -455,7 +452,7 @@
                         <div class="w-16 h-1 bg-surface-container rounded-full overflow-hidden mt-0.5"><div class="bg-primary h-full w-[70%]"></div></div>
                       </td>
                       <td class="p-2.5 text-center">
-                        <button onclick="showToast('تم تعليق المنتج من الفلاش سيل')" class="p-1 rounded text-secondary hover:bg-surface-container hover:text-error transition-colors cursor-pointer" title="إيقاف مؤقت"><span class="material-symbols-outlined text-base">pause_circle</span></button>
+                        <button aria-label="إيقاف مؤقت للصنف" onclick="showToast('تم تعليق المنتج من الفلاش سيل مؤقتاً.', 'info')" class="p-1 rounded text-secondary hover:bg-surface-container hover:text-error transition-colors cursor-pointer bg-transparent border-none" title="إيقاف مؤقت" type="button"><span class="material-symbols-outlined text-base" aria-hidden="true">pause_circle</span></button>
                       </td>
                     </tr>
                   </tbody>
@@ -464,7 +461,7 @@
 
               <div class="mt-3 pt-2 flex items-center justify-between text-[11px] text-secondary border-t border-outline-variant/10">
                 <span>إجمالي الإيراد اللحظي من العرض الحالي: <strong class="text-on-surface font-mono">142,900 ر.س</strong></span>
-                <button class="text-primary font-bold hover:underline cursor-pointer" onclick="showToast('إضافة منتجات جديدة لعرض الفلاش')">+ إضافة صنف جديد</button>
+                <button class="text-primary font-bold hover:underline cursor-pointer bg-transparent border-none" onclick="toggleCampaignModal(true)" type="button">+ إضافة صنف جديد</button>
               </div>
             </div>
 
@@ -480,10 +477,10 @@
             </div>
             
             <div class="flex flex-wrap items-center gap-1 font-bold">
-              <button class="px-3 py-1 bg-primary text-on-primary rounded-full shadow-sm cursor-pointer">الكل (5)</button>
-              <button class="px-3 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-full transition-colors cursor-pointer">نسبة %</button>
-              <button class="px-3 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-full transition-colors cursor-pointer">مبلغ ثابت</button>
-              <button class="px-3 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-full transition-colors cursor-pointer">شحن مجاني</button>
+              <button class="px-3 py-1 bg-primary text-on-primary rounded-full shadow-sm cursor-pointer border-none" type="button">الكل (5)</button>
+              <button class="px-3 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-full transition-colors cursor-pointer border-none" type="button">نسبة %</button>
+              <button class="px-3 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-full transition-colors cursor-pointer border-none" type="button">مبلغ ثابت</button>
+              <button class="px-3 py-1 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-full transition-colors cursor-pointer border-none" type="button">شحن مجاني</button>
             </div>
           </div>
 
@@ -506,7 +503,7 @@
                 <tr class="hover:bg-surface-container-low/70 transition-colors">
                   <td class="py-3 px-3">
                     <div class="flex items-center gap-2">
-                      <span class="material-symbols-outlined text-primary text-lg">loyalty</span>
+                      <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">loyalty</span>
                       <div class="flex flex-col">
                         <span class="font-mono text-sm tracking-widest text-primary font-black select-all cursor-pointer">TECHPRO10</span>
                         <span class="text-secondary text-[10px]">ترحيب عملاء أول طلب</span>
@@ -523,8 +520,8 @@
                     </span>
                   </td>
                   <td class="py-3 px-3 text-center">
-                    <button onclick="showToast('تم نسخ الكود TECHPRO10 إلى الحافظة')" class="p-1 text-secondary hover:text-primary rounded transition-colors cursor-pointer" title="نسخ">
-                      <span class="material-symbols-outlined text-base">content_copy</span>
+                    <button aria-label="نسخ الكود" onclick="showToast('تم نسخ الكود TECHPRO10 إلى الحافظة.', 'success')" class="p-1 text-secondary hover:text-primary rounded transition-colors cursor-pointer bg-transparent border-none" title="نسخ" type="button">
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">content_copy</span>
                     </button>
                   </td>
                 </tr>
@@ -532,7 +529,7 @@
                 <tr class="hover:bg-surface-container-low/70 transition-colors">
                   <td class="py-3 px-3">
                     <div class="flex items-center gap-2">
-                      <span class="material-symbols-outlined text-primary text-lg">workspace_premium</span>
+                      <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">workspace_premium</span>
                       <div class="flex flex-col">
                         <span class="font-mono text-sm tracking-widest text-primary font-black select-all cursor-pointer">VIPGOLD</span>
                         <span class="text-secondary text-[10px]">حاملو الضمان الماسي والذهبي</span>
@@ -549,8 +546,8 @@
                     </span>
                   </td>
                   <td class="py-3 px-3 text-center">
-                    <button onclick="showToast('تم نسخ الكود VIPGOLD')" class="p-1 text-secondary hover:text-primary rounded transition-colors cursor-pointer" title="نسخ">
-                      <span class="material-symbols-outlined text-base">content_copy</span>
+                    <button aria-label="نسخ الكود" onclick="showToast('تم نسخ الكود VIPGOLD إلى الحافظة.', 'success')" class="p-1 text-secondary hover:text-primary rounded transition-colors cursor-pointer bg-transparent border-none" title="نسخ" type="button">
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">content_copy</span>
                     </button>
                   </td>
                 </tr>
@@ -565,14 +562,14 @@
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-2 border-b border-outline-variant/10">
             <div>
               <div class="flex items-center gap-2 font-bold text-on-surface">
-                <span class="material-symbols-outlined text-primary text-base">insights</span>
+                <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">insights</span>
                 <span class="text-sm">تحليلات قنوات التسويق والروابط التتبعية (UTM Attribution)</span>
               </div>
               <p class="text-secondary text-[11px] mt-0.5">متابعة المصدر الحقيقي لمبيعات الكوبونات والحملات وحساب العائد الصافي لكل قناة.</p>
             </div>
             
             <div class="flex items-center gap-2 font-bold">
-              <button onclick="showToast('تم تصدير تقرير الحملات بصيغة CSV')" class="px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg transition-colors border border-outline-variant/10 cursor-pointer">
+              <button onclick="showToast('تم تصدير تقرير الحملات بصيغة CSV بنجاح.', 'success')" class="px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg transition-colors border border-outline-variant/10 cursor-pointer border-none" type="button">
                 تصدير التقرير
               </button>
             </div>
@@ -581,7 +578,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="bg-surface-container-low p-3 rounded-xl flex flex-col justify-between gap-2 border border-outline-variant/10">
               <div class="flex items-center justify-between font-bold">
-                <span class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-base text-primary">smartphone</span> تطبيق تيك برو الذكي</span>
+                <span class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-base text-primary" aria-hidden="true">smartphone</span> تطبيق تيك برو الذكي</span>
                 <span class="text-primary text-sm font-mono font-black">44%</span>
               </div>
               <div class="flex justify-between text-[11px] text-secondary font-mono">
@@ -595,7 +592,7 @@
 
             <div class="bg-surface-container-low p-3 rounded-xl flex flex-col justify-between gap-2 border border-outline-variant/10">
               <div class="flex items-center justify-between font-bold">
-                <span class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-base text-tertiary">chat</span> رسائل واتساب المباشرة</span>
+                <span class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-base text-tertiary" aria-hidden="true">chat</span> رسائل واتساب المباشرة</span>
                 <span class="text-tertiary text-sm font-mono font-black">28%</span>
               </div>
               <div class="flex justify-between text-[11px] text-secondary font-mono">
@@ -609,7 +606,7 @@
 
             <div class="bg-surface-container-low p-3 rounded-xl flex flex-col justify-between gap-2 border border-outline-variant/10">
               <div class="flex items-center justify-between font-bold">
-                <span class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-base text-error">ads_click</span> إعلانات TikTok و Google</span>
+                <span class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-base text-error" aria-hidden="true">ads_click</span> إعلانات TikTok و Google</span>
                 <span class="text-error text-sm font-mono font-black">18%</span>
               </div>
               <div class="flex justify-between text-[11px] text-secondary font-mono">
@@ -623,7 +620,7 @@
 
             <div class="bg-surface-container-low p-3 rounded-xl flex flex-col justify-between gap-2 border border-outline-variant/10">
               <div class="flex items-center justify-between font-bold">
-                <span class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-base text-secondary">group_work</span> برنامج الشركاء والإحالة</span>
+                <span class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-base text-secondary" aria-hidden="true">group_work</span> برنامج الشركاء والإحالة</span>
                 <span class="text-secondary text-sm font-mono font-black">10%</span>
               </div>
               <div class="flex justify-between text-[11px] text-secondary font-mono">
@@ -649,7 +646,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -694,19 +691,39 @@
 
   <!-- Scripts -->
   <script>
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      const text = document.getElementById('toast-text');
-      if (!toast || !text) return;
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
 
-      text.textContent = message;
-      toast.classList.remove('translate-y-24', 'opacity-0');
-      toast.classList.add('translate-y-0', 'opacity-100');
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
 
       setTimeout(() => {
-        toast.classList.add('translate-y-24', 'opacity-0');
-        toast.classList.remove('translate-y-0', 'opacity-100');
-      }, 3000);
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
     }
 
     function toggleCampaignModal(show) {
@@ -715,6 +732,7 @@
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         document.body.classList.add('overflow-hidden');
+        showToast('جاري فتح نموذج الحملة التسويقية الجديدة...', 'info');
       } else {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
@@ -730,13 +748,8 @@
 
     (function initCountdown() {
       let totalSeconds = 4 * 3600 + 28 * 60 + 15;
-      const hoursEl = document.getElementById('timer-hours');
-      const minutesEl = document.getElementById('timer-minutes');
-      const secondsEl = document.getElementById('timer-seconds');
       const headerCountdown = document.getElementById('header-countdown');
       const spotlightTimer = document.getElementById('spotlight-timer');
-
-      if (!hoursEl || !minutesEl || !secondsEl) return;
 
       setInterval(() => {
         if (totalSeconds <= 0) {
@@ -749,9 +762,6 @@
         const s = String(totalSeconds % 60).padStart(2, '0');
         const display = `${h}:${m}:${s}`;
 
-        hoursEl.textContent = h;
-        minutesEl.textContent = m;
-        secondsEl.textContent = s;
         if (headerCountdown) headerCountdown.textContent = display;
         if (spotlightTimer) spotlightTimer.textContent = display;
       }, 1000);

@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Fixed Store Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -134,36 +137,36 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
-            <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors">
-              <span class="material-symbols-outlined text-xl">mic</span>
+            <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="البحث الصوتي" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors cursor-pointer bg-transparent border-none">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">mic</span>
             </button>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="تسجيل الدخول / حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">تسجيل الدخول / حسابي</span>
           </a>
         </div>
@@ -171,7 +174,7 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة المستعملة والمجددة</a>
@@ -180,7 +183,7 @@
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">تسجيل الدخول</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">bolt</span>
             <span>توصيل سريع خلال 24 ساعة</span>
           </div>
         </div>
@@ -200,20 +203,20 @@
           <!-- Top Quick Role Simulator Badge Bar -->
           <div class="mb-space-lg bg-surface-container-low rounded-xl p-space-sm shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-sm border border-outline-variant/10">
             <div class="flex items-center gap-space-xs text-secondary text-xs">
-              <span class="material-symbols-outlined text-primary-container text-lg">supervised_user_circle</span>
+              <span class="material-symbols-outlined text-primary-container text-lg" aria-hidden="true">supervised_user_circle</span>
               <span class="text-on-surface font-bold">بوابة الدخول الموحدة لتيك برو:</span>
               <span class="text-secondary">اختر حساباً تجريبياً للمعاينة السريعة:</span>
             </div>
             <div class="flex items-center flex-wrap gap-space-2xs text-xs">
-              <button class="flex items-center gap-1 px-3 py-1.5 bg-surface-container-lowest hover:bg-primary-container hover:text-on-primary text-on-surface rounded-lg shadow-sm font-bold transition-all" id="demo-customer-btn" onclick="setDemoProfile('customer')">
+              <button class="flex items-center gap-1 px-3 py-1.5 bg-surface-container-lowest hover:bg-primary-container hover:text-on-primary text-on-surface rounded-lg shadow-sm font-bold transition-all cursor-pointer border-none" id="demo-customer-btn" onclick="setDemoProfile('customer')" type="button">
                 <span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
                 <span>عميل VIP (محمد العتيبي)</span>
               </button>
-              <button class="flex items-center gap-1 px-3 py-1.5 bg-surface-container-lowest hover:bg-primary-container hover:text-on-primary text-on-surface rounded-lg shadow-sm font-bold transition-all" id="demo-cashier-btn" onclick="setDemoProfile('cashier')">
+              <button class="flex items-center gap-1 px-3 py-1.5 bg-surface-container-lowest hover:bg-primary-container hover:text-on-primary text-on-surface rounded-lg shadow-sm font-bold transition-all cursor-pointer border-none" id="demo-cashier-btn" onclick="setDemoProfile('cashier')" type="button">
                 <span class="w-2 h-2 rounded-full bg-primary"></span>
                 <span>كاشير الفرع (POS #104)</span>
               </button>
-              <button class="flex items-center gap-1 px-3 py-1.5 bg-surface-container-lowest hover:bg-primary-container hover:text-on-primary text-on-surface rounded-lg shadow-sm font-bold transition-all" id="demo-admin-btn" onclick="setDemoProfile('admin')">
+              <button class="flex items-center gap-1 px-3 py-1.5 bg-surface-container-lowest hover:bg-primary-container hover:text-on-primary text-on-surface rounded-lg shadow-sm font-bold transition-all cursor-pointer border-none" id="demo-admin-btn" onclick="setDemoProfile('admin')" type="button">
                 <span class="w-2 h-2 rounded-full bg-error"></span>
                 <span>مدير العمليات والإدارة</span>
               </button>
@@ -232,7 +235,7 @@
                   <div class="flex flex-col gap-space-2xs">
                     <div class="flex items-center gap-space-xs flex-wrap">
                       <span class="px-space-xs py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-bold flex items-center gap-1" id="role-pill">
-                        <span class="material-symbols-outlined text-sm">person_pin</span>
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">person_pin</span>
                         <span id="role-label">حساب العميل الشخصي</span>
                       </span>
                       <span class="flex items-center gap-1 text-xs text-tertiary font-bold bg-tertiary-fixed/30 px-2 py-0.5 rounded-full">
@@ -244,16 +247,16 @@
                     <p class="text-xs sm:text-sm text-secondary" id="form-sub-heading">سجّل دخولك لمتابعة طلباتك، إدارة الضمان الذهبي، وجمع نقاط المكافآت.</p>
                   </div>
                   <div class="p-2 bg-surface-container-low rounded-lg text-primary-container">
-                    <span class="material-symbols-outlined text-3xl">verified_user</span>
+                    <span class="material-symbols-outlined text-3xl" aria-hidden="true">verified_user</span>
                   </div>
                 </div>
 
                 <!-- Tab Selection: Phone OTP vs Email / Password -->
                 <div class="grid grid-cols-2 p-1 bg-surface-container-low rounded-lg mb-space-lg text-xs font-bold">
-                  <button class="py-2 px-space-sm rounded-md transition-all text-center bg-surface-container-lowest text-primary-container shadow-sm" id="tab-otp" onclick="switchTab('otp')">
+                  <button class="py-2 px-space-sm rounded-md transition-all text-center bg-surface-container-lowest text-primary-container shadow-sm cursor-pointer border-none" id="tab-otp" onclick="switchTab('otp')" type="button">
                     الدخول السريع بالرمز (OTP)
                   </button>
-                  <button class="py-2 px-space-sm rounded-md transition-all text-center text-secondary hover:text-on-surface" id="tab-password" onclick="switchTab('password')">
+                  <button class="py-2 px-space-sm rounded-md transition-all text-center text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none" id="tab-password" onclick="switchTab('password')" type="button">
                     كلمة المرور والبريد
                   </button>
                 </div>
@@ -265,24 +268,24 @@
                       <span>رقم الجوال المسجل</span>
                       <span class="text-secondary text-[11px]">متاح لجميع مشغلي المملكة</span>
                     </label>
-                    <div class="flex items-center bg-surface-container-lowest rounded-lg border border-outline-variant/30 focus-within:border-primary-container transition-all">
+                    <div class="flex items-center bg-surface-container-lowest rounded-lg border border-outline-variant/30 focus-within:border-primary-container transition-colors">
                       <div class="flex items-center gap-1 px-3 py-2 bg-surface-container-low text-on-surface text-xs font-bold rounded-r-lg shrink-0 border-l border-outline-variant/20" dir="ltr">
-                        <span class="material-symbols-outlined text-base text-secondary">call</span>
+                        <span class="material-symbols-outlined text-base text-secondary" aria-hidden="true">call</span>
                         <span class="font-mono font-bold">+966</span>
                         <span class="text-xs">🇸🇦</span>
                       </div>
-                      <input class="w-full py-2 px-3 font-mono text-sm text-on-surface placeholder-secondary-fixed-dim bg-transparent focus:outline-none" dir="ltr" id="phone-input" maxlength="9" placeholder="5X XXX XXXX" type="tel" value="508934721"/>
+                      <input aria-label="رقم الجوال المسجل" class="w-full py-2 px-3 font-mono text-sm text-on-surface placeholder-secondary-fixed-dim bg-transparent focus:outline-none" dir="ltr" id="phone-input" maxlength="9" placeholder="5X XXX XXXX" type="tel" value="508934721"/>
                     </div>
                   </div>
 
                   <div class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded-lg text-secondary text-xs">
-                    <span class="material-symbols-outlined text-primary-container text-base shrink-0">sms</span>
+                    <span class="material-symbols-outlined text-primary-container text-base shrink-0" aria-hidden="true">sms</span>
                     <span>سيتم إرسال كود تحقق مكون من 6 أرقام برسالة نصية فورية إلى رقم هاتفك.</span>
                   </div>
 
-                  <button class="w-full bg-primary-container hover:bg-primary text-on-primary py-2.5 px-space-md rounded-lg text-xs font-bold shadow-md flex items-center justify-center gap-space-xs transition-transform active:scale-[0.98]" onclick="requestOtpCode()">
+                  <button class="w-full bg-primary-container hover:bg-primary text-on-primary py-2.5 px-space-md rounded-lg text-xs font-bold shadow-md flex items-center justify-center gap-space-xs transition-transform active:scale-[0.98] cursor-pointer border-none" onclick="requestOtpCode()" type="button">
                     <span>إرسال رمز التحقق السريع</span>
-                    <span class="material-symbols-outlined text-lg rotate-180">arrow_forward</span>
+                    <span class="material-symbols-outlined text-lg rotate-180" aria-hidden="true">arrow_forward</span>
                   </button>
                 </div>
 
@@ -293,9 +296,9 @@
                       <span class="text-secondary">تم إرسال الرمز إلى الرقم</span>
                       <span class="font-bold font-mono text-on-surface" id="otp-sent-number" dir="ltr">+966 50 893 4721</span>
                     </div>
-                    <button class="text-primary-container hover:text-primary font-bold flex items-center gap-1" onclick="backToPhoneStep()">
+                    <button class="text-primary-container hover:text-primary font-bold flex items-center gap-1 bg-transparent border-none cursor-pointer text-xs" onclick="backToPhoneStep()" type="button">
                       <span>تعديل الرقم</span>
-                      <span class="material-symbols-outlined text-sm">edit</span>
+                      <span class="material-symbols-outlined text-sm" aria-hidden="true">edit</span>
                     </button>
                   </div>
 
@@ -306,28 +309,28 @@
                       <span class="text-secondary text-[11px]">أدخل الرمز المكون من 6 أرقام</span>
                     </div>
                     <div class="grid grid-cols-6 gap-2" dir="ltr">
-                      <input class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" type="text" value="4"/>
-                      <input class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" type="text" value="8"/>
-                      <input class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" type="text" value="2"/>
-                      <input class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" type="text" value="9"/>
-                      <input class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" placeholder="•" type="text" value=""/>
-                      <input class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" placeholder="•" type="text" value=""/>
+                      <input aria-label="رقم التحقق 1" class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" type="text" value="4"/>
+                      <input aria-label="رقم التحقق 2" class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" type="text" value="8"/>
+                      <input aria-label="رقم التحقق 3" class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" type="text" value="2"/>
+                      <input aria-label="رقم التحقق 4" class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" type="text" value="9"/>
+                      <input aria-label="رقم التحقق 5" class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" placeholder="•" type="text" value=""/>
+                      <input aria-label="رقم التحقق 6" class="otp-digit text-center font-mono text-xl py-2 bg-surface-container-low rounded-lg border border-outline-variant/30 focus:bg-surface-container-lowest focus:border-primary-container outline-none text-on-surface font-bold" maxlength="1" placeholder="•" type="text" value=""/>
                     </div>
                   </div>
 
                   <!-- Resend Timer -->
                   <div class="flex items-center justify-between text-xs text-secondary">
                     <div class="flex items-center gap-1">
-                      <span class="material-symbols-outlined text-sm">timer</span>
+                      <span class="material-symbols-outlined text-sm" aria-hidden="true">timer</span>
                       <span>إعادة الإرسال بعد: <strong class="text-on-surface font-mono font-bold" id="resend-countdown">00:44</strong></span>
                     </div>
-                    <button class="text-secondary opacity-60 cursor-not-allowed font-bold" id="resend-btn" onclick="simulateResendOtp()">
+                    <button class="text-secondary opacity-60 cursor-not-allowed font-bold bg-transparent border-none text-xs" id="resend-btn" onclick="simulateResendOtp()" type="button">
                       إعادة إرسال الرمز الآن
                     </button>
                   </div>
 
-                  <button class="w-full bg-primary-container hover:bg-primary text-on-primary py-2.5 px-space-md rounded-lg text-xs font-bold shadow-md flex items-center justify-center gap-space-xs transition-transform active:scale-[0.98]" onclick="confirmOtpSuccess()">
-                    <span class="material-symbols-outlined text-lg">lock_open</span>
+                  <button class="w-full bg-primary-container hover:bg-primary text-on-primary py-2.5 px-space-md rounded-lg text-xs font-bold shadow-md flex items-center justify-center gap-space-xs transition-transform active:scale-[0.98] cursor-pointer border-none" onclick="confirmOtpSuccess()" type="button">
+                    <span class="material-symbols-outlined text-lg" aria-hidden="true">lock_open</span>
                     <span>تأكيد الرمز والدخول</span>
                   </button>
                 </div>
@@ -337,7 +340,7 @@
                   <div class="flex flex-col gap-space-xs text-xs">
                     <label class="font-bold text-on-surface" for="email-input">البريد الإلكتروني أو المعرّف الوظيفي</label>
                     <div class="flex items-center bg-surface-container-low rounded-lg px-3 border border-outline-variant/30 focus-within:border-primary-container">
-                      <span class="material-symbols-outlined text-secondary text-base">mail</span>
+                      <span class="material-symbols-outlined text-secondary text-base" aria-hidden="true">mail</span>
                       <input class="w-full py-2 px-2 text-xs text-on-surface bg-transparent focus:outline-none" id="email-input" placeholder="example@techpro.sa" type="email" value="m.otaibi@techpro.sa"/>
                     </div>
                   </div>
@@ -348,24 +351,24 @@
                       <a class="text-[11px] text-primary-container hover:underline" href="#">نسيت كلمة المرور؟</a>
                     </div>
                     <div class="flex items-center bg-surface-container-low rounded-lg px-3 border border-outline-variant/30 focus-within:border-primary-container">
-                      <span class="material-symbols-outlined text-secondary text-base">lock</span>
+                      <span class="material-symbols-outlined text-secondary text-base" aria-hidden="true">lock</span>
                       <input class="w-full py-2 px-2 text-xs text-on-surface bg-transparent focus:outline-none" id="pass-input" placeholder="كلمة المرور" type="password" value="Password123!"/>
-                      <button class="text-secondary hover:text-on-surface" onclick="togglePasswordVisibility()" type="button">
-                        <span class="material-symbols-outlined text-base" id="pass-visibility-icon">visibility</span>
+                      <button aria-label="إظهار أو إخفاء كلمة المرور" class="text-secondary hover:text-on-surface bg-transparent border-none cursor-pointer" onclick="togglePasswordVisibility()" type="button">
+                        <span class="material-symbols-outlined text-base" id="pass-visibility-icon" aria-hidden="true">visibility</span>
                       </button>
                     </div>
                   </div>
 
                   <div class="flex items-center justify-between text-xs">
                     <label class="flex items-center gap-2 cursor-pointer select-none">
-                      <input checked="" class="rounded text-primary-container focus:ring-primary w-4 h-4 bg-surface-container-low accent-primary" type="checkbox"/>
+                      <input aria-label="تذكر هذا المتصفح" checked="" class="rounded text-primary-container focus:ring-primary w-4 h-4 bg-surface-container-low accent-primary" type="checkbox"/>
                       <span class="text-secondary">تذكر هذا المتصفح لمدة 30 يوماً</span>
                     </label>
                   </div>
 
-                  <button class="w-full bg-primary-container hover:bg-primary text-on-primary py-2.5 px-space-md rounded-lg text-xs font-bold shadow-md flex items-center justify-center gap-space-xs transition-transform active:scale-[0.98]" onclick="confirmOtpSuccess()">
+                  <button class="w-full bg-primary-container hover:bg-primary text-on-primary py-2.5 px-space-md rounded-lg text-xs font-bold shadow-md flex items-center justify-center gap-space-xs transition-transform active:scale-[0.98] cursor-pointer border-none" onclick="confirmOtpSuccess()" type="button">
                     <span>تسجيل الدخول الآمن</span>
-                    <span class="material-symbols-outlined text-lg">login</span>
+                    <span class="material-symbols-outlined text-lg" aria-hidden="true">login</span>
                   </button>
                 </div>
 
@@ -377,7 +380,7 @@
 
                 <!-- Single Sign-On Providers -->
                 <div class="flex flex-col gap-space-sm">
-                  <button class="w-full bg-tertiary-container hover:bg-tertiary text-on-tertiary py-2 px-space-md rounded-lg shadow-sm text-xs font-bold flex items-center justify-between transition-all" onclick="triggerNafathLogin()">
+                  <button class="w-full bg-tertiary-container hover:bg-tertiary text-on-tertiary py-2 px-space-md rounded-lg shadow-sm text-xs font-bold flex items-center justify-between transition-all cursor-pointer border-none" onclick="triggerNafathLogin()" type="button">
                     <div class="flex items-center gap-2">
                       <div class="w-7 h-7 rounded-md bg-surface-container-lowest flex items-center justify-center text-tertiary font-bold text-xs">
                         نفاذ
@@ -387,15 +390,15 @@
                         <span class="text-[10px] text-tertiary-fixed-dim font-normal">توثيق فوري للهوية بدون الحاجة لكلمات سر</span>
                       </div>
                     </div>
-                    <span class="material-symbols-outlined text-base">shield</span>
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">shield</span>
                   </button>
 
                   <div class="grid grid-cols-2 gap-space-sm text-xs">
-                    <button class="flex items-center justify-center gap-space-xs py-2 px-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg font-bold transition-colors border border-outline-variant/10" onclick="triggerSocialAuth('Apple')">
+                    <button class="flex items-center justify-center gap-space-xs py-2 px-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg font-bold transition-colors border border-outline-variant/10 cursor-pointer" onclick="triggerSocialAuth('Apple')" type="button">
                       <span class="font-bold text-base leading-none"></span>
                       <span>حساب Apple</span>
                     </button>
-                    <button class="flex items-center justify-center gap-space-xs py-2 px-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg font-bold transition-colors border border-outline-variant/10" onclick="triggerSocialAuth('Google')">
+                    <button class="flex items-center justify-center gap-space-xs py-2 px-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg font-bold transition-colors border border-outline-variant/10 cursor-pointer" onclick="triggerSocialAuth('Google')" type="button">
                       <span class="font-bold text-sm text-error">G</span>
                       <span>حساب Google</span>
                     </button>
@@ -405,7 +408,7 @@
                 <!-- Trust Footer -->
                 <div class="mt-space-lg pt-space-sm flex items-center justify-between text-secondary text-[11px] border-t border-outline-variant/10">
                   <div class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-tertiary-container text-sm">lock</span>
+                    <span class="material-symbols-outlined text-tertiary-container text-sm" aria-hidden="true">lock</span>
                     <span>بياناتك محمية وفق نظام حماية البيانات الشخصية السعودي</span>
                   </div>
                   <a class="text-primary-container hover:underline font-bold" href="#">سياسة الخصوصية</a>
@@ -416,14 +419,14 @@
               <div class="bg-surface-container-low rounded-xl p-space-md flex items-center justify-between border border-outline-variant/10">
                 <div class="flex items-center gap-space-sm">
                   <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold shrink-0">
-                    <span class="material-symbols-outlined text-xl">person_add</span>
+                    <span class="material-symbols-outlined text-xl" aria-hidden="true">person_add</span>
                   </div>
                   <div class="flex flex-col">
                     <span class="text-sm text-on-surface font-bold">مستخدم جديد في تيك برو؟</span>
                     <span class="text-xs text-secondary">احصل على كوبون خصم بقيمة 50 ر.س على أول عملية شراء لأي جهاز جديد أو مجدد.</span>
                   </div>
                 </div>
-                <button class="bg-surface-container-lowest hover:bg-primary-fixed text-primary px-space-sm py-2 rounded-lg text-xs font-bold shadow-sm transition-colors whitespace-nowrap border border-outline-variant/20">
+                <button class="bg-surface-container-lowest hover:bg-primary-fixed text-primary px-space-sm py-2 rounded-lg text-xs font-bold shadow-sm transition-colors whitespace-nowrap border border-outline-variant/20 cursor-pointer" type="button">
                   إنشاء حساب جديد
                 </button>
               </div>
@@ -437,7 +440,7 @@
                 <div class="absolute -bottom-10 -left-10 w-44 h-44 rounded-full bg-primary-container/20 blur-2xl pointer-events-none"></div>
                 <div class="flex items-center justify-between mb-space-md">
                   <span class="px-space-xs py-1 bg-tertiary-fixed text-on-tertiary-fixed text-xs font-bold rounded-md flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">workspace_premium</span>
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">workspace_premium</span>
                     <span>مزايا عضوية تيك برو الذهبية</span>
                   </span>
                   <span class="text-[11px] text-secondary-fixed-dim">مفعلة تلقائياً</span>
@@ -454,7 +457,7 @@
                 <div class="flex flex-col gap-space-sm">
                   <div class="flex items-start gap-space-sm p-space-xs bg-surface-container-highest/10 rounded-lg">
                     <div class="w-8 h-8 rounded-lg bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0">
-                      <span class="material-symbols-outlined text-base">verified</span>
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
                     </div>
                     <div class="flex flex-col">
                       <span class="text-xs text-surface-container-lowest font-bold">الضمان الذهبي 24 شهراً</span>
@@ -464,7 +467,7 @@
 
                   <div class="flex items-start gap-space-sm p-space-xs bg-surface-container-highest/10 rounded-lg">
                     <div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center shrink-0">
-                      <span class="material-symbols-outlined text-base">flaky</span>
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">flaky</span>
                     </div>
                     <div class="flex flex-col">
                       <span class="text-xs text-surface-container-lowest font-bold">فحص 64 نقطة للأجهزة المجددة</span>
@@ -474,7 +477,7 @@
 
                   <div class="flex items-start gap-space-sm p-space-xs bg-surface-container-highest/10 rounded-lg">
                     <div class="w-8 h-8 rounded-lg bg-secondary text-on-secondary flex items-center justify-center shrink-0">
-                      <span class="material-symbols-outlined text-base">credit_card</span>
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">credit_card</span>
                     </div>
                     <div class="flex flex-col">
                       <span class="text-xs text-surface-container-lowest font-bold">تقسيط مريح 4 دفعات بدون فوائد</span>
@@ -503,7 +506,7 @@
                 <div class="flex items-center justify-between">
                   <span class="text-xs text-on-surface font-bold">أرقام قياسية في رضا العملاء</span>
                   <span class="text-xs text-tertiary font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">trending_up</span>
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">trending_up</span>
                     +99.4%
                   </span>
                 </div>
@@ -545,7 +548,7 @@
 
                 <div class="flex items-center justify-between p-2 bg-secondary-fixed/20 rounded-lg text-on-secondary-fixed text-xs">
                   <div class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-primary-container text-base">support_agent</span>
+                    <span class="material-symbols-outlined text-primary-container text-base" aria-hidden="true">support_agent</span>
                     <span class="font-semibold text-[11px]">هل تواجه مشكلة بالدخول؟ فريق الدعم جاهز 24/7</span>
                   </div>
                   <a class="text-primary-container font-bold hover:underline text-[11px]" href="#">مساعدة فورية</a>
@@ -558,7 +561,7 @@
                   <img class="w-full h-full object-cover" alt="معرض تيك برو للأجهزة الذكية" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY1-Ym8vkweJjMbqgj5ZpP6NdCW7rlnDiuf0qb3AXYQ3XSPwBWnEzxMz17P6OStYzUYG5T1Ef4xC3_M0bljZSiVkvpGgREjTEG7jHxvEdCd7YYRt98awZck5Rglbw3hkvWkPAjX5rFDsftZzA_38wNn_efgiJQRn1Gy2R4bf7qkVgpJZYl_OjZuo3zhNEPBTY3vYL1NP0j_uq_CM3JfO-7pMjMQ5kfHV1mlz07msHPVvgoluqMUjxp-Q"/>
                   <div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-inverse-surface/30 to-transparent flex items-end p-space-sm">
                     <span class="text-surface-container-lowest text-xs font-bold flex items-center gap-1">
-                      <span class="material-symbols-outlined text-tertiary-fixed-dim text-sm">storefront</span>
+                      <span class="material-symbols-outlined text-tertiary-fixed-dim text-sm" aria-hidden="true">storefront</span>
                       فروع تيك برو في (الرياض - جدة - الخبر)
                     </span>
                   </div>
@@ -585,7 +588,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -628,16 +631,43 @@
     </div>
   </footer>
 
-  <!-- Interactive Notifications Toast -->
-  <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-4" id="auth-toast">
-    <div class="bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-xl shadow-xl flex items-center gap-space-sm border border-outline-variant/20">
-      <span class="material-symbols-outlined text-tertiary-fixed-dim text-xl" id="toast-icon">check_circle</span>
-      <span class="text-xs font-bold" id="toast-msg">تم تسجيل الدخول بنجاح! جاري تحويلك...</span>
-    </div>
-  </div>
-
   <!-- Client-Side Vanilla Interactivity Scripts -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     function switchTab(mode) {
       const tabOtp = document.getElementById('tab-otp');
       const tabPass = document.getElementById('tab-password');
@@ -646,30 +676,32 @@
       const stepPass = document.getElementById('step-password-form');
 
       if (mode === 'otp') {
-        tabOtp.className = "py-2 px-space-sm rounded-md transition-all text-center bg-surface-container-lowest text-primary-container shadow-sm";
-        tabPass.className = "py-2 px-space-sm rounded-md transition-all text-center text-secondary hover:text-on-surface";
+        tabOtp.className = "py-2 px-space-sm rounded-md transition-all text-center bg-surface-container-lowest text-primary-container shadow-sm cursor-pointer border-none";
+        tabPass.className = "py-2 px-space-sm rounded-md transition-all text-center text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none";
         stepPhone.classList.remove('hidden');
         stepPhone.classList.add('flex');
         stepOtp.classList.add('hidden');
         stepOtp.classList.remove('flex');
         stepPass.classList.add('hidden');
         stepPass.classList.remove('flex');
+        showToast('تم التبديل إلى وضع الدخول السريع برمز التحقق OTP.', 'info');
       } else {
-        tabPass.className = "py-2 px-space-sm rounded-md transition-all text-center bg-surface-container-lowest text-primary-container shadow-sm";
-        tabOtp.className = "py-2 px-space-sm rounded-md transition-all text-center text-secondary hover:text-on-surface";
+        tabPass.className = "py-2 px-space-sm rounded-md transition-all text-center bg-surface-container-lowest text-primary-container shadow-sm cursor-pointer border-none";
+        tabOtp.className = "py-2 px-space-sm rounded-md transition-all text-center text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none";
         stepPhone.classList.add('hidden');
         stepPhone.classList.remove('flex');
         stepOtp.classList.add('hidden');
         stepOtp.classList.remove('flex');
         stepPass.classList.remove('hidden');
         stepPass.classList.add('flex');
+        showToast('تم التبديل إلى وضع كلمة المرور والبريد الإلكتروني.', 'info');
       }
     }
 
     function requestOtpCode() {
       const phoneInput = document.getElementById('phone-input').value.trim();
       if (!phoneInput || phoneInput.length < 9) {
-        showToast('يرجى إدخال رقم جوال صحيح مكون من 9 أرقام يبدأ بـ 5');
+        showToast('يرجى إدخال رقم جوال صحيح مكون من 9 أرقام يبدأ بـ 5', 'error');
         return;
       }
 
@@ -680,10 +712,9 @@
       stepPhone.classList.remove('flex');
       stepOtp.classList.remove('hidden');
       stepOtp.classList.add('flex');
-      showToast('تم إرسال رمز التحقق برسالة نصية إلى هاتفك');
+      showToast('تم إرسال رمز التحقق برسالة نصية إلى هاتفك بنجاح.', 'success');
       startCountdown();
 
-      // Focus first OTP field
       const firstOtp = document.querySelector('.otp-digit');
       if (firstOtp) firstOtp.focus();
     }
@@ -695,28 +726,22 @@
       stepOtp.classList.remove('flex');
       stepPhone.classList.remove('hidden');
       stepPhone.classList.add('flex');
+      showToast('العودة لإدخال رقم الجوال.', 'info');
     }
 
     function confirmOtpSuccess() {
-      showToast('تم التحقق بنجاح! جاري تحويلك إلى لوحة التحكم الشخصية...');
+      showToast('تم التحقق بنجاح! جاري تحويلك إلى لوحة التحكم الشخصية...', 'success');
       setTimeout(() => {
-        const role = document.getElementById('role-label').innerText;
-        if (role.includes('كاشير')) {
-          window.location.href = '#pos-dashboard';
-        } else if (role.includes('مدير')) {
-          window.location.href = '#admin-portal';
-        } else {
-          window.location.href = '#account';
-        }
+        window.location.href = '#account';
       }, 1200);
     }
 
     function triggerNafathLogin() {
-      showToast('جاري فتح تطبيق نفاذ الوطني الموحد للمصادقة...');
+      showToast('جاري الاتصال الآمن مع تطبيق نفاذ الوطني الموحد...', 'info');
     }
 
     function triggerSocialAuth(provider) {
-      showToast(`جاري الاتصال الآمن مع مزود المصادقة ${provider}...`);
+      showToast(`جاري الاتصال الآمن مع مزود المصادقة ${provider}...`, 'info');
     }
 
     function togglePasswordVisibility() {
@@ -737,14 +762,14 @@
       const el = document.getElementById('resend-countdown');
       const btn = document.getElementById('resend-btn');
       clearInterval(countdownTimer);
-      btn.className = "text-secondary opacity-60 cursor-not-allowed text-xs font-bold";
+      btn.className = "text-secondary opacity-60 cursor-not-allowed text-xs font-bold bg-transparent border-none";
 
       countdownTimer = setInterval(() => {
         seconds--;
         if (seconds <= 0) {
           clearInterval(countdownTimer);
           el.innerText = '00:00';
-          btn.className = "text-primary-container text-xs cursor-pointer hover:underline font-bold";
+          btn.className = "text-primary-container text-xs cursor-pointer hover:underline font-bold bg-transparent border-none";
         } else {
           el.innerText = `00:${seconds < 10 ? '0' : ''}${seconds}`;
         }
@@ -754,7 +779,7 @@
     function simulateResendOtp() {
       const el = document.getElementById('resend-countdown');
       if (el.innerText === '00:00') {
-        showToast('تمت إعادة إرسال رمز OTP جديد بنجاح');
+        showToast('تمت إعادة إرسال رمز OTP جديد بنجاح.', 'success');
         startCountdown();
       }
     }
@@ -776,7 +801,7 @@
         previewName.innerText = 'محمد العتيبي';
         previewRole.innerText = 'عضو ذهبي | جهاز مسجل: iPhone 15 Pro Max';
         previewPoints.innerText = '١,٤٢٠ نقطة';
-        showToast('تم تحميل بيانات: عميل VIP (محمد العتيبي)');
+        showToast('تم تحميل بيانات: عميل VIP (محمد العتيبي)', 'success');
       } else if (type === 'cashier') {
         phoneInput.value = '551104882';
         emailInput.value = 'pos.riyadh04@techpro.sa';
@@ -785,7 +810,7 @@
         previewName.innerText = 'فرع الرياض - النخيل (كاشير 04)';
         previewRole.innerText = 'صلاحية: الفواتير، الاسترجاع الميداني، تسليم الضمان';
         previewPoints.innerText = 'الوردية الصباحية';
-        showToast('تم تحميل بيانات: كاشير فرع الرياض');
+        showToast('تم تحميل بيانات: كاشير فرع الرياض', 'success');
       } else if (type === 'admin') {
         phoneInput.value = '540099881';
         emailInput.value = 'ops.director@techpro.sa';
@@ -794,20 +819,8 @@
         previewName.innerText = 'د. عبدالمحسن الشمري';
         previewRole.innerText = 'مدير العمليات وسلاسل الإمداد ومراقبة الأسعار';
         previewPoints.innerText = 'صلاحيات عليا';
-        showToast('تم تحميل بيانات: مدير العمليات والإدارة');
+        showToast('تم تحميل بيانات: مدير العمليات والإدارة', 'success');
       }
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('auth-toast');
-      const toastMsg = document.getElementById('toast-msg');
-      toastMsg.innerText = msg;
-      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-      toast.classList.add('opacity-100', 'translate-y-0');
-      setTimeout(() => {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-      }, 3000);
     }
 
     // Auto-advance OTP Inputs & Paste Support

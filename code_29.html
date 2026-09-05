@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -132,33 +135,33 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن نقطة نهاية، مفتاح، أو وثائق..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث عن نقطة نهاية" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن نقطة نهاية، مفتاح، أو وثائق..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="حساب المطور" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">حساب المطور</span>
           </a>
         </div>
@@ -166,14 +169,14 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">بوابة إدارة الـ API</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">مفاتيح الربط والاعتماد</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">سجلات التدقيق والطلب</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">ساندبوكس الاختبار</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">bolt</span>
             <span>بيئة الربط السحابي المباشر v2.4</span>
           </div>
         </div>
@@ -204,12 +207,12 @@
           </div>
 
           <div class="flex flex-wrap items-center gap-space-sm shrink-0 text-xs font-bold">
-            <button onclick="alert('تم تنزيل ملف مواصفات OpenAPI 3.1 (techpro-openapi.yaml)')" class="inline-flex items-center gap-1.5 bg-surface-container-lowest text-on-surface px-4 py-2.5 rounded-lg shadow-sm hover:shadow-md transition-all border border-outline-variant/10 cursor-pointer" type="button">
-              <span class="material-symbols-outlined text-primary text-base">code_blocks</span>
+            <button onclick="showToast('تم تنزيل ملف مواصفات OpenAPI 3.1 (techpro-openapi.yaml) بنجاح.', 'success')" class="inline-flex items-center gap-1.5 bg-surface-container-lowest text-on-surface px-4 py-2.5 rounded-lg shadow-sm hover:shadow-md transition-all border border-outline-variant/10 cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">code_blocks</span>
               <span>مواصفات OpenAPI 3.1</span>
             </button>
-            <button class="inline-flex items-center gap-1.5 bg-primary-container hover:bg-primary text-on-primary px-4 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer" id="open-key-modal" type="button">
-              <span class="material-symbols-outlined text-base">add_circle</span>
+            <button class="inline-flex items-center gap-1.5 bg-primary-container hover:bg-primary text-on-primary px-4 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer border-none" id="open-key-modal" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">add_circle</span>
               <span>إنشاء مفتاح API جديد</span>
             </button>
           </div>
@@ -225,12 +228,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>طلبات API اليومية</span>
-              <span class="material-symbols-outlined text-primary-container text-xl">data_usage</span>
+              <span class="material-symbols-outlined text-primary-container text-xl" aria-hidden="true">data_usage</span>
             </div>
             <div class="my-2">
               <div class="text-xl lg:text-2xl font-black text-on-surface font-mono">1,482,910</div>
               <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">trending_up</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">trending_up</span>
                 <span>+14.2% مقارنة بأمس</span>
               </div>
             </div>
@@ -242,7 +245,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>نسبة نجاح العمليات (SLA)</span>
-              <span class="material-symbols-outlined text-tertiary text-xl">verified</span>
+              <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">verified</span>
             </div>
             <div class="my-2">
               <div class="text-xl lg:text-2xl font-black text-tertiary font-mono">99.984%</div>
@@ -258,12 +261,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>متوسط سرعة الاستجابة</span>
-              <span class="material-symbols-outlined text-secondary text-xl">bolt</span>
+              <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">bolt</span>
             </div>
             <div class="my-2">
               <div class="text-xl lg:text-2xl font-black text-on-surface font-mono">48.2 <span class="text-xs font-normal text-secondary font-sans">ms</span></div>
               <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">arrow_downward</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_downward</span>
                 <span>تحسن بـ 6ms عن الأسبوع</span>
               </div>
             </div>
@@ -275,7 +278,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>المفاتيح النشطة للشركاء</span>
-              <span class="material-symbols-outlined text-on-surface-variant text-xl">key</span>
+              <span class="material-symbols-outlined text-on-surface-variant text-xl" aria-hidden="true">key</span>
             </div>
             <div class="my-2">
               <div class="text-xl lg:text-2xl font-black text-on-surface font-mono">24 <span class="text-xs font-normal text-secondary font-sans">من 30 مصرح</span></div>
@@ -291,12 +294,12 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between sm:col-span-2 lg:col-span-1">
             <div class="flex items-center justify-between text-secondary font-bold">
               <span>تسليمات Webhook اليوم</span>
-              <span class="material-symbols-outlined text-tertiary text-xl">outgoing_mail</span>
+              <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">outgoing_mail</span>
             </div>
             <div class="my-2">
               <div class="text-xl lg:text-2xl font-black text-on-surface font-mono">98,420</div>
               <div class="flex items-center gap-1 text-tertiary font-bold mt-1">
-                <span class="material-symbols-outlined text-sm">check_circle</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">check_circle</span>
                 <span>99.91% إيصال لحظي</span>
               </div>
             </div>
@@ -311,7 +314,7 @@
         <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 flex flex-col lg:flex-row gap-space-lg items-center justify-between text-xs">
           <div class="flex flex-col gap-2 max-w-sm">
             <div class="inline-flex items-center gap-1 text-primary font-bold">
-              <span class="material-symbols-outlined text-base">monitoring</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">monitoring</span>
               <span>تحليل حركة المرور خلال آخر 24 ساعة</span>
             </div>
             <h3 class="text-base font-bold text-on-surface">تدفق البيانات والتزامن عبر الخدمات المصغرة</h3>
@@ -346,42 +349,39 @@
 
         <!-- Navigation Hub Tabs -->
         <div class="flex items-center gap-space-xs overflow-x-auto bg-surface-container-low p-1.5 rounded-xl border border-outline-variant/10 text-xs font-bold">
-          <button class="flex items-center gap-1 px-4 py-2 rounded-lg bg-surface-container-lowest text-primary shadow-sm whitespace-nowrap cursor-pointer">
-            <span class="material-symbols-outlined text-base">key</span>
+          <button class="flex items-center gap-1 px-4 py-2 rounded-lg transition-all bg-surface-container-lowest text-primary shadow-sm cursor-pointer border-none" type="button">
+            <span class="material-symbols-outlined text-base" aria-hidden="true">key</span>
             <span>مفاتيح الربط والاعتماد (API Keys)</span>
+            <span class="bg-primary/10 text-primary px-2 py-0.5 rounded-full font-mono text-[10px]">24</span>
           </button>
-          <button class="flex items-center gap-1 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface whitespace-nowrap transition-colors cursor-pointer">
-            <span class="material-symbols-outlined text-base">webhook</span>
+          <button onclick="showToast('جاري فتح إعدادات الويب هوك...', 'info')" class="flex items-center gap-1 px-4 py-2 rounded-lg transition-all text-secondary hover:text-on-surface whitespace-nowrap cursor-pointer bg-transparent border-none" type="button">
+            <span class="material-symbols-outlined text-base" aria-hidden="true">webhook</span>
             <span>إعدادات الويب هوك (Webhooks)</span>
           </button>
-          <button class="flex items-center gap-1 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface whitespace-nowrap transition-colors cursor-pointer">
-            <span class="material-symbols-outlined text-base">terminal</span>
+          <button onclick="showToast('جاري استعراض سجلات التدقيق...', 'info')" class="flex items-center gap-1 px-4 py-2 rounded-lg transition-all text-secondary hover:text-on-surface whitespace-nowrap cursor-pointer bg-transparent border-none" type="button">
+            <span class="material-symbols-outlined text-base" aria-hidden="true">terminal</span>
             <span>سجلات التدقيق الحية (Request Logs)</span>
           </button>
-          <button class="flex items-center gap-1 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface whitespace-nowrap transition-colors cursor-pointer">
-            <span class="material-symbols-outlined text-base">tune</span>
+          <button onclick="showToast('جاري فتح إعدادات الحدود والكوتا...', 'info')" class="flex items-center gap-1 px-4 py-2 rounded-lg transition-all text-secondary hover:text-on-surface whitespace-nowrap cursor-pointer bg-transparent border-none" type="button">
+            <span class="material-symbols-outlined text-base" aria-hidden="true">tune</span>
             <span>حدود الاستهلاك والتسعير (Quotas)</span>
-          </button>
-          <button class="flex items-center gap-1 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface whitespace-nowrap transition-colors cursor-pointer">
-            <span class="material-symbols-outlined text-base">menu_book</span>
-            <span>التوثيق وساندبوكس الاختبار</span>
           </button>
         </div>
 
         <!-- Partner Credentials Master Table -->
-        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden flex flex-col text-xs">
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden flex flex-col">
           <div class="p-space-lg flex flex-col md:flex-row md:items-center md:justify-between gap-space-md border-b border-outline-variant/10">
             <div>
               <h2 class="text-base font-bold text-on-surface">مفاتيح الربط البرمجي للشركاء التجاريين</h2>
               <p class="text-secondary text-[11px] mt-0.5">التحكم في مستويات الوصول الممنوحة للمنصات اللوجستية، بوابات الدفع، وهيئة الزكاة</p>
             </div>
             <div class="flex items-center gap-2">
-              <div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1 font-bold border border-outline-variant/10">
-                <span class="material-symbols-outlined text-secondary text-base">filter_list</span>
+              <div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1 font-bold border border-outline-variant/10 text-xs">
+                <span class="material-symbols-outlined text-secondary text-base" aria-hidden="true">filter_list</span>
                 <span>الكل (5 شركاء رئيسيين)</span>
               </div>
-              <button onclick="alert('تم تحديث قائمة المفاتيح')" class="p-2 bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors border border-outline-variant/10 cursor-pointer" title="تحديث">
-                <span class="material-symbols-outlined text-base">refresh</span>
+              <button aria-label="تحديث" onclick="showToast('تم تحديث قائمة المفاتيح بنجاح.', 'success')" class="p-2 bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors border border-outline-variant/10 cursor-pointer border-none" title="تحديث" type="button">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">refresh</span>
               </button>
             </div>
           </div>
@@ -406,10 +406,10 @@
                   <td class="py-3 px-space-md">
                     <div class="flex items-center gap-2">
                       <div class="w-9 h-9 rounded-xl bg-error/10 text-error flex items-center justify-center font-bold">
-                        <span class="material-symbols-outlined text-base">local_shipping</span>
+                        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
                       </div>
                       <div class="flex flex-col">
-                        <span class="font-bold text-on-surface">أرامكس للشحن السريع</span>
+                        <span class="text-sm font-bold text-on-surface">أرامكس للشحن السريع</span>
                         <span class="text-secondary text-[11px]">Aramex Logistics API</span>
                       </div>
                     </div>
@@ -426,8 +426,8 @@
                   <td class="py-3 px-3 font-mono">
                     <div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded w-fit border border-outline-variant/10">
                       <span>tp_live_98a****4b12</span>
-                      <button onclick="navigator.clipboard.writeText('tp_live_98a763bc4b12'); alert('تم نسخ المفتاح');" class="text-primary hover:text-primary-container cursor-pointer">
-                        <span class="material-symbols-outlined text-xs">content_copy</span>
+                      <button aria-label="نسخ المفتاح" onclick="if(navigator.clipboard) navigator.clipboard.writeText('tp_live_98a763bc4b12'); showToast('تم نسخ مفتاح أرامكس إلى الحافظة بنجاح.', 'success');" class="text-primary hover:text-primary-container cursor-pointer bg-transparent border-none" type="button">
+                        <span class="material-symbols-outlined text-xs" aria-hidden="true">content_copy</span>
                       </button>
                     </div>
                   </td>
@@ -448,8 +448,8 @@
                     </span>
                   </td>
                   <td class="py-3 px-space-md text-left">
-                    <button onclick="alert('إعدادات مفتاح أرامكس')" class="p-1 text-secondary hover:text-primary transition-colors cursor-pointer" title="إعدادات">
-                      <span class="material-symbols-outlined text-base">settings</span>
+                    <button aria-label="إعدادات شريك أرامكس" onclick="showToast('فتح إعدادات شريك أرامكس اللوجستية.', 'info')" class="p-1 text-secondary hover:text-primary transition-colors cursor-pointer bg-transparent border-none" title="إعدادات" type="button">
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">settings</span>
                     </button>
                   </td>
                 </tr>
@@ -458,10 +458,10 @@
                   <td class="py-3 px-space-md">
                     <div class="flex items-center gap-2">
                       <div class="w-9 h-9 rounded-xl bg-tertiary-fixed/40 text-tertiary flex items-center justify-center font-bold">
-                        <span class="material-symbols-outlined text-base">payments</span>
+                        <span class="material-symbols-outlined text-base" aria-hidden="true">payments</span>
                       </div>
                       <div class="flex flex-col">
-                        <span class="font-bold text-on-surface">تابي للتقسيط المرن</span>
+                        <span class="text-sm font-bold text-on-surface">تابي للتقسيط المرن</span>
                         <span class="text-secondary text-[11px]">Tabby Checkout & Webhooks</span>
                       </div>
                     </div>
@@ -477,8 +477,8 @@
                   <td class="py-3 px-3 font-mono">
                     <div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded w-fit border border-outline-variant/10">
                       <span>tp_live_tabby_38x8</span>
-                      <button onclick="alert('تم النسخ')" class="text-primary hover:text-primary-container cursor-pointer">
-                        <span class="material-symbols-outlined text-xs">content_copy</span>
+                      <button aria-label="نسخ المفتاح" onclick="if(navigator.clipboard) navigator.clipboard.writeText('tp_live_tabby_38x8'); showToast('تم نسخ مفتاح تابي إلى الحافظة.', 'success');" class="text-primary hover:text-primary-container cursor-pointer bg-transparent border-none" type="button">
+                        <span class="material-symbols-outlined text-xs" aria-hidden="true">content_copy</span>
                       </button>
                     </div>
                   </td>
@@ -499,8 +499,8 @@
                     </span>
                   </td>
                   <td class="py-3 px-space-md text-left">
-                    <button onclick="alert('إعدادات تابي')" class="p-1 text-secondary hover:text-primary transition-colors cursor-pointer" title="الإعدادات">
-                      <span class="material-symbols-outlined text-base">settings</span>
+                    <button aria-label="إعدادات شريك تابي" onclick="showToast('فتح إعدادات شريك تابي للدفع.', 'info')" class="p-1 text-secondary hover:text-primary transition-colors cursor-pointer bg-transparent border-none" title="إعدادات" type="button">
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">settings</span>
                     </button>
                   </td>
                 </tr>
@@ -509,7 +509,7 @@
                   <td class="py-3 px-space-md">
                     <div class="flex items-center gap-2">
                       <div class="w-9 h-9 rounded-xl bg-primary-fixed text-primary flex items-center justify-center font-bold">
-                        <span class="material-symbols-outlined text-base">receipt_long</span>
+                        <span class="material-symbols-outlined text-base" aria-hidden="true">receipt_long</span>
                       </div>
                       <div class="flex flex-col">
                         <span class="font-bold text-on-surface">منظومة الفوترة (ZATCA)</span>
@@ -528,8 +528,8 @@
                   <td class="py-3 px-3 font-mono">
                     <div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded w-fit border border-outline-variant/10">
                       <span>tp_prod_zatca_8802</span>
-                      <button onclick="alert('تم النسخ')" class="text-primary hover:text-primary-container cursor-pointer">
-                        <span class="material-symbols-outlined text-xs">content_copy</span>
+                      <button aria-label="نسخ المفتاح" onclick="if(navigator.clipboard) navigator.clipboard.writeText('tp_prod_zatca_8802'); showToast('تم نسخ مفتاح زاتكا إلى الحافظة.', 'success');" class="text-primary hover:text-primary-container cursor-pointer bg-transparent border-none" type="button">
+                        <span class="material-symbols-outlined text-xs" aria-hidden="true">content_copy</span>
                       </button>
                     </div>
                   </td>
@@ -546,12 +546,12 @@
                   </td>
                   <td class="py-3 px-3">
                     <span class="inline-flex items-center gap-1 text-tertiary font-bold text-[11px]">
-                      <span class="material-symbols-outlined text-sm">lock</span> شهادة مشفرة
+                      <span class="material-symbols-outlined text-sm" aria-hidden="true">lock</span> شهادة مشفرة
                     </span>
                   </td>
                   <td class="py-3 px-space-md text-left">
-                    <button onclick="alert('إعدادات زاتكا')" class="p-1 text-secondary hover:text-primary transition-colors cursor-pointer" title="الإعدادات">
-                      <span class="material-symbols-outlined text-base">settings</span>
+                    <button aria-label="إعدادات زاتكا" onclick="showToast('فتح إعدادات شهادة ZATCA الإلكترونية.', 'info')" class="p-1 text-secondary hover:text-primary transition-colors cursor-pointer bg-transparent border-none" title="إعدادات" type="button">
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">settings</span>
                     </button>
                   </td>
                 </tr>
@@ -573,16 +573,16 @@
                 <span class="text-on-surface-variant font-mono text-[11px] font-bold">اختبار الـ API الحي (Interactive Sandbox Console)</span>
               </div>
               <div class="flex items-center gap-1 font-bold">
-                <button class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-[10px]">cURL</button>
-                <button class="px-2 py-0.5 rounded bg-surface-container-lowest text-primary text-[10px] shadow-2xs">Node.js</button>
+                <button class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-[10px] cursor-pointer border-none" type="button">cURL</button>
+                <button class="px-2 py-0.5 rounded bg-surface-container-lowest text-primary text-[10px] shadow-2xs cursor-pointer border-none" type="button">Node.js</button>
               </div>
             </div>
 
             <div class="p-space-md flex flex-col gap-3">
               <div class="flex items-center gap-1 bg-surface-container-low p-2 rounded-lg border border-outline-variant/10">
                 <span class="bg-primary-container text-on-primary font-mono text-[10px] px-2 py-1 rounded font-bold">POST</span>
-                <input class="bg-transparent text-on-surface font-mono text-xs w-full focus:outline-none px-1" readonly="" type="text" value="https://api.techpro.sa/v2/orders/create-shipment"/>
-                <button class="bg-primary hover:bg-primary-container text-on-primary font-bold px-4 py-1.5 rounded-lg shadow-sm active:scale-95 transition-all shrink-0 cursor-pointer" id="run-api-test" type="button">
+                <input aria-label="رابط نقطة النهاية" class="bg-transparent text-on-surface font-mono text-xs w-full focus:outline-none px-1" readonly="" type="text" value="https://api.techpro.sa/v2/orders/create-shipment"/>
+                <button class="bg-primary hover:bg-primary-container text-on-primary font-bold px-4 py-1.5 rounded-lg shadow-sm active:scale-95 transition-all shrink-0 cursor-pointer border-none" id="run-api-test" type="button">
                   <span>إرسال الطلب</span>
                 </button>
               </div>
@@ -590,8 +590,8 @@
               <!-- Payload -->
               <div class="flex flex-col gap-1">
                 <span class="font-bold text-on-surface">حمولة الطلب (Payload Body JSON):</span>
-                <div class="bg-inverse-surface text-inverse-on-surface p-3 rounded-lg font-mono text-[11px] overflow-x-auto leading-relaxed">
-                  <pre><code class="text-left">{
+                <div class="bg-inverse-surface text-inverse-on-surface p-3 rounded-lg font-mono text-[11px] overflow-x-auto leading-relaxed" dir="ltr">
+                  <pre><code>{
   <span class="text-tertiary-fixed">"order_reference"</span>: <span class="text-primary-fixed-dim">"TP-2025-98231"</span>,
   <span class="text-tertiary-fixed">"carrier"</span>: <span class="text-primary-fixed-dim">"aramex"</span>,
   <span class="text-tertiary-fixed">"package_details"</span>: {
@@ -608,8 +608,8 @@
                   <span class="text-on-surface">الاستجابة الفورية من السيرفر (Response):</span>
                   <span class="text-tertiary bg-tertiary/10 px-2 py-0.5 rounded font-mono">200 OK (42ms)</span>
                 </div>
-                <div class="bg-surface-container text-on-surface p-3 rounded-lg font-mono text-[11px] overflow-x-auto border border-outline-variant/10">
-                  <pre><code class="text-left">{
+                <div class="bg-surface-container text-on-surface p-3 rounded-lg font-mono text-[11px] overflow-x-auto border border-outline-variant/10" dir="ltr">
+                  <pre><code>{
   <span class="text-primary font-bold">"status"</span>: <span class="text-tertiary font-bold">"success"</span>,
   <span class="text-primary font-bold">"awb_number"</span>: <span class="text-secondary">"ARMX-SA-889102931"</span>,
   <span class="text-primary font-bold">"zatca_invoice_hash"</span>: <span class="text-secondary">"4b28fd9081e7d23a992bc0f1"</span>
@@ -626,7 +626,7 @@
                 <span class="w-2.5 h-2.5 rounded-full bg-tertiary animate-ping"></span>
                 <span>سجل أحداث الـ Webhook اللحظي</span>
               </div>
-              <button onclick="alert('إعادة إرسال الفاشلة')" class="text-primary hover:underline cursor-pointer text-[11px]">
+              <button onclick="showToast('جاري إعادة إرسال الأحداث الفاشلة عبر طابور إعادة المحاولة...', 'info')" class="text-primary hover:underline cursor-pointer bg-transparent border-none text-xs" type="button">
                 إعادة إرسال الفاشلة
               </button>
             </div>
@@ -665,34 +665,34 @@
           
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-2">
             <div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
-              <span class="material-symbols-outlined text-xl">shield</span>
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">shield</span>
             </div>
             <h4 class="font-bold text-on-surface text-sm">تقييد عناوين الـ IP المسموحة (IP Whitelist)</h4>
             <p class="text-secondary leading-relaxed">حماية المفاتيح الإنتاجية من التسريب عبر رفض أي طلبات واردة من خارج نطاقات الـ CIDR المحددة لكل شريك.</p>
             <div class="pt-2 text-tertiary font-bold flex items-center gap-1">
-              <span class="material-symbols-outlined text-sm">check</span> مفعل لجميع المفاتيح الحية
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">check</span> مفعل لجميع المفاتيح الحية
             </div>
           </div>
 
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-2">
             <div class="w-10 h-10 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-fixed">
-              <span class="material-symbols-outlined text-xl">speed</span>
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">speed</span>
             </div>
             <h4 class="font-bold text-on-surface text-sm">حماية صد الهجمات ومعدل الطلب (Rate Limiting)</h4>
             <p class="text-secondary leading-relaxed">سقف افتراضي يبلغ 1,000 طلب بالدقيقة لكل IP مع عزل تلقائي لأي محاولات مشبوهة عبر خوارزمية Token Bucket.</p>
             <div class="pt-2 text-primary font-bold flex items-center gap-1">
-              <span class="material-symbols-outlined text-sm">tune</span> إدارة قواعد الحصص الاستهلاكية
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">tune</span> إدارة قواعد الحصص الاستهلاكية
             </div>
           </div>
 
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-2">
             <div class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary">
-              <span class="material-symbols-outlined text-xl">fingerprint</span>
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">fingerprint</span>
             </div>
             <h4 class="font-bold text-on-surface text-sm">توقيع أمني مشفر للـ Webhook (HMAC-SHA256)</h4>
             <p class="text-secondary leading-relaxed">يتم توقيع كل حدث مرسل برأس <code class="bg-surface-container px-1 rounded text-primary font-mono text-[11px]">X-TechPro-Signature</code> لضمان سلامة الإشعارات.</p>
             <div class="pt-2 text-tertiary font-bold flex items-center gap-1">
-              <span class="material-symbols-outlined text-sm">verified_user</span> مفتاح السر مشفر بـ AES-256
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">verified_user</span> مفتاح السر مشفر بـ AES-256
             </div>
           </div>
 
@@ -702,7 +702,7 @@
         <div class="bg-gradient-to-r from-primary-container to-primary text-on-primary p-space-lg rounded-xl shadow-md flex flex-col lg:flex-row items-center justify-between gap-space-lg text-xs">
           <div class="flex flex-col gap-1 max-w-2xl text-right">
             <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-lowest/10 text-on-primary font-bold w-fit">
-              <span class="material-symbols-outlined text-sm">terminal</span>
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">terminal</span>
               <span>حزم التطوير الرسمية (Official SDKs)</span>
             </div>
             <h3 class="text-base font-bold text-surface-container-lowest mt-1">ابدأ التكامل مع متجر تيك برو خلال دقائق</h3>
@@ -712,11 +712,11 @@
           </div>
           <div class="flex flex-wrap items-center gap-2 shrink-0 font-bold">
             <a class="bg-surface-container-lowest text-primary hover:bg-surface-container-low px-4 py-2.5 rounded-lg shadow-sm transition-all flex items-center gap-1" href="#">
-              <span class="material-symbols-outlined text-base">description</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">description</span>
               <span>توثيق المطورين</span>
             </a>
             <a class="bg-on-primary/10 hover:bg-on-primary/20 text-on-primary px-4 py-2.5 rounded-lg transition-all flex items-center gap-1 border border-white/10" href="#">
-              <span class="material-symbols-outlined text-base">download</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">download</span>
               <span>Postman Collection</span>
             </a>
           </div>
@@ -725,56 +725,56 @@
       </div>
 
       <!-- Modal for Creating New Key -->
-      <div id="new-key-modal" class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-xs items-center justify-center p-space-md">
-        <div class="bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col border border-outline-variant/20 text-xs" onclick="event.stopPropagation()">
-          <div class="p-space-md bg-surface-container flex items-center justify-between border-b border-outline-variant/15">
-            <div class="flex items-center gap-space-xs font-bold text-on-surface">
-              <span class="material-symbols-outlined text-primary text-lg">vpn_key</span>
-              <h3 class="text-sm font-bold">توليد مفتاح شريك جديد (New API Key)</h3>
+      <div id="new-key-modal" class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm items-center justify-center p-space-md">
+        <div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-lg shadow-2xl flex flex-col gap-space-md border border-outline-variant/20" onclick="event.stopPropagation()">
+          <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/15 font-bold text-on-surface">
+            <div class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">vpn_key</span>
+              <h3 class="text-base font-bold">توليد مفتاح شريك جديد (New API Key)</h3>
             </div>
-            <button class="p-1 rounded text-secondary hover:text-on-surface cursor-pointer" id="close-key-modal">
-              <span class="material-symbols-outlined text-lg">close</span>
+            <button aria-label="إغلاق النافذة" class="p-1 rounded text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none" id="close-key-modal" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">close</span>
             </button>
           </div>
-          
-          <div class="p-space-md flex flex-col gap-space-sm">
-            <div class="flex flex-col gap-1">
-              <label class="font-bold text-on-surface">اسم الشريك أو التطبيق</label>
-              <input class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20 focus:outline-none" placeholder="مثلاً: شركة توصيل سمسا، تطبيق الفروع..." type="text"/>
+
+          <div class="flex flex-col gap-space-sm text-xs">
+            <div>
+              <label class="font-bold text-on-surface block mb-1" for="new-partner-input">اسم الشريك أو التطبيق</label>
+              <input id="new-partner-input" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface focus:outline-none border border-outline-variant/20" placeholder="مثلاً: شركة توصيل سمسا، تطبيق الفروع..." type="text"/>
             </div>
             
-            <div class="flex flex-col gap-1">
-              <label class="font-bold text-on-surface">البيئة المخصصة</label>
-              <select class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20 focus:outline-none cursor-pointer">
+            <div>
+              <label class="font-bold text-on-surface block mb-1" for="env-select-modal">البيئة المخصصة</label>
+              <select id="env-select-modal" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/20 focus:outline-none cursor-pointer font-bold">
                 <option>بيئة الإنتاج الحية (Live Production)</option>
                 <option>بيئة الاختبار والمحاكاة (Sandbox Staging)</option>
               </select>
             </div>
 
-            <div class="flex flex-col gap-1">
-              <label class="font-bold text-on-surface">عناوين الـ IP المسموح لها بالاتصال (CIDR)</label>
-              <input class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface font-mono border border-outline-variant/20 focus:outline-none" placeholder="192.168.1.1, 10.0.0.0/24" type="text"/>
+            <div>
+              <label class="font-bold text-on-surface block mb-1" for="cidr-input">عناوين الـ IP المسموح لها بالاتصال (CIDR)</label>
+              <input id="cidr-input" class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface font-mono border border-outline-variant/20 focus:outline-none" placeholder="192.168.1.1, 10.0.0.0/24" type="text"/>
               <span class="text-secondary text-[10px]">اترك الحقل فارغاً لتطبيق القيود الافتراضية.</span>
             </div>
 
             <div class="flex flex-col gap-1">
-              <label class="font-bold text-on-surface">نطاقات الصلاحيات (Scopes)</label>
+              <span class="font-bold text-on-surface">نطاقات الصلاحيات (Scopes)</span>
               <div class="grid grid-cols-2 gap-2 font-semibold">
                 <label class="flex items-center gap-2 bg-surface-container-low p-2 rounded cursor-pointer border border-outline-variant/10">
-                  <input checked="" class="accent-primary" type="checkbox"/>
+                  <input aria-label="صلاحية إنشاء وإدارة الشحنات" checked="" class="accent-primary" type="checkbox"/>
                   <span>إنشاء وإدارة الشحنات</span>
                 </label>
                 <label class="flex items-center gap-2 bg-surface-container-low p-2 rounded cursor-pointer border border-outline-variant/10">
-                  <input checked="" class="accent-primary" type="checkbox"/>
+                  <input aria-label="صلاحية تحصيل المدفوعات" checked="" class="accent-primary" type="checkbox"/>
                   <span>تحصيل المدفوعات</span>
                 </label>
               </div>
             </div>
           </div>
 
-          <div class="flex items-center justify-end gap-space-xs p-space-md border-t border-outline-variant/15 font-bold">
-            <button class="px-3 py-2 rounded-lg text-secondary hover:text-on-surface cursor-pointer" id="cancel-modal">إلغاء</button>
-            <button class="px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary transition-all shadow-sm cursor-pointer" id="confirm-key-gen">توليد وحفظ المفتاح</button>
+          <div class="flex items-center justify-end gap-space-xs p-space-md border-t border-outline-variant/15 font-bold text-xs">
+            <button class="px-3 py-2 rounded-lg text-secondary hover:text-on-surface cursor-pointer bg-transparent border-none" id="cancel-modal" type="button">إلغاء</button>
+            <button class="px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary transition-all shadow-sm cursor-pointer border-none" id="confirm-key-gen" type="button">توليد وحفظ المفتاح</button>
           </div>
         </div>
       </div>
@@ -789,7 +789,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -820,7 +820,7 @@
           <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">ماستركارد</div>
           <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تابي</div>
           <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">تمارا</div>
-          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">أبل باي</div>
+          <div class="bg-surface-container-highest/10 p-space-xs rounded text-center text-secondary-fixed font-bold">باي</div>
         </div>
       </div>
     </div>
@@ -834,6 +834,41 @@
 
   <!-- Scripts -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     (function() {
       const modal = document.getElementById('new-key-modal');
       const openBtn = document.getElementById('open-key-modal');
@@ -848,6 +883,7 @@
           modal.classList.remove('hidden');
           modal.classList.add('flex');
           document.body.classList.add('overflow-hidden');
+          showToast('فتح نافذة توليد مفتاح API جديد.', 'info');
         } else {
           modal.classList.add('hidden');
           modal.classList.remove('flex');
@@ -865,7 +901,7 @@
 
       if (confirmBtn) {
         confirmBtn.addEventListener('click', () => {
-          alert('تم توليد مفتاح الاعتماد البرمجي بنجاح ومزامنته مع خوادم التوثيق.');
+          showToast('تم توليد مفتاح الاعتماد البرمجي بنجاح ومزامنته مع خوادم التوثيق.', 'success');
           toggleModal(false);
         });
       }
@@ -873,10 +909,12 @@
       if (runApiBtn) {
         runApiBtn.addEventListener('click', () => {
           const originalText = runApiBtn.innerHTML;
-          runApiBtn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">refresh</span> <span>جاري المعالجة...</span>';
+          runApiBtn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin" aria-hidden="true">refresh</span> <span>جاري المعالجة...</span>';
           runApiBtn.disabled = true;
+          showToast('جاري إرسال اختبار الـ API إلى بيئة الـ Sandbox...', 'info');
           setTimeout(() => {
-            runApiBtn.innerHTML = '<span class="material-symbols-outlined text-base">check</span> <span>تم الاستلام (200 OK)</span>';
+            runApiBtn.innerHTML = '<span class="material-symbols-outlined text-base" aria-hidden="true">check</span> <span>تم الاستلام (200 OK)</span>';
+            showToast('تم استلام الرد بنجاح (200 OK).', 'success');
             setTimeout(() => {
               runApiBtn.innerHTML = originalText;
               runApiBtn.disabled = false;

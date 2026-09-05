@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -134,15 +137,15 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
@@ -157,14 +160,14 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">نظام نقاط البيع (POS)</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">إدارة المخزون والعهد</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الفواتير الإلكترونية ZATCA</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">إغلاق الوردية والجرد</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">store</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">store</span>
             <span>فرع الرياض الرئيسي - طريق الملك فهد</span>
           </div>
         </div>
@@ -172,7 +175,7 @@
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
+  <!-- Main Content -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
       
@@ -182,7 +185,7 @@
           
           <div class="flex items-center gap-space-md flex-wrap">
             <div class="flex items-center gap-2 bg-surface-container-low px-3 py-1 rounded-lg border border-outline-variant/10">
-              <span class="material-symbols-outlined text-primary text-base">store</span>
+              <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">store</span>
               <div class="flex flex-col text-right">
                 <span class="font-bold text-on-surface">فرع الرياض الرئيسي - الملك فهد</span>
                 <span class="text-[11px] text-secondary">POS-01 | مستودع العرض</span>
@@ -190,7 +193,7 @@
             </div>
 
             <div class="hidden sm:flex items-center gap-2 bg-surface-container-low px-3 py-1 rounded-lg border border-outline-variant/10">
-              <span class="material-symbols-outlined text-tertiary text-base">badge</span>
+              <span class="material-symbols-outlined text-tertiary text-base" aria-hidden="true">badge</span>
               <div class="flex flex-col text-right">
                 <div class="flex items-center gap-1">
                   <span class="font-bold text-on-surface">سلمان الشمري</span>
@@ -201,7 +204,7 @@
             </div>
 
             <div class="flex items-center gap-1 bg-tertiary/10 text-tertiary px-3 py-1 rounded-lg font-bold">
-              <span class="material-symbols-outlined text-sm">cloud_done</span>
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">cloud_done</span>
               <span>ZATCA Phase 2 متوافق ومشفر</span>
             </div>
           </div>
@@ -209,27 +212,18 @@
           <!-- Quick Operational Action Buttons -->
           <div class="flex items-center gap-space-xs shrink-0 font-bold">
             <button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-2 rounded-lg transition-all active:scale-95 flex items-center gap-1 border border-outline-variant/10 cursor-pointer" id="open-drawer-btn" type="button">
-              <span class="material-symbols-outlined text-base text-primary">point_of_sale</span>
+              <span class="material-symbols-outlined text-base text-primary" aria-hidden="true">point_of_sale</span>
               <span>فتح الدرج (F4)</span>
             </button>
             <button class="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 rounded-lg transition-all active:scale-95 flex items-center gap-1 cursor-pointer" id="scan-imei-btn" type="button">
-              <span class="material-symbols-outlined text-base">qr_code_scanner</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">qr_code_scanner</span>
               <span>فحص IMEI سريع</span>
             </button>
             <button class="bg-secondary-container/60 hover:bg-secondary-container text-on-secondary-container px-3 py-2 rounded-lg transition-all active:scale-95 flex items-center gap-1 cursor-pointer" id="hold-order-btn" type="button">
-              <span class="material-symbols-outlined text-base">pause_circle</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">pause_circle</span>
               <span>تعليق الفاتورة</span>
             </button>
           </div>
-        </div>
-      </div>
-
-      <!-- Notification Toast Container -->
-      <div class="fixed bottom-6 start-6 z-50 transform -translate-y-4 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-space-sm bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-xl shadow-2xl border border-outline-variant/30 text-xs" id="pos-toast">
-        <span class="material-symbols-outlined text-tertiary-fixed-dim text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-        <div class="flex flex-col text-right">
-          <span class="font-bold" id="toast-title">تمت العملية بنجاح</span>
-          <span class="text-secondary-fixed text-[11px]" id="toast-desc">تم تحديث بيانات الفاتورة الحالية</span>
         </div>
       </div>
 
@@ -243,10 +237,10 @@
             <!-- Live Barcode & Search Field -->
             <div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-xs">
               <div class="flex items-center gap-2 bg-surface-container-low rounded-lg px-3 py-1.5 border border-outline-variant/20 focus-within:border-primary-container">
-                <span class="material-symbols-outlined text-primary text-xl">barcode_scanner</span>
-                <input class="w-full bg-transparent text-xs text-on-surface placeholder:text-outline focus:outline-none py-1 font-mono" id="pos-search-input" placeholder="امسح الباركود بجهاز القارئ، أو اكتب الاسم، الموديل، S/N أو الـ IMEI..." type="text"/>
-                <button class="text-outline hover:text-on-surface p-1 cursor-pointer" id="clear-search-btn" type="button">
-                  <span class="material-symbols-outlined text-base">cancel</span>
+                <span class="material-symbols-outlined text-primary text-xl" aria-hidden="true">barcode_scanner</span>
+                <input aria-label="امسح الباركود أو ابحث عن جهاز" class="w-full bg-transparent text-xs text-on-surface placeholder:text-outline focus:outline-none py-1 font-mono" id="pos-search-input" placeholder="امسح الباركود بجهاز القارئ، أو اكتب الاسم، الموديل، S/N أو الـ IMEI..." type="text"/>
+                <button aria-label="مسح البحث" class="text-outline hover:text-on-surface p-1 cursor-pointer" id="clear-search-btn" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">cancel</span>
                 </button>
                 <span class="bg-surface-container px-2 py-0.5 rounded text-[10px] font-mono text-secondary font-bold">F2</span>
               </div>
@@ -289,7 +283,7 @@
                   </div>
                 </div>
                 <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
-                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">add_shopping_cart</span>
                   <span>إضافة للفاتورة</span>
                 </button>
               </article>
@@ -309,7 +303,7 @@
                   </div>
                 </div>
                 <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
-                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">add_shopping_cart</span>
                   <span>إضافة للفاتورة</span>
                 </button>
               </article>
@@ -329,7 +323,7 @@
                   </div>
                 </div>
                 <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
-                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">add_shopping_cart</span>
                   <span>إضافة للفاتورة</span>
                 </button>
               </article>
@@ -349,7 +343,7 @@
                   </div>
                 </div>
                 <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
-                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">add_shopping_cart</span>
                   <span>إضافة للفاتورة</span>
                 </button>
               </article>
@@ -369,7 +363,7 @@
                   </div>
                 </div>
                 <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
-                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">add_shopping_cart</span>
                   <span>إضافة للفاتورة</span>
                 </button>
               </article>
@@ -377,7 +371,7 @@
               <!-- Product 6 -->
               <article class="product-item group bg-surface-container-lowest rounded-xl p-space-sm shadow-sm border border-outline-variant/10 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-category="warranty" data-id="p6" data-price="299" data-title="باقة الضمان الماسي الإضافي الشامل لسنتين">
                 <div class="relative w-full aspect-square rounded-lg bg-primary-container/10 overflow-hidden mb-2 flex flex-col items-center justify-center p-2 text-center border border-primary/20">
-                  <span class="material-symbols-outlined text-primary text-3xl mb-1">verified_user</span>
+                  <span class="material-symbols-outlined text-primary text-3xl mb-1" aria-hidden="true">verified_user</span>
                   <span class="font-bold text-primary text-xs">الضمان الماسي TechPro</span>
                   <span class="text-[10px] text-secondary mt-0.5">تغطية كسر وبطارية</span>
                   <span class="absolute top-2 start-2 bg-primary text-on-primary px-2 py-0.5 rounded-full text-[10px] font-bold">خدمة</span>
@@ -391,7 +385,7 @@
                   </div>
                 </div>
                 <button class="add-to-cart-btn mt-2 w-full bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" type="button">
-                  <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">add_shopping_cart</span>
                   <span>إضافة للفاتورة</span>
                 </button>
               </article>
@@ -442,11 +436,11 @@
                   <span class="text-secondary text-[11px]" id="live-clock">اليوم | 02:44:18 م</span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <button class="p-1 text-secondary hover:text-error transition-colors rounded cursor-pointer" id="reset-cart-btn" title="إفراغ الفاتورة" type="button">
-                    <span class="material-symbols-outlined text-lg">delete_sweep</span>
+                  <button aria-label="إفراغ الفاتورة" class="p-1 text-secondary hover:text-error transition-colors rounded cursor-pointer" id="reset-cart-btn" title="إفراغ الفاتورة" type="button">
+                    <span class="material-symbols-outlined text-lg" aria-hidden="true">delete_sweep</span>
                   </button>
-                  <button onclick="window.print()" class="p-1 text-secondary hover:text-on-surface transition-colors rounded cursor-pointer" title="طباعة مسودة" type="button">
-                    <span class="material-symbols-outlined text-lg">print</span>
+                  <button aria-label="طباعة مسودة" onclick="window.print()" class="p-1 text-secondary hover:text-on-surface transition-colors rounded cursor-pointer" title="طباعة مسودة" type="button">
+                    <span class="material-symbols-outlined text-lg" aria-hidden="true">print</span>
                   </button>
                 </div>
               </div>
@@ -455,7 +449,7 @@
               <div class="bg-surface-container-low rounded-xl p-2.5 flex items-center justify-between border border-outline-variant/10">
                 <div class="flex items-center gap-2">
                   <div class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">
-                    <span class="material-symbols-outlined text-base">person</span>
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">person</span>
                   </div>
                   <div class="flex flex-col text-right">
                     <div class="flex items-center gap-1">
@@ -465,8 +459,8 @@
                     <span class="text-[11px] text-secondary">050****419 | رصيد المحفظة: <strong class="text-tertiary font-mono">350.00 ر.س</strong></span>
                   </div>
                 </div>
-                <button onclick="alert('فتح شاشة اختيار العميل من قاعدة البيانات')" class="text-primary hover:text-primary-container font-bold flex items-center gap-0.5 cursor-pointer" type="button">
-                  <span class="material-symbols-outlined text-sm">edit</span>
+                <button onclick="showToast('اختيار العميل', 'فتح شاشة اختيار العميل من قاعدة البيانات.')" class="text-primary hover:text-primary-container font-bold flex items-center gap-0.5 cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-sm" aria-hidden="true">edit</span>
                   <span>تبديل</span>
                 </button>
               </div>
@@ -480,7 +474,7 @@
                     <div class="flex flex-col text-right flex-1">
                       <span class="font-bold text-on-surface">آيفون 15 برو ماكس 256GB مجدد +A</span>
                       <div class="flex items-center gap-1 mt-0.5">
-                        <span class="material-symbols-outlined text-sm text-tertiary">verified</span>
+                        <span class="material-symbols-outlined text-sm text-tertiary" aria-hidden="true">verified</span>
                         <span class="text-secondary text-[11px]">IMEI:</span>
                         <span class="font-mono text-[11px] font-bold text-primary bg-primary/10 px-1 py-0.5 rounded">354890-09-281920-1</span>
                       </div>
@@ -489,17 +483,17 @@
                   </div>
                   <div class="flex items-center justify-between pt-1">
                     <div class="flex items-center gap-1 bg-surface-container-lowest px-2 py-0.5 rounded-lg border border-outline-variant/10">
-                      <button class="qty-btn-minus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">-</button>
+                      <button aria-label="تقليل الكمية" class="qty-btn-minus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">-</button>
                       <span class="qty-count font-bold font-mono px-1">1</span>
-                      <button class="qty-btn-plus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">+</button>
+                      <button aria-label="زيادة الكمية" class="qty-btn-plus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">+</button>
                     </div>
                     <div class="flex items-center gap-2">
-                      <button onclick="alert('تطبيق خصم خاص على بند الفاتورة')" class="text-secondary hover:text-primary text-[11px] flex items-center gap-0.5 cursor-pointer" type="button">
-                        <span class="material-symbols-outlined text-sm">percent</span>
+                      <button onclick="showToast('خصم بند', 'تطبيق خصم خاص على بند الفاتورة.')" class="text-secondary hover:text-primary text-[11px] flex items-center gap-0.5 cursor-pointer" type="button">
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">percent</span>
                         <span>خصم بند</span>
                       </button>
-                      <button class="cart-remove-btn text-outline hover:text-error transition-colors p-1 cursor-pointer" type="button">
-                        <span class="material-symbols-outlined text-base">delete</span>
+                      <button aria-label="حذف العنصر" class="cart-remove-btn text-outline hover:text-error transition-colors p-1 cursor-pointer" type="button">
+                        <span class="material-symbols-outlined text-base" aria-hidden="true">delete</span>
                       </button>
                     </div>
                   </div>
@@ -516,12 +510,12 @@
                   </div>
                   <div class="flex items-center justify-between pt-1">
                     <div class="flex items-center gap-1 bg-surface-container-lowest px-2 py-0.5 rounded-lg border border-outline-variant/10">
-                      <button class="qty-btn-minus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">-</button>
+                      <button aria-label="تقليل الكمية" class="qty-btn-minus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">-</button>
                       <span class="qty-count font-bold font-mono px-1">1</span>
-                      <button class="qty-btn-plus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">+</button>
+                      <button aria-label="زيادة الكمية" class="qty-btn-plus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">+</button>
                     </div>
-                    <button class="cart-remove-btn text-outline hover:text-error transition-colors p-1 cursor-pointer" type="button">
-                      <span class="material-symbols-outlined text-base">delete</span>
+                    <button aria-label="حذف العنصر" class="cart-remove-btn text-outline hover:text-error transition-colors p-1 cursor-pointer" type="button">
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">delete</span>
                     </button>
                   </div>
                 </div>
@@ -537,12 +531,12 @@
                   </div>
                   <div class="flex items-center justify-between pt-1">
                     <div class="flex items-center gap-1 bg-surface-container-lowest px-2 py-0.5 rounded-lg border border-outline-variant/10">
-                      <button class="qty-btn-minus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">-</button>
+                      <button aria-label="تقليل الكمية" class="qty-btn-minus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">-</button>
                       <span class="qty-count font-bold font-mono px-1">2</span>
-                      <button class="qty-btn-plus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">+</button>
+                      <button aria-label="زيادة الكمية" class="qty-btn-plus text-secondary hover:text-on-surface px-1 font-bold cursor-pointer" type="button">+</button>
                     </div>
-                    <button class="cart-remove-btn text-outline hover:text-error transition-colors p-1 cursor-pointer" type="button">
-                      <span class="material-symbols-outlined text-base">delete</span>
+                    <button aria-label="حذف العنصر" class="cart-remove-btn text-outline hover:text-error transition-colors p-1 cursor-pointer" type="button">
+                      <span class="material-symbols-outlined text-base" aria-hidden="true">delete</span>
                     </button>
                   </div>
                 </div>
@@ -564,7 +558,7 @@
                 </div>
                 <div class="flex items-center justify-between text-tertiary">
                   <div class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">stars</span>
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">stars</span>
                     <span>خصم العضوية الذهبية VIP:</span>
                   </div>
                   <span class="font-mono font-bold" id="discount-val">-145.00 ر.س</span>
@@ -586,19 +580,19 @@
                 <span class="text-secondary text-right font-bold text-[11px]">اختر طريقة الدفع الفورية (F9):</span>
                 <div class="grid grid-cols-4 gap-1.5 font-bold text-[11px]">
                   <button class="payment-method-btn active-method flex flex-col items-center justify-center p-2 rounded-xl bg-primary text-on-primary transition-all shadow-sm cursor-pointer" data-payment="mada" type="button">
-                    <span class="material-symbols-outlined text-lg mb-0.5">contactless</span>
+                    <span class="material-symbols-outlined text-lg mb-0.5" aria-hidden="true">contactless</span>
                     <span>مدى NFC</span>
                   </button>
                   <button class="payment-method-btn flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-all border border-outline-variant/10 cursor-pointer" data-payment="cash" type="button">
-                    <span class="material-symbols-outlined text-lg mb-0.5">payments</span>
+                    <span class="material-symbols-outlined text-lg mb-0.5" aria-hidden="true">payments</span>
                     <span>نقداً (كاش)</span>
                   </button>
                   <button class="payment-method-btn flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-all border border-outline-variant/10 cursor-pointer" data-payment="applepay" type="button">
-                    <span class="material-symbols-outlined text-lg mb-0.5">phone_iphone</span>
+                    <span class="material-symbols-outlined text-lg mb-0.5" aria-hidden="true">phone_iphone</span>
                     <span>Apple Pay</span>
                   </button>
                   <button class="payment-method-btn flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-all border border-outline-variant/10 cursor-pointer" data-payment="split" type="button">
-                    <span class="material-symbols-outlined text-lg mb-0.5">call_split</span>
+                    <span class="material-symbols-outlined text-lg mb-0.5" aria-hidden="true">call_split</span>
                     <span>تمارا / تابي</span>
                   </button>
                 </div>
@@ -617,22 +611,22 @@
 
               <!-- Checkout Button -->
               <button class="w-full bg-primary-container hover:bg-primary text-on-primary py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.98] cursor-pointer" id="complete-checkout-btn" type="button">
-                <span class="material-symbols-outlined text-xl">receipt_long</span>
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">receipt_long</span>
                 <span>إتمام السداد وطباعة الفاتورة (F12)</span>
               </button>
 
               <!-- Post-sale Dispatch Sub-actions -->
               <div class="grid grid-cols-3 gap-1.5 text-center text-[11px] font-bold">
                 <button class="flex items-center justify-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface-variant py-1.5 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer" id="send-whatsapp-btn" type="button">
-                  <span class="material-symbols-outlined text-sm text-tertiary">chat</span>
+                  <span class="material-symbols-outlined text-sm text-tertiary" aria-hidden="true">chat</span>
                   <span>واتساب</span>
                 </button>
                 <button class="flex items-center justify-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface-variant py-1.5 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer" id="send-sms-btn" type="button">
-                  <span class="material-symbols-outlined text-sm text-primary">sms</span>
+                  <span class="material-symbols-outlined text-sm text-primary" aria-hidden="true">sms</span>
                   <span>رسالة SMS</span>
                 </button>
                 <button class="flex items-center justify-center gap-1 bg-surface-container-low hover:bg-surface-container text-on-surface-variant py-1.5 rounded-lg transition-colors border border-outline-variant/10 cursor-pointer" id="tax-portal-btn" type="button">
-                  <span class="material-symbols-outlined text-sm text-secondary">qr_code_2</span>
+                  <span class="material-symbols-outlined text-sm text-secondary" aria-hidden="true">qr_code_2</span>
                   <span>رمز ZATCA</span>
                 </button>
               </div>
@@ -642,7 +636,7 @@
             <!-- Offline Queue Synchronizer Widget -->
             <div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm flex items-center justify-between border border-outline-variant/10 text-xs">
               <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-tertiary text-xl">cloud_sync</span>
+                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">cloud_sync</span>
                 <div class="flex flex-col text-right">
                   <span class="font-bold text-on-surface">نظام الحماية من انقطاع الإنترنت (Edge POS)</span>
                   <span class="text-secondary text-[11px]">جميع العمليات مخزنة محلياً وجاهزة للإرسال</span>
@@ -666,7 +660,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -711,6 +705,24 @@
 
   <!-- POS Interactivity Script -->
   <script>
+    // Toast Notification System
+    function showToast(title, desc) {
+      const toast = document.getElementById('pos-toast');
+      const toastTitle = document.getElementById('toast-title');
+      const toastDesc = document.getElementById('toast-desc');
+      if (!toast) return;
+
+      toastTitle.textContent = title || 'إشعار النظام';
+      toastDesc.textContent = desc || 'تم تنفيذ الإجراء بنجاح';
+      toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 3200);
+    }
+
     (function () {
       function updateLiveTime() {
         const clockEl = document.getElementById('live-clock');
@@ -721,22 +733,6 @@
       }
       setInterval(updateLiveTime, 1000);
       updateLiveTime();
-
-      const toast = document.getElementById('pos-toast');
-      const toastTitle = document.getElementById('toast-title');
-      const toastDesc = document.getElementById('toast-desc');
-
-      function showToast(title, desc) {
-        if (!toast) return;
-        toastTitle.textContent = title;
-        toastDesc.textContent = desc;
-        toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
-        toast.classList.add('opacity-100', 'translate-y-0');
-        setTimeout(() => {
-          toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
-          toast.classList.remove('opacity-100', 'translate-y-0');
-        }, 3200);
-      }
 
       document.getElementById('open-drawer-btn')?.addEventListener('click', () => {
         showToast('تم فتح درج النقدية', 'إشارة النبضة أرسلت إلى طابعة الإيصالات الموصولة بنجاح.');
@@ -824,8 +820,10 @@
           const method = btn.getAttribute('data-payment');
           if (method === 'cash') {
             cashPanel?.classList.remove('hidden');
+            showToast('الدفع النقدي', 'تم تفعيل حاسبة النقد واستلام المبالغ.');
           } else {
             cashPanel?.classList.add('hidden');
+            showToast('طريقة الدفع', `تم التبديل إلى طريقة الدفع: ${method.toUpperCase()}`);
           }
         });
       });
@@ -852,6 +850,7 @@
               item.classList.add('hidden');
             }
           });
+          showToast('تصفية الكتالوج', `تم عرض قسم: ${chip.textContent.trim()}`);
         });
       });
 
@@ -877,6 +876,7 @@
           searchInput.focus();
         }
         productItems.forEach((item) => item.classList.remove('hidden'));
+        showToast('إعادة ضبط البحث', 'تم مسح حقل البحث وعرض كافة المنتجات.');
       });
 
       // Checkout Execution Button

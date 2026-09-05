@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -132,33 +135,33 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="tradein">برنامج الاستبدال</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="phones">هواتف ذكية</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">حواسيب محمولة</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز لتقييم سعره..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز لتقييم سعره..." type="text"/>
+            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">حسابي</span>
           </a>
         </div>
@@ -166,14 +169,14 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">برنامج الاستبدال (Trade-In)</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">تقييم الأجهزة الفوري</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">خدمة العملاء</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">bolt</span>
             <span>بونص إضافي +10% عند اختيار القسيمة</span>
           </div>
         </div>
@@ -191,7 +194,7 @@
           
           <div class="lg:col-span-7 flex flex-col gap-4 text-right">
             <div class="inline-flex items-center gap-1.5 bg-tertiary-container/10 text-tertiary px-3 py-1 rounded-full text-xs font-bold self-start">
-              <span class="material-symbols-outlined text-base">verified</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
               <span>برنامج الاستبدال الذهبي المعتمد 2026</span>
             </div>
             
@@ -223,7 +226,7 @@
               <img class="w-full h-full object-cover rounded-xl" alt="استبدال الأجهزة التقنية القديمة بأخرى حديثة" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-95WDy5xYRESDAYqq9fNPYuxbvkp4CuDxsnTm1EQSBMXWXDmp8QdX9WNVMJKZkVKu2LkzHYJeGx-2hPX2azEiteZ-FVzxNAo1FFJKhYeEQHyYo6fk70TvIxIGQ_4933V9nQZjJDaVi0_L4RTQGRhKUYCLuVhTNbp5jtyLSTWViG9eKMDaCOudXa2mHlMC7uQFmghbZoAEnHHbADTVQ9UHyWcKLB6rYaiY9HRnD7OkhA1lcIiXtPg7FQ"/>
               
               <div class="absolute bottom-4 right-4 bg-inverse-surface text-inverse-on-surface p-3 rounded-xl shadow-xl flex items-center gap-2 text-xs">
-                <span class="material-symbols-outlined text-tertiary-fixed text-xl">security_update_good</span>
+                <span class="material-symbols-outlined text-tertiary-fixed text-xl" aria-hidden="true">security_update_good</span>
                 <div class="flex flex-col">
                   <span class="font-bold">مسح بيانات عسكري DOD</span>
                   <span class="text-secondary-fixed text-[10px]">حماية تامة لخصوصيتك</span>
@@ -239,7 +242,7 @@
       <section class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-2xl text-xs" id="calculator-hub">
         <div class="flex flex-col gap-1 mb-8 text-right">
           <div class="flex items-center gap-1 text-primary font-bold">
-            <span class="material-symbols-outlined text-base">calculate</span>
+            <span class="material-symbols-outlined text-base" aria-hidden="true">calculate</span>
             <span>حاسبة التسعير الفوري الذكية</span>
           </div>
           <h2 class="text-xl lg:text-2xl font-black text-on-surface">قدّر قيمة جهازك الحالي في ثلاث خطوات بسيطة</h2>
@@ -275,24 +278,24 @@
               </div>
               
               <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 font-bold">
-                <button class="category-btn p-3 rounded-xl bg-primary text-on-primary flex flex-col items-center gap-1 shadow-sm transition-all cursor-pointer" type="button">
-                  <span class="material-symbols-outlined text-2xl">smartphone</span>
+                <button class="category-btn p-3 rounded-xl bg-primary text-on-primary flex flex-col items-center gap-1 shadow-sm transition-all cursor-pointer border-none" type="button">
+                  <span class="material-symbols-outlined text-2xl" aria-hidden="true">smartphone</span>
                   <span class="text-xs">هاتف آيفون</span>
                 </button>
                 <button class="category-btn p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col items-center gap-1 transition-all cursor-pointer border border-outline-variant/10" type="button">
-                  <span class="material-symbols-outlined text-2xl">laptop_mac</span>
+                  <span class="material-symbols-outlined text-2xl" aria-hidden="true">laptop_mac</span>
                   <span class="text-xs">ماك بوك</span>
                 </button>
                 <button class="category-btn p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col items-center gap-1 transition-all cursor-pointer border border-outline-variant/10" type="button">
-                  <span class="material-symbols-outlined text-2xl">tablet_mac</span>
+                  <span class="material-symbols-outlined text-2xl" aria-hidden="true">tablet_mac</span>
                   <span class="text-xs">آيباد وتابلت</span>
                 </button>
                 <button class="category-btn p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col items-center gap-1 transition-all cursor-pointer border border-outline-variant/10" type="button">
-                  <span class="material-symbols-outlined text-2xl">phone_android</span>
+                  <span class="material-symbols-outlined text-2xl" aria-hidden="true">phone_android</span>
                   <span class="text-xs">سامسونج جالاكسي</span>
                 </button>
                 <button class="category-btn p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col items-center gap-1 transition-all cursor-pointer border border-outline-variant/10" type="button">
-                  <span class="material-symbols-outlined text-2xl">watch</span>
+                  <span class="material-symbols-outlined text-2xl" aria-hidden="true">watch</span>
                   <span class="text-xs">ساعة ذكية</span>
                 </button>
               </div>
@@ -300,8 +303,8 @@
               <!-- Model & Storage -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <div class="flex flex-col gap-1 text-right">
-                  <label class="font-bold text-on-surface">طراز الجهاز المحدد</label>
-                  <select class="w-full bg-surface-container-low text-on-surface p-2.5 rounded-lg border border-outline-variant/20 focus:outline-none cursor-pointer font-bold">
+                  <label class="font-bold text-on-surface" for="device-model-select">طراز الجهاز المحدد</label>
+                  <select id="device-model-select" class="w-full bg-surface-container-low text-on-surface p-2.5 rounded-lg border border-outline-variant/20 focus:outline-none cursor-pointer font-bold">
                     <option selected="">Apple iPhone 14 Pro Max</option>
                     <option>Apple iPhone 15 Pro Max</option>
                     <option>Samsung Galaxy S24 Ultra</option>
@@ -309,8 +312,8 @@
                   </select>
                 </div>
                 <div class="flex flex-col gap-1 text-right">
-                  <label class="font-bold text-on-surface">سعة الذاكرة الداخلية</label>
-                  <select class="w-full bg-surface-container-low text-on-surface p-2.5 rounded-lg border border-outline-variant/20 focus:outline-none cursor-pointer font-bold font-mono">
+                  <label class="font-bold text-on-surface" for="storage-size-select">سعة الذاكرة الداخلية</label>
+                  <select id="storage-size-select" class="w-full bg-surface-container-low text-on-surface p-2.5 rounded-lg border border-outline-variant/20 focus:outline-none cursor-pointer font-bold font-mono">
                     <option>128 جيجابايت</option>
                     <option selected="">256 جيجابايت</option>
                     <option>512 جيجابايت</option>
@@ -332,15 +335,15 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 font-bold">
                   <label class="flex items-center justify-between p-3 bg-primary/10 text-on-surface rounded-lg cursor-pointer border border-primary/30">
                     <span>ممتازة (كالجديدة تماماً)</span>
-                    <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                    <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">check_circle</span>
                   </label>
                   <label class="flex items-center justify-between p-3 bg-surface-container-low text-secondary rounded-lg cursor-pointer border border-outline-variant/10">
                     <span>خدوش سطحية طفيفة جداً</span>
-                    <span class="material-symbols-outlined text-outline text-base">radio_button_unchecked</span>
+                    <span class="material-symbols-outlined text-outline text-base" aria-hidden="true">radio_button_unchecked</span>
                   </label>
                   <label class="flex items-center justify-between p-3 bg-surface-container-low text-secondary rounded-lg cursor-pointer border border-outline-variant/10">
                     <span>كسر أو خطوط أو بكسلات</span>
-                    <span class="material-symbols-outlined text-outline text-base">radio_button_unchecked</span>
+                    <span class="material-symbols-outlined text-outline text-base" aria-hidden="true">radio_button_unchecked</span>
                   </label>
                 </div>
               </div>
@@ -350,15 +353,15 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 font-bold">
                   <label class="flex items-center justify-between p-3 bg-primary/10 text-on-surface rounded-lg cursor-pointer border border-primary/30">
                     <span>85% أو أعلى (ممتازة)</span>
-                    <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                    <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">check_circle</span>
                   </label>
                   <label class="flex items-center justify-between p-3 bg-surface-container-low text-secondary rounded-lg cursor-pointer border border-outline-variant/10">
                     <span>بين 80% و 84% (جيدة)</span>
-                    <span class="material-symbols-outlined text-outline text-base">radio_button_unchecked</span>
+                    <span class="material-symbols-outlined text-outline text-base" aria-hidden="true">radio_button_unchecked</span>
                   </label>
                   <label class="flex items-center justify-between p-3 bg-surface-container-low text-secondary rounded-lg cursor-pointer border border-outline-variant/10">
                     <span>أقل من 80% (تحتاج تبديل)</span>
-                    <span class="material-symbols-outlined text-outline text-base">radio_button_unchecked</span>
+                    <span class="material-symbols-outlined text-outline text-base" aria-hidden="true">radio_button_unchecked</span>
                   </label>
                 </div>
               </div>
@@ -386,7 +389,7 @@
                 <div class="relative p-3 rounded-xl bg-gradient-to-l from-primary/5 to-primary-container/10 flex flex-col gap-1 border border-primary/20 cursor-pointer">
                   <span class="absolute -top-2.5 left-3 bg-primary text-on-primary text-[10px] px-2 py-0.2 rounded-full">الخيار الأكثر ربحاً</span>
                   <div class="flex justify-between items-center text-on-surface">
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-primary text-base">card_giftcard</span> قسيمة شراء تيك برو الذهبية</span>
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-primary text-base" aria-hidden="true">card_giftcard</span> قسيمة شراء تيك برو الذهبية</span>
                   </div>
                   <div class="flex items-baseline justify-between">
                     <span class="text-[11px] text-secondary">تشمل بونص +10% فوري</span>
@@ -395,7 +398,7 @@
                 </div>
 
                 <div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-1 cursor-pointer border border-outline-variant/10">
-                  <span class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-secondary text-base">account_balance</span> تحويل بنكي فوري لحسابك</span>
+                  <span class="flex items-center gap-1 text-on-surface"><span class="material-symbols-outlined text-secondary text-base" aria-hidden="true">account_balance</span> تحويل بنكي فوري لحسابك</span>
                   <div class="flex items-baseline justify-between">
                     <span class="text-[11px] text-secondary">إيداع خلال 15 دقيقة</span>
                     <span class="text-base font-black text-on-surface font-mono">2,750 ر.س</span>
@@ -406,23 +409,23 @@
               <div class="flex flex-col gap-1 pt-1 font-bold">
                 <span class="text-on-surface">اختر وسيلة الفحص المفضلة:</span>
                 <div class="grid grid-cols-2 gap-2 text-center">
-                  <button class="py-2 rounded-lg bg-inverse-surface text-inverse-on-surface flex items-center justify-center gap-1 cursor-pointer shadow-2xs" type="button">
-                    <span class="material-symbols-outlined text-sm">home_pin</span> فحص منزلي مجاني
+                  <button onclick="showToast('تم اختيار خدمة الفحص المنزلي المجاني.', 'success')" class="py-2 rounded-lg bg-inverse-surface text-inverse-on-surface flex items-center justify-center gap-1 cursor-pointer shadow-2xs border-none" type="button">
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">home_pin</span> فحص منزلي مجاني
                   </button>
-                  <button class="py-2 rounded-lg bg-surface-container text-on-surface-variant flex items-center justify-center gap-1 cursor-pointer" type="button">
-                    <span class="material-symbols-outlined text-sm">storefront</span> زيارة الفرع
+                  <button onclick="showToast('تم حجز موعد زيارة الفرع.', 'success')" class="py-2 rounded-lg bg-surface-container text-on-surface-variant flex items-center justify-center gap-1 cursor-pointer border-none" type="button">
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">storefront</span> زيارة الفرع
                   </button>
                 </div>
               </div>
 
-              <button class="w-full bg-primary hover:bg-primary-container text-on-primary py-3 rounded-xl font-bold flex items-center justify-center gap-1 shadow-md transition-all active:scale-95 cursor-pointer text-xs" type="button">
+              <button onclick="showToast('تم حجز موعد الاستبدال بنجاح! سيتم التواصل معك قريباً.', 'success')" class="w-full bg-primary hover:bg-primary-container text-on-primary py-3 rounded-xl font-bold flex items-center justify-center gap-1 shadow-md transition-all active:scale-95 cursor-pointer text-xs border-none" type="button">
                 <span>احجز فحصاً واستبدالاً فورياً الآن</span>
-                <span class="material-symbols-outlined text-base">arrow_forward</span>
+                <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
               </button>
 
               <div class="flex items-center justify-center gap-4 text-secondary text-[11px] pt-1">
-                <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs text-tertiary">lock</span> حماية كاملة</span>
-                <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs text-tertiary">cancel</span> إلغاء مجاني</span>
+                <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">lock</span> حماية كاملة</span>
+                <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">cancel</span> إلغاء مجاني</span>
               </div>
             </div>
           </div>
@@ -455,23 +458,23 @@
               </thead>
               <tbody class="divide-y divide-outline-variant/10 text-on-surface">
                 <tr class="hover:bg-surface-container-low/60 transition-colors">
-                  <td class="py-3 px-space-md font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-base">smartphone</span> iPhone 15 Pro Max</td>
+                  <td class="py-3 px-space-md font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-base" aria-hidden="true">smartphone</span> iPhone 15 Pro Max</td>
                   <td class="py-3 px-3 text-secondary font-mono">256GB</td>
                   <td class="py-3 px-3 line-through text-secondary font-mono">3,400 ر.س</td>
                   <td class="py-3 px-3 font-bold font-mono">3,550 ر.س</td>
                   <td class="py-3 px-3 font-bold font-mono text-primary">3,905 ر.س</td>
                   <td class="py-3 px-space-md text-center">
-                    <button onclick="alert('تم اختيار الجهاز للاستبدال')" class="bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface px-3 py-1 rounded font-bold cursor-pointer transition-colors" type="button">استبدل</button>
+                    <button aria-label="استبدال" onclick="showToast('تمت إضافة الجهاز لقائمة الاستبدال.', 'success')" class="bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface px-3 py-1 rounded font-bold cursor-pointer transition-colors border-none" type="button">استبدل</button>
                   </td>
                 </tr>
                 <tr class="hover:bg-surface-container-low/60 transition-colors">
-                  <td class="py-3 px-space-md font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-base">laptop_mac</span> MacBook Air M2</td>
+                  <td class="py-3 px-space-md font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-base" aria-hidden="true">laptop_mac</span> MacBook Air M2</td>
                   <td class="py-3 px-3 text-secondary font-mono">256GB / 8GB</td>
                   <td class="py-3 px-3 line-through text-secondary font-mono">2,600 ر.س</td>
                   <td class="py-3 px-3 font-bold font-mono">2,800 ر.س</td>
                   <td class="py-3 px-3 font-bold font-mono text-primary">3,080 ر.س</td>
                   <td class="py-3 px-space-md text-center">
-                    <button onclick="alert('تم اختيار الجهاز للاستبدال')" class="bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface px-3 py-1 rounded font-bold cursor-pointer transition-colors" type="button">استبدل</button>
+                    <button aria-label="استبدال" onclick="showToast('تمت إضافة الجهاز لقائمة الاستبدال.', 'success')" class="bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface px-3 py-1 rounded font-bold cursor-pointer transition-colors border-none" type="button">استبدل</button>
                   </td>
                 </tr>
               </tbody>
@@ -490,7 +493,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -535,12 +538,48 @@
 
   <!-- Scripts -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     document.querySelectorAll('.category-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.category-btn').forEach(b => {
-          b.className = 'category-btn p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col items-center gap-1 transition-all cursor-pointer border border-outline-variant/10';
+          b.className = 'category-btn p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col items-center gap-1 transition-all cursor-pointer border border-outline-variant/10 border-none';
         });
-        btn.className = 'category-btn p-3 rounded-xl bg-primary text-on-primary flex flex-col items-center gap-1 transition-all shadow-sm cursor-pointer';
+        btn.className = 'category-btn p-3 rounded-xl bg-primary text-on-primary flex flex-col items-center gap-1 transition-all shadow-sm cursor-pointer border-none';
+        showToast('تم تحديث الفئة المختارة.', 'info');
       });
     });
   </script>

@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -132,36 +135,36 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
-            <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors">
-              <span class="material-symbols-outlined text-xl">mic</span>
+            <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="البحث الصوتي" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors cursor-pointer bg-transparent border-none">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">mic</span>
             </button>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" data-path="wishlist" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" data-path="cart" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">حسابي</span>
           </a>
         </div>
@@ -169,7 +172,7 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة المستعملة والمجددة</a>
@@ -177,7 +180,7 @@
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">خدمة العملاء</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">bolt</span>
             <span>توصيل سريع خلال 24 ساعة</span>
           </div>
         </div>
@@ -185,21 +188,21 @@
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
+  <!-- Main Content -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
       
       <!-- Top Sub-Header & Breadcrumb -->
       <section class="w-full bg-surface-container-low px-space-md lg:px-space-xl py-space-lg shadow-sm border-b border-outline-variant/10 text-xs">
         <div class="max-w-7xl mx-auto flex flex-col gap-space-md">
-          <nav aria-label="Breadcrumb" class="flex items-center gap-1 text-secondary font-bold">
+          <nav aria-label="مسار التنقل" class="flex items-center gap-1 text-secondary font-bold">
             <a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
-              <span class="material-symbols-outlined text-base">home</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">home</span>
               <span>الرئيسية</span>
             </a>
-            <span class="material-symbols-outlined text-xs rotate-180 text-outline">chevron_right</span>
+            <span class="material-symbols-outlined text-xs rotate-180 text-outline" aria-hidden="true">chevron_right</span>
             <span>الأجهزة الإلكترونية</span>
-            <span class="material-symbols-outlined text-xs rotate-180 text-outline">chevron_right</span>
+            <span class="material-symbols-outlined text-xs rotate-180 text-outline" aria-hidden="true">chevron_right</span>
             <span class="text-on-surface">كتالوج الأجهزة والتقنيات</span>
           </nav>
 
@@ -214,9 +217,9 @@
 
             <!-- Segmented Tab Bar -->
             <div class="inline-flex p-1 bg-surface-container rounded-xl shadow-inner gap-1 shrink-0">
-              <button class="px-4 py-2 rounded-lg font-bold bg-surface-container-lowest text-primary shadow-sm cursor-pointer">الكل (٤٨)</button>
-              <button class="px-4 py-2 rounded-lg font-bold text-secondary hover:text-on-surface transition-colors cursor-pointer">جديدة (٢٦)</button>
-              <button class="px-4 py-2 rounded-lg font-bold text-secondary hover:text-on-surface transition-colors cursor-pointer">مجددة (٢٢)</button>
+              <button onclick="showToast('عرض كافة الأجهزة المتاحة في الكتالوج.', 'info')" class="px-4 py-2 rounded-lg font-bold bg-surface-container-lowest text-primary shadow-sm cursor-pointer border-none" type="button">الكل (٤٨)</button>
+              <button onclick="showToast('تصفية عرض الأجهزة الجديدة فقط.', 'info')" class="px-4 py-2 rounded-lg font-bold text-secondary hover:text-on-surface transition-colors cursor-pointer bg-transparent border-none" type="button">جديدة (٢٦)</button>
+              <button onclick="showToast('تصفية عرض الأجهزة المجددة المعتمدة.', 'info')" class="px-4 py-2 rounded-lg font-bold text-secondary hover:text-on-surface transition-colors cursor-pointer bg-transparent border-none" type="button">مجددة (٢٢)</button>
             </div>
           </div>
         </div>
@@ -226,14 +229,14 @@
       <section class="w-full bg-surface-container-lowest px-space-md lg:px-space-xl py-space-md shadow-sm text-xs">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-md">
           <div class="relative flex-1 min-w-[280px] max-w-lg">
-            <span class="material-symbols-outlined absolute right-3 top-2.5 text-secondary text-lg">search</span>
-            <input class="w-full h-10 pr-9 pl-3 bg-surface-container-low rounded-lg text-on-surface placeholder:text-secondary focus:outline-none border border-outline-variant/20 focus:border-primary transition-all font-mono text-xs" placeholder="ابحث بالاسم، الموديل، السعة، المعالج..." type="text"/>
+            <span class="material-symbols-outlined absolute right-3 top-2.5 text-secondary text-lg" aria-hidden="true">search</span>
+            <input aria-label="ابحث في الكتالوج" class="w-full h-10 pr-9 pl-3 bg-surface-container-low rounded-lg text-on-surface placeholder:text-secondary focus:outline-none border border-outline-variant/20 focus:border-primary transition-all font-mono text-xs" placeholder="ابحث بالاسم، الموديل، السعة، المعالج..." type="text"/>
           </div>
 
           <div class="flex items-center gap-3 flex-wrap font-bold">
             <div class="flex items-center gap-1">
               <span class="text-secondary">الترتيب حسب:</span>
-              <select class="h-10 bg-surface-container-low text-on-surface px-3 rounded-lg border border-outline-variant/20 focus:outline-none cursor-pointer font-bold">
+              <select aria-label="ترتيب النتائج" class="h-10 bg-surface-container-low text-on-surface px-3 rounded-lg border border-outline-variant/20 focus:outline-none cursor-pointer font-bold">
                 <option>الأحدث وصولاً وتوفراً</option>
                 <option>السعر: من الأقل للأعلى</option>
                 <option>السعر: من الأعلى للأقل</option>
@@ -253,10 +256,10 @@
             <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/10 flex flex-col gap-4">
               <div class="flex items-center justify-between pb-2 border-b border-outline-variant/10 font-bold">
                 <div class="flex items-center gap-1 text-on-surface">
-                  <span class="material-symbols-outlined text-primary text-base">tune</span>
+                  <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">tune</span>
                   <span>فلترة الأجهزة</span>
                 </div>
-                <button class="text-error hover:underline font-bold cursor-pointer">تفريغ الفلاتر</button>
+                <button onclick="showToast('تمت إعادة تعيين كافة الفلاتر.', 'info')" class="text-error hover:underline font-bold cursor-pointer bg-transparent border-none" type="button">تفريغ الفلاتر</button>
               </div>
 
               <!-- Condition Checkboxes -->
@@ -264,14 +267,14 @@
                 <span class="font-bold text-on-surface">حالة الجهاز والفحص</span>
                 <label class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer">
                   <div class="flex items-center gap-2">
-                    <input checked="" class="accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+                    <input aria-label="جديد بالكرتونة المبرشمة" checked="" class="accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
                     <span class="text-on-surface font-semibold">جديد بالكرتونة المبرشمة</span>
                   </div>
                   <span class="bg-primary/10 text-primary px-2 py-0.2 rounded-full font-bold">٢٦</span>
                 </label>
                 <label class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer">
                   <div class="flex items-center gap-2">
-                    <input checked="" class="accent-tertiary w-4 h-4 cursor-pointer" type="checkbox"/>
+                    <input aria-label="مجدد Grade A+" checked="" class="accent-tertiary w-4 h-4 cursor-pointer" type="checkbox"/>
                     <span class="text-on-surface font-semibold">مجدد Grade A+ (كالجديد)</span>
                   </div>
                   <span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.2 rounded-full font-bold">١٤</span>
@@ -284,14 +287,14 @@
               <div class="flex flex-col gap-2">
                 <span class="font-bold text-on-surface">سعة التخزين</span>
                 <div class="grid grid-cols-2 gap-1 font-bold">
-                  <button class="py-2 bg-surface-container-low rounded text-secondary hover:text-primary transition-colors cursor-pointer">128GB</button>
-                  <button class="py-2 bg-primary text-on-primary rounded shadow-2xs cursor-pointer">256GB</button>
+                  <button onclick="showToast('تمت تصفية سعة 128GB.', 'info')" class="py-2 bg-surface-container-low rounded text-secondary hover:text-primary transition-colors cursor-pointer border-none" type="button">128GB</button>
+                  <button onclick="showToast('تمت تصفية سعة 256GB.', 'info')" class="py-2 bg-primary text-on-primary rounded shadow-2xs cursor-pointer border-none" type="button">256GB</button>
                 </div>
               </div>
 
               <div class="h-px bg-outline-variant/10"></div>
 
-              <button class="w-full py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-bold shadow-md cursor-pointer transition-all">
+              <button onclick="showToast('تم تطبيق فلاتر البحث بنجاح.', 'success')" class="w-full py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-bold shadow-md cursor-pointer transition-all border-none" type="button">
                 تطبيق التصفية
               </button>
             </div>
@@ -316,20 +319,20 @@
                 <div>
                   <div class="flex items-center justify-between mb-2">
                     <span class="bg-primary text-on-primary px-2 py-0.5 rounded-full font-bold text-[10px]">جديد كلياً</span>
-                    <button class="text-secondary hover:text-error cursor-pointer"><span class="material-symbols-outlined text-base">favorite</span></button>
+                    <button aria-label="إضافة للمفضلة" class="text-secondary hover:text-error cursor-pointer bg-transparent border-none" onclick="showToast('تمت إضافة الجهاز لقائمة المفضلة.', 'success')" type="button"><span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span></button>
                   </div>
                   <div class="relative w-full aspect-square bg-surface-container-low rounded-lg p-2 mb-2 flex items-center justify-center border border-outline-variant/10">
                     <img class="w-full h-full object-contain p-1" alt="آيفون 15 برو ماكس" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8bLCYo-o2bNa_WYI_eqvN5uC3EbHEtOyCMzIb12cd98CMgs2gAfqvjYg6ZifN_5VV6pknyNA4LysK2BHMnfdrENlf62YPKtvI8jXKMTjbyuP5ddqINFpXG_W6q6gmaiJHZIGGcHYTkfRdixdEu0k1A-elP9dNY-6VRgI60BYc0XgwRQSMiYYfcOs0FNqhP5JjdXNs4sN5KNPBEIic2KgNPSF7dgWFHAuuUIYw9g3WDGMrEKwlBC9Caw"/>
                   </div>
                   <h3 class="font-bold text-on-surface line-clamp-1 mb-1 text-xs">أبل آيفون 15 برو ماكس تيتانيوم</h3>
                   <div class="flex items-center gap-1 text-tertiary mb-2 font-bold text-[11px]">
-                    <span class="material-symbols-outlined text-sm">savings</span>
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">savings</span>
                     <span>يكسبك +75 نقطة تيك برو</span>
                   </div>
                 </div>
                 <div class="pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
                   <span class="font-bold text-primary text-sm">4,999 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-                  <button onclick="alert('تمت الإضافة للسلة')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold cursor-pointer font-sans">أضف للسلة</button>
+                  <button onclick="showToast('تمت إضافة أبل آيفون 15 برو ماكس إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold cursor-pointer font-sans border-none" type="button">أضف للسلة</button>
                 </div>
               </article>
 
@@ -338,20 +341,20 @@
                 <div>
                   <div class="flex items-center justify-between mb-2">
                     <span class="bg-tertiary text-on-tertiary px-2 py-0.5 rounded-full font-bold text-[10px]">معتمد A+</span>
-                    <button class="text-secondary hover:text-error cursor-pointer"><span class="material-symbols-outlined text-base">favorite</span></button>
+                    <button aria-label="إضافة للمفضلة" class="text-secondary hover:text-error cursor-pointer bg-transparent border-none" onclick="showToast('تمت إضافة الجهاز لقائمة المفضلة.', 'success')" type="button"><span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span></button>
                   </div>
                   <div class="relative w-full aspect-square bg-surface-container-low rounded-lg p-2 mb-2 flex items-center justify-center border border-outline-variant/10">
                     <img class="w-full h-full object-contain p-1" alt="ماك بوك برو 14" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdELpABShIn9MFz2KGO9TD_IKASHQVGbZmD2FfGbWLNMUHxLzFp88ZcpH5zQ0Tmw3EXcdCw36S83tHdv6MqW6VuknyQfaNL4Swypn0JqT3yw0R9hHPDtXQS0tA8pMjzlRnLzFVSSUnr8ukingYgVnJcCkLALieh_-E8__9F7hhS0gEIcGZWLJPxElkQr2Qz_Rz6f_vtQ2f4e4Z6glTZCzhKyK__X_62dMSpYHBMLUFZszTMvI2TV8msw"/>
                   </div>
                   <h3 class="font-bold text-on-surface line-clamp-1 mb-1 text-xs">ماك بوك برو 14 إنش M3 Max (مجدد)</h3>
                   <div class="flex items-center gap-1 text-tertiary mb-2 font-bold text-[11px]">
-                    <span class="material-symbols-outlined text-sm">verified</span>
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">verified</span>
                     <span>فحص 40 نقطة سليم</span>
                   </div>
                 </div>
                 <div class="pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
                   <span class="font-bold text-primary text-sm">7,899 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-                  <button onclick="alert('تمت الإضافة للسلة')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold cursor-pointer font-sans">أضف للسلة</button>
+                  <button onclick="showToast('تمت إضافة ماك بوك برو إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold cursor-pointer font-sans border-none" type="button">أضف للسلة</button>
                 </div>
               </article>
 
@@ -360,20 +363,20 @@
                 <div>
                   <div class="flex items-center justify-between mb-2">
                     <span class="bg-primary text-on-primary px-2 py-0.5 rounded-full font-bold text-[10px]">جديد كلياً</span>
-                    <button class="text-secondary hover:text-error cursor-pointer"><span class="material-symbols-outlined text-base">favorite</span></button>
+                    <button aria-label="إضافة للمفضلة" class="text-secondary hover:text-error cursor-pointer bg-transparent border-none" onclick="showToast('تمت إضافة الجهاز لقائمة المفضلة.', 'success')" type="button"><span class="material-symbols-outlined text-base" aria-hidden="true">favorite</span></button>
                   </div>
                   <div class="relative w-full aspect-square bg-surface-container-low rounded-lg p-2 mb-2 flex items-center justify-center border border-outline-variant/10">
                     <img class="w-full h-full object-contain p-1" alt="سامسونج S24 ألترا" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe8feHJkHTYOd3x8xHY1_JfxTKGqRsS3vMo8JmRpXZ-9hU0rhd1VUOLyxjDg9kx58gypAMs6dP0GXWebvDpJrOz9sGwvDZR5gWSHk5B8HD4B7lmUm748ph0Y7EaodzoUYs13d_XO-o5uESzmyxq_HEI5OezTHdtRS2IEpUZsOWKKNckHvNDOCNeviughB9aOd4hEK14uzpJvsFo3MUu-f_roMTpdm27vk6W14RlUOwQpbwDj0mnWgECA"/>
                   </div>
                   <h3 class="font-bold text-on-surface line-clamp-1 mb-1 text-xs">سامسونج جالكسي S24 ألترا 5G</h3>
                   <div class="flex items-center gap-1 text-tertiary mb-2 font-bold text-[11px]">
-                    <span class="material-symbols-outlined text-sm">local_shipping</span>
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">local_shipping</span>
                     <span>توصيل سريع مجاني</span>
                   </div>
                 </div>
                 <div class="pt-2 border-t border-outline-variant/10 flex items-center justify-between font-mono">
                   <span class="font-bold text-primary text-sm">4,499 <span class="text-xs font-normal font-sans text-secondary">ر.س</span></span>
-                  <button onclick="alert('تمت الإضافة للسلة')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold cursor-pointer font-sans">أضف للسلة</button>
+                  <button onclick="showToast('تمت إضافة سامسونج S24 ألترا إلى سلة المشتريات.', 'success')" class="px-3 py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-bold cursor-pointer font-sans border-none" type="button">أضف للسلة</button>
                 </div>
               </article>
 
@@ -394,7 +397,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -436,5 +439,43 @@
       </div>
     </div>
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
 </body>
 </html>

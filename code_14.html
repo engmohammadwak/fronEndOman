@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -134,33 +137,33 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث في وثائق الـ API، نقاط النهاية، أو الأكواد..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="بحث في وثائق API" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث في وثائق الـ API، نقاط النهاية، أو الأكواد..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">terminal</span>
+          <a aria-label="حساب المطور" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">terminal</span>
             <span class="hidden sm:inline">حساب المطور</span>
           </a>
         </div>
@@ -176,7 +179,7 @@
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">معايير الحوكمة والامتثال</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">bolt</span>
             <span>بيئة الربط السحابي المباشر v2.4</span>
           </div>
         </div>
@@ -184,7 +187,7 @@
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
+  <!-- Main Content -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
       
@@ -214,20 +217,20 @@
 
           <!-- Action Cluster -->
           <div class="flex flex-wrap items-center gap-space-sm shrink-0 text-xs font-bold">
-            <button class="bg-primary-container hover:bg-primary text-on-primary px-space-md py-2.5 rounded-lg flex items-center gap-space-xs transition-transform active:scale-95 shadow-md cursor-pointer" id="btnGenKey">
-              <span class="material-symbols-outlined text-base">key</span>
+            <button class="bg-primary-container hover:bg-primary text-on-primary px-space-md py-2.5 rounded-lg flex items-center gap-space-xs transition-transform active:scale-95 shadow-md cursor-pointer" id="btnGenKey" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">key</span>
               <span>إنشاء مفتاح API جديد</span>
             </button>
-            <button class="bg-surface-container-highest/20 hover:bg-surface-container-highest/30 text-surface-container-lowest px-space-md py-2.5 rounded-lg flex items-center gap-space-xs transition-colors cursor-pointer border border-white/10" id="btnToggleEnv">
-              <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">tune</span>
+            <button class="bg-surface-container-highest/20 hover:bg-surface-container-highest/30 text-surface-container-lowest px-space-md py-2.5 rounded-lg flex items-center gap-space-xs transition-colors cursor-pointer border border-white/10" id="btnToggleEnv" type="button">
+              <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">tune</span>
               <span id="envStateLabel">البيئة: تجريبية (Sandbox)</span>
             </button>
-            <button onclick="alert('تم تنزيل ملف مواصفات OpenAPI 3.1 بنجاح (techpro-openapi.yaml)')" class="bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-secondary-fixed px-3 py-2.5 rounded-lg flex items-center gap-1 transition-colors border border-white/5">
-              <span class="material-symbols-outlined text-sm">download</span>
+            <button onclick="showToast('تم تنزيل ملف مواصفات OpenAPI 3.1 بنجاح (techpro-openapi.yaml).', 'success')" class="bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-secondary-fixed px-3 py-2.5 rounded-lg flex items-center gap-1 transition-colors border border-white/5 cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">download</span>
               <span>OpenAPI 3.1</span>
             </button>
-            <button onclick="alert('تم تنزيل مجموعة استدعاءات Postman بنجاح (TechPro.postman_collection.json)')" class="bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-secondary-fixed px-3 py-2.5 rounded-lg flex items-center gap-1 transition-colors border border-white/5">
-              <span class="material-symbols-outlined text-sm">terminal</span>
+            <button onclick="showToast('تم تنزيل مجموعة استدعاءات Postman بنجاح (TechPro.postman_collection.json).', 'success')" class="bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-secondary-fixed px-3 py-2.5 rounded-lg flex items-center gap-1 transition-colors border border-white/5 cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">terminal</span>
               <span>Postman</span>
             </button>
           </div>
@@ -241,7 +244,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-1">
             <div class="flex items-center justify-between text-xs">
               <span class="text-on-surface-variant font-bold">الطلبات الشهرية</span>
-              <span class="material-symbols-outlined text-primary-container text-lg">query_stats</span>
+              <span class="material-symbols-outlined text-primary-container text-lg" aria-hidden="true">query_stats</span>
             </div>
             <div class="flex items-baseline gap-1">
               <span class="text-2xl font-black text-on-surface font-mono">24.8M</span>
@@ -254,7 +257,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-1">
             <div class="flex items-center justify-between text-xs">
               <span class="text-on-surface-variant font-bold">سرعة الاستجابة</span>
-              <span class="material-symbols-outlined text-tertiary text-lg">bolt</span>
+              <span class="material-symbols-outlined text-tertiary text-lg" aria-hidden="true">bolt</span>
             </div>
             <div class="flex items-baseline gap-1">
               <span class="text-2xl font-black text-tertiary font-mono">28ms</span>
@@ -267,7 +270,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-1">
             <div class="flex items-center justify-between text-xs">
               <span class="text-on-surface-variant font-bold">الشركاء والمطورون</span>
-              <span class="material-symbols-outlined text-primary-container text-lg">hub</span>
+              <span class="material-symbols-outlined text-primary-container text-lg" aria-hidden="true">hub</span>
             </div>
             <div class="flex items-baseline gap-1">
               <span class="text-2xl font-black text-on-surface font-mono">1,480</span>
@@ -280,7 +283,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-1">
             <div class="flex items-center justify-between text-xs">
               <span class="text-on-surface-variant font-bold">مفاتيح API المؤمنة</span>
-              <span class="material-symbols-outlined text-on-surface-variant text-lg">encrypted</span>
+              <span class="material-symbols-outlined text-on-surface-variant text-lg" aria-hidden="true">encrypted</span>
             </div>
             <div class="flex items-baseline gap-1">
               <span class="text-2xl font-black text-on-surface font-mono">3,240</span>
@@ -293,7 +296,7 @@
           <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-1 col-span-2 md:col-span-1">
             <div class="flex items-center justify-between text-xs">
               <span class="text-on-surface-variant font-bold">نقاط النهاية</span>
-              <span class="material-symbols-outlined text-primary-container text-lg">alt_route</span>
+              <span class="material-symbols-outlined text-primary-container text-lg" aria-hidden="true">alt_route</span>
             </div>
             <div class="flex items-baseline gap-1">
               <span class="text-2xl font-black text-on-surface font-mono">68</span>
@@ -312,22 +315,22 @@
           <div class="lg:col-span-4 bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-space-md">
             <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/10">
               <div class="flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-primary-container">menu_book</span>
+                <span class="material-symbols-outlined text-primary-container" aria-hidden="true">menu_book</span>
                 <h2 class="text-base font-bold text-on-surface">فهرس الوثائق ونقاط النهاية</h2>
               </div>
               <span class="text-xs bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-bold font-mono">v2.4</span>
             </div>
 
             <div class="relative">
-              <input id="endpointFilterInput" onkeyup="filterEndpoints()" class="w-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant text-xs px-space-md py-2 pr-3 pl-8 rounded-lg focus:outline-none focus:bg-surface-container-lowest border border-outline-variant/20 focus:border-primary-container transition-colors" placeholder="فلترة المسارات أو المعلمات..." type="text"/>
-              <span class="material-symbols-outlined absolute left-2.5 top-2 text-on-surface-variant text-base">search</span>
+              <input aria-label="فلتر المسارات أو المعلمات" id="endpointFilterInput" onkeyup="filterEndpoints()" class="w-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant text-xs px-space-md py-2 pr-3 pl-8 rounded-lg focus:outline-none focus:bg-surface-container-lowest border border-outline-variant/20 focus:border-primary-container transition-colors" placeholder="فلترة المسارات أو المعلمات..." type="text"/>
+              <span class="material-symbols-outlined absolute left-2.5 top-2 text-on-surface-variant text-base" aria-hidden="true">search</span>
             </div>
 
             <!-- Navigation Categories -->
             <nav class="flex flex-col gap-1 text-xs" id="endpointsNav">
               <div class="nav-item p-2 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-on-surface-variant text-base">vpn_key</span>
+                  <span class="material-symbols-outlined text-on-surface-variant text-base" aria-hidden="true">vpn_key</span>
                   <span class="text-on-surface font-bold">المصادقة والمفاتيح (Authentication)</span>
                 </div>
                 <span class="text-[10px] text-tertiary font-bold bg-tertiary/10 px-1.5 py-0.5 rounded font-mono">Bearer JWT</span>
@@ -335,7 +338,7 @@
 
               <div class="nav-item p-2 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-on-surface-variant text-base">devices</span>
+                  <span class="material-symbols-outlined text-on-surface-variant text-base" aria-hidden="true">devices</span>
                   <span class="text-on-surface">كتالوج الأجهزة والمواصفات (Catalog)</span>
                 </div>
                 <span class="text-[10px] text-on-surface-variant font-mono">14 Endpoints</span>
@@ -344,7 +347,7 @@
               <!-- Active/Highlighted -->
               <div class="nav-item p-2 rounded-lg bg-secondary-container text-on-secondary-container font-bold flex items-center justify-between cursor-pointer">
                 <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-primary-container text-base">verified</span>
+                  <span class="material-symbols-outlined text-primary-container text-base" aria-hidden="true">verified</span>
                   <span>فحص الجودة 64 نقطة (Quality Check)</span>
                 </div>
                 <span class="text-[10px] bg-primary-container text-on-primary px-1.5 py-0.5 rounded">موصى به</span>
@@ -368,7 +371,7 @@
 
               <div class="nav-item p-2 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-on-surface-variant text-base">inventory_2</span>
+                  <span class="material-symbols-outlined text-on-surface-variant text-base" aria-hidden="true">inventory_2</span>
                   <span class="text-on-surface">المخزون اللحظي وتتبع الفروع</span>
                 </div>
                 <span class="text-[10px] text-on-surface-variant font-mono">Live Stock</span>
@@ -376,7 +379,7 @@
 
               <div class="nav-item p-2 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-on-surface-variant text-base">local_shipping</span>
+                  <span class="material-symbols-outlined text-on-surface-variant text-base" aria-hidden="true">local_shipping</span>
                   <span class="text-on-surface">إنشاء الطلبات وحجز الشحن</span>
                 </div>
                 <span class="text-[10px] text-tertiary font-bold bg-tertiary/10 px-1.5 py-0.5 rounded font-mono">Webhook</span>
@@ -384,7 +387,7 @@
 
               <div class="nav-item p-2 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-on-surface-variant text-base">currency_exchange</span>
+                  <span class="material-symbols-outlined text-on-surface-variant text-base" aria-hidden="true">currency_exchange</span>
                   <span class="text-on-surface">محرك تقييم الاستبدال (Trade-In)</span>
                 </div>
                 <span class="text-[10px] text-on-surface-variant font-mono">AI Driven</span>
@@ -392,7 +395,7 @@
 
               <div class="nav-item p-2 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-on-surface-variant text-base">receipt_long</span>
+                  <span class="material-symbols-outlined text-on-surface-variant text-base" aria-hidden="true">receipt_long</span>
                   <span class="text-on-surface">الفواتير الإلكترونية وهيئة الزكاة</span>
                 </div>
                 <span class="text-[10px] text-on-surface-variant font-mono">ZATCA Compliant</span>
@@ -423,8 +426,8 @@
                   <span class="font-mono text-xs text-secondary-fixed-dim" dir="ltr">https://api.sandbox.techpro.sa/v2/orders/fulfillment/quote</span>
                 </div>
                 <div class="flex items-center gap-space-xs">
-                  <button class="bg-tertiary hover:bg-tertiary-container text-on-tertiary text-xs font-bold px-space-md py-2 rounded-lg flex items-center gap-1 transition-all active:scale-95 shadow cursor-pointer" id="btnRunRequest">
-                    <span class="material-symbols-outlined text-base">play_arrow</span>
+                  <button class="bg-tertiary hover:bg-tertiary-container text-on-tertiary text-xs font-bold px-space-md py-2 rounded-lg flex items-center gap-1 transition-all active:scale-95 shadow cursor-pointer" id="btnRunRequest" type="button">
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">play_arrow</span>
                     <span>تشغيل التجربة (Send Request)</span>
                   </button>
                 </div>
@@ -438,7 +441,7 @@
                   <span class="font-mono text-[11px] bg-surface-container-lowest px-2 py-0.5 rounded text-on-surface-variant border border-outline-variant/10" dir="ltr">Content-Type: application/json</span>
                 </div>
                 <span class="text-tertiary font-bold flex items-center gap-1 text-xs">
-                  <span class="material-symbols-outlined text-sm">check_circle</span>
+                  <span class="material-symbols-outlined text-sm" aria-hidden="true">check_circle</span>
                   مفتاح التجربة مفعّل
                 </span>
               </div>
@@ -449,10 +452,10 @@
                 <div class="p-space-md bg-inverse-surface/95 text-secondary-fixed flex flex-col gap-space-xs">
                   <div class="flex items-center justify-between pb-space-2xs text-surface-container-lowest text-xs">
                     <div class="flex items-center gap-1">
-                      <span class="material-symbols-outlined text-sm text-secondary-fixed-dim">code</span>
+                      <span class="material-symbols-outlined text-sm text-secondary-fixed-dim" aria-hidden="true">code</span>
                       <span class="font-bold">جسم الطلب (Request Payload)</span>
                     </div>
-                    <button onclick="resetPayload()" class="text-[11px] text-secondary-fixed-dim hover:text-surface-container-lowest font-bold">إعادة التعيين</button>
+                    <button onclick="resetPayload()" class="text-[11px] text-secondary-fixed-dim hover:text-surface-container-lowest font-bold cursor-pointer" type="button">إعادة التعيين</button>
                   </div>
                   <pre class="font-mono text-xs text-surface-container-lowest overflow-x-auto p-space-sm bg-inverse-surface rounded-lg leading-relaxed select-all" dir="ltr" id="requestPayloadPre"><code>{
   <span class="text-primary-fixed-dim">"destination_postal_code"</span>: <span class="text-tertiary-fixed">"12211"</span>,
@@ -480,8 +483,8 @@
                     </div>
                     <div class="flex items-center gap-2">
                       <span class="text-xs text-tertiary-fixed font-mono" id="resTimeTag">24ms</span>
-                      <button class="hover:text-surface-container-lowest cursor-pointer flex items-center" id="btnCopyJson" title="نسخ النتيجة">
-                        <span class="material-symbols-outlined text-base">content_copy</span>
+                      <button aria-label="نسخ النتيجة" class="hover:text-surface-container-lowest cursor-pointer flex items-center bg-transparent border-none" id="btnCopyJson" title="نسخ النتيجة" type="button">
+                        <span class="material-symbols-outlined text-base" aria-hidden="true">content_copy</span>
                       </button>
                     </div>
                   </div>
@@ -513,11 +516,11 @@
                   
                   <!-- Language Tabs -->
                   <div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg border border-outline-variant/10">
-                    <button class="snippet-tab bg-primary-container text-on-primary font-bold px-3 py-1 rounded cursor-pointer transition-colors" data-lang="curl">cURL</button>
-                    <button class="snippet-tab text-on-surface px-3 py-1 rounded hover:bg-surface-container-lowest cursor-pointer transition-colors" data-lang="node">Node.js (TS)</button>
-                    <button class="snippet-tab text-on-surface px-3 py-1 rounded hover:bg-surface-container-lowest cursor-pointer transition-colors" data-lang="python">Python</button>
-                    <button class="snippet-tab text-on-surface px-3 py-1 rounded hover:bg-surface-container-lowest cursor-pointer transition-colors" data-lang="php">PHP (Laravel)</button>
-                    <button class="snippet-tab text-on-surface px-3 py-1 rounded hover:bg-surface-container-lowest cursor-pointer transition-colors" data-lang="go">Go</button>
+                    <button class="snippet-tab bg-primary-container text-on-primary font-bold px-3 py-1 rounded cursor-pointer transition-colors" data-lang="curl" type="button">cURL</button>
+                    <button class="snippet-tab text-on-surface px-3 py-1 rounded hover:bg-surface-container-lowest cursor-pointer transition-colors" data-lang="node" type="button">Node.js (TS)</button>
+                    <button class="snippet-tab text-on-surface px-3 py-1 rounded hover:bg-surface-container-lowest cursor-pointer transition-colors" data-lang="python" type="button">Python</button>
+                    <button class="snippet-tab text-on-surface px-3 py-1 rounded hover:bg-surface-container-lowest cursor-pointer transition-colors" data-lang="php" type="button">PHP (Laravel)</button>
+                    <button class="snippet-tab text-on-surface px-3 py-1 rounded hover:bg-surface-container-lowest cursor-pointer transition-colors" data-lang="go" type="button">Go</button>
                   </div>
                 </div>
 
@@ -551,7 +554,7 @@
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
             <div class="flex flex-col gap-1">
               <div class="flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-primary-container">sensors</span>
+                <span class="material-symbols-outlined text-primary-container" aria-hidden="true">sensors</span>
                 <h2 class="text-base font-bold text-on-surface">بوابة أحداث الويب هوك والبث المباشر (Webhooks Hub)</h2>
               </div>
               <p class="text-xs text-on-surface-variant">
@@ -559,8 +562,8 @@
               </p>
             </div>
             <div class="flex items-center gap-space-xs text-xs font-bold">
-              <button onclick="alert('رمز HMAC السري المسجل في الـ Sandbox: whsec_9942a1b0288f')" class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-md py-2 rounded-lg flex items-center gap-1 cursor-pointer border border-outline-variant/10">
-                <span class="material-symbols-outlined text-base">settings</span>
+              <button onclick="showToast('رمز HMAC السري المسجل في Sandbox: whsec_9942a1b0288f', 'info')" class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-md py-2 rounded-lg flex items-center gap-1 cursor-pointer border border-outline-variant/10" type="button">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">settings</span>
                 <span>تهيئة الـ Secret Token (HMAC-SHA256)</span>
               </button>
             </div>
@@ -589,7 +592,7 @@
                     </span>
                   </td>
                   <td class="p-space-sm text-left">
-                    <button class="btn-test-webhook bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-bold px-3 py-1 rounded transition-colors cursor-pointer" data-event="order.created">
+                    <button class="btn-test-webhook bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-bold px-3 py-1 rounded transition-colors cursor-pointer" data-event="order.created" type="button">
                       تجربة الإرسال
                     </button>
                   </td>
@@ -605,7 +608,7 @@
                     </span>
                   </td>
                   <td class="p-space-sm text-left">
-                    <button class="btn-test-webhook bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-bold px-3 py-1 rounded transition-colors cursor-pointer" data-event="inspection.completed">
+                    <button class="btn-test-webhook bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-bold px-3 py-1 rounded transition-colors cursor-pointer" data-event="inspection.completed" type="button">
                       تجربة الإرسال
                     </button>
                   </td>
@@ -621,7 +624,7 @@
                     </span>
                   </td>
                   <td class="p-space-sm text-left">
-                    <button class="btn-test-webhook bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-bold px-3 py-1 rounded transition-colors cursor-pointer" data-event="inventory.low_threshold">
+                    <button class="btn-test-webhook bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-bold px-3 py-1 rounded transition-colors cursor-pointer" data-event="inventory.low_threshold" type="button">
                       تجربة الإرسال
                     </button>
                   </td>
@@ -637,7 +640,7 @@
                     </span>
                   </td>
                   <td class="p-space-sm text-left">
-                    <button class="btn-test-webhook bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-bold px-3 py-1 rounded transition-colors cursor-pointer" data-event="shipment.out_for_delivery">
+                    <button class="btn-test-webhook bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-bold px-3 py-1 rounded transition-colors cursor-pointer" data-event="shipment.out_for_delivery" type="button">
                       تجربة الإرسال
                     </button>
                   </td>
@@ -650,7 +653,7 @@
           <div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-sm border border-outline-variant/10 text-xs">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-tertiary text-base">history</span>
+                <span class="material-symbols-outlined text-tertiary text-base" aria-hidden="true">history</span>
                 <span class="font-bold text-on-surface">سجل محاكاة إرسال الويب هوك (Live Delivery Log)</span>
               </div>
               <span class="text-[11px] text-on-surface-variant">تحديث آني</span>
@@ -679,7 +682,7 @@
         <div class="flex flex-col gap-space-lg">
           <div>
             <div class="flex items-center gap-space-xs">
-              <span class="material-symbols-outlined text-primary-container">package_2</span>
+              <span class="material-symbols-outlined text-primary-container" aria-hidden="true">package_2</span>
               <h2 class="text-base font-bold text-on-surface">حزم تطوير البرمجيات المعتمدة (Official SDKs)</h2>
             </div>
             <p class="text-xs text-on-surface-variant mt-0.5">
@@ -699,8 +702,8 @@
               </div>
               <div class="bg-surface-container-low p-2 rounded font-mono text-xs text-on-surface flex items-center justify-between border border-outline-variant/10" dir="ltr">
                 <code>npm i @techpro/commerce-sdk</code>
-                <button class="copy-cmd-btn text-on-surface-variant hover:text-on-surface cursor-pointer" data-cmd="npm i @techpro/commerce-sdk">
-                  <span class="material-symbols-outlined text-base">content_copy</span>
+                <button aria-label="نسخ أمر التثبيت" class="copy-cmd-btn text-on-surface-variant hover:text-on-surface cursor-pointer bg-transparent border-none" data-cmd="npm i @techpro/commerce-sdk" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">content_copy</span>
                 </button>
               </div>
             </div>
@@ -715,8 +718,8 @@
               </div>
               <div class="bg-surface-container-low p-2 rounded font-mono text-xs text-on-surface flex items-center justify-between border border-outline-variant/10" dir="ltr">
                 <code>pip install techpro-python</code>
-                <button class="copy-cmd-btn text-on-surface-variant hover:text-on-surface cursor-pointer" data-cmd="pip install techpro-python">
-                  <span class="material-symbols-outlined text-base">content_copy</span>
+                <button aria-label="نسخ أمر التثبيت" class="copy-cmd-btn text-on-surface-variant hover:text-on-surface cursor-pointer bg-transparent border-none" data-cmd="pip install techpro-python" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">content_copy</span>
                 </button>
               </div>
             </div>
@@ -731,8 +734,8 @@
               </div>
               <div class="bg-surface-container-low p-2 rounded font-mono text-xs text-on-surface flex items-center justify-between border border-outline-variant/10" dir="ltr">
                 <code>composer require techpro/sdk</code>
-                <button class="copy-cmd-btn text-on-surface-variant hover:text-on-surface cursor-pointer" data-cmd="composer require techpro/sdk">
-                  <span class="material-symbols-outlined text-base">content_copy</span>
+                <button aria-label="نسخ أمر التثبيت" class="copy-cmd-btn text-on-surface-variant hover:text-on-surface cursor-pointer bg-transparent border-none" data-cmd="composer require techpro/sdk" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">content_copy</span>
                 </button>
               </div>
             </div>
@@ -747,8 +750,8 @@
               </div>
               <div class="bg-surface-container-low p-2 rounded font-mono text-xs text-on-surface flex items-center justify-between border border-outline-variant/10" dir="ltr">
                 <code>go get github.com/techpro/sdk-go</code>
-                <button class="copy-cmd-btn text-on-surface-variant hover:text-on-surface cursor-pointer" data-cmd="go get github.com/techpro/sdk-go">
-                  <span class="material-symbols-outlined text-base">content_copy</span>
+                <button aria-label="نسخ أمر التثبيت" class="copy-cmd-btn text-on-surface-variant hover:text-on-surface cursor-pointer bg-transparent border-none" data-cmd="go get github.com/techpro/sdk-go" type="button">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">content_copy</span>
                 </button>
               </div>
             </div>
@@ -761,7 +764,7 @@
         <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/10 grid grid-cols-1 md:grid-cols-3 gap-space-lg text-xs">
           <div class="flex items-start gap-space-md">
             <div class="p-2 bg-secondary-container text-on-secondary-container rounded-lg shrink-0">
-              <span class="material-symbols-outlined text-2xl">shield</span>
+              <span class="material-symbols-outlined text-2xl" aria-hidden="true">shield</span>
             </div>
             <div class="flex flex-col gap-1">
               <h3 class="font-bold text-on-surface text-sm">تشفير وحماية Ed25519 و TLS 1.3</h3>
@@ -771,7 +774,7 @@
 
           <div class="flex items-start gap-space-md">
             <div class="p-2 bg-secondary-container text-on-secondary-container rounded-lg shrink-0">
-              <span class="material-symbols-outlined text-2xl">gavel</span>
+              <span class="material-symbols-outlined text-2xl" aria-hidden="true">gavel</span>
             </div>
             <div class="flex flex-col gap-1">
               <h3 class="font-bold text-on-surface text-sm">نظام حماية البيانات الشخصية PDPL</h3>
@@ -781,7 +784,7 @@
 
           <div class="flex items-start gap-space-md">
             <div class="p-2 bg-secondary-container text-on-secondary-container rounded-lg shrink-0">
-              <span class="material-symbols-outlined text-2xl">support_agent</span>
+              <span class="material-symbols-outlined text-2xl" aria-hidden="true">support_agent</span>
             </div>
             <div class="flex flex-col gap-1">
               <h3 class="font-bold text-on-surface text-sm">دعم تقني وهندسي مخصص 24/7</h3>
@@ -801,7 +804,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -846,6 +849,41 @@
 
   <!-- Scripts -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     (function() {
       // Toggle Environment State
       const btnToggleEnv = document.getElementById('btnToggleEnv');
@@ -859,10 +897,12 @@
             envStateLabel.textContent = 'البيئة: تجريبية (Sandbox)';
             btnToggleEnv.classList.remove('bg-error/20');
             btnToggleEnv.classList.add('bg-surface-container-highest/20');
+            showToast('تم التبديل إلى بيئة الاختبار (Sandbox).', 'info');
           } else {
             envStateLabel.textContent = 'البيئة: الإنتاج الحي (Live Production)';
             btnToggleEnv.classList.remove('bg-surface-container-highest/20');
             btnToggleEnv.classList.add('bg-error/20');
+            showToast('تنبيه: أنت الآن تعمل على بيئة الإنتاج الحية (Live)!', 'error');
           }
         });
       }
@@ -872,8 +912,10 @@
       if (btnGenKey) {
         btnGenKey.addEventListener('click', () => {
           const generatedKey = 'tp_live_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-          navigator.clipboard && navigator.clipboard.writeText(generatedKey);
-          alert('تم إنشاء مفتاح API تجريبي جديد بنجاح ونسخه إلى الحافظة:\n' + generatedKey);
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(generatedKey);
+          }
+          showToast('تم إنشاء مفتاح API تجريبي جديد ونسخه إلى الحافظة بنجاح.', 'success');
         });
       }
 
@@ -939,6 +981,7 @@ print(f<span class="text-tertiary-fixed">"Quote Total: {quote.pricing.grand_tota
           const lang = tab.getAttribute('data-lang');
           if (snippets[lang]) {
             snippetDisplay.innerHTML = snippets[lang];
+            showToast(`تم عرض مقتطف الكود بلغة [${lang.toUpperCase()}].`, 'info');
           }
         });
       });
@@ -951,12 +994,14 @@ print(f<span class="text-tertiary-fixed">"Quote Total: {quote.pricing.grand_tota
       if (btnRunRequest) {
         btnRunRequest.addEventListener('click', () => {
           btnRunRequest.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">refresh</span> جاري المعالجة...';
+          showToast('جاري إرسال الاستعلام التجريبي إلى Sandbox API...', 'info');
           setTimeout(() => {
             btnRunRequest.innerHTML = '<span class="material-symbols-outlined text-base">play_arrow</span> <span>تشغيل التجربة (Send Request)</span>';
             const randomLatency = Math.floor(Math.random() * 20) + 18;
             resTimeTag.textContent = randomLatency + 'ms';
             resStatusBadge.textContent = '200 OK';
             resStatusBadge.className = 'bg-tertiary text-on-tertiary text-[10px] px-1.5 py-0.5 rounded font-bold font-mono';
+            showToast('تم استلام الرد بنجاح (200 OK).', 'success');
           }, 450);
         });
       }
@@ -968,7 +1013,7 @@ print(f<span class="text-tertiary-fixed">"Quote Total: {quote.pricing.grand_tota
           const pre = document.getElementById('responsePayloadPre');
           if (pre && navigator.clipboard) {
             navigator.clipboard.writeText(pre.innerText);
-            alert('تم نسخ رد الـ JSON بنجاح إلى الحافظة.');
+            showToast('تم نسخ رد الـ JSON بنجاح إلى الحافظة.', 'success');
           }
         });
       }
@@ -978,8 +1023,10 @@ print(f<span class="text-tertiary-fixed">"Quote Total: {quote.pricing.grand_tota
       copyCmdBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           const cmd = btn.getAttribute('data-cmd');
-          navigator.clipboard && navigator.clipboard.writeText(cmd);
-          alert('تم نسخ أمر التثبيت:\n' + cmd);
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(cmd);
+          }
+          showToast(`تم نسخ أمر التثبيت: [${cmd}]`, 'success');
         });
       });
 
@@ -1010,6 +1057,7 @@ print(f<span class="text-tertiary-fixed">"Quote Total: {quote.pricing.grand_tota
             </div>
           `;
           webhookLogFeed.insertBefore(newRow, webhookLogFeed.firstChild);
+          showToast(`تم إطلاق محاكاة Webhook لحدث [${eventName}] بنجاح.`, 'success');
         });
       });
     })();
@@ -1024,7 +1072,7 @@ print(f<span class="text-tertiary-fixed">"Quote Total: {quote.pricing.grand_tota
     }
 
     function resetPayload() {
-      alert('تمت استعادة جسم الطلب الافتراضي.');
+      showToast('تمت استعادة جسم الطلب الافتراضي.', 'info');
     }
   </script>
 </body>

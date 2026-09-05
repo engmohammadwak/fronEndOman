@@ -110,13 +110,16 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <!-- Header -->
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
 
@@ -134,33 +137,33 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر القسم" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن سؤال، كود ضمان، أو سياسة فحص..." type="text"/>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <input aria-label="ابحث في مركز المساعدة" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن سؤال، كود ضمان، أو سياسة فحص..." type="text"/>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">حسابي</span>
           </a>
         </div>
@@ -168,7 +171,7 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة والمجددة</a>
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">مركز المساعدة والأسئلة الشائعة</a>
@@ -176,7 +179,7 @@
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">مراكز الصيانة المعتمدة</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">support_agent</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">support_agent</span>
             <span>استجابة أولية خلال دقيقة واحدة</span>
           </div>
         </div>
@@ -184,7 +187,7 @@
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
+  <!-- Main Content -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
       
@@ -195,7 +198,7 @@
         
         <div class="max-w-5xl mx-auto flex flex-col items-center text-center relative z-10">
           <div class="inline-flex items-center gap-space-xs bg-surface-container-highest/15 text-tertiary-fixed-dim px-space-md py-1 rounded-full mb-space-md shadow-sm text-xs font-bold">
-            <span class="material-symbols-outlined text-base">support_agent</span>
+            <span class="material-symbols-outlined text-base" aria-hidden="true">support_agent</span>
             <span>دعم تقني فوري مباشر على مدار الساعة</span>
           </div>
           
@@ -209,31 +212,31 @@
           <!-- Broad Search Box -->
           <div class="w-full max-w-3xl bg-surface-container-lowest rounded-xl shadow-2xl p-2 flex flex-col sm:flex-row items-center gap-2 border border-outline-variant/20">
             <div class="flex items-center flex-1 w-full px-3 py-1">
-              <span class="material-symbols-outlined text-outline text-2xl ml-2">search</span>
+              <span class="material-symbols-outlined text-outline text-2xl ml-2" aria-hidden="true">search</span>
               <input aria-label="ابحث في مركز المساعدة" class="w-full bg-transparent text-xs sm:text-sm text-on-surface placeholder:text-outline focus:outline-none" id="faqSearchInput" placeholder="ابحث عن سؤال، كود ضمان، سياسة فحص البطارية، أو رقم التذكرة..." type="text"/>
             </div>
-            <button id="faqSearchBtn" class="w-full sm:w-auto bg-primary-container hover:bg-primary text-on-primary text-xs sm:text-sm font-bold px-space-xl py-3 rounded-lg flex items-center justify-center gap-1 transition-colors shrink-0 cursor-pointer">
+            <button id="faqSearchBtn" class="w-full sm:w-auto bg-primary-container hover:bg-primary text-on-primary text-xs sm:text-sm font-bold px-space-xl py-3 rounded-lg flex items-center justify-center gap-1 transition-colors shrink-0 cursor-pointer" type="button">
               <span>بحث سريع</span>
-              <span class="material-symbols-outlined text-base rotate-180">arrow_forward</span>
+              <span class="material-symbols-outlined text-base rotate-180" aria-hidden="true">arrow_forward</span>
             </button>
           </div>
 
           <!-- Quick Keywords -->
           <div class="flex flex-wrap items-center justify-center gap-2 mt-space-md text-secondary-fixed text-xs">
             <span class="text-secondary-fixed-dim flex items-center gap-1 font-bold">
-              <span class="material-symbols-outlined text-sm">trending_up</span>
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">trending_up</span>
               الكلمات الأكثر بحثاً:
             </span>
-            <button class="bg-surface-container-highest/15 hover:bg-surface-container-highest/25 px-3 py-1 rounded-full text-surface-container-lowest transition-colors font-semibold" onclick="filterByKeyword('الضمان الذهبي')">
+            <button class="bg-surface-container-highest/15 hover:bg-surface-container-highest/25 px-3 py-1 rounded-full text-surface-container-lowest transition-colors font-semibold cursor-pointer" onclick="filterByKeyword('الضمان الذهبي')" type="button">
               تفعيل الضمان الذهبي
             </button>
-            <button class="bg-surface-container-highest/15 hover:bg-surface-container-highest/25 px-3 py-1 rounded-full text-surface-container-lowest transition-colors font-semibold" onclick="filterByKeyword('البطارية')">
+            <button class="bg-surface-container-highest/15 hover:bg-surface-container-highest/25 px-3 py-1 rounded-full text-surface-container-lowest transition-colors font-semibold cursor-pointer" onclick="filterByKeyword('البطارية')" type="button">
               شروط استبدال البطارية
             </button>
-            <button class="bg-surface-container-highest/15 hover:bg-surface-container-highest/25 px-3 py-1 rounded-full text-surface-container-lowest transition-colors font-semibold" onclick="filterByKeyword('تابي')">
+            <button class="bg-surface-container-highest/15 hover:bg-surface-container-highest/25 px-3 py-1 rounded-full text-surface-container-lowest transition-colors font-semibold cursor-pointer" onclick="filterByKeyword('تابي')" type="button">
               الدفع بالتقسيط تابي وتمارا
             </button>
-            <button class="bg-surface-container-highest/15 hover:bg-surface-container-highest/25 px-3 py-1 rounded-full text-surface-container-lowest transition-colors font-semibold" onclick="filterByKeyword('64')">
+            <button class="bg-surface-container-highest/15 hover:bg-surface-container-highest/25 px-3 py-1 rounded-full text-surface-container-lowest transition-colors font-semibold cursor-pointer" onclick="filterByKeyword('64')" type="button">
               تقرير فحص الـ 64 نقطة
             </button>
           </div>
@@ -249,7 +252,7 @@
             <div>
               <div class="flex items-center justify-between mb-space-md">
                 <div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center text-primary-container">
-                  <span class="material-symbols-outlined text-2xl">chat</span>
+                  <span class="material-symbols-outlined text-2xl" aria-hidden="true">chat</span>
                 </div>
                 <span class="inline-flex items-center gap-1 text-xs text-tertiary-container bg-tertiary-fixed/30 px-2.5 py-0.5 rounded-full font-bold">
                   <span class="w-2 h-2 rounded-full bg-tertiary-container animate-ping"></span>
@@ -259,13 +262,13 @@
               <h3 class="text-base font-bold text-on-surface mb-1">المحادثة الفورية المباشرة</h3>
               <p class="text-xs text-secondary mb-3 leading-relaxed">محادثة حية مشفرة مع مهندس دعم فني معتمد لحل المشكلات اللحظية.</p>
               <div class="flex items-center gap-1 text-secondary text-xs mb-4">
-                <span class="material-symbols-outlined text-sm text-tertiary-container">schedule</span>
+                <span class="material-symbols-outlined text-sm text-tertiary-container" aria-hidden="true">schedule</span>
                 <span>متوسط الرد: أقل من دقيقة</span>
               </div>
             </div>
-            <button class="w-full bg-primary-container hover:bg-primary text-on-primary py-2.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer shadow-sm" onclick="openLiveChatModal()">
+            <button class="w-full bg-primary-container hover:bg-primary text-on-primary py-2.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer shadow-sm" onclick="openLiveChatModal()" type="button">
               <span>بدء المحادثة</span>
-              <span class="material-symbols-outlined text-sm">forum</span>
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">forum</span>
             </button>
           </div>
 
@@ -274,7 +277,7 @@
             <div>
               <div class="flex items-center justify-between mb-space-md">
                 <div class="w-12 h-12 rounded-xl bg-tertiary-fixed/20 flex items-center justify-center text-tertiary-container">
-                  <span class="material-symbols-outlined text-2xl">sms</span>
+                  <span class="material-symbols-outlined text-2xl" aria-hidden="true">sms</span>
                 </div>
                 <span class="text-xs text-tertiary-container bg-tertiary-fixed/30 px-2.5 py-0.5 rounded-full font-bold">
                   رسمي وموثق
@@ -283,13 +286,13 @@
               <h3 class="text-base font-bold text-on-surface mb-1">واتساب خدمة العملاء</h3>
               <p class="text-xs text-secondary mb-3 leading-relaxed">إرسال صور الفحص واستلام عروض الاستبدال والاستشارات التقنية بسرعة.</p>
               <div class="flex items-center gap-1 text-secondary text-xs mb-4">
-                <span class="material-symbols-outlined text-sm text-tertiary-container">verified</span>
+                <span class="material-symbols-outlined text-sm text-tertiary-container" aria-hidden="true">verified</span>
                 <span>تيك برو المعتمد (العلامة الخضراء)</span>
               </div>
             </div>
             <a class="w-full bg-tertiary-container hover:bg-tertiary text-on-tertiary py-2.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors shadow-sm" href="https://wa.me/966500000000" rel="noopener noreferrer" target="_blank">
               <span>تواصل عبر واتساب</span>
-              <span class="material-symbols-outlined text-sm">send</span>
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">send</span>
             </a>
           </div>
 
@@ -298,7 +301,7 @@
             <div>
               <div class="flex items-center justify-between mb-space-md">
                 <div class="w-12 h-12 rounded-xl bg-secondary-container/30 flex items-center justify-center text-on-secondary-container">
-                  <span class="material-symbols-outlined text-2xl">call</span>
+                  <span class="material-symbols-outlined text-2xl" aria-hidden="true">call</span>
                 </div>
                 <span class="text-xs text-secondary bg-surface-container-high px-2.5 py-0.5 rounded-full font-bold">
                   مجاني وموحد
@@ -307,13 +310,13 @@
               <h3 class="text-base font-bold text-on-surface mb-1">مركز الاتصال الموحد</h3>
               <p class="text-xs text-secondary mb-3 leading-relaxed">تحدث مع أخصائيي المبيعات والشكاوى وخدمة ما بعد البيع هاتفياً.</p>
               <div class="flex items-center gap-1 text-secondary text-xs mb-4">
-                <span class="material-symbols-outlined text-sm text-outline">schedule</span>
+                <span class="material-symbols-outlined text-sm text-outline" aria-hidden="true">schedule</span>
                 <span>يومياً: 8:00 ص – 12:00 منتصف الليل</span>
               </div>
             </div>
             <a class="w-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface py-2.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10" href="tel:920000988">
               <span dir="ltr" class="font-mono font-bold">920000988</span>
-              <span class="material-symbols-outlined text-sm">phone_in_talk</span>
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">phone_in_talk</span>
             </a>
           </div>
 
@@ -322,7 +325,7 @@
             <div>
               <div class="flex items-center justify-between mb-space-md">
                 <div class="w-12 h-12 rounded-xl bg-surface-variant/40 flex items-center justify-center text-primary-container">
-                  <span class="material-symbols-outlined text-2xl">precision_manufacturing</span>
+                  <span class="material-symbols-outlined text-2xl" aria-hidden="true">precision_manufacturing</span>
                 </div>
                 <span class="text-xs text-primary-container bg-primary-fixed/40 px-2.5 py-0.5 rounded-full font-bold">
                   مختبر تيك برو
@@ -331,13 +334,13 @@
               <h3 class="text-base font-bold text-on-surface mb-1">حجز موعد فحص حضوري</h3>
               <p class="text-xs text-secondary mb-3 leading-relaxed">معاينة الأجهزة أو صيانتها مباشرة بمركز الرياض (طريق العروبة).</p>
               <div class="flex items-center gap-1 text-secondary text-xs mb-4">
-                <span class="material-symbols-outlined text-sm text-primary-container">location_on</span>
+                <span class="material-symbols-outlined text-sm text-primary-container" aria-hidden="true">location_on</span>
                 <span>فحص مخبري فوري مجاني</span>
               </div>
             </div>
-            <button class="w-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface py-2.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" onclick="scrollToTicket('lab-visit')">
+            <button class="w-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface py-2.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-outline-variant/10 cursor-pointer" onclick="scrollToTicket('lab-visit')" type="button">
               <span>حجز موعد زيارة</span>
-              <span class="material-symbols-outlined text-sm">calendar_month</span>
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">calendar_month</span>
             </button>
           </div>
 
@@ -349,7 +352,7 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
           <div>
             <div class="flex items-center gap-space-xs text-primary-container text-xs font-bold mb-1">
-              <span class="material-symbols-outlined text-base">quiz</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">quiz</span>
               <span>إجابات معتمدة ودقيقة</span>
             </div>
             <h2 class="text-2xl lg:text-3xl font-extrabold text-on-surface">الأسئلة الشائعة وقاعدة المعرفة</h2>
@@ -361,22 +364,22 @@
 
         <!-- Category Filter Tabs -->
         <div class="flex items-center gap-2 overflow-x-auto pb-space-sm mb-space-xl text-xs font-bold" id="faqTabsContainer">
-          <button class="faq-tab active shrink-0 px-4 py-2 rounded-full bg-primary-container text-on-primary shadow-sm transition-all cursor-pointer" onclick="filterFaqCategory('all', this)">
+          <button class="faq-tab active shrink-0 px-4 py-2 rounded-full bg-primary-container text-on-primary shadow-sm transition-all cursor-pointer" onclick="filterFaqCategory('all', this)" type="button">
             الكل (جميع الأسئلة)
           </button>
-          <button class="faq-tab shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface hover:bg-secondary-container transition-all cursor-pointer border border-outline-variant/10" onclick="filterFaqCategory('refurbished', this)">
+          <button class="faq-tab shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface hover:bg-secondary-container transition-all cursor-pointer border border-outline-variant/10" onclick="filterFaqCategory('refurbished', this)" type="button">
             الأجهزة المجددة وبروتوكول الفحص
           </button>
-          <button class="faq-tab shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface hover:bg-secondary-container transition-all cursor-pointer border border-outline-variant/10" onclick="filterFaqCategory('warranty', this)">
+          <button class="faq-tab shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface hover:bg-secondary-container transition-all cursor-pointer border border-outline-variant/10" onclick="filterFaqCategory('warranty', this)" type="button">
             الضمان الذهبي والصيانة
           </button>
-          <button class="faq-tab shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface hover:bg-secondary-container transition-all cursor-pointer border border-outline-variant/10" onclick="filterFaqCategory('shipping', this)">
+          <button class="faq-tab shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface hover:bg-secondary-container transition-all cursor-pointer border border-outline-variant/10" onclick="filterFaqCategory('shipping', this)" type="button">
             الشحن والتوصيل الفوري
           </button>
-          <button class="faq-tab shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface hover:bg-secondary-container transition-all cursor-pointer border border-outline-variant/10" onclick="filterFaqCategory('payment', this)">
+          <button class="faq-tab shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface hover:bg-secondary-container transition-all cursor-pointer border border-outline-variant/10" onclick="filterFaqCategory('payment', this)" type="button">
             الدفع والأقساط والفواتير
           </button>
-          <button class="faq-tab shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface hover:bg-secondary-container transition-all cursor-pointer border border-outline-variant/10" onclick="filterFaqCategory('returns', this)">
+          <button class="faq-tab shrink-0 px-4 py-2 rounded-full bg-surface-container-high text-on-surface hover:bg-secondary-container transition-all cursor-pointer border border-outline-variant/10" onclick="filterFaqCategory('returns', this)" type="button">
             الإرجاع والاستبدال السهل
           </button>
         </div>
@@ -385,12 +388,12 @@
         <div class="space-y-space-sm" id="faqAccordionList">
           <!-- FAQ 1 -->
           <div class="faq-item bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden transition-all duration-200 border border-outline-variant/10" data-category="refurbished" data-keywords="فرق جديد مجدد فحص درجات A+ بطارية">
-            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)">
+            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)" type="button">
               <div class="flex items-center gap-space-sm">
                 <span class="w-8 h-8 rounded-lg bg-surface-container-high text-primary-container flex items-center justify-center font-bold text-xs shrink-0 font-mono">1</span>
                 <span class="text-sm font-bold text-on-surface text-right">ما الفرق الدقيق بين الأجهزة الجديدة والأجهزة المجددة بدرجاتها (+A، A، B)؟</span>
               </div>
-              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg">expand_more</span>
+              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg" aria-hidden="true">expand_more</span>
             </button>
             <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-space-lg text-xs">
               <div class="py-space-md pt-0 text-secondary leading-relaxed border-t border-outline-variant/10">
@@ -403,7 +406,7 @@
                   <li><strong class="text-on-surface">درجة جيد (B):</strong> خدوش سطحية خفيفة على الهيكل الخارجي مع سلامة الشاشة ومكونات العتاد الداخلية بنسبة 100%.</li>
                 </ul>
                 <div class="bg-surface-container-low p-3 rounded-lg flex items-center gap-2 text-primary font-bold border border-outline-variant/10">
-                  <span class="material-symbols-outlined text-base">verified</span>
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
                   <span>جميع الدرجات مشمولة بضمان تيك برو الذهبي لعامين كاملين واستبدال مجاني في حال وجود أي خلل مصنعي.</span>
                 </div>
               </div>
@@ -412,12 +415,12 @@
 
           <!-- FAQ 2 -->
           <div class="faq-item bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden transition-all duration-200 border border-outline-variant/10" data-category="warranty" data-keywords="الضمان الذهبي 24 شهر صيانة هاردوير بطارية كشف">
-            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)">
+            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)" type="button">
               <div class="flex items-center gap-space-sm">
                 <span class="w-8 h-8 rounded-lg bg-surface-container-high text-primary-container flex items-center justify-center font-bold text-xs shrink-0 font-mono">2</span>
                 <span class="text-sm font-bold text-on-surface text-right">ما الذي يغطيه الضمان الذهبي الشامل لمدة عامين (24 شهراً)؟</span>
               </div>
-              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg">expand_more</span>
+              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg" aria-hidden="true">expand_more</span>
             </button>
             <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-space-lg text-xs">
               <div class="py-space-md pt-0 text-secondary leading-relaxed border-t border-outline-variant/10">
@@ -428,7 +431,7 @@
                   <strong>ميزة البطارية الذهبية:</strong> إذا هبطت سعة شحن البطارية عن 80% خلال الـ 24 شهراً من تاريخ الشراء، يتم استبدالها مجاناً ببطارية أصلية معتمدة داخل مختبرنا.
                 </p>
                 <div class="bg-tertiary-fixed/20 text-tertiary p-3 rounded-lg font-bold flex items-center gap-2 border border-tertiary/20">
-                  <span class="material-symbols-outlined text-base">done_all</span>
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">done_all</span>
                   <span>لا توجد أي رسوم كشف أو شحن خلال سريان فترة الضمان، ونقوم باستلام الجهاز وإعادته لباب منزلك.</span>
                 </div>
               </div>
@@ -437,12 +440,12 @@
 
           <!-- FAQ 3 -->
           <div class="faq-item bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden transition-all duration-200 border border-outline-variant/10" data-category="shipping" data-keywords="فحص الجهاز استلام مندوب معاينة IMEI رقم تسلسلي OTP شحن">
-            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)">
+            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)" type="button">
               <div class="flex items-center gap-space-sm">
                 <span class="w-8 h-8 rounded-lg bg-surface-container-high text-primary-container flex items-center justify-center font-bold text-xs shrink-0 font-mono">3</span>
                 <span class="text-sm font-bold text-on-surface text-right">هل يمكنني فحص الجهاز ومطابقة الرقم التسلسلي (IMEI) قبل الاستلام من المندوب؟</span>
               </div>
-              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg">expand_more</span>
+              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg" aria-hidden="true">expand_more</span>
             </button>
             <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-space-lg text-xs">
               <div class="py-space-md pt-0 text-secondary leading-relaxed border-t border-outline-variant/10">
@@ -458,12 +461,12 @@
 
           <!-- FAQ 4 -->
           <div class="faq-item bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden transition-all duration-200 border border-outline-variant/10" data-category="returns" data-keywords="استرجاع استبدال 14 يوم سياسة إرجاع فوري مجاني مندوب">
-            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)">
+            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)" type="button">
               <div class="flex items-center gap-space-sm">
                 <span class="w-8 h-8 rounded-lg bg-surface-container-high text-primary-container flex items-center justify-center font-bold text-xs shrink-0 font-mono">4</span>
                 <span class="text-sm font-bold text-on-surface text-right">ما هي سياسة الإرجاع والاستبدال الفوري وما هي مدتها؟</span>
               </div>
-              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg">expand_more</span>
+              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg" aria-hidden="true">expand_more</span>
             </button>
             <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-space-lg text-xs">
               <div class="py-space-md pt-0 text-secondary leading-relaxed border-t border-outline-variant/10">
@@ -486,12 +489,12 @@
 
           <!-- FAQ 5 -->
           <div class="faq-item bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden transition-all duration-200 border border-outline-variant/10" data-category="refurbished" data-keywords="تقرير فحص الـ 64 نقطة مختبر QR كود شهادة معتمدة موثق">
-            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)">
+            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)" type="button">
               <div class="flex items-center gap-space-sm">
                 <span class="w-8 h-8 rounded-lg bg-surface-container-high text-primary-container flex items-center justify-center font-bold text-xs shrink-0 font-mono">5</span>
                 <span class="text-sm font-bold text-on-surface text-right">كيف أحصل على تقرير الفحص المخبري المعتمد للجهاز الذي اشتريته؟</span>
               </div>
-              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg">expand_more</span>
+              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg" aria-hidden="true">expand_more</span>
             </button>
             <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-space-lg text-xs">
               <div class="py-space-md pt-0 text-secondary leading-relaxed border-t border-outline-variant/10">
@@ -504,12 +507,12 @@
 
           <!-- FAQ 6 -->
           <div class="faq-item bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden transition-all duration-200 border border-outline-variant/10" data-category="payment" data-keywords="تقسيط تابي تمارا 4 دفعات أقساط فوائد متوافق شريعة رسوم">
-            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)">
+            <button class="w-full px-space-lg py-space-md text-right flex items-center justify-between gap-space-md focus:outline-none cursor-pointer" onclick="toggleAccordion(this)" type="button">
               <div class="flex items-center gap-space-sm">
                 <span class="w-8 h-8 rounded-lg bg-surface-container-high text-primary-container flex items-center justify-center font-bold text-xs shrink-0 font-mono">6</span>
                 <span class="text-sm font-bold text-on-surface text-right">كيف يعمل نظام التقسيط عبر تابي (Tabby) وتمارا (Tamara) وهل توجد فوائد؟</span>
               </div>
-              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg">expand_more</span>
+              <span class="material-symbols-outlined text-outline transition-transform duration-300 transform accordion-chevron text-lg" aria-hidden="true">expand_more</span>
             </button>
             <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-space-lg text-xs">
               <div class="py-space-md pt-0 text-secondary leading-relaxed border-t border-outline-variant/10">
@@ -532,7 +535,7 @@
             </div>
             <a class="inline-flex items-center gap-1 text-xs font-bold text-primary-container hover:text-primary transition-colors" href="#">
               <span>استعراض جميع المقالات (28 مقال)</span>
-              <span class="material-symbols-outlined text-base rotate-180">arrow_forward</span>
+              <span class="material-symbols-outlined text-base rotate-180" aria-hidden="true">arrow_forward</span>
             </a>
           </div>
 
@@ -548,7 +551,7 @@
               <div class="p-space-lg flex-1 flex flex-col justify-between">
                 <div>
                   <div class="flex items-center gap-1 text-secondary text-[11px] mb-2 font-bold">
-                    <span class="material-symbols-outlined text-sm text-primary-container">sync_alt</span>
+                    <span class="material-symbols-outlined text-sm text-primary-container" aria-hidden="true">sync_alt</span>
                     <span>نظام التشغيل وترقية الأجهزة</span>
                   </div>
                   <h3 class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors mb-2 leading-relaxed">
@@ -560,7 +563,7 @@
                 </div>
                 <div class="pt-4 mt-4 border-t border-outline-variant/10 flex items-center justify-between text-secondary">
                   <span>تم التحديث منذ يومين</span>
-                  <span class="material-symbols-outlined text-primary group-hover:-translate-x-1 transition-transform">arrow_forward</span>
+                  <span class="material-symbols-outlined text-primary group-hover:-translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                 </div>
               </div>
             </div>
@@ -576,7 +579,7 @@
               <div class="p-space-lg flex-1 flex flex-col justify-between">
                 <div>
                   <div class="flex items-center gap-1 text-secondary text-[11px] mb-2 font-bold">
-                    <span class="material-symbols-outlined text-sm text-tertiary-container">battery_charging_full</span>
+                    <span class="material-symbols-outlined text-sm text-tertiary-container" aria-hidden="true">battery_charging_full</span>
                     <span>صيانة البطارية والشواحن</span>
                   </div>
                   <h3 class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors mb-2 leading-relaxed">
@@ -588,7 +591,7 @@
                 </div>
                 <div class="pt-4 mt-4 border-t border-outline-variant/10 flex items-center justify-between text-secondary">
                   <span>تم التحديث هذا الأسبوع</span>
-                  <span class="material-symbols-outlined text-primary group-hover:-translate-x-1 transition-transform">arrow_forward</span>
+                  <span class="material-symbols-outlined text-primary group-hover:-translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                 </div>
               </div>
             </div>
@@ -604,7 +607,7 @@
               <div class="p-space-lg flex-1 flex flex-col justify-between">
                 <div>
                   <div class="flex items-center gap-1 text-secondary text-[11px] mb-2 font-bold">
-                    <span class="material-symbols-outlined text-sm text-primary-container">verified_user</span>
+                    <span class="material-symbols-outlined text-sm text-primary-container" aria-hidden="true">verified_user</span>
                     <span>الضمان الذهبي وإدارة الحساب</span>
                   </div>
                   <h3 class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors mb-2 leading-relaxed">
@@ -616,7 +619,7 @@
                 </div>
                 <div class="pt-4 mt-4 border-t border-outline-variant/10 flex items-center justify-between text-secondary">
                   <span>تم التحديث منذ أسبوعين</span>
-                  <span class="material-symbols-outlined text-primary group-hover:-translate-x-1 transition-transform">arrow_forward</span>
+                  <span class="material-symbols-outlined text-primary group-hover:-translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                 </div>
               </div>
             </div>
@@ -629,7 +632,7 @@
         <div class="bg-surface-container-lowest rounded-2xl shadow-xl p-space-lg sm:p-space-2xl border border-outline-variant/10 text-xs">
           <div class="text-center max-w-2xl mx-auto mb-space-xl">
             <div class="inline-flex items-center gap-1 bg-secondary-container/40 text-on-secondary-container px-3 py-1 rounded-full font-bold mb-2">
-              <span class="material-symbols-outlined text-base">outgoing_mail</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">outgoing_mail</span>
               <span>خدمة التذاكر الرقمية المباشرة</span>
             </div>
             <h2 class="text-2xl lg:text-3xl font-black text-on-surface mb-1">
@@ -644,22 +647,22 @@
           <form class="space-y-space-md" id="supportTicketForm" onsubmit="handleTicketSubmit(event)">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
               <div>
-                <label class="block font-bold text-on-surface mb-1 text-right">الاسم الكامل *</label>
-                <input class="w-full h-11 px-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline outline-none border border-outline-variant/20" placeholder="مثال: عبد العزيز المحمد" required="" type="text"/>
+                <label class="block font-bold text-on-surface mb-1 text-right" for="ticket-name">الاسم الكامل *</label>
+                <input id="ticket-name" class="w-full h-11 px-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline outline-none border border-outline-variant/20" placeholder="مثال: عبد العزيز المحمد" required="" type="text"/>
               </div>
               <div>
-                <label class="block font-bold text-on-surface mb-1 text-right">رقم الجوال *</label>
-                <input class="w-full h-11 px-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline outline-none text-right font-mono border border-outline-variant/20" dir="ltr" placeholder="05X XXX XXXX" required="" type="tel"/>
+                <label class="block font-bold text-on-surface mb-1 text-right" for="ticket-phone">رقم الجوال *</label>
+                <input id="ticket-phone" class="w-full h-11 px-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline outline-none text-right font-mono border border-outline-variant/20" dir="ltr" placeholder="05X XXX XXXX" required="" type="tel"/>
               </div>
               <div>
-                <label class="block font-bold text-on-surface mb-1 text-right">البريد الإلكتروني *</label>
-                <input class="w-full h-11 px-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline outline-none text-right font-mono border border-outline-variant/20" dir="ltr" placeholder="name@example.com" required="" type="email"/>
+                <label class="block font-bold text-on-surface mb-1 text-right" for="ticket-email">البريد الإلكتروني *</label>
+                <input id="ticket-email" class="w-full h-11 px-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline outline-none text-right font-mono border border-outline-variant/20" dir="ltr" placeholder="name@example.com" required="" type="email"/>
               </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
               <div>
-                <label class="block font-bold text-on-surface mb-1 text-right">نوع الطلب أو الاستفسار *</label>
+                <label class="block font-bold text-on-surface mb-1 text-right" for="ticketCategorySelect">نوع الطلب أو الاستفسار *</label>
                 <select class="w-full h-11 px-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface outline-none cursor-pointer border border-outline-variant/20 font-bold" id="ticketCategorySelect" required="">
                   <option disabled="" selected="" value="">اختر فئة الاستفسار...</option>
                   <option value="warranty">طلب فحص وضمان ذهبي (صيانة العتاد والبطارية)</option>
@@ -671,31 +674,31 @@
                 </select>
               </div>
               <div>
-                <label class="block font-bold text-on-surface mb-1 text-right">رقم الطلب أو الرقم التسلسلي (IMEI) <span class="text-outline font-normal">(اختياري)</span></label>
-                <input class="w-full h-11 px-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline outline-none font-mono border border-outline-variant/20" placeholder="مثال: ORD-89412 أو رقم IMEI" type="text"/>
+                <label class="block font-bold text-on-surface mb-1 text-right" for="ticket-imei">رقم الطلب أو الرقم التسلسلي (IMEI) <span class="text-outline font-normal">(اختياري)</span></label>
+                <input id="ticket-imei" class="w-full h-11 px-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline outline-none font-mono border border-outline-variant/20" placeholder="مثال: ORD-89412 أو رقم IMEI" type="text"/>
               </div>
             </div>
 
             <div>
-              <label class="block font-bold text-on-surface mb-1 text-right">تفاصيل الاستفسار أو وصف العطل بالتفصيل *</label>
-              <textarea class="w-full p-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline outline-none resize-none border border-outline-variant/20" placeholder="يرجى كتابة تفاصيل استفسارك بدقة..." required="" rows="4"></textarea>
+              <label class="block font-bold text-on-surface mb-1 text-right" for="ticket-details">تفاصيل الاستفسار أو وصف العطل بالتفصيل *</label>
+              <textarea id="ticket-details" class="w-full p-3 bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline outline-none resize-none border border-outline-variant/20" placeholder="يرجى كتابة تفاصيل استفسارك بدقة..." required="" rows="4"></textarea>
             </div>
 
             <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-space-md">
               <div class="flex items-center gap-1 text-tertiary font-bold">
-                <span class="material-symbols-outlined text-lg">bolt</span>
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">bolt</span>
                 <span>متوسط وقت الرد على التذاكر: 30 دقيقة خلال ساعات العمل</span>
               </div>
               <button class="w-full sm:w-auto bg-primary-container hover:bg-primary text-on-primary px-space-2xl py-3 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center gap-1 transition-all active:scale-95 font-bold cursor-pointer" type="submit">
                 <span>إرسال التذكرة الآن</span>
-                <span class="material-symbols-outlined text-base rotate-180">arrow_forward</span>
+                <span class="material-symbols-outlined text-base rotate-180" aria-hidden="true">arrow_forward</span>
               </button>
             </div>
           </form>
 
           <!-- Success Box -->
           <div class="hidden mt-4 p-4 bg-tertiary-fixed text-on-tertiary-fixed rounded-xl flex items-center gap-3 shadow-sm border border-tertiary/20" id="ticketSuccessMsg">
-            <span class="material-symbols-outlined text-3xl text-tertiary">check_circle</span>
+            <span class="material-symbols-outlined text-3xl text-tertiary" aria-hidden="true">check_circle</span>
             <div>
               <h4 class="font-bold text-sm">تم استلام تذكرتك بنجاح!</h4>
               <p class="text-on-tertiary-fixed-variant text-xs mt-0.5">رقم التذكرة: <strong class="font-mono">#TK-88492</strong>. تم إرسال رسالة تأكيد إلى بريدك وسيقوم مهندس الدعم بالرد فوراً.</p>
@@ -711,7 +714,7 @@
             <div class="flex items-center gap-2">
               <div class="relative">
                 <span class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold">
-                  <span class="material-symbols-outlined text-base">smart_toy</span>
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">smart_toy</span>
                 </span>
                 <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-tertiary-fixed rounded-full"></span>
               </div>
@@ -720,8 +723,8 @@
                 <span class="text-[10px] text-tertiary-fixed-dim">متصل الآن • رد فوري</span>
               </div>
             </div>
-            <button class="text-secondary-fixed hover:text-surface-container-lowest p-1 cursor-pointer" onclick="closeLiveChatModal()">
-              <span class="material-symbols-outlined text-xl">close</span>
+            <button aria-label="إغلاق المحادثة" class="text-secondary-fixed hover:text-surface-container-lowest p-1 cursor-pointer" onclick="closeLiveChatModal()" type="button">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">close</span>
             </button>
           </div>
 
@@ -738,9 +741,9 @@
           </div>
 
           <div class="p-3 bg-surface-container-lowest flex items-center gap-2 border-t border-outline-variant/10">
-            <input id="chatInput" onkeydown="if(event.key === 'Enter') sendChatMessage()" class="flex-1 bg-surface-container-low px-3 py-2 text-xs text-on-surface placeholder:text-outline rounded-lg focus:outline-none border border-outline-variant/20" placeholder="اكتب استفسارك هنا..." type="text"/>
-            <button onclick="sendChatMessage()" class="bg-primary-container hover:bg-primary text-on-primary p-2 rounded-lg flex items-center justify-center transition-colors cursor-pointer">
-              <span class="material-symbols-outlined text-base">send</span>
+            <input aria-label="اكتب استفسارك" id="chatInput" onkeydown="if(event.key === 'Enter') sendChatMessage()" class="flex-1 bg-surface-container-low px-3 py-2 text-xs text-on-surface placeholder:text-outline rounded-lg focus:outline-none border border-outline-variant/20" placeholder="اكتب استفسارك هنا..." type="text"/>
+            <button aria-label="إرسال" onclick="sendChatMessage()" class="bg-primary-container hover:bg-primary text-on-primary p-2 rounded-lg flex items-center justify-center transition-colors cursor-pointer" type="button">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">send</span>
             </button>
           </div>
         </div>
@@ -756,7 +759,7 @@
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -801,6 +804,41 @@
 
   <!-- Scripts -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     function toggleAccordion(btn) {
       const parent = btn.parentElement;
       const content = parent.querySelector('.faq-content');
@@ -836,6 +874,7 @@
           item.classList.add('hidden');
         }
       });
+      showToast('تمت تصفية الأسئلة الشائعة بنجاح.', 'info');
     }
 
     function filterByKeyword(keyword) {
@@ -873,6 +912,7 @@
       const val = document.getElementById('faqSearchInput').value;
       performFaqSearch(val);
       document.getElementById('faqTabsContainer').scrollIntoView({ behavior: 'smooth' });
+      showToast(`تم البحث عن: "${val}"`, 'info');
     });
 
     function scrollToTicket(categoryVal) {
@@ -883,13 +923,7 @@
           const select = document.getElementById('ticketCategorySelect');
           select.value = categoryVal;
         }
-      }
-    }
-
-    function updateFileName(input) {
-      const label = document.getElementById('uploadLabel');
-      if (input.files && input.files.length > 0) {
-        label.textContent = 'تم إرفاق: ' + input.files.length + ' ملف/ملفات بنجاح';
+        showToast('تم الانتقال إلى نموذج تذاكر الدعم الفني.', 'info');
       }
     }
 
@@ -900,6 +934,7 @@
       successBox.classList.remove('hidden');
       form.reset();
       successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      showToast('تم إرسال تذكرة الدعم الفني برقم #TK-88492 بنجاح!', 'success');
     }
 
     function openLiveChatModal() {

@@ -4,7 +4,6 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   
-  <!-- Optimized Fonts: Cairo (Arabic UI) + JetBrains Mono (Wallet Balances & Points) -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
 
@@ -110,13 +109,14 @@
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen">
 
-  <!-- Header -->
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 pointer-events-none w-full max-w-md px-4"></div>
+
   <header class="fixed top-0 w-full z-50 shadow-md">
     <div class="bg-primary-container text-on-primary py-space-2xs px-space-md text-center text-xs font-semibold">
       <div class="max-w-7xl mx-auto flex items-center justify-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">local_shipping</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">local_shipping</span>
         <span>شحن مجاني لجميع الطلبات فوق 200 ريال | ضمان ذهبي لمدة عامين</span>
-        <span class="material-symbols-outlined text-base">verified</span>
+        <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
       </div>
     </div>
     
@@ -134,36 +134,36 @@
 
         <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
           <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-            <select class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+            <select aria-label="اختر القسم" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
               <option class="bg-inverse-surface text-inverse-on-surface" value="all">جميع الأقسام</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="phones">الجوالات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="laptops">اللابتوبات</option>
               <option class="bg-inverse-surface text-inverse-on-surface" value="accessories">الإكسسوارات</option>
             </select>
-            <input class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
-            <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors">
-              <span class="material-symbols-outlined text-xl">mic</span>
+            <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text"/>
+            <button aria-label="البحث الصوتي" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">mic</span>
             </button>
-            <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors">
-              <span class="material-symbols-outlined text-xl">search</span>
+            <button aria-label="بحث" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
           <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
-            <span class="material-symbols-outlined text-2xl">favorite</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
             <span class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
           </a>
-          <a class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
-            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim">shopping_cart</span>
+          <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
             <div class="hidden sm:flex flex-col text-right">
               <span class="text-xs text-secondary-fixed-dim">سلة المشتريات (٣)</span>
               <span class="text-sm font-bold text-surface-container-lowest font-mono">1,849 ر.س</span>
             </div>
           </a>
-          <a class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
-            <span class="material-symbols-outlined text-xl">person</span>
+          <a aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
             <span class="hidden sm:inline">حسابي</span>
           </a>
         </div>
@@ -171,7 +171,7 @@
 
       <div class="bg-inverse-surface border-t border-outline-variant/20">
         <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-11 flex items-center justify-between text-sm">
-          <nav class="flex items-center gap-space-md lg:gap-space-xl overflow-x-auto h-full">
+          <nav class="flex items-center gap-space-md lg:px-space-xl overflow-x-auto h-full">
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الرئيسية</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة الجديدة</a>
             <a class="text-secondary-fixed hover:text-surface-container-lowest transition-colors whitespace-nowrap py-space-xs" href="#">الأجهزة المستعملة والمجددة</a>
@@ -180,7 +180,7 @@
             <a aria-current="page" class="transition-colors whitespace-nowrap py-space-xs text-tertiary-fixed font-bold border-b-2 border-tertiary-fixed" href="#">المحفظة والمكافآت</a>
           </nav>
           <div class="hidden lg:flex items-center gap-space-xs text-secondary-fixed text-xs font-semibold">
-            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">bolt</span>
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" aria-hidden="true">bolt</span>
             <span>توصيل سريع خلال 24 ساعة</span>
           </div>
         </div>
@@ -188,20 +188,18 @@
     </div>
   </header>
 
-  <!-- Main Content with corrected top padding -->
   <main class="w-full pt-36 lg:pt-40 bg-background min-h-[calc(100vh-280px)]">
     <div class="flex flex-col w-full text-on-surface">
-      <!-- Breadcrumb Bar -->
       <div class="w-full bg-surface-container-low py-space-sm px-space-md lg:px-space-xl border-b border-outline-variant/10 text-xs">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-sm">
           <div class="flex items-center gap-space-xs text-secondary">
             <a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
-              <span class="material-symbols-outlined text-base">home</span>
+              <span class="material-symbols-outlined text-base" aria-hidden="true">home</span>
               <span>الرئيسية</span>
             </a>
-            <span class="material-symbols-outlined text-xs rotate-180 text-outline">chevron_right</span>
+            <span class="material-symbols-outlined text-xs rotate-180 text-outline" aria-hidden="true">chevron_right</span>
             <a class="hover:text-primary transition-colors" href="#">حسابي</a>
-            <span class="material-symbols-outlined text-xs rotate-180">chevron_right</span>
+            <span class="material-symbols-outlined text-xs rotate-180" aria-hidden="true">chevron_right</span>
             <span class="text-on-surface font-bold">محفظة تيك برو ونادي المكافآت</span>
           </div>
           <div class="flex items-center gap-space-sm">
@@ -215,20 +213,18 @@
 
       <div class="max-w-7xl mx-auto w-full px-space-md lg:px-space-xl py-space-xl flex flex-col gap-space-2xl">
         
-        <!-- Section 1: Executive Hub (Wallet & VIP Tier Card) -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
           
-          <!-- Wallet Card -->
           <div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-space-lg lg:p-space-xl shadow-sm flex flex-col justify-between relative overflow-hidden border border-outline-variant/10">
             <div class="absolute -top-24 -left-24 w-64 h-64 bg-gradient-to-br from-primary-fixed/40 via-surface-container-low to-transparent rounded-full blur-2xl pointer-events-none"></div>
             <div class="flex flex-col gap-space-md relative z-10">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-space-xs">
-                  <span class="material-symbols-outlined text-2xl text-primary">account_balance_wallet</span>
+                  <span class="material-symbols-outlined text-2xl text-primary" aria-hidden="true">account_balance_wallet</span>
                   <span class="text-base font-bold text-on-surface">رصيد المحفظة النقدية المتاحة</span>
                 </div>
                 <span class="text-xs text-secondary px-2.5 py-1 bg-surface-container rounded-full flex items-center gap-1 font-bold">
-                  <span class="material-symbols-outlined text-xs text-tertiary">lock</span>
+                  <span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">lock</span>
                   <span>مضمون ومعتمد</span>
                 </span>
               </div>
@@ -243,37 +239,35 @@
               
               <div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between flex-wrap gap-space-xs text-xs">
                 <div class="flex items-center gap-space-xs">
-                  <span class="material-symbols-outlined text-tertiary">autorenew</span>
+                  <span class="material-symbols-outlined text-tertiary" aria-hidden="true">autorenew</span>
                   <span class="font-bold text-on-surface">الكاش باك التلقائي للطلبات القادمة مفعل</span>
                 </div>
                 <span class="text-secondary font-bold">خصم تلقائي 100% متاح بالسلة</span>
               </div>
             </div>
 
-            <!-- Quick Actions -->
             <div class="grid grid-cols-3 gap-space-sm mt-space-lg relative z-10 text-xs font-bold">
-              <button onclick="handleTopup()" class="flex flex-col sm:flex-row items-center justify-center gap-1 py-2.5 px-2 bg-primary hover:bg-primary-container text-on-primary rounded-lg shadow-sm transition-all text-center active:scale-95 cursor-pointer">
-                <span class="material-symbols-outlined text-lg">add_circle</span>
+              <button onclick="handleTopup()" class="flex flex-col sm:flex-row items-center justify-center gap-1 py-2.5 px-2 bg-primary hover:bg-primary-container text-on-primary rounded-lg shadow-sm transition-all text-center active:scale-95 cursor-pointer" type="button">
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">add_circle</span>
                 <span class="whitespace-nowrap">شحن الرصيد</span>
               </button>
-              <button onclick="alert('خدمة التحويل لحساب تيك برو آخر متاحة قريباً.')" class="flex flex-col sm:flex-row items-center justify-center gap-1 py-2.5 px-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg transition-all text-center cursor-pointer border border-outline-variant/10">
-                <span class="material-symbols-outlined text-lg text-primary">swap_horiz</span>
+              <button onclick="showToast('خدمة التحويل لحساب تيك برو آخر ستتوفر في التحديث القادم.', 'info')" class="flex flex-col sm:flex-row items-center justify-center gap-1 py-2.5 px-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg transition-all text-center cursor-pointer border border-outline-variant/10" type="button">
+                <span class="material-symbols-outlined text-lg text-primary" aria-hidden="true">swap_horiz</span>
                 <span class="whitespace-nowrap">تحويل رصيد</span>
               </button>
-              <button onclick="alert('سيتم فتح طلب السحب لحسابك البنكي المعتمد.')" class="flex flex-col sm:flex-row items-center justify-center gap-1 py-2.5 px-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg transition-all text-center cursor-pointer border border-outline-variant/10">
-                <span class="material-symbols-outlined text-lg text-secondary">account_balance</span>
+              <button onclick="showToast('سيتم تقديم طلب السحب الفوري لحسابك البنكي المعتمد.', 'success')" class="flex flex-col sm:flex-row items-center justify-center gap-1 py-2.5 px-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg transition-all text-center cursor-pointer border border-outline-variant/10" type="button">
+                <span class="material-symbols-outlined text-lg text-secondary" aria-hidden="true">account_balance</span>
                 <span class="whitespace-nowrap">سحب بنكي</span>
               </button>
             </div>
           </div>
 
-          <!-- VIP Club Card -->
           <div class="lg:col-span-5 bg-inverse-surface text-inverse-on-surface rounded-xl p-space-lg lg:p-space-xl shadow-md flex flex-col justify-between relative overflow-hidden text-xs">
             <div class="absolute -bottom-16 -right-16 w-48 h-48 bg-primary/30 rounded-full blur-3xl pointer-events-none"></div>
             <div class="flex flex-col gap-space-md relative z-10">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-space-xs">
-                  <span class="material-symbols-outlined text-tertiary-fixed text-xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+                  <span class="material-symbols-outlined text-tertiary-fixed text-xl" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">stars</span>
                   <span class="text-base font-bold text-surface-container-lowest">نادي تيك برو VIP</span>
                 </div>
                 <span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full font-bold shadow-sm">
@@ -281,7 +275,6 @@
                 </span>
               </div>
 
-              <!-- Points Stat -->
               <div class="bg-surface-container-highest/10 p-space-md rounded-lg flex items-center justify-between border border-white/5">
                 <div>
                   <span class="text-secondary-fixed-dim text-[11px] block">رصيد نقاط الولاء النشطة</span>
@@ -296,7 +289,6 @@
                 </div>
               </div>
 
-              <!-- Progress -->
               <div class="flex flex-col gap-1">
                 <div class="flex justify-between items-center text-[11px]">
                   <span class="text-secondary-fixed-dim">المستوى الحالي: بلاتيني (Platinum)</span>
@@ -312,19 +304,17 @@
               </div>
             </div>
 
-            <!-- Expiry Warning -->
             <div class="mt-space-md pt-space-sm bg-surface-container-highest/10 -mx-space-lg lg:-mx-space-xl -mb-space-lg lg:-mb-space-xl px-space-lg lg:px-space-xl py-2.5 flex items-center justify-between text-[11px] border-t border-white/5">
               <div class="flex items-center gap-1 text-error-container font-bold">
-                <span class="material-symbols-outlined text-sm">schedule</span>
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">schedule</span>
                 <span>تنبيه: 650 نقطة تنتهي قريباً</span>
               </div>
-              <button onclick="document.getElementById('rewards-catalog').scrollIntoView({behavior: 'smooth'})" class="text-primary-fixed-dim hover:text-surface-container-lowest underline font-bold cursor-pointer">استبدلها الآن</button>
+              <button onclick="document.getElementById('rewards-catalog').scrollIntoView({behavior: 'smooth'})" class="text-primary-fixed-dim hover:text-surface-container-lowest underline font-bold cursor-pointer" type="button">استبدلها الآن</button>
             </div>
           </div>
 
         </div>
 
-        <!-- Section 2: Membership Tiers -->
         <div class="flex flex-col gap-space-lg text-xs">
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm">
             <div>
@@ -337,12 +327,11 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
-            <!-- Silver -->
             <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between opacity-80 hover:opacity-100 transition-all border border-outline-variant/10">
               <div class="flex flex-col gap-space-xs">
                 <div class="flex items-center justify-between">
                   <span class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-secondary">
-                    <span class="material-symbols-outlined">workspace_premium</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">workspace_premium</span>
                   </span>
                   <span class="text-[10px] px-2.5 py-0.5 bg-surface-container rounded-full text-secondary font-bold">البداية</span>
                 </div>
@@ -350,11 +339,11 @@
                 <span class="text-secondary text-[11px]">من 0 حتى 2,499 نقطة</span>
                 <ul class="mt-2 flex flex-col gap-1 text-on-surface-variant">
                   <li class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span class="material-symbols-outlined text-tertiary text-sm" aria-hidden="true">check_circle</span>
                     <span>استرجاع نقدي 1.5%</span>
                   </li>
                   <li class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span class="material-symbols-outlined text-tertiary text-sm" aria-hidden="true">check_circle</span>
                     <span>ضمان قياسي 12 شهراً</span>
                   </li>
                 </ul>
@@ -362,12 +351,11 @@
               <span class="mt-4 font-bold text-secondary">مستوى مُنجز ✓</span>
             </div>
 
-            <!-- Gold -->
             <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between opacity-80 hover:opacity-100 transition-all border border-outline-variant/10">
               <div class="flex flex-col gap-space-xs">
                 <div class="flex items-center justify-between">
                   <span class="w-9 h-9 rounded-full bg-secondary-fixed/40 flex items-center justify-center text-on-secondary-fixed-variant">
-                    <span class="material-symbols-outlined">military_tech</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">military_tech</span>
                   </span>
                   <span class="text-[10px] px-2.5 py-0.5 bg-surface-container rounded-full text-secondary font-bold">المتقدم</span>
                 </div>
@@ -375,11 +363,11 @@
                 <span class="text-secondary text-[11px]">من 2,500 حتى 5,999 نقطة</span>
                 <ul class="mt-2 flex flex-col gap-1 text-on-surface-variant">
                   <li class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span class="material-symbols-outlined text-tertiary text-sm" aria-hidden="true">check_circle</span>
                     <span>استرجاع نقدي 3%</span>
                   </li>
                   <li class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span class="material-symbols-outlined text-tertiary text-sm" aria-hidden="true">check_circle</span>
                     <span>خصم 5% على الصيانة</span>
                   </li>
                 </ul>
@@ -387,7 +375,6 @@
               <span class="mt-4 font-bold text-secondary">مستوى مُنجز ✓</span>
             </div>
 
-            <!-- Platinum (Current) -->
             <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-md flex flex-col justify-between relative bg-gradient-to-b from-primary-fixed/20 to-surface-container-lowest ring-2 ring-primary-container">
               <div class="absolute -top-3 right-4 px-2.5 py-0.5 bg-primary-container text-on-primary text-[10px] rounded-full font-bold">
                 مستواك الحالي النشط
@@ -395,7 +382,7 @@
               <div class="flex flex-col gap-space-xs">
                 <div class="flex items-center justify-between">
                   <span class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
-                    <span class="material-symbols-outlined">diamond</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">diamond</span>
                   </span>
                   <span class="text-[10px] px-2.5 py-0.5 bg-primary-fixed text-on-primary-fixed rounded-full font-bold">فئة النخبة</span>
                 </div>
@@ -403,15 +390,15 @@
                 <span class="text-secondary text-[11px]">من 6,000 حتى 9,999 نقطة</span>
                 <ul class="mt-2 flex flex-col gap-1 text-on-surface font-semibold">
                   <li class="flex items-center gap-1 text-primary font-bold">
-                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                    <span class="material-symbols-outlined text-primary text-sm" aria-hidden="true">check_circle</span>
                     <span>استرجاع 5% فوري</span>
                   </li>
                   <li class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span class="material-symbols-outlined text-tertiary text-sm" aria-hidden="true">check_circle</span>
                     <span>شحن سريع مجاني لكافة الطلبات</span>
                   </li>
                   <li class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span class="material-symbols-outlined text-tertiary text-sm" aria-hidden="true">check_circle</span>
                     <span>فحص مخبري سنوي لجهازين</span>
                   </li>
                 </ul>
@@ -421,12 +408,11 @@
               </div>
             </div>
 
-            <!-- Diamond (Next) -->
             <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-all border border-outline-variant/10">
               <div class="flex flex-col gap-space-xs">
                 <div class="flex items-center justify-between">
                   <span class="w-9 h-9 rounded-full bg-inverse-surface text-tertiary-fixed flex items-center justify-center">
-                    <span class="material-symbols-outlined">military_tech</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">military_tech</span>
                   </span>
                   <span class="text-[10px] px-2.5 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed rounded-full font-bold">VIP المطلق</span>
                 </div>
@@ -434,23 +420,22 @@
                 <span class="text-secondary text-[11px]">10,000+ نقطة</span>
                 <ul class="mt-2 flex flex-col gap-1 text-on-surface-variant">
                   <li class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span class="material-symbols-outlined text-tertiary text-sm" aria-hidden="true">check_circle</span>
                     <span>استرجاع نقدي 8% دائم</span>
                   </li>
                   <li class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+                    <span class="material-symbols-outlined text-tertiary text-sm" aria-hidden="true">check_circle</span>
                     <span>مدير حساب تقني مخصص</span>
                   </li>
                 </ul>
               </div>
-              <button class="mt-4 w-full py-2 bg-surface-container hover:bg-primary hover:text-on-primary rounded font-bold text-secondary transition-all cursor-pointer">
+              <button onclick="showToast('سيتم فتح نافذة الترقية المباشرة للفئة الماسية.', 'success')" class="mt-4 w-full py-2 bg-surface-container hover:bg-primary hover:text-on-primary rounded font-bold text-secondary transition-all cursor-pointer" type="button">
                 احصل عليه بـ 1,250 نقطة
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Section 3: Points Redemption Catalog -->
         <div id="rewards-catalog" class="flex flex-col gap-space-lg text-xs">
           <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm">
             <div>
@@ -463,15 +448,13 @@
             </div>
           </div>
 
-          <!-- Redemption Grid -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
             
-            <!-- Voucher 100 -->
             <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-all border border-outline-variant/10">
               <div class="flex flex-col gap-3">
                 <div class="w-full h-36 bg-surface-container-low rounded-lg flex items-center justify-center relative overflow-hidden">
                   <div class="absolute inset-0 bg-gradient-to-br from-primary-fixed/20 via-transparent to-surface-container"></div>
-                  <img class="object-cover w-full h-full" alt="قسيمة مشتريات 100 ريال" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_KVPysq9spc_9KYYw1lkAKdiHKShkTuuK0VRXyHxwMzN9WT7J-GnlEmwKAXjgrS1njOfoTzbo5Er8v2-fOAj1I0AhfmKcwBxp8-zG5FArcSUp_J2e57gQ0LCnvnI3FaZ8mbVPlopYe2-WijQa3NEwfkXgjs98pumXhRu1ceVz9xihBaCtAI7rtQtnolgVX3EgaBHtLBJl26zEpllVU-PjwGl4bh9T0wsTbEOdvTIQ3VSIr2N1WSv5Yg"/>
+                  
                   <span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 bg-primary text-on-primary text-[10px] rounded-full font-bold">
                     قسيمة مشتريات
                   </span>
@@ -485,17 +468,16 @@
                   <span class="text-[11px] text-tertiary font-bold bg-tertiary-fixed/30 px-2 py-0.5 rounded">مؤهل</span>
                 </div>
               </div>
-              <button class="mt-4 w-full py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-bold flex items-center justify-center gap-1 shadow-sm transition-all cursor-pointer active:scale-95" onclick="redeemReward('قسيمة 100 ر.س', 5000, 100)">
-                <span class="material-symbols-outlined text-base">redeem</span>
+              <button class="mt-4 w-full py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-bold flex items-center justify-center gap-1 shadow-sm transition-all cursor-pointer active:scale-95" onclick="redeemReward('قسيمة 100 ر.س', 5000, 100)" type="button">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">redeem</span>
                 <span>استبدال الآن (5,000 نقطة)</span>
               </button>
             </div>
 
-            <!-- Warranty 2 Years -->
             <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-all border border-outline-variant/10">
               <div class="flex flex-col gap-3">
                 <div class="w-full h-36 bg-surface-container-low rounded-lg flex items-center justify-center relative overflow-hidden">
-                  <img class="object-cover w-full h-full" alt="باقة الضمان الذهبي الماسي" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwz819eoLOI5VVCYA-0oPvDi71xu24mppecsR0qZ9Wzzm_2GFBMqs4Bd7Takg7jDYFRdT5PMeOLPvsxYyg2AiXOwnx6QGWjghnxTHdKOeMvO5uiLC0FQWGI9q-PwvgMkVGdAntiSWJ6RDg5L1A3_yF1uD1irOWqPMCN4WH_nZcSOQOc_FHguPqa3SpbPsCazGrG5wg401_qkdGHCiAdiNBVpcuwugQJJdaqPuN4IMFeLiHfpEko-8XQg"/>
+                  
                   <span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 bg-tertiary text-on-tertiary text-[10px] rounded-full font-bold">
                     الأكثر طلباً
                   </span>
@@ -509,16 +491,15 @@
                   <span class="text-[11px] text-tertiary font-bold bg-tertiary-fixed/30 px-2 py-0.5 rounded">مؤهل</span>
                 </div>
               </div>
-              <button class="mt-4 w-full py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-bold flex items-center justify-center gap-1 shadow-sm transition-all cursor-pointer active:scale-95" onclick="redeemReward('الضمان الذهبي الماسي', 7000, 0)">
-                <span class="material-symbols-outlined text-base">verified_user</span>
+              <button class="mt-4 w-full py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-bold flex items-center justify-center gap-1 shadow-sm transition-all cursor-pointer active:scale-95" onclick="redeemReward('الضمان الذهبي الماسي', 7000, 0)" type="button">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">verified_user</span>
                 <span>استبدال الآن (7,000 نقطة)</span>
               </button>
             </div>
 
-            <!-- Conversion Tile -->
             <div class="bg-gradient-to-br from-primary-container to-primary text-on-primary rounded-xl p-space-md shadow-sm flex flex-col justify-between">
               <div class="flex flex-col gap-2">
-                <span class="material-symbols-outlined text-3xl text-tertiary-fixed">currency_exchange</span>
+                <span class="material-symbols-outlined text-3xl text-tertiary-fixed" aria-hidden="true">currency_exchange</span>
                 <h3 class="text-sm font-bold text-on-primary">تحويل النقاط إلى رصيد محفظة نقدي</h3>
                 <p class="text-[11px] text-on-primary-container leading-relaxed">
                   لا ترغب في القسائم؟ يمكنك تحويل نقاطك المكتسبة مباشرة إلى رصيد نقدي في محفظتك لاستخدامه متى شئت.
@@ -529,7 +510,7 @@
                 </div>
               </div>
               <div class="mt-4">
-                <button class="w-full py-2.5 bg-surface-container-lowest hover:bg-surface-container text-primary font-bold rounded-lg shadow-sm transition-all cursor-pointer active:scale-95" onclick="convertAllPoints()">
+                <button class="w-full py-2.5 bg-surface-container-lowest hover:bg-surface-container text-primary font-bold rounded-lg shadow-sm transition-all cursor-pointer active:scale-95" onclick="convertAllPoints()" type="button">
                   تحويل كامل الرصيد (175 ر.س) للمحفظة
                 </button>
               </div>
@@ -538,7 +519,6 @@
           </div>
         </div>
 
-        <!-- Section 4: Referral Program -->
         <div class="bg-surface-container-lowest rounded-xl p-space-md lg:p-space-lg shadow-sm border border-outline-variant/10 text-xs">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
             
@@ -553,33 +533,31 @@
                 </p>
               </div>
 
-              <!-- Code Box -->
               <div class="p-3 bg-surface-container-low rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 border border-outline-variant/10">
                 <div class="flex flex-col text-right w-full sm:w-auto">
                   <span class="text-secondary text-[11px]">رمز الدعوة الفريد الخاص بك:</span>
                   <div class="flex items-center gap-1 mt-0.5">
                     <span class="text-base font-mono font-black text-primary tracking-wider select-all" id="referral-code-text">PRO-KHALID99</span>
-                    <span class="material-symbols-outlined text-tertiary text-base">verified</span>
+                    <span class="material-symbols-outlined text-tertiary text-base" aria-hidden="true">verified</span>
                   </div>
                 </div>
                 <div class="flex items-center gap-1 w-full sm:w-auto font-bold">
-                  <button class="flex-1 sm:flex-none px-4 py-2 bg-primary hover:bg-primary-container text-on-primary rounded-lg flex items-center justify-center gap-1 transition-all cursor-pointer" onclick="copyReferralCode()">
-                    <span class="material-symbols-outlined text-base">content_copy</span>
+                  <button class="flex-1 sm:flex-none px-4 py-2 bg-primary hover:bg-primary-container text-on-primary rounded-lg flex items-center justify-center gap-1 transition-all cursor-pointer" onclick="copyReferralCode()" type="button">
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">content_copy</span>
                     <span id="copy-btn-label">نسخ الكود</span>
                   </button>
-                  <button class="p-2 bg-tertiary hover:bg-tertiary-container text-on-tertiary rounded-lg flex items-center justify-center transition-all cursor-pointer" onclick="shareWhatsApp()" title="واتساب">
-                    <span class="material-symbols-outlined text-lg">share</span>
+                  <button aria-label="مشاركة عبر واتساب" class="p-2 bg-tertiary hover:bg-tertiary-container text-on-tertiary rounded-lg flex items-center justify-center transition-all cursor-pointer" onclick="shareWhatsApp()" title="واتساب" type="button">
+                    <span class="material-symbols-outlined text-lg" aria-hidden="true">share</span>
                   </button>
                 </div>
               </div>
 
               <div class="flex items-center gap-4 flex-wrap text-secondary text-[11px]">
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs text-tertiary">check</span> لا يوجد حد أقصى للأصدقاء</span>
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs text-tertiary">check</span> تحويل فوري للبنوك السعودية</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">check</span> لا يوجد حد أقصى للأصدقاء</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs text-tertiary" aria-hidden="true">check</span> تحويل فوري للبنوك السعودية</span>
               </div>
             </div>
 
-            <!-- Stats Panel -->
             <div class="lg:col-span-5 bg-surface-container rounded-xl p-space-md flex flex-col gap-3 border border-outline-variant/10">
               <div class="flex items-center justify-between">
                 <h3 class="font-bold text-on-surface">لوحة أداء إحالاتك</h3>
@@ -615,7 +593,6 @@
           </div>
         </div>
 
-        <!-- Section 5: Transaction History Ledger -->
         <div class="bg-surface-container-lowest rounded-xl p-space-lg lg:p-space-xl shadow-sm flex flex-col gap-space-lg border border-outline-variant/10 text-xs">
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
             <div>
@@ -623,17 +600,15 @@
               <p class="text-xs text-secondary mt-0.5">تتبع دقيق لجميع حركات الإيداع، الخصم، الكاش باك واستبدال النقاط.</p>
             </div>
             
-            <!-- Filter Chips -->
             <div class="flex items-center gap-space-2xs overflow-x-auto pb-1 font-bold" id="ledger-filters">
-              <button class="filter-btn px-3 py-1 rounded-full bg-primary text-on-primary transition-all cursor-pointer" onclick="filterTransactions('all', this)">الكل</button>
-              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('cashback', this)">استرجاع كاش باك</button>
-              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('deposit', this)">إيداع وشحن</button>
-              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('redemption', this)">استبدال مكافآت</button>
-              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('referral', this)">مكافآت الإحالة</button>
+              <button class="filter-btn px-3 py-1 rounded-full bg-primary text-on-primary transition-all cursor-pointer" onclick="filterTransactions('all', this)" type="button">الكل</button>
+              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('cashback', this)" type="button">استرجاع كاش باك</button>
+              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('deposit', this)" type="button">إيداع وشحن</button>
+              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('redemption', this)" type="button">استبدال مكافآت</button>
+              <button class="filter-btn px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface transition-all cursor-pointer" onclick="filterTransactions('referral', this)" type="button">مكافآت الإحالة</button>
             </div>
           </div>
 
-          <!-- Table -->
           <div class="overflow-x-auto">
             <table class="w-full text-right border-collapse">
               <thead>
@@ -650,7 +625,7 @@
                   <td class="py-3 px-3">
                     <div class="flex items-center gap-2">
                       <span class="w-7 h-7 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined text-sm">savings</span>
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">savings</span>
                       </span>
                       <div>
                         <span class="font-bold block">كاش باك 5% - طلب iPhone 15 Pro Max</span>
@@ -670,7 +645,7 @@
                   <td class="py-3 px-3">
                     <div class="flex items-center gap-2">
                       <span class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined text-sm">group_add</span>
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">group_add</span>
                       </span>
                       <div>
                         <span class="font-bold block">مكافأة دعوة صديق (سارة العتيبي)</span>
@@ -690,7 +665,7 @@
                   <td class="py-3 px-3">
                     <div class="flex items-center gap-2">
                       <span class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined text-sm">redeem</span>
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">redeem</span>
                       </span>
                       <div>
                         <span class="font-bold block">استبدال قسيمة شراء</span>
@@ -714,14 +689,13 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="w-full bg-inverse-surface text-inverse-on-surface mt-space-3xl border-t border-outline-variant/20">
     <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl text-sm">
       <div class="flex flex-col gap-space-sm">
         <h3 class="text-surface-container-lowest font-bold text-base">عن تيك برو TechPro</h3>
         <p class="text-secondary-fixed-dim leading-relaxed text-xs">منصة رائدة لتجارة الأجهزة والمنتجات التقنية الحديثة والمجددة بأعلى معايير الجودة والضمان المعتمد في الشرق الأوسط.</p>
         <div class="flex items-center gap-space-xs text-secondary-fixed-dim text-xs mt-space-xs">
-          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">verified_user</span>
+          <span class="material-symbols-outlined text-base text-tertiary-fixed-dim" aria-hidden="true">verified_user</span>
           <span>سجل تجاري موثق وترخيص رسمي</span>
         </div>
       </div>
@@ -764,8 +738,42 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      
+      let bgClass = 'bg-inverse-surface text-inverse-on-surface border-outline-variant/30';
+      let icon = 'info';
+      
+      if (type === 'success') {
+        bgClass = 'bg-tertiary text-on-tertiary border-tertiary-fixed';
+        icon = 'check_circle';
+      } else if (type === 'error') {
+        bgClass = 'bg-error text-on-error border-error-container';
+        icon = 'error';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm font-bold transition-all duration-300 translate-y-2 opacity-0 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">${icon}</span>
+        <span class="flex-1">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     let userPoints = 8750;
     let userBalance = 450.00;
 
@@ -781,7 +789,7 @@
       if (amount && !isNaN(amount) && Number(amount) > 0) {
         userBalance += Number(amount);
         updateUI();
-        alert(`تم شحن ${amount} ر.س بنجاح إلى محفظتك!`);
+        showToast(`تم شحن ${amount} ر.س بنجاح إلى محفظتك!`, 'success');
       }
     }
 
@@ -790,6 +798,7 @@
       navigator.clipboard.writeText(code).then(() => {
         const btnLabel = document.getElementById('copy-btn-label');
         btnLabel.innerText = 'تم النسخ!';
+        showToast('تم نسخ رمز الدعوة إلى الحافظة بنجاح.', 'success');
         setTimeout(() => {
           btnLabel.innerText = 'نسخ الكود';
         }, 2000);
@@ -800,11 +809,12 @@
       const code = document.getElementById('referral-code-text').innerText;
       const text = encodeURIComponent(`استخدم كود الخصم الحصري في متجر تيك برو (${code}) واحصل على خصم 10% فوري! https://techpro.sa`);
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+      showToast('جاري فتح تطبيق واتساب للمشاركة...', 'info');
     }
 
     function redeemReward(name, points, addedBalance = 0) {
       if (userPoints < points) {
-        alert('عذراً، رصيد نقاطك غير كافٍ لهذه المكافأة.');
+        showToast('عذراً، رصيد نقاطك غير كافٍ لهذه المكافأة.', 'error');
         return;
       }
       if (confirm(`هل ترغب في استبدال ${points.toLocaleString()} نقطة مقابل «${name}»؟`)) {
@@ -813,13 +823,13 @@
           userBalance += addedBalance;
         }
         updateUI();
-        alert(`تهانينا! تم استبدال «${name}» بنجاح.`);
+        showToast(`تهانينا! تم استبدال «${name}» بنجاح.`, 'success');
       }
     }
 
     function convertAllPoints() {
       if (userPoints === 0) {
-        alert('لا توجد نقاط متاحة للتحويل.');
+        showToast('لا توجد نقاط متاحة للتحويل حالياً.', 'error');
         return;
       }
       const sarAmount = userPoints / 50;
@@ -827,7 +837,7 @@
         userBalance += sarAmount;
         userPoints = 0;
         updateUI();
-        alert(`تم إيداع ${sarAmount.toFixed(2)} ر.س بنجاح في محفظتك!`);
+        showToast(`تم إيداع ${sarAmount.toFixed(2)} ر.س بنجاح في محفظتك!`, 'success');
       }
     }
 
@@ -848,6 +858,7 @@
           row.style.display = 'none';
         }
       });
+      showToast('تمت تصفية سجل العمليات بنجاح.', 'info');
     }
   </script>
 </body>
