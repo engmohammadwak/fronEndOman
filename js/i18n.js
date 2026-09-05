@@ -43,6 +43,39 @@ const translations = {
     hero_image_badge_title: 'فحص دقيق مجاز',
     hero_image_badge_desc: 'مع بطاقة التقرير الإلكتروني',
     
+    // Categories
+    categories_title: 'تسوق حسب الفئات',
+    categories_desc: 'اختر مجالك وتصفح آلاف الأجهزة الحديثة والمجددة',
+    categories_view_all: 'تصفح الكل',
+    cat_phones: 'هواتف ذكية',
+    cat_phones_count: '1,420 جهاز',
+    cat_laptops: 'حواسيب ولابتوبات',
+    cat_laptops_count: '840 جهاز',
+    cat_tablets: 'أجهزة لوحية',
+    cat_tablets_count: '320 جهاز',
+    cat_watches: 'ساعات وسماعات',
+    cat_watches_count: '615 جهاز',
+    cat_accessories: 'ملحقات وإكسسوارات',
+    cat_accessories_count: '2,100 منتج',
+    cat_gaming: 'شاشات وألعاب',
+    cat_gaming_count: '480 جهاز',
+    
+    // New Arrivals
+    new_arrivals_title: 'أحدث الأجهزة الجديدة كلياً',
+    new_arrivals_subtitle: '● أصلي 100% بضمان الوكيل المعتمد سنتين',
+    view_all: 'عرض الكل',
+    badge_new: 'جديد',
+    badge_discount: 'خصم 18%',
+    product_1_name: 'آبل آيفون 15 برو - تيتانيوم طبيعي سعة 256 جيجابايت',
+    product_1_stock: 'متوفر في المستودع الرئيسي (+50 نقطة)',
+    product_2_name: 'ماك بوك برو M3 بشاشة 14 إنش - رامات 18GB و 512GB SSD',
+    product_2_stock: 'متوفر في المستودع (+80 نقطة)',
+    product_3_name: 'ساعة سامسونج جالاكسي ووتش 6 كلاسيك مقاس 47 مم',
+    product_3_stock: 'متوفر في المستودع (+30 نقطة)',
+    product_4_name: 'سماعات سوني WH-1000XM5 اللاسلكية العازلة للضوضاء',
+    product_4_stock: 'متوفر في المستودع (+40 نقطة)',
+    add_to_cart: 'إضافة',
+    
     // Main Content
     main_title: 'محتوى الصفحة الرئيسية',
     main_desc: 'الهيدر والفوتر يتم تحميلهم ديناميكياً! ✅',
@@ -116,6 +149,39 @@ const translations = {
     hero_image_badge_title: 'Certified Precision Inspection',
     hero_image_badge_desc: 'With electronic report card',
     
+    // Categories
+    categories_title: 'Shop by Categories',
+    categories_desc: 'Choose your category and browse thousands of new and refurbished devices',
+    categories_view_all: 'View All',
+    cat_phones: 'Smartphones',
+    cat_phones_count: '1,420 devices',
+    cat_laptops: 'Laptops & Computers',
+    cat_laptops_count: '840 devices',
+    cat_tablets: 'Tablets',
+    cat_tablets_count: '320 devices',
+    cat_watches: 'Watches & Earbuds',
+    cat_watches_count: '615 devices',
+    cat_accessories: 'Accessories',
+    cat_accessories_count: '2,100 products',
+    cat_gaming: 'Gaming & Monitors',
+    cat_gaming_count: '480 devices',
+    
+    // New Arrivals
+    new_arrivals_title: 'Latest Brand New Devices',
+    new_arrivals_subtitle: '● 100% Original with 2-year authorized warranty',
+    view_all: 'View All',
+    badge_new: 'New',
+    badge_discount: '18% OFF',
+    product_1_name: 'Apple iPhone 15 Pro - Natural Titanium 256GB',
+    product_1_stock: 'Available in main warehouse (+50 points)',
+    product_2_name: 'MacBook Pro M3 14-inch - 18GB RAM & 512GB SSD',
+    product_2_stock: 'Available in warehouse (+80 points)',
+    product_3_name: 'Samsung Galaxy Watch 6 Classic 47mm',
+    product_3_stock: 'Available in warehouse (+30 points)',
+    product_4_name: 'Sony WH-1000XM5 Wireless Noise-Canceling Headphones',
+    product_4_stock: 'Available in warehouse (+40 points)',
+    add_to_cart: 'Add',
+    
     // Main Content
     main_title: 'Homepage Content',
     main_desc: 'Header and footer loaded dynamically! ✅',
@@ -167,9 +233,7 @@ function toggleLanguage() {
     currentLang = 'ar';
   }
   
-  // Update text direction classes
   updateTextDirection();
-  
   updateAllTexts();
   if (langText) langText.textContent = translations[currentLang].lang_btn;
   localStorage.setItem('lang', currentLang);
@@ -181,11 +245,9 @@ function updateTextDirection() {
   
   if (heroContent) {
     if (currentLang === 'en') {
-      // LTR mode
       heroContent.classList.remove('text-right');
       heroContent.classList.add('text-left');
     } else {
-      // RTL mode
       heroContent.classList.remove('text-left');
       heroContent.classList.add('text-right');
     }
@@ -208,7 +270,6 @@ function updateAllTexts() {
     }
   });
   
-  // Update text direction after texts are updated
   updateTextDirection();
 }
 
