@@ -16,6 +16,14 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/main.css">
+  
+  <!-- RTL/LTR Direction Styles -->
+  <style>
+    [dir="ltr"] .hero-content { text-align: left; }
+    [dir="rtl"] .hero-content { text-align: right; }
+    [dir="ltr"] .hero-badges { flex-direction: row; }
+    [dir="rtl"] .hero-badges { flex-direction: row-reverse; }
+  </style>
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen flex flex-col">
 
@@ -76,8 +84,8 @@
       <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-primary-fixed-dim/15 blur-3xl pointer-events-none"></div>
       
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center relative z-10">
-        <div class="lg:col-span-7 flex flex-col items-start gap-space-md text-right">
-          <div class="inline-flex items-center gap-1.5 bg-surface-container-lowest/15 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-tertiary-fixed">
+        <div class="lg:col-span-7 flex flex-col gap-space-md hero-content text-right">
+          <div class="inline-flex items-center gap-1.5 bg-surface-container-lowest/15 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-tertiary-fixed w-fit">
             <span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-ping"></span>
             <span data-i18n="hero_badge">تخفيضات الموسم الكبرى 2026</span>
           </div>
@@ -90,7 +98,7 @@
             احصل على أقوى أجهزة iPhone 15 Pro Max ولابتوبات MacBook Pro مع رقاقة M3 فائقة القوة بتوفير يصل حتى 35% مع باقة هدايا تيك برو الحصرية.
           </p>
 
-          <div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto text-xs font-bold">
+          <div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto text-xs font-bold hero-badges">
             <a class="w-full sm:w-auto text-center px-6 py-3 rounded-lg bg-surface-container-lowest text-primary shadow-xl hover:bg-surface-container-low transition-all active:scale-95" href="#" data-i18n="hero_btn_new">
               تسوق الأجهزة الجديدة الآن
             </a>
@@ -99,7 +107,7 @@
             </a>
           </div>
 
-          <div class="flex items-center gap-3 mt-2 p-2 bg-surface-container-lowest/10 backdrop-blur-md rounded-xl text-xs">
+          <div class="flex items-center gap-3 mt-2 p-2 bg-surface-container-lowest/10 backdrop-blur-md rounded-xl text-xs hero-badges">
             <div class="flex -space-x-2 space-x-reverse">
               <span class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface font-bold flex items-center justify-center ring-2 ring-surface-container-lowest text-[11px]">★</span>
               <span class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary font-bold flex items-center justify-center ring-2 ring-surface-container-lowest text-[11px]">A+</span>

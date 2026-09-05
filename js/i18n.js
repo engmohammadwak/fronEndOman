@@ -167,9 +167,29 @@ function toggleLanguage() {
     currentLang = 'ar';
   }
   
+  // Update text direction classes
+  updateTextDirection();
+  
   updateAllTexts();
   if (langText) langText.textContent = translations[currentLang].lang_btn;
   localStorage.setItem('lang', currentLang);
+}
+
+// تحديث اتجاه النصوص
+function updateTextDirection() {
+  const heroContent = document.querySelector('.hero-content');
+  
+  if (heroContent) {
+    if (currentLang === 'en') {
+      // LTR mode
+      heroContent.classList.remove('text-right');
+      heroContent.classList.add('text-left');
+    } else {
+      // RTL mode
+      heroContent.classList.remove('text-left');
+      heroContent.classList.add('text-right');
+    }
+  }
 }
 
 // تحديث كل النصوص بناءً على اللغة
@@ -187,6 +207,9 @@ function updateAllTexts() {
       el.placeholder = translations[currentLang][key];
     }
   });
+  
+  // Update text direction after texts are updated
+  updateTextDirection();
 }
 
 // تحميل اللغة المحفوظة
