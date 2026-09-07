@@ -15,6 +15,30 @@ async function loadComponent(selector, file) {
 }
 
 // ========================================
+// Navigation Active State Handler
+// ========================================
+function setActiveNavLink() {
+  const currentPath = window.location.pathname;
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    const isHome = (currentPath === '/' || currentPath.endsWith('index.html')) && href.includes('index.html');
+    const isCurrentPage = href && currentPath.endsWith(href.replace(/^\//, ''));
+
+    if (isHome || isCurrentPage) {
+      link.classList.add('text-tertiary-fixed', 'font-bold', 'border-b-2', 'border-tertiary-fixed');
+      link.classList.remove('text-secondary-fixed');
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.classList.remove('text-tertiary-fixed', 'font-bold', 'border-b-2', 'border-tertiary-fixed');
+      link.classList.add('text-secondary-fixed', 'hover:text-surface-container-lowest');
+      link.removeAttribute('aria-current');
+    }
+  });
+}
+
+// ========================================
 // Cart & Wishlist State
 // ========================================
 let cart = [];
@@ -26,10 +50,12 @@ function updateCartDisplay() {
   if (!cartCount || !cartTotal) return;
   
   const total = cart.reduce((sum, item) => sum + item.price, 0);
-  cartCount.textContent = currentLang === 'ar' 
+  const isArabic = typeof currentLang !== 'undefined' ? currentLang === 'ar' : true;
+
+  cartCount.textContent = isArabic 
     ? `سلة المشتريات (${cart.length})` 
     : `Shopping Cart (${cart.length})`;
-  cartTotal.textContent = `${total.toFixed(2)} ${currentLang === 'ar' ? 'ر.ع.' : 'OMR'}`;
+  cartTotal.textContent = `${total.toFixed(2)} ${isArabic ? 'ر.ع.' : 'OMR'}`;
   
   localStorage.setItem('cart', JSON.stringify(cart));
 }
@@ -51,7 +77,8 @@ function updateWishlistDisplay() {
 function addToCart(price) {
   cart.push({ price: price });
   updateCartDisplay();
-  console.log(`Added to cart: ${price} ${currentLang === 'ar' ? 'ر.ع.' : 'OMR'}`);
+  const isArabic = typeof currentLang !== 'undefined' ? currentLang === 'ar' : true;
+  console.log(`Added to cart: ${price} ${isArabic ? 'ر.ع.' : 'OMR'}`);
 }
 
 function addToWishlist() {
@@ -71,12 +98,17 @@ function clearCart() {
 // ========================================
 document.addEventListener('DOMContentLoaded', async function() {
   // Load saved language first
-  loadSavedLanguage();
+  if (typeof loadSavedLanguage === 'function') {
+    loadSavedLanguage();
+  }
   
   // Load components
   await loadComponent('#header-container', 'components/header.html');
   await loadComponent('#footer-container', 'components/footer.html');
   
+  // Set the active link based on current page URL
+  setActiveNavLink();
+
   // Update all texts after header and footer are inserted into the page
   if (typeof updateAllTexts === 'function') {
     updateAllTexts();
@@ -84,19 +116,26 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   // Tell i18n that dynamically loaded components are ready
   document.dispatchEvent(new CustomEvent('componentsLoaded'));
-
   
   // Load saved state
   const savedCart = localStorage.getItem('cart');
   const savedWishlist = localStorage.getItem('wishlist');
   
   if (savedCart) {
-    cart = JSON.parse(savedCart);
-    updateCartDisplay();
+    try {
+      cart = JSON.parse(savedCart);
+      updateCartDisplay();
+    } catch (e) {
+      console.error('Error parsing cart from localStorage:', e);
+    }
   }
   
   if (savedWishlist) {
-    wishlist = JSON.parse(savedWishlist);
-    updateWishlistDisplay();
+    try {
+      wishlist = JSON.parse(savedWishlist);
+      updateWishlistDisplay();
+    } catch (e) {
+      console.error('Error parsing wishlist from localStorage:', e);
+    }
   }
 });
