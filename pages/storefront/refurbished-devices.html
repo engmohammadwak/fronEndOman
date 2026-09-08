@@ -13,9 +13,10 @@
 
   <link rel="stylesheet" href="../../css/variables.css">
   <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/catalog.css?v=catalog-filters-2">
 </head>
 <body
-  class="bg-background font-sans text-on-surface min-h-screen flex flex-col"
+  class="catalog-page bg-background font-sans text-on-surface min-h-screen flex flex-col"
   data-active-nav="refurbished"
   data-header-path="../../components/header.html"
   data-footer-path="../../components/footer.html"
@@ -28,15 +29,15 @@
       <!-- Top Sub-Header & Breadcrumb -->
       <section class="w-full bg-surface-container-low px-space-md lg:px-space-xl py-space-lg shadow-sm border-b border-outline-variant/10 text-xs">
         <div class="max-w-7xl mx-auto flex flex-col gap-space-md">
-          <nav aria-label="مسار التنقل" class="flex items-center gap-1 text-secondary font-bold">
+          <nav aria-label="مسار التنقل" class="flex flex-wrap items-center gap-1 text-secondary font-bold">
             <a class="hover:text-primary transition-colors flex items-center gap-1" href="../../index.html">
               <span class="material-symbols-outlined text-base" aria-hidden="true">home</span>
-              <span>الرئيسية</span>
+              <span data-i18n="nav_home">الرئيسية</span>
             </a>
             <span class="material-symbols-outlined text-xs rotate-180 text-outline" aria-hidden="true">chevron_right</span>
-            <span>الأجهزة الإلكترونية</span>
+            <span data-i18n="catalog_electronics">الأجهزة الإلكترونية</span>
             <span class="material-symbols-outlined text-xs rotate-180 text-outline" aria-hidden="true">chevron_right</span>
-            <span class="text-on-surface">كتالوج الأجهزة والتقنيات</span>
+            <span class="text-on-surface" data-i18n="refurbished_page_title" aria-current="page"></span>
           </nav>
 
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
@@ -50,7 +51,7 @@
 
             <nav class="inline-flex p-1 bg-surface-container rounded-xl shadow-inner gap-1 shrink-0" aria-label="أنواع الأجهزة">
               <a href="new-devices.html" class="px-4 py-2 rounded-lg font-bold text-secondary" data-i18n="nav_new_devices"></a>
-              <a href="refurbished-devices.html" class="px-4 py-2 rounded-lg font-bold bg-surface-container-lowest text-primary shadow-sm" data-i18n="nav_refurbished"></a>
+              <a href="refurbished-devices.html" aria-current="page" class="px-4 py-2 rounded-lg font-bold bg-surface-container-lowest text-primary shadow-sm" data-i18n="nav_refurbished"></a>
             </nav>
           </div>
         </div>
@@ -59,7 +60,7 @@
       <!-- Interactive Control Bar -->
       <section class="w-full bg-surface-container-lowest px-space-md lg:px-space-xl py-space-md shadow-sm text-xs">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-md">
-          <div class="relative flex-1 min-w-0 w-full max-w-lg">
+          <div class="catalog-search relative flex-1 min-w-0 w-full max-w-lg">
             <span class="material-symbols-outlined absolute right-3 top-2.5 text-secondary text-lg" aria-hidden="true">search</span>
             <input id="catalog-search" data-i18n-placeholder="catalog_search" aria-label="ابحث في الكتالوج" class="w-full h-10 pr-9 pl-3 bg-surface-container-low rounded-lg text-on-surface placeholder:text-secondary focus:outline-none border border-outline-variant/20 focus:border-primary transition-all font-mono text-xs" placeholder="ابحث بالاسم، الموديل، السعة، المعالج..." type="text"/>
           </div>
@@ -105,8 +106,8 @@
   <script src="../../js/i18n.js"></script>
   <script src="../../js/toast.js"></script>
   <script src="../../js/main.js"></script>
-  <script src="../../js/pages/storefront-common.js"></script>
-  <script src="../../js/pages/catalog-layout.js"></script>
-  <script src="../../js/pages/refurbished-devices.js"></script>
+  <script src="../../js/pages/storefront-common.js?v=catalog-filters-2"></script>
+  <script src="../../js/pages/catalog-layout.js?v=catalog-filters-2"></script>
+  <script src="../../js/pages/refurbished-devices.js?v=catalog-filters-2"></script>
 </body>
 </html>

@@ -174,6 +174,7 @@ function normalizeProduct(apiProduct) {
     image: apiProduct.image_url || apiProduct.image || STOREFRONT_PLACEHOLDER_IMAGE,
     conditionAr: apiProduct.condition_ar || apiProduct.conditionAr || '',
     conditionEn: apiProduct.condition_en || apiProduct.conditionEn || '',
+    storageGb: apiProduct.storage_gb ?? apiProduct.storageGb ?? null,
     battery: apiProduct.battery != null ? Number(apiProduct.battery) : null,
     warrantyMonths: apiProduct.warranty_months != null
       ? Number(apiProduct.warranty_months)

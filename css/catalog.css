@@ -1,0 +1,35 @@
+.catalog-page { --catalog-header-height: 176px; }
+.catalog-page > main { padding-top: var(--catalog-header-height); }
+.catalog-page #filters-container { top: calc(var(--catalog-header-height) + 16px); }
+.catalog-page nav[aria-label="أنواع الأجهزة"] { max-width: 100%; }
+.catalog-page nav[aria-label="أنواع الأجهزة"] a { text-align: center; }
+.catalog-page #catalog-search { padding-inline-start: 2.25rem; padding-inline-end: .75rem; }
+.catalog-page .catalog-search > span { right: auto; inset-inline-start: .75rem; }
+.catalog-page[dir="ltr"] .rotate-180,
+[dir="ltr"] .catalog-page .rotate-180 { transform: none; }
+.catalog-page :is(button, a, input, select, summary):focus-visible {
+  outline: 2px solid #3525cd;
+  outline-offset: 3px;
+}
+.catalog-page .wishlist-button { min-width: 36px; min-height: 36px; }
+@media (max-width: 639px) {
+  .catalog-page .catalog-search { flex-basis: 100%; }
+  .catalog-page #header-container header > div:nth-child(2) > div:first-child {
+    height: auto;
+    min-height: 80px;
+    padding-block: 12px;
+    flex-wrap: wrap;
+  }
+  .catalog-page #header-container header > div:nth-child(2) > div:first-child > div:first-child {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .catalog-page #header-container header .text-xl.font-black { font-size: 1rem; }
+  .catalog-page nav[aria-label="أنواع الأجهزة"] a { padding-inline: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .catalog-page *, .catalog-page *::before, .catalog-page *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

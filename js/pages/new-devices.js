@@ -155,6 +155,7 @@ async function loadNewDevices() {
 
 function getVisibleNewDevices() {
   const filtered = pageData.filter((item) => {
+    if (!catalogMatchesFacets(item)) return false;
     if (!catalogMatchesSearch(item)) return false;
     if (activeCategory !== 'all' && item.category !== activeCategory) return false;
     if (activeBrand !== 'all' && item.brand !== activeBrand) return false;
@@ -174,6 +175,7 @@ function renderNewDevices() {
   setPageCopy('new_devices_page_title', 'new_devices_page_desc');
   updateSortSelectLabels();
   renderCatalogFilters({
+    products: pageData,
     categories: uniqueValues(pageData, 'category'),
     brands: uniqueValues(pageData, 'brand'),
     activeCategory,
