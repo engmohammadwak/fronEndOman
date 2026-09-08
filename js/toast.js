@@ -58,9 +58,12 @@ function showToast(message, type = 'success', duration = 3000) {
   
   toast.innerHTML = `
     <span class="material-symbols-outlined text-xl" aria-hidden="true">${toastConfig.icon}</span>
-    <span class="flex-1">${message}</span>
+    <span class="flex-1"></span>
   `;
   
+  toast.lastElementChild.textContent = message;
+  toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+
   // إضافة الإشعار للحاوية
   container.appendChild(toast);
   

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>تيك برو TechPro - خدمة العملاء</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../js/tailwind-config.js"></script>
+
+  <link rel="stylesheet" href="../../css/variables.css">
+  <link rel="stylesheet" href="../../css/main.css">
+
+  <style>
+    details summary::-webkit-details-marker { display: none; }
+    details summary { list-style: none; }
+  </style>
+</head>
+<body
+  class="bg-background font-sans text-on-surface min-h-screen flex flex-col"
+  data-active-nav="customer-service"
+  data-header-path="../../components/header.html"
+  data-footer-path="../../components/footer.html"
+>
+  <div id="header-container"></div>
+
+  <main class="w-full pt-36 lg:pt-40 flex-grow">
+    <section class="max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-2xl">
+      <div class="mb-space-xl">
+        <p class="text-secondary text-xs mb-2">
+          <a href="../../index.html" class="hover:text-primary">
+            <span data-i18n="nav_home">الرئيسية</span>
+          </a>
+          <span class="mx-1">/</span>
+          <span data-i18n="customer_service_page_title">خدمة العملاء</span>
+        </p>
+
+        <h1 id="page-title" class="text-2xl lg:text-3xl font-black text-on-surface"></h1>
+        <p id="page-description" class="text-secondary mt-2"></p>
+      </div>
+
+      <div
+        id="demo-data-notice"
+        class="hidden mb-space-lg rounded-lg bg-primary-container/10 text-primary p-3 text-xs"
+        data-i18n="demo_data_notice"
+      >
+        يتم عرض بيانات تجريبية مؤقتاً إلى حين الاتصال بلوحة التحكم.
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-lg mb-space-2xl">
+        <article class="rounded-xl bg-surface-container-lowest border border-outline-variant/10 p-4">
+          <p class="text-xs text-secondary mb-1" data-i18n="cs_phone_label">الهاتف</p>
+          <p class="font-bold text-on-surface">+968 2400 0000</p>
+        </article>
+        <article class="rounded-xl bg-surface-container-lowest border border-outline-variant/10 p-4">
+          <p class="text-xs text-secondary mb-1" data-i18n="cs_whatsapp_label">واتساب</p>
+          <p class="font-bold text-on-surface">+968 9900 0000</p>
+        </article>
+        <article class="rounded-xl bg-surface-container-lowest border border-outline-variant/10 p-4">
+          <p class="text-xs text-secondary mb-1" data-i18n="cs_email_label">البريد الإلكتروني</p>
+          <p class="font-bold text-on-surface">support@techpro.om</p>
+        </article>
+        <article class="rounded-xl bg-surface-container-lowest border border-outline-variant/10 p-4">
+          <p class="text-xs text-secondary mb-1" data-i18n="cs_hours_label">ساعات العمل</p>
+          <p class="font-bold text-on-surface" data-i18n="cs_hours_value">يومياً من 9 صباحاً حتى 10 مساءً</p>
+        </article>
+      </div>
+
+      <div class="mb-space-lg">
+        <h2 id="faq-title" class="text-xl font-black text-on-surface mb-4"></h2>
+        <div id="faq-categories" class="flex flex-wrap gap-2 mb-space-lg"></div>
+        <div id="faq-list" class="flex flex-col gap-3"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="../../js/i18n.js"></script>
+  <script src="../../js/toast.js"></script>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/pages/storefront-common.js"></script>
+  <script src="../../js/pages/customer-service.js"></script>
+</body>
+</html>

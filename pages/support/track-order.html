@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تتبع حالة الطلب | الأرض الذكية Smart Earth</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../js/tailwind-config.js"></script>
+
+  <link rel="stylesheet" href="../../css/variables.css">
+  <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body
+  data-active-nav=""
+  data-header-path="../../components/header.html"
+  data-footer-path="../../components/footer.html"
+  class="bg-background font-sans text-on-surface antialiased min-h-screen flex flex-col"
+>
+  <div id="header-container"></div>
+
+  <main class="w-full pt-36 lg:pt-40 flex-grow">
+    <section class="max-w-4xl mx-auto px-4 lg:px-8 py-10">
+      <div class="text-center mb-8">
+        <div class="w-14 h-14 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-3">
+          <span class="material-symbols-outlined text-3xl" aria-hidden="true">local_shipping</span>
+        </div>
+        <h1 class="text-3xl font-black text-on-surface">تتبع حالة طلبك</h1>
+        <p class="text-secondary text-sm mt-2">تابع مسار شحنتك وموعد وصولها لحظة بلحظة</p>
+      </div>
+
+      <div class="bg-surface-container-lowest rounded-3xl border border-outline-variant/15 p-6 lg:p-8 shadow-sm">
+        <form id="track-form" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-secondary mb-1.5" for="track-order-no">رقم الطلب</label>
+            <input
+              id="track-order-no"
+              type="text"
+              value="SE-2026-00128"
+              placeholder="SE-2026-XXXXX"
+              class="w-full rounded-xl border border-outline-variant/30 p-3 text-sm focus:border-primary font-mono"
+              required
+            >
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-secondary mb-1.5" for="track-contact">الهاتف أو البريد</label>
+            <input
+              id="track-contact"
+              type="text"
+              value="96891234567"
+              placeholder="968XXXXXXXX"
+              class="w-full rounded-xl border border-outline-variant/30 p-3 text-sm focus:border-primary font-mono"
+              required
+            >
+          </div>
+
+          <div class="flex items-end">
+            <button
+              type="submit"
+              class="w-full bg-primary hover:bg-primary/90 text-on-primary font-bold rounded-xl p-3 text-sm transition flex items-center justify-center gap-2 shadow-sm"
+            >
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">search</span>
+              تتبع الطلب
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div id="track-result" class="mt-8"></div>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="../../js/i18n.js"></script>
+  <script src="../../js/toast.js"></script>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/pages/track-order.js"></script>
+</body>
+</html>

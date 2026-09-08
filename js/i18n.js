@@ -354,6 +354,91 @@ const translations = {
   }
 };
 
+translations.ar.page_in_progress = 'هذه الصفحة قيد التجهيز ضمن النموذج الأولي.';
+translations.en.page_in_progress = 'This page is being prepared as part of the prototype.';
+
+Object.assign(translations.ar, {
+  new_devices_page_title: 'الأجهزة الجديدة',
+  new_devices_page_desc: 'أحدث الأجهزة الأصلية بضمان الوكيل المعتمد.',
+  refurbished_page_title: 'الأجهزة المستعملة والمجددة',
+  refurbished_page_desc: 'أجهزة مفحوصة هندسياً مع ضمان وبطارية موثقة.',
+  special_offers_page_title: 'العروض الخاصة',
+  special_offers_page_desc: 'تخفيضات محدودة الوقت على أجهزة مختارة.',
+  brands_page_title: 'الماركات',
+  brands_page_desc: 'تسوق حسب العلامة التجارية المعتمدة.',
+  customer_service_page_title: 'خدمة العملاء',
+  customer_service_page_desc: 'أسئلة شائعة ومساعدة مباشرة لتتبع الطلبات والضمان.',
+  demo_data_notice: 'يتم عرض بيانات تجريبية مؤقتاً إلى حين الاتصال بلوحة التحكم.',
+  products_count: 'عرض {count} منتج',
+  sort_latest: 'الأحدث',
+  sort_rating: 'الأعلى تقييماً',
+  sort_price_low: 'السعر: من الأقل للأعلى',
+  sort_price_high: 'السعر: من الأعلى للأقل',
+  load_more: 'تحميل المزيد',
+  filters_title: 'تصفية النتائج',
+  filter_category: 'الفئة',
+  filter_brand: 'الماركة',
+  filter_condition: 'الحالة',
+  filter_all: 'الكل',
+  offer_shop: 'تسوق العرض',
+  offer_expires: 'ينتهي خلال',
+  brand_products: '{count} منتج',
+  faq_title: 'الأسئلة الشائعة',
+  faq_all: 'كل الأسئلة',
+  faq_orders: 'الطلبات',
+  faq_shipping: 'الشحن',
+  faq_warranty: 'الضمان',
+  faq_payment: 'الدفع',
+  faq_returns: 'الإرجاع',
+  cs_contact_title: 'تواصل معنا',
+  cs_phone_label: 'الهاتف',
+  cs_whatsapp_label: 'واتساب',
+  cs_email_label: 'البريد الإلكتروني',
+  cs_hours_label: 'ساعات العمل',
+  cs_hours_value: 'يومياً من 9 صباحاً حتى 10 مساءً'
+});
+
+Object.assign(translations.en, {
+  new_devices_page_title: 'New Devices',
+  new_devices_page_desc: 'Latest original devices with authorized warranty.',
+  refurbished_page_title: 'Refurbished Devices',
+  refurbished_page_desc: 'Engineer-inspected devices with documented battery and warranty.',
+  special_offers_page_title: 'Special Offers',
+  special_offers_page_desc: 'Limited-time discounts on selected devices.',
+  brands_page_title: 'Brands',
+  brands_page_desc: 'Shop by certified brand.',
+  customer_service_page_title: 'Customer Service',
+  customer_service_page_desc: 'FAQs and direct help for orders and warranty.',
+  demo_data_notice: 'Showing temporary demo data until the dashboard is connected.',
+  products_count: 'Showing {count} products',
+  sort_latest: 'Latest',
+  sort_rating: 'Highest rated',
+  sort_price_low: 'Price: low to high',
+  sort_price_high: 'Price: high to low',
+  load_more: 'Load more',
+  filters_title: 'Filter results',
+  filter_category: 'Category',
+  filter_brand: 'Brand',
+  filter_condition: 'Condition',
+  filter_all: 'All',
+  offer_shop: 'Shop offer',
+  offer_expires: 'Ends in',
+  brand_products: '{count} products',
+  faq_title: 'Frequently asked questions',
+  faq_all: 'All questions',
+  faq_orders: 'Orders',
+  faq_shipping: 'Shipping',
+  faq_warranty: 'Warranty',
+  faq_payment: 'Payment',
+  faq_returns: 'Returns',
+  cs_contact_title: 'Contact us',
+  cs_phone_label: 'Phone',
+  cs_whatsapp_label: 'WhatsApp',
+  cs_email_label: 'Email',
+  cs_hours_label: 'Working hours',
+  cs_hours_value: 'Daily from 9 AM to 10 PM'
+});
+
 let currentLang = 'ar';
 
 // تغيير اللغة
@@ -374,7 +459,15 @@ function toggleLanguage() {
   updateTextDirection();
   updateAllTexts();
   if (langText) langText.textContent = translations[currentLang].lang_btn;
-  localStorage.setItem('lang', currentLang);
+  try { localStorage.setItem('lang', currentLang); } catch {}
+
+  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
+    window.dispatchEvent(new CustomEvent('languageChanged', {
+      detail: {
+        language: currentLang
+      }
+    }));
+  }
 }
 
 // تحديث اتجاه النصوص
@@ -409,12 +502,14 @@ function updateAllTexts() {
   });
   
   updateTextDirection();
+  if (typeof updateCartDisplay === 'function') updateCartDisplay();
 }
 
 // تحميل اللغة المحفوظة
 function loadSavedLanguage() {
-  const savedLang = localStorage.getItem('lang');
-  if (savedLang) {
+  let savedLang;
+  try { savedLang = localStorage.getItem('lang'); } catch { return; }
+  if (savedLang === 'ar' || savedLang === 'en') {
     currentLang = savedLang;
     const langText = document.getElementById('lang-text');
     const html = document.documentElement;

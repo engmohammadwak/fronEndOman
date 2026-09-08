@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مركز المساعدة | الأرض الذكية Smart Earth</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../js/tailwind-config.js"></script>
+
+  <link rel="stylesheet" href="../../css/variables.css">
+  <link rel="stylesheet" href="../../css/main.css">
+
+  <style>
+    details summary::-webkit-details-marker { display: none; }
+    details summary { list-style: none; }
+  </style>
+</head>
+<body
+  data-active-nav=""
+  data-header-path="../../components/header.html"
+  data-footer-path="../../components/footer.html"
+  class="bg-background font-sans text-on-surface antialiased min-h-screen flex flex-col"
+>
+  <div id="header-container"></div>
+
+  <main class="w-full pt-36 lg:pt-40 flex-grow">
+    <section class="max-w-5xl mx-auto px-4 lg:px-8 py-10">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <div class="w-14 h-14 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-3">
+          <span class="material-symbols-outlined text-3xl" aria-hidden="true">support_agent</span>
+        </div>
+        <h1 class="text-3xl font-black text-on-surface">كيف يمكننا مساعدتك اليوم؟</h1>
+        <p class="text-secondary text-sm mt-2">ابحث في قاعدة المعرفة أو تصفح الأقسام الشائعة أدناه</p>
+
+        <div class="relative mt-6">
+          <input
+            id="faq-search"
+            type="search"
+            placeholder="ابحث عن كلمة، مشكلة، أو استفسار (مثل: الشحن، الاسترجاع، تابي)..."
+            class="w-full rounded-2xl bg-surface-container-lowest border border-outline-variant/30 py-3.5 pr-12 pl-4 text-sm focus:outline-none focus:border-primary shadow-sm transition"
+          >
+          <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline" aria-hidden="true">search</span>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-8" id="faq-categories">
+        <button type="button" data-cat="all" class="cat-pill active px-5 py-2 rounded-xl text-xs font-bold transition bg-primary text-on-primary">
+          الكل
+        </button>
+        <button type="button" data-cat="orders" class="cat-pill px-5 py-2 rounded-xl text-xs font-bold transition bg-surface-container-lowest border border-outline-variant/20 hover:border-primary text-secondary">
+          الطلبات والتوصيل
+        </button>
+        <button type="button" data-cat="returns" class="cat-pill px-5 py-2 rounded-xl text-xs font-bold transition bg-surface-container-lowest border border-outline-variant/20 hover:border-primary text-secondary">
+          الاستبدال والاسترجاع
+        </button>
+        <button type="button" data-cat="warranty" class="cat-pill px-5 py-2 rounded-xl text-xs font-bold transition bg-surface-container-lowest border border-outline-variant/20 hover:border-primary text-secondary">
+          الضمان والصيانة
+        </button>
+      </div>
+
+      <div class="bg-surface-container-lowest rounded-3xl border border-outline-variant/15 p-6 lg:p-8 shadow-sm">
+        <div class="flex items-center justify-between pb-4 mb-4 border-b border-outline-variant/10">
+          <h2 class="text-lg font-black text-on-surface">الأسئلة الشائعة</h2>
+          <span id="faq-count" class="text-xs font-bold text-secondary font-mono"></span>
+        </div>
+
+        <div id="faq-list" class="space-y-3"></div>
+
+        <div id="faq-empty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-4xl text-outline mb-2" aria-hidden="true">search_off</span>
+          <p class="text-sm font-bold text-secondary">لم يتم العثور على أي نتيجة مطابقة لبحثك.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="../../js/i18n.js"></script>
+  <script src="../../js/toast.js"></script>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/pages/help-center.js"></script>
+</body>
+</html>

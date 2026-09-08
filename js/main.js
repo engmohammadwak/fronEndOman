@@ -1,3 +1,15 @@
+const appBaseUrl = new URL('../', document.currentScript.src);
+
+function readSavedState(key, fallback) {
+  try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+  catch { return fallback; }
+}
+
+function saveState(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); }
+  catch (error) { console.warn('Storage unavailable:', error); }
+}
+
 // ========================================
 // Component Loader
 // ========================================
@@ -6,9 +18,14 @@ async function loadComponent(selector, file) {
   if (!container) return;
   
   try {
-    const response = await fetch(file);
+    const response = await fetch(file.startsWith('http://') || file.startsWith('https://')
+      ? file
+      : new URL(file, appBaseUrl), { cache: 'no-store' });
     if (!response.ok) throw new Error(`Failed to load ${file}`);
     container.innerHTML = await response.text();
+    container.querySelectorAll('a[href^="/"]').forEach(link => {
+      link.href = new URL(link.getAttribute('href').slice(1), appBaseUrl).href;
+    });
   } catch (error) {
     console.error(`Error loading ${file}:`, error);
   }
@@ -19,14 +36,17 @@ async function loadComponent(selector, file) {
 // ========================================
 function setActiveNavLink() {
   const currentPath = window.location.pathname;
+  const activeNav = document.body && document.body.dataset ? document.body.dataset.activeNav : '';
   const navLinks = document.querySelectorAll('.nav-link');
 
   navLinks.forEach(link => {
     const href = link.getAttribute('href');
-    const isHome = (currentPath === '/' || currentPath.endsWith('index.html')) && href.includes('index.html');
-    const isCurrentPage = href && currentPath.endsWith(href.replace(/^\//, ''));
+    const targetPath = href ? new URL(href, window.location.href).pathname : null;
+    const isHome = currentPath === appBaseUrl.pathname && targetPath === new URL('index.html', appBaseUrl).pathname;
+    const isCurrentPage = targetPath === currentPath;
+    const isActiveNav = activeNav && link.dataset.nav === activeNav;
 
-    if (isHome || isCurrentPage) {
+    if (isActiveNav || isHome || isCurrentPage) {
       link.classList.add('text-tertiary-fixed', 'font-bold', 'border-b-2', 'border-tertiary-fixed');
       link.classList.remove('text-secondary-fixed');
       link.setAttribute('aria-current', 'page');
@@ -41,8 +61,10 @@ function setActiveNavLink() {
 // ========================================
 // Cart & Wishlist State
 // ========================================
-let cart = [];
-let wishlist = [];
+let cart = readSavedState('cart', []);
+cart = Array.isArray(cart) ? cart.filter(item => item && Number.isFinite(item.price) && item.price >= 0) : [];
+let wishlist = readSavedState('wishlist', []);
+wishlist = Array.isArray(wishlist) ? wishlist : [];
 
 function updateCartDisplay() {
   const cartCount = document.getElementById('cart-count');
@@ -57,7 +79,7 @@ function updateCartDisplay() {
     : `Shopping Cart (${cart.length})`;
   cartTotal.textContent = `${total.toFixed(2)} ${isArabic ? 'ر.ع.' : 'OMR'}`;
   
-  localStorage.setItem('cart', JSON.stringify(cart));
+
 }
 
 function updateWishlistDisplay() {
@@ -71,24 +93,30 @@ function updateWishlistDisplay() {
     wishlistCount.style.display = 'none';
   }
   
-  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
 }
 
 function addToCart(price) {
+  if (!Number.isFinite(price) || price < 0) return;
   cart.push({ price: price });
+  saveState('cart', cart);
   updateCartDisplay();
   const isArabic = typeof currentLang !== 'undefined' ? currentLang === 'ar' : true;
   console.log(`Added to cart: ${price} ${isArabic ? 'ر.ع.' : 'OMR'}`);
 }
 
-function addToWishlist() {
-  wishlist.push({ id: Date.now() });
+function addToWishlist(productId) {
+  const id = productId == null ? Date.now() : productId;
+  if (wishlist.some(item => item.id === id)) return;
+  wishlist.push({ id });
+  saveState('wishlist', wishlist);
   updateWishlistDisplay();
   console.log(`Added to wishlist: ${wishlist.length} items`);
 }
 
 function clearCart() {
   cart = [];
+  saveState('cart', cart);
   updateCartDisplay();
   console.log('Cart cleared');
 }
@@ -102,9 +130,15 @@ document.addEventListener('DOMContentLoaded', async function() {
     loadSavedLanguage();
   }
   
-  // Load components
-  await loadComponent('#header-container', 'components/header.html');
-  await loadComponent('#footer-container', 'components/footer.html');
+  // Load components from page attributes when present, otherwise from the app root.
+  const headerPath = document.body && document.body.dataset && document.body.dataset.headerPath;
+  const footerPath = document.body && document.body.dataset && document.body.dataset.footerPath;
+  await loadComponent('#header-container', headerPath
+    ? new URL(headerPath, window.location.href).href
+    : 'components/header.html');
+  await loadComponent('#footer-container', footerPath
+    ? new URL(footerPath, window.location.href).href
+    : 'components/footer.html');
   
   // Set the active link based on current page URL
   setActiveNavLink();
@@ -117,25 +151,6 @@ document.addEventListener('DOMContentLoaded', async function() {
   // Tell i18n that dynamically loaded components are ready
   document.dispatchEvent(new CustomEvent('componentsLoaded'));
   
-  // Load saved state
-  const savedCart = localStorage.getItem('cart');
-  const savedWishlist = localStorage.getItem('wishlist');
-  
-  if (savedCart) {
-    try {
-      cart = JSON.parse(savedCart);
-      updateCartDisplay();
-    } catch (e) {
-      console.error('Error parsing cart from localStorage:', e);
-    }
-  }
-  
-  if (savedWishlist) {
-    try {
-      wishlist = JSON.parse(savedWishlist);
-      updateWishlistDisplay();
-    } catch (e) {
-      console.error('Error parsing wishlist from localStorage:', e);
-    }
-  }
+  updateCartDisplay();
+  updateWishlistDisplay();
 });

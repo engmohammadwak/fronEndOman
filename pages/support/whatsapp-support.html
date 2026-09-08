@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>واتساب المباشر | الأرض الذكية Smart Earth</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../js/tailwind-config.js"></script>
+
+  <link rel="stylesheet" href="../../css/variables.css">
+  <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body
+  data-active-nav=""
+  data-header-path="../../components/header.html"
+  data-footer-path="../../components/footer.html"
+  class="bg-background font-sans text-on-surface antialiased min-h-screen flex flex-col"
+>
+  <div id="header-container"></div>
+
+  <main class="w-full pt-36 lg:pt-40 flex-grow">
+    <section class="max-w-xl mx-auto px-4 lg:px-8 py-12">
+      <div class="bg-surface-container-lowest rounded-3xl border border-outline-variant/15 p-6 lg:p-8 shadow-sm">
+        <div class="text-center mb-8">
+          <div class="w-14 h-14 bg-emerald-500/10 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-3">
+            <span class="material-symbols-outlined text-3xl" aria-hidden="true">chat</span>
+          </div>
+          <h1 class="text-2xl font-black text-on-surface">خدمة العملاء عبر واتساب</h1>
+          <p class="text-secondary text-xs mt-2">تواصل مباشرة مع أحد ممثلينا المتاحين في مسقط</p>
+        </div>
+
+        <form id="wa-form" class="space-y-4 text-xs">
+          <div>
+            <label class="block font-bold text-secondary mb-1.5" for="wa-topic">موضوع المحادثة</label>
+            <select id="wa-topic" class="w-full rounded-xl border border-outline-variant/30 p-3 bg-surface-container-lowest font-medium focus:border-primary">
+              <option value="استفسار عام قبل الشراء">استفسار عام عن الأجهزة والأسعار</option>
+              <option value="متابعة حالة شحنة">الاستفسار عن تأخر شحنة</option>
+              <option value="طلب صيانة وضمان">طلب صيانة لجهاز ضمن فترة الضمان</option>
+              <option value="استبدال أو استرجاع">تقديم طلب استبدال أو استرجاع</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-secondary mb-1.5" for="wa-order">رقم الطلب (اختياري)</label>
+            <input id="wa-order" type="text" placeholder="SE-2026-XXXXX" class="w-full rounded-xl border border-outline-variant/30 p-3 font-mono focus:border-primary">
+          </div>
+
+          <div>
+            <label class="block font-bold text-secondary mb-1.5" for="wa-notes">ملاحظاتك أو تفاصيل استفسارك</label>
+            <textarea id="wa-notes" rows="3" placeholder="اكتب استفسارك هنا ليتمكن ممثل الخدمة من إجابتك فوراً..." class="w-full rounded-xl border border-outline-variant/30 p-3 focus:border-primary"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition flex items-center justify-center gap-2 shadow-sm text-sm">
+            <span class="material-symbols-outlined text-base" aria-hidden="true">send</span>
+            فتح تطبيق واتساب وبدء المحادثة
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="../../js/i18n.js"></script>
+  <script src="../../js/toast.js"></script>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/pages/whatsapp-support.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مراكز الصيانة | الأرض الذكية Smart Earth</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../js/tailwind-config.js"></script>
+
+  <link rel="stylesheet" href="../../css/variables.css">
+  <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body
+  data-active-nav=""
+  data-header-path="../../components/header.html"
+  data-footer-path="../../components/footer.html"
+  class="bg-background font-sans text-on-surface antialiased min-h-screen flex flex-col"
+>
+  <div id="header-container"></div>
+
+  <main class="w-full pt-36 lg:pt-40 flex-grow">
+    <section class="max-w-6xl mx-auto px-4 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
+        <div>
+          <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-2">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">store</span>
+          </div>
+          <h1 class="text-3xl font-black text-on-surface">مراكز الخدمة والفحص المعتمدة</h1>
+          <p class="text-secondary text-sm mt-1">تفضل بزيارة أقرب فرع لصيانة وفحص أجهزتك أو استلام طلبات الضمان</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <label class="text-xs font-bold text-secondary" for="center-city-filter">اختر المدينة:</label>
+          <select id="center-city-filter" class="rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-2.5 text-xs font-bold focus:border-primary">
+            <option value="all">جميع المحافظات</option>
+            <option value="مسقط">مسقط</option>
+            <option value="صحار">صحار (شمال الباطنة)</option>
+            <option value="صلالة">صلالة (ظفار)</option>
+            <option value="نزوى">نزوى (الداخلية)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="centers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="../../js/i18n.js"></script>
+  <script src="../../js/toast.js"></script>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/pages/service-centers.js"></script>
+</body>
+</html>
