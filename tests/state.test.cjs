@@ -19,7 +19,7 @@ function setup(saved = {}, blocked = false) {
     },
     window: { location: { pathname: '/shop/', href: 'https://example.com/shop/' } }
   });
-  for (const file of ['js/main.js', 'js/i18n.js']) vm.runInContext(fs.readFileSync(file, 'utf8'), context);
+  for (const file of ['js/config.js', 'js/api.js', 'js/main.js', 'js/auth-state.js', 'js/i18n.js']) vm.runInContext(fs.readFileSync(file, 'utf8'), context);
   return { context, saved, elements, run: code => vm.runInContext(code, context) };
 }
 test('cart persists without header and rejects invalid prices', () => {

@@ -59,13 +59,7 @@ let pageData = [];
 let usingDemoData = true;
 
 async function fetchBrandsFromDashboard() {
-  const response = await fetch('../../api/brands');
-
-  if (!response.ok) {
-    throw new Error('Failed to load brands');
-  }
-
-  const result = await response.json();
+  const result = await requestApi('brands');
 
   if (!Array.isArray(result.data)) {
     throw new Error('Invalid brands response');
@@ -78,7 +72,7 @@ async function loadBrands() {
   try {
     const dashboardData = await fetchBrandsFromDashboard();
 
-    if (dashboardData.length > 0) {
+    if (Array.isArray(dashboardData)) {
       pageData = dashboardData;
       usingDemoData = false;
     } else {
@@ -86,7 +80,8 @@ async function loadBrands() {
       usingDemoData = true;
     }
   } catch (error) {
-    console.warn('Dashboard unavailable, using demo data:', error);
+    if (!isDemoMode()) { pageData = []; usingDemoData = false; showApiError(); return; }
+
     pageData = demoBrands;
     usingDemoData = true;
   }

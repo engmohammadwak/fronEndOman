@@ -53,13 +53,7 @@ let pageData = [];
 let usingDemoData = true;
 
 async function fetchSpecialOffersFromDashboard() {
-  const response = await fetch('../../api/offers');
-
-  if (!response.ok) {
-    throw new Error('Failed to load special offers');
-  }
-
-  const result = await response.json();
+  const result = await requestApi('offers');
 
   if (!Array.isArray(result.data)) {
     throw new Error('Invalid offers response');
@@ -72,7 +66,7 @@ async function loadSpecialOffers() {
   try {
     const dashboardData = await fetchSpecialOffersFromDashboard();
 
-    if (dashboardData.length > 0) {
+    if (Array.isArray(dashboardData)) {
       pageData = dashboardData;
       usingDemoData = false;
     } else {
@@ -80,7 +74,8 @@ async function loadSpecialOffers() {
       usingDemoData = true;
     }
   } catch (error) {
-    console.warn('Dashboard unavailable, using demo data:', error);
+    if (!isDemoMode()) { pageData = []; usingDemoData = false; showApiError(); return; }
+
     pageData = demoSpecialOffers;
     usingDemoData = true;
   }

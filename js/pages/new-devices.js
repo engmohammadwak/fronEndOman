@@ -14,6 +14,9 @@ const demoNewDevices = [
     stock: 12,
     badgeAr: 'جديد',
     badgeEn: 'New',
+    storageGb: 256,
+    extraAr: '256GB',
+    extraEn: '256GB',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAxiKwuYNFuk0d-8B4L_Vurbbh4mDLOhku3uTwOSKtWPtNperXc4KkghVycgasTVn8oWnoewAdQTzJ5FyozYpk9j_jtUs0euMoUU2Rrsq4KW1c4auSzDY4rrCLq5kn5Zyn_EaV91aoRI3Yq8iGPJMycxvaKrT9i8tjqQdzzfwl3dIMKrVzKyTEwBYla0sM0YIVADb7tqMfdJcrahvtqY1OUaXb-apY2ZM4zozka1PXIyv_USY0wV4fYWQ',
     isDemo: true
   },
@@ -32,7 +35,10 @@ const demoNewDevices = [
     stock: 8,
     badgeAr: 'جديد',
     badgeEn: 'New',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD81RIVCanEtE0Ty0Gfa__H-n6egIbsoeWcx6XEuDA1lxDVV1zIoibEzG6FFDms-c7dbXJAUxDLdaWs31G5URkP1NI3PBP31IkVqmNCDuzJiNstf2wTFNIa1xegrpT6Wfmi8S0RZT3dzVRlGoI2GJHJcoZjQBBt1nGvDj8yEaRKEWoHXjXk9LDICk6c9S-NSuebWRkVamrJfCAuqqjMArNpU2_Em7J0xvxqYtlhQvcq2nUKNHW-LVjMWQ',
+    storageGb: 512,
+    extraAr: '512GB',
+    extraEn: '512GB',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBdELpABShIn9MFz2KGO9TD_IKASHQVGbZmD2FfGbWLNMUHxLzFp88ZcpH5zQ0Tmw3EXcdCw36S83tHdv6MqW6VuknyQfaNL4Swypn0JqT3yw0R9hHPDtXQS0tA8pMjzlRnLzFVSSUnr8ukingYgVnJcCkLALieh_-E8__9F7hhS0gEIcGZWLJPxElkQr2Qz_Rz6f_vtQ2f4e4Z6glTZCzhKyK__X_62dMSpYHBMLUFZszTMvI2TV8msw',
     isDemo: true
   },
   {
@@ -86,7 +92,10 @@ const demoNewDevices = [
     stock: 10,
     badgeAr: 'خصم 7%',
     badgeEn: '7% OFF',
-    image: '../../assets/images/product-placeholder.svg',
+    storageGb: 256,
+    extraAr: '256GB',
+    extraEn: '256GB',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDe8feHJkHTYOd3x8xHY1_JfxTKGqRsS3vMo8JmRpXZ-9hU0rhd1VUOLyxjDg9kx58gypAMs6dP0GXWebvDpJrOz9sGwvDZR5gWSHk5B8HD4B7lmUm748ph0Y7EaodzoUYs13d_XO-o5uESzmyxq_HEI5OezTHdtRS2IEpUZsOWKKNckHvNDOCNeviughB9aOd4hEK14uzpJvsFo3MUu-f_roMTpdm27vk6W14RlUOwQpbwDj0mnWgECA',
     isDemo: true
   },
   {
@@ -104,7 +113,10 @@ const demoNewDevices = [
     stock: 6,
     badgeAr: 'جديد',
     badgeEn: 'New',
-    image: '../../assets/images/product-placeholder.svg',
+    storageGb: 512,
+    extraAr: '512GB',
+    extraEn: '512GB',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBuug7nrwpbjW9TJEUPTL_jwva09AIuB_tbXAD0y8F6DXhNO5tq2li2J-0q_xf1a1R2m2xC7kJqsR54tGznw41P9ui9xh2dMKLKdxcDgytt_QYXtRIuhJCw29fyiozs7EqyDift7rLTyJlZXJKmjdnkzCTQDLGPMjqu9noBn9-Rza6VUFrUrI0FPpi39r0koYBy8k8dg3IxwrNJYr7u1unnWv6pmZ2siEhn968H6IiWHmgr20C18_BiAA',
     isDemo: true
   }
 ];
@@ -117,13 +129,7 @@ let currentSort = 'latest';
 let visibleCount = 3;
 
 async function fetchNewDevicesFromDashboard() {
-  const response = await fetch('../../api/products?type=new');
-
-  if (!response.ok) {
-    throw new Error('Failed to load new devices');
-  }
-
-  const result = await response.json();
+  const result = await requestApi('products?type=new');
 
   if (!Array.isArray(result.data)) {
     throw new Error('Invalid products response');
@@ -136,7 +142,7 @@ async function loadNewDevices() {
   try {
     const dashboardData = await fetchNewDevicesFromDashboard();
 
-    if (dashboardData.length > 0) {
+    if (Array.isArray(dashboardData)) {
       pageData = dashboardData;
       usingDemoData = false;
     } else {
@@ -144,11 +150,13 @@ async function loadNewDevices() {
       usingDemoData = true;
     }
   } catch (error) {
-    console.warn('Dashboard unavailable, using demo data:', error);
+    if (!isDemoMode()) { pageData = []; usingDemoData = false; showApiError(); return; }
+
     pageData = demoNewDevices;
     usingDemoData = true;
   }
 
+  if (typeof applyLiveStock === 'function') pageData = applyLiveStock(pageData);
   renderNewDevices();
   updateDemoNotice(usingDemoData);
 }
@@ -174,21 +182,21 @@ function renderNewDevices() {
 
   setPageCopy('new_devices_page_title', 'new_devices_page_desc');
   updateSortSelectLabels();
-  renderCatalogFilters({
+  renderDeviceFilters({
     products: pageData,
     categories: uniqueValues(pageData, 'category'),
     brands: uniqueValues(pageData, 'brand'),
     activeCategory,
     activeBrand
   });
-  bindCatalogFilters((next) => {
+  bindDeviceFilters((next) => {
     if (next.category) activeCategory = next.category;
     if (next.brand) activeBrand = next.brand;
     visibleCount = 3;
     renderNewDevices();
   });
 
-  grid.innerHTML = sliced.map((product) => renderProductCard(product)).join('');
+  grid.innerHTML = sliced.map((product) => renderDeviceCard(product)).join('');
   updateCatalogSummary(pageData.length, visible.length, sliced.length, [activeCategory, activeBrand]);
   updateLoadMoreButton(sliced.length, visible.length);
   bindProductActions(pageData);

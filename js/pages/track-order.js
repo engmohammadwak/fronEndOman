@@ -138,7 +138,26 @@ const TrackOrderModule = (() => {
       document.getElementById('track-form')?.addEventListener('submit', (e) => {
         e.preventDefault();
         const orderNo = document.getElementById('track-order-no').value.trim();
-        const found = mockOrders[orderNo];
+        const live = typeof StoreState !== 'undefined'
+          ? StoreState.getOrders().find((item) => item.orderId === orderNo || `#${item.orderId}` === orderNo)
+          : null;
+        const statusStep = { received: 1, processing: 2, shipped: 3, delivered: 4, cancelled: 1 };
+        const found = live ? {
+          orderId: live.orderId,
+          recipient: live.customerName || '',
+          city: live.address || '',
+          currentStep: statusStep[live.status] || 2,
+          statusBadge: ({ received: 'تم استلام الطلب', processing: 'قيد الفحص والتجهيز', shipped: 'تم الشحن مع الأسطول', delivered: 'تم التسليم', cancelled: 'ملغي' }[live.status] || live.status),
+          orderDate: live.createdAt || '',
+          expectedDate: '24-48h',
+          courier: 'TechPro Express',
+          trackingNumber: live.orderId,
+          items: (live.items || []).map((item) => ({
+            name: item.nameAr || item.nameEn || '',
+            qty: item.qty || 1,
+            price: `${item.price || 0}`
+          }))
+        } : mockOrders[orderNo];
 
         if (found) {
           renderResult(found);

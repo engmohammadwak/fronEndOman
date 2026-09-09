@@ -24,33 +24,30 @@
       </div>
 
       <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
-        <div class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors">
-          <select aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
+        <form id="header-search-form" class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors" action="/pages/storefront/catalog.html" method="get" role="search">
+          <select id="header-category-select" name="cat" aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
             <option class="bg-inverse-surface text-inverse-on-surface" value="all" data-i18n="all_departments">جميع الأقسام</option>
             <option class="bg-inverse-surface text-inverse-on-surface" value="phones" data-i18n="phones">الجوالات</option>
             <option class="bg-inverse-surface text-inverse-on-surface" value="laptops" data-i18n="laptops">اللابتوبات</option>
             <option class="bg-inverse-surface text-inverse-on-surface" value="accessories" data-i18n="accessories">الإكسسوارات</option>
           </select>
-          <input aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" data-i18n-placeholder="search_placeholder" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="text">
-          <button aria-label="Voice Search" class="p-space-xs text-secondary-fixed hover:text-on-primary transition-colors cursor-pointer bg-transparent border-none" type="button">
-            <span class="material-symbols-outlined text-xl" aria-hidden="true">mic</span>
-          </button>
-          <button aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="button">
+          <input id="header-search-input" name="q" aria-label="ابحث عن جهاز" class="w-full bg-transparent px-space-sm py-space-xs text-sm font-sans text-inverse-on-surface placeholder-secondary-fixed-dim focus:outline-none" data-i18n-placeholder="search_placeholder" placeholder="ابحث عن جهاز، علامة تجارية، أو مواصفات..." type="search" autocomplete="off">
+          <button id="header-search-button" aria-label="Search" class="bg-primary-container hover:bg-primary text-on-primary p-space-xs rounded-lg flex items-center justify-center transition-colors cursor-pointer border-none" type="submit">
             <span class="material-symbols-outlined text-xl" aria-hidden="true">search</span>
           </button>
-        </div>
+        </form>
       </div>
 
       <!-- الأزرار: المفضلة، السلة، حسابي -->
       <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
         <!-- المفضلة -->
-        <a aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="#">
+        <a id="header-wishlist-link" aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="/pages/storefront/wishlist.html">
           <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
           <span id="wishlist-count" class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold" style="display: none;">0</span>
         </a>
         
         <!-- السلة -->
-        <a aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="#">
+        <a id="header-cart-link" aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="/pages/storefront/cart.html">
           <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
           <div class="hidden sm:flex flex-col text-right">
             <span id="cart-count" class="text-xs text-secondary-fixed-dim" data-i18n="cart_label">سلة المشتريات (0)</span>
@@ -59,9 +56,9 @@
         </a>
         
         <!-- حسابي -->
-        <a aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="#">
+        <a id="header-account-link" aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="/pages/storefront/account.html">
           <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
-          <span class="hidden sm:inline" data-i18n="my_account">حسابي</span>
+          <span id="header-account-label" class="hidden sm:inline" data-i18n="my_account">حسابي</span>
         </a>
       </div>
     </div>

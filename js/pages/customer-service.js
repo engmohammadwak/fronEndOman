@@ -80,13 +80,7 @@ let usingDemoData = true;
 let activeFaqCategory = 'all';
 
 async function fetchFaqsFromDashboard() {
-  const response = await fetch('../../api/customer-service/faq');
-
-  if (!response.ok) {
-    throw new Error('Failed to load customer service FAQ');
-  }
-
-  const result = await response.json();
+  const result = await requestApi('customer-service/faq');
 
   if (!Array.isArray(result.data)) {
     throw new Error('Invalid FAQ response');
@@ -99,7 +93,7 @@ async function loadCustomerService() {
   try {
     const dashboardData = await fetchFaqsFromDashboard();
 
-    if (dashboardData.length > 0) {
+    if (Array.isArray(dashboardData)) {
       pageData = dashboardData;
       usingDemoData = false;
     } else {
@@ -107,7 +101,8 @@ async function loadCustomerService() {
       usingDemoData = true;
     }
   } catch (error) {
-    console.warn('Dashboard unavailable, using demo data:', error);
+    if (!isDemoMode()) { pageData = []; usingDemoData = false; showApiError(); return; }
+
     pageData = demoFaqs;
     usingDemoData = true;
   }

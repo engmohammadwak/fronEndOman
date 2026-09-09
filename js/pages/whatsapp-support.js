@@ -4,12 +4,13 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
   const STORE_SETTINGS = {
-    whatsappNumber: '96890000000',
+    whatsappNumber: window.TECHPRO_CONFIG?.adminWhatsApp || '',
     storeName: 'الأرض الذكية Smart Earth'
   };
 
   document.getElementById('wa-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
+    if (!/^[1-9]\d{7,14}$/.test(STORE_SETTINGS.whatsappNumber)) { showToast('رقم الدعم غير مضبوط بعد / Support number is not configured.', 'info'); return; }
 
     const topic = document.getElementById('wa-topic').value;
     const orderNo = document.getElementById('wa-order').value.trim();

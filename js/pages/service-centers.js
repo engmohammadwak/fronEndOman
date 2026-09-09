@@ -68,7 +68,19 @@ const ServiceCentersModule = (() => {
     const container = document.getElementById('centers-grid');
     if (!container) return;
 
-    const filtered = mockCenters.filter((c) => filterCity === 'all' || c.city === filterCity);
+    const cmsBranches = typeof StoreState !== 'undefined' ? (StoreState.getCms().branches || []).map((item) => ({
+      id: item.id,
+      name: document.documentElement.lang === 'en' ? item.nameEn : item.nameAr,
+      city: document.documentElement.lang === 'en' ? item.cityEn : item.cityAr,
+      zone: item.addressAr || '',
+      address: document.documentElement.lang === 'en' ? (item.addressEn || item.addressAr || '') : (item.addressAr || ''),
+      hours: document.documentElement.lang === 'en' ? item.hoursEn : item.hoursAr,
+      phone: item.phone,
+      tags: [],
+      mapUrl: item.mapUrl
+    })) : [];
+    const source = cmsBranches.length ? cmsBranches : mockCenters;
+    const filtered = source.filter((c) => filterCity === 'all' || c.city === filterCity);
 
     container.innerHTML = filtered.map((c) => `
       <div class="bg-surface-container-lowest rounded-3xl border border-outline-variant/15 p-6 shadow-sm flex flex-col justify-between hover:border-primary/40 transition">

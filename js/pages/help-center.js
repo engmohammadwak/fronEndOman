@@ -67,8 +67,15 @@ const HelpCenterModule = (() => {
 
     if (!listContainer) return;
 
+    const cmsFaqs = typeof StoreState !== 'undefined' ? (StoreState.getCms().faqs || []).map((item) => ({
+      id: item.id,
+      category: item.category || 'orders',
+      q: document.documentElement.lang === 'en' ? item.qEn : item.qAr,
+      a: document.documentElement.lang === 'en' ? item.aEn : item.aAr
+    })) : [];
+    const source = cmsFaqs.length ? cmsFaqs : mockFaqs;
     const query = searchTerm.toLowerCase();
-    const filtered = mockFaqs.filter((item) => {
+    const filtered = source.filter((item) => {
       const matchCategory = activeCategory === 'all' || item.category === activeCategory;
       const matchSearch = !query
         || item.q.toLowerCase().includes(query)

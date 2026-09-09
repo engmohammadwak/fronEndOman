@@ -49,7 +49,17 @@ function safeMediaUrl(url, fallback) {
   return fallback;
 }
 
+function getProductPageUrl(id) {
+  const path = window.location.pathname || '';
+  const query = `id=${encodeURIComponent(id)}`;
+  if (path.includes('/pages/storefront/')) {
+    return `product.html?${query}`;
+  }
+  return `pages/storefront/product.html?${query}`;
+}
+
 function updateDemoNotice(usingDemoData) {
+  if (document.getElementById('demo-data-notice')?.dataset.apiError === 'true') { showApiError(); return; }
   const notice = document.getElementById('demo-data-notice');
   if (!notice) return;
 
@@ -57,6 +67,7 @@ function updateDemoNotice(usingDemoData) {
     'demo_data_notice',
     'يتم عرض بيانات تجريبية مؤقتاً إلى حين الاتصال بلوحة التحكم.'
   );
+  notice.classList.add('catalog-demo');
   notice.classList.toggle('hidden', !usingDemoData);
 }
 
@@ -154,8 +165,11 @@ function bindCatalogFilters(onChange) {
 }
 
 function normalizeProduct(apiProduct) {
+  if (!apiProduct || apiProduct.id == null || apiProduct.price == null || !Number.isFinite(Number(apiProduct.price)) || Number(apiProduct.price) < 0) throw new Error('Invalid product identity or price');
+  if (!Number.isSafeInteger(Number(apiProduct.stock ?? 0)) || Number(apiProduct.stock ?? 0) < 0) throw new Error('Invalid product stock');
   return {
     id: apiProduct.id,
+    variantId: apiProduct.variant_id ?? apiProduct.variantId,
     nameAr: apiProduct.name_ar || apiProduct.nameAr || apiProduct.name || '',
     nameEn: apiProduct.name_en || apiProduct.nameEn || apiProduct.name || '',
     brand: apiProduct.brand?.name || apiProduct.brand || '',
@@ -181,6 +195,13 @@ function normalizeProduct(apiProduct) {
       : (apiProduct.warrantyMonths != null ? Number(apiProduct.warrantyMonths) : null),
     extraAr: apiProduct.extra_ar || apiProduct.extraAr || '',
     extraEn: apiProduct.extra_en || apiProduct.extraEn || '',
+    brandAr: apiProduct.brand_ar || apiProduct.brandAr || '',
+    brandEn: apiProduct.brand_en || apiProduct.brandEn || (apiProduct.brand?.name || apiProduct.brand || ''),
+    keywords: apiProduct.keywords || '',
+    specs: Array.isArray(apiProduct.specs) ? apiProduct.specs : [],
+    model: apiProduct.model || '',
+    listingType: apiProduct.listing_type || apiProduct.listingType
+      || (apiProduct.is_refurbished || apiProduct.condition === 'refurbished' ? 'refurbished' : 'new'),
     isDemo: false
   };
 }
@@ -256,6 +277,7 @@ function renderProductCard(product, variant) {
         </button>
       </div>
 
+      <a class="catalog-card-link" href="${escapeHtml(getProductPageUrl(product.id))}">
       <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container-lowest mb-2 flex items-center justify-center border border-outline-variant/10">
         <img
           class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform"
@@ -290,6 +312,7 @@ function renderProductCard(product, variant) {
       <h3 class="font-bold text-on-surface line-clamp-2 mb-2 leading-relaxed">
         ${escapeHtml(name)}
       </h3>
+      </a>
 
       <div class="flex items-center gap-1 text-tertiary mb-3 text-[11px] font-bold">
         <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
@@ -331,16 +354,77 @@ function renderProductCard(product, variant) {
   `;
 }
 
+function hydrateLiveCatalog(list) {
+  const source = Array.isArray(list) ? list : [];
+  if (!isDemoMode() || typeof StoreState === 'undefined') return source;
+  StoreState.ensure();
+  StoreState.syncFromCatalog(source);
+  const live = StoreState.getProducts();
+  if (!live.length) return [];
+  return live.filter((item) => item.active !== false).map((item) => {
+    const original = source.find((row) => String(row.id) === String(item.id)) || {};
+    return { ...original, ...item, stock: Number(item.stock || 0) };
+  });
+}
+
+function applyLiveStock(list) {
+  const source = Array.isArray(list) ? list : [];
+  if (!isDemoMode() || typeof StoreState === 'undefined') return source;
+  StoreState.ensure();
+  StoreState.syncFromCatalog(source);
+  return source.map((item) => StoreState.applyLiveProduct(item)).filter((item) => item.active !== false);
+}
+
+function liveStockFor(product) {
+  if (!product) return 0;
+  if (isDemoMode() && typeof StoreState !== 'undefined') return StoreState.availableStock(product.id || product.productId);
+  return Number(product.stock || 0);
+}
+
+function buildCartPayload(product, extras) {
+  extras = extras || {};
+  return {
+    productId: product.id,
+    variantId: extras.variantId ?? product.variantId,
+    stock: isDemoMode() && typeof StoreState !== 'undefined' ? StoreState.availableStock(product.id) : product.stock,
+    isDemo: product.isDemo === true,
+    nameAr: product.nameAr || product.name,
+    nameEn: product.nameEn || product.name,
+    image: product.image,
+    price: Number(extras.price != null ? extras.price : product.price),
+    oldPrice: extras.oldPrice != null ? extras.oldPrice : product.oldPrice,
+    qty: extras.qty || 1,
+    conditionAr: extras.conditionAr || product.conditionAr || (product.listingType === 'refurbished' ? 'مجدد معتمد' : 'جديد كلياً'),
+    conditionEn: extras.conditionEn || product.conditionEn || (product.listingType === 'refurbished' ? 'Certified refurbished' : 'Brand new'),
+    extraAr: extras.extraAr || product.extraAr || '',
+    extraEn: extras.extraEn || product.extraEn || '',
+    colorAr: extras.colorAr || '',
+    colorEn: extras.colorEn || '',
+    storage: extras.storage || product.storageGb || '',
+    addonNameAr: extras.addonNameAr || '',
+    addonNameEn: extras.addonNameEn || '',
+    addonPrice: extras.addonPrice != null ? extras.addonPrice : 0,
+    addonActive: !!extras.addonActive
+  };
+}
+
 function bindProductActions(pageData) {
   document.querySelectorAll('.add-cart-button').forEach((button) => {
     button.addEventListener('click', () => {
-      const productId = Number(button.dataset.productId);
-      const product = pageData.find((item) => Number(item.id) === productId);
+      const productId = String(button.dataset.productId);
+      const product = pageData.find((item) => String(item.id) === productId);
 
       if (!product) return;
 
+      if (liveStockFor(product) <= 0) {
+        showToast(getCurrentLanguage() === 'en' ? 'This device is out of stock.' : 'هذا الجهاز نفد من المخزن.', 'error');
+        return;
+      }
       if (typeof addToCart === 'function') {
-        addToCart(product.price);
+        if (addToCart(buildCartPayload(product)) === false) {
+          showToast(getCurrentLanguage() === 'en' ? 'Requested quantity is unavailable.' : 'الكمية المطلوبة غير متوفرة.', 'error');
+          return;
+        }
       }
 
       if (typeof showToast === 'function') {
@@ -354,19 +438,36 @@ function bindProductActions(pageData) {
   });
 
   document.querySelectorAll('.wishlist-button').forEach((button) => {
-    button.addEventListener('click', () => {
-      const productId = Number(button.dataset.productId);
+    const productId = String(button.dataset.productId);
+    const icon = button.querySelector('.material-symbols-outlined');
+    const wished = typeof wishlist !== 'undefined' && Array.isArray(wishlist)
+      && wishlist.some((item) => String(item.id) === productId);
 
-      if (typeof addToWishlist === 'function') {
-        addToWishlist(productId);
-      }
+    if (wished && icon) icon.style.fontVariationSettings = "'FILL' 1";
+    if (wished) button.classList.add('is-active');
+
+    button.addEventListener('click', () => {
+      const product = pageData.find((item) => String(item.id) === productId);
+      const snapshot = product ? {
+        isDemo: product.isDemo === true,
+        stock: product.stock,
+        nameAr: product.nameAr,
+        nameEn: product.nameEn,
+        image: product.image,
+        price: product.price,
+        oldPrice: product.oldPrice || null
+      } : null;
+      const added = typeof toggleWishlist === 'function'
+        ? toggleWishlist(productId, snapshot)
+        : (typeof addToWishlist === 'function' ? addToWishlist(productId, snapshot) : false);
+      if (icon) icon.style.fontVariationSettings = added ? "'FILL' 1" : "'FILL' 0";
+      button.classList.toggle('is-active', added);
 
       if (typeof showToast === 'function') {
-        const message = getCurrentLanguage() === 'en'
-          ? 'Product added to wishlist.'
-          : 'تمت إضافة المنتج إلى المفضلة.';
-
-        showToast(message, 'success');
+        const message = added
+          ? (getCurrentLanguage() === 'en' ? 'Product added to wishlist.' : 'تمت إضافة المنتج إلى المفضلة.')
+          : (getCurrentLanguage() === 'en' ? 'Removed from wishlist.' : 'تمت إزالة المنتج من المفضلة.');
+        showToast(message, added ? 'success' : 'info');
       }
     });
   });

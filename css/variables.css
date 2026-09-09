@@ -12,5 +12,3 @@
   main > :first-child { margin-top: 0 !important; }
   main > :last-child { margin-bottom: 0 !important; }
 }
-
-::-webkit-scrollbar { display: none; }

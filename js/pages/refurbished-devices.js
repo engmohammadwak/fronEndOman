@@ -1,6 +1,6 @@
 const demoRefurbishedDevices = [
   {
-    id: 1,
+    id: 101,
     nameAr: 'آيفون 14 برو ماكس 256 جيجابايت - بنفسجي عميق (مجدد معتمد)',
     nameEn: 'iPhone 14 Pro Max 256GB - Deep Purple (Certified Refurbished)',
     brand: 'Apple',
@@ -21,10 +21,11 @@ const demoRefurbishedDevices = [
     warrantyMonths: 6,
     extraAr: '256GB',
     extraEn: '256GB',
+    storageGb: 256,
     isDemo: true
   },
   {
-    id: 2,
+    id: 102,
     nameAr: 'لابتوب ديل XPS 13 إنتل كور i7 - شاشة 4K لمسية مجدد',
     nameEn: 'Dell XPS 13 Intel Core i7 - 4K Touchscreen Refurbished',
     brand: 'Dell',
@@ -43,12 +44,13 @@ const demoRefurbishedDevices = [
     conditionEn: 'Excellent A',
     battery: 100,
     warrantyMonths: 6,
-    extraAr: 'مع العلبة الأصلية',
-    extraEn: 'With original box',
+    extraAr: '512GB • مع العلبة الأصلية',
+    extraEn: '512GB • With original box',
+    storageGb: 512,
     isDemo: true
   },
   {
-    id: 3,
+    id: 103,
     nameAr: 'آيباد برو 11 إنش شريحة M2 مساحة 128GB مع قلم ذكي',
     nameEn: 'iPad Pro 11-inch M2 Chip 128GB with Smart Pen',
     brand: 'Apple',
@@ -67,12 +69,13 @@ const demoRefurbishedDevices = [
     conditionEn: 'Very Good B+',
     battery: 91,
     warrantyMonths: 6,
-    extraAr: '+ قلم آبل هدية',
-    extraEn: '+ Free Apple Pencil',
+    extraAr: '128GB + قلم آبل هدية',
+    extraEn: '128GB + Free Apple Pencil',
+    storageGb: 128,
     isDemo: true
   },
   {
-    id: 4,
+    id: 104,
     nameAr: 'بلايستيشن 5 نسخة الأقراص مستعمل ومفحوص مع يدين تحكم',
     nameEn: 'PlayStation 5 Disc Edition Used & Tested with 2 Controllers',
     brand: 'Sony',
@@ -96,7 +99,7 @@ const demoRefurbishedDevices = [
     isDemo: true
   },
   {
-    id: 5,
+    id: 105,
     nameAr: 'سامسونج جالاكسي Z فليب 5 مجدد معتمد',
     nameEn: 'Samsung Galaxy Z Flip 5 Certified Refurbished',
     brand: 'Samsung',
@@ -110,17 +113,18 @@ const demoRefurbishedDevices = [
     stock: 6,
     badgeAr: 'مجدد',
     badgeEn: 'Refurbished',
-    image: '../../assets/images/product-placeholder.svg',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCrXhTZzxQaZQ12T5RrDjuRWDRD4R34bXFZWDUBIi8e5dl-dfVlxGGHFxRpBplBgkcV7hbfwew6MQtHZ296EKERLyhqUaF1h2Z-yJO7e45Hzk_B035n7QLWTbo0to_LwH7BWideoo100mA09lD62io9apBoRgpj4gWsgOtbpLDpuf-VVHvVC_RUmamlJrRQjcpqee6DYqZJLN4DcmRqfkzqcEwHy-5X7olvpTj22Z__Ix4FF1Q78ZIEyQ',
     conditionAr: 'ممتاز A',
     conditionEn: 'Excellent A',
     battery: 93,
     warrantyMonths: 6,
-    extraAr: 'فحص 40 نقطة',
-    extraEn: '40-point inspection',
+    extraAr: '256GB • فحص 40 نقطة',
+    extraEn: '256GB • 40-point inspection',
+    storageGb: 256,
     isDemo: true
   },
   {
-    id: 6,
+    id: 106,
     nameAr: 'مايكروسوفت سيرفس لابتوب 5 مجدد',
     nameEn: 'Microsoft Surface Laptop 5 Refurbished',
     brand: 'Microsoft',
@@ -134,13 +138,14 @@ const demoRefurbishedDevices = [
     stock: 3,
     badgeAr: 'مجدد',
     badgeEn: 'Refurbished',
-    image: '../../assets/images/product-placeholder.svg',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBdELpABShIn9MFz2KGO9TD_IKASHQVGbZmD2FfGbWLNMUHxLzFp88ZcpH5zQ0Tmw3EXcdCw36S83tHdv6MqW6VuknyQfaNL4Swypn0JqT3yw0R9hHPDtXQS0tA8pMjzlRnLzFVSSUnr8ukingYgVnJcCkLALieh_-E8__9F7hhS0gEIcGZWLJPxElkQr2Qz_Rz6f_vtQ2f4e4Z6glTZCzhKyK__X_62dMSpYHBMLUFZszTMvI2TV8msw',
     conditionAr: 'جيد جداً B+',
     conditionEn: 'Very Good B+',
     battery: 88,
     warrantyMonths: 6,
-    extraAr: 'i7 • 16GB',
-    extraEn: 'i7 • 16GB',
+    extraAr: 'i7 • 16GB • 512GB',
+    extraEn: 'i7 • 16GB • 512GB',
+    storageGb: 512,
     isDemo: true
   }
 ];
@@ -154,13 +159,7 @@ let currentSort = 'latest';
 let visibleCount = 3;
 
 async function fetchRefurbishedDevicesFromDashboard() {
-  const response = await fetch('../../api/products?type=refurbished');
-
-  if (!response.ok) {
-    throw new Error('Failed to load refurbished devices');
-  }
-
-  const result = await response.json();
+  const result = await requestApi('products?type=refurbished');
 
   if (!Array.isArray(result.data)) {
     throw new Error('Invalid products response');
@@ -173,7 +172,7 @@ async function loadRefurbishedDevices() {
   try {
     const dashboardData = await fetchRefurbishedDevicesFromDashboard();
 
-    if (dashboardData.length > 0) {
+    if (Array.isArray(dashboardData)) {
       pageData = dashboardData;
       usingDemoData = false;
     } else {
@@ -181,11 +180,13 @@ async function loadRefurbishedDevices() {
       usingDemoData = true;
     }
   } catch (error) {
-    console.warn('Dashboard unavailable, using demo data:', error);
+    if (!isDemoMode()) { pageData = []; usingDemoData = false; showApiError(); return; }
+
     pageData = demoRefurbishedDevices;
     usingDemoData = true;
   }
 
+  if (typeof applyLiveStock === 'function') pageData = applyLiveStock(pageData);
   renderRefurbishedDevices();
   updateDemoNotice(usingDemoData);
 }
@@ -226,7 +227,7 @@ function renderRefurbishedDevices() {
 
   setPageCopy('refurbished_page_title', 'refurbished_page_desc');
   updateSortSelectLabels();
-  renderCatalogFilters({
+  renderDeviceFilters({
     products: pageData,
     categories: uniqueValues(pageData, 'category'),
     brands: uniqueValues(pageData, 'brand'),
@@ -235,7 +236,7 @@ function renderRefurbishedDevices() {
     activeBrand,
     activeCondition
   });
-  bindCatalogFilters((next) => {
+  bindDeviceFilters((next) => {
     if (next.category) activeCategory = next.category;
     if (next.brand) activeBrand = next.brand;
     if (next.condition) activeCondition = next.condition;
@@ -243,7 +244,7 @@ function renderRefurbishedDevices() {
     renderRefurbishedDevices();
   });
 
-  grid.innerHTML = sliced.map((product) => renderProductCard(product, 'refurbished')).join('');
+  grid.innerHTML = sliced.map((product) => renderDeviceCard(product, 'refurbished')).join('');
   updateCatalogSummary(pageData.length, visible.length, sliced.length, [activeCategory, activeBrand, activeCondition]);
   updateLoadMoreButton(sliced.length, visible.length);
   bindProductActions(pageData);

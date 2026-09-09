@@ -1,19 +1,312 @@
 .catalog-page { --catalog-header-height: 176px; }
 .catalog-page > main { padding-top: var(--catalog-header-height); }
-.catalog-page #filters-container { top: calc(var(--catalog-header-height) + 16px); }
+.catalog-page #filters-container { top: calc(var(--catalog-header-height) + 1.25rem); }
+
+.catalog-hero {
+  background: #fff;
+  border-bottom: 1px solid rgb(199 196 216 / 0.16);
+}
+
+.catalog-count-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgb(79 70 229 / 0.1);
+  color: #3525cd;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.catalog-switch {
+  display: inline-flex;
+  padding: 0.25rem;
+  border-radius: 0.9rem;
+  background: #eceef0;
+  gap: 0.25rem;
+}
+
+.catalog-switch a {
+  min-width: 5.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.7rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #545f73;
+  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+.catalog-switch a[aria-current="page"] {
+  background: #fff;
+  color: #3525cd;
+  box-shadow: 0 6px 16px rgb(25 28 30 / 0.08);
+}
+
+.catalog-toolbar {
+  margin-top: 1.1rem;
+}
+
+.catalog-page #catalog-search {
+  padding-inline-start: 2.5rem;
+  padding-inline-end: 0.9rem;
+  font-family: Cairo, sans-serif;
+}
+
+.catalog-page .catalog-search > span {
+  right: auto;
+  inset-inline-start: 0.85rem;
+}
+
+.catalog-demo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.85rem;
+  background: rgb(79 70 229 / 0.07);
+  color: #3525cd;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.catalog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: #545f73;
+}
+
+.catalog-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: #f2f4f6;
+  border: 1px solid rgb(199 196 216 / 0.2);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.catalog-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border: 1px solid rgb(199 196 216 / 0.14);
+  border-radius: 1rem;
+  padding: 0.9rem;
+  box-shadow: 0 8px 24px rgb(25 28 30 / 0.04);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.catalog-card:hover {
+  transform: translateY(-3px);
+  border-color: rgb(79 70 229 / 0.22);
+  box-shadow: 0 18px 36px rgb(25 28 30 / 0.1);
+}
+
+.catalog-card img {
+  transition: transform .25s ease;
+}
+
+.catalog-card:hover img {
+  transform: scale(1.05);
+}
+
+.catalog-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.catalog-badge-new { background: #4f46e5; color: #fff; }
+.catalog-badge-sale { background: #ba1a1a; color: #fff; }
+.catalog-badge-refurb { background: #006e4b; color: #fff; }
+
+.catalog-wishlist {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 999px;
+  background: #f2f4f6;
+  color: #545f73;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.catalog-wishlist:hover { color: #ba1a1a; }
+
+.catalog-media {
+  aspect-ratio: 1;
+  border-radius: 0.85rem;
+  background: linear-gradient(180deg, #f4f6f8 0%, #eef1f4 100%);
+  border: 1px solid rgb(199 196 216 / 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+}
+
+.catalog-load-more {
+  min-width: 12rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgb(199 196 216 / 0.28);
+  background: #fff;
+  color: #3525cd;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.catalog-load-more:hover {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: #fff;
+}
+
+.catalog-filter-panel {
+  background: #fff;
+  border: 1px solid rgb(199 196 216 / 0.14);
+  border-radius: 1rem;
+  padding: 1.15rem;
+  box-shadow: 0 8px 24px rgb(25 28 30 / 0.04);
+}
+
 .catalog-page nav[aria-label="أنواع الأجهزة"] { max-width: 100%; }
-.catalog-page nav[aria-label="أنواع الأجهزة"] a { text-align: center; }
-.catalog-page #catalog-search { padding-inline-start: 2.25rem; padding-inline-end: .75rem; }
-.catalog-page .catalog-search > span { right: auto; inset-inline-start: .75rem; }
 .catalog-page[dir="ltr"] .rotate-180,
 [dir="ltr"] .catalog-page .rotate-180 { transform: none; }
+
 .catalog-page :is(button, a, input, select, summary):focus-visible {
   outline: 2px solid #3525cd;
   outline-offset: 3px;
 }
-.catalog-page .wishlist-button { min-width: 36px; min-height: 36px; }
+
+.catalog-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.catalog-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.85rem;
+  border: 0;
+  border-radius: 999px;
+  background: #f2f4f6;
+  color: #545f73;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.catalog-tab[aria-selected="true"] {
+  background: #4f46e5;
+  color: #fff;
+}
+
+.catalog-tab-count {
+  min-width: 1.4rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.18);
+  font-size: 0.68rem;
+}
+
+.catalog-tab:not([aria-selected="true"]) .catalog-tab-count {
+  background: #fff;
+  color: #3525cd;
+}
+
+.catalog-view-toggle {
+  display: inline-flex;
+  padding: 0.2rem;
+  border-radius: 0.8rem;
+  background: #eceef0;
+  gap: 0.2rem;
+}
+
+.catalog-view-toggle button {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 0;
+  border-radius: 0.65rem;
+  background: transparent;
+  color: #545f73;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catalog-view-toggle button[aria-pressed="true"] {
+  background: #fff;
+  color: #3525cd;
+  box-shadow: 0 6px 14px rgb(25 28 30 / 0.08);
+}
+
+.catalog-grid.is-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog-card-list {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr) auto;
+  gap: 1.1rem;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgb(199 196 216 / 0.14);
+  border-radius: 1rem;
+  padding: 0.9rem;
+  box-shadow: 0 8px 24px rgb(25 28 30 / 0.04);
+}
+
+.catalog-card-list .catalog-media {
+  width: 148px;
+  margin: 0;
+}
+
+.catalog-empty {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  border-radius: 1.25rem;
+  border: 1px dashed rgb(199 196 216 / 0.35);
+  background: #fff;
+}
+
+.catalog-wishlist.is-active { color: #ba1a1a; }
+
+@media (max-width: 767px) {
+  .catalog-card-list {
+    grid-template-columns: 1fr;
+  }
+  .catalog-card-list .catalog-media {
+    width: 100%;
+  }
+}
+
 @media (max-width: 639px) {
   .catalog-page .catalog-search { flex-basis: 100%; }
+  .catalog-switch { width: 100%; }
+  .catalog-switch a { flex: 1; min-width: 0; }
   .catalog-page #header-container header > div:nth-child(2) > div:first-child {
     height: auto;
     min-height: 80px;
@@ -25,10 +318,12 @@
     min-width: 0;
   }
   .catalog-page #header-container header .text-xl.font-black { font-size: 1rem; }
-  .catalog-page nav[aria-label="أنواع الأجهزة"] a { padding-inline: 10px; }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .catalog-page *, .catalog-page *::before, .catalog-page *::after {
+  .catalog-page *,
+  .catalog-page *::before,
+  .catalog-page *::after {
     transition: none !important;
     animation: none !important;
   }

@@ -14,6 +14,13 @@ test('storage accepts Dashboard fields and demo product descriptions', () => {
   assert.equal(run("catalogStorageValue({nameEn: 'Phone 256GB'})"), '256GB');
   assert.equal(run("catalogStorageValue({nameEn: 'Watch'})"), '');
 });
+test('arabic and english search normalize hamza and taa marbuta', () => {
+  const run = setup();
+  assert.equal(run("matchesSearchQuery({nameAr:'آيفون 15 برو',nameEn:'iPhone 15 Pro',brand:'Apple'}, 'ايفون')"), true);
+  assert.equal(run("matchesSearchQuery({nameAr:'آيفون 15 برو',nameEn:'iPhone 15 Pro',brand:'Apple'}, 'iphone')"), true);
+  assert.equal(run("matchesSearchQuery({nameAr:'سماعات سوني',nameEn:'Sony Headphones',brand:'Sony'}, 'سماعه')"), true);
+  assert.equal(run("matchesSearchQuery({nameAr:'آيفون 15 برو',nameEn:'iPhone 15 Pro',brand:'Apple'}, 'سيارة')"), false);
+});
 test('condition and storage selections combine, and reset restores all', () => {
   const run = setup();
   run("catalogConditions = ['Grade A']; catalogStorage = ['256GB']");
