@@ -24,8 +24,9 @@ body.admin-body {
 }
 
 .admin-app {
-  display: grid;
-  grid-template-columns: 16.5rem minmax(0, 1fr);
+  /* Must stay block: the SPA shell is aside + header + main (3 children).
+     A 2-column grid traps main under the sidebar and leaves a blank pane. */
+  display: block;
   min-height: 100vh;
 }
 

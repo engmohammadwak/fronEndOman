@@ -53,6 +53,25 @@ body.admin-body {
   display: block;
   min-height: 100vh;
   background: var(--bg);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Shell: fixed sidebar + topbar; main must never sit in a 2-column grid cell */
+.admin-app > .sidebar,
+.admin-app > .admin-side {
+  position: fixed;
+}
+
+.admin-app > .topbar {
+  position: fixed;
+}
+
+.admin-app > .main-content,
+.admin-app > .admin-main {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
 }
 
 /* Sidebar */
