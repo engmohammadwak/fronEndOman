@@ -170,7 +170,10 @@ function renderCategories() {
 
     const del = event.target.closest('[data-del-category]');
     if (del) {
-      if (!confirm(t('categoryDeleteConfirm'))) return;
+      const confirmed = window.TechProDialog
+        ? await TechProDialog.confirm(t('categoryDeleteConfirm'), { tone: 'danger' })
+        : false;
+      if (!confirmed) return;
       try {
         let response = await fetch(`/api/admin/categories/${encodeURIComponent(del.dataset.delCategory)}`, {
           method: 'DELETE',
@@ -179,7 +182,10 @@ function renderCategories() {
         });
         let data = await response.json().catch(() => ({}));
         if (response.status === 409) {
-          if (!confirm(data.error || t('categoryForceDelete'))) return;
+          const force = window.TechProDialog
+            ? await TechProDialog.confirm(data.error || t('categoryForceDelete'), { tone: 'danger' })
+            : false;
+          if (!force) return;
           response = await fetch(`/api/admin/categories/${encodeURIComponent(del.dataset.delCategory)}?force=1`, {
             method: 'DELETE',
             credentials: 'same-origin',

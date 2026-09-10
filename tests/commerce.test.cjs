@@ -42,7 +42,7 @@ test('confirmed live order is saved to history and carries idempotency key',asyn
 test('empty API list remains valid',()=>assert.equal(setup().run('apiList({data:[]}).length'),0));
 test('real product is not overwritten by demo profile or fabricated capacity',()=>{
  const {run,load}=setup();
- load('js/pages/product-demo-profiles.js');load('js/pages/product.js');
+ load('js/pages/product-demo-profiles.js');['product-data','product-pricing','product-gallery','product-buy-box','product-view','product-actions','product'].forEach(name=>load('js/pages/'+name+'.js'));
  const result=run("enrichPdpProduct({id:1,isDemo:false,nameEn:'Real product',price:200,storageGb:512,listingType:'new',category:'phones',image:'https://example.com/real.png'},[])");
  assert.equal(result.storageOptions.length,1);assert.equal(result.storageOptions[0].price,200);
  assert.equal(result.gallery[0].src,'https://example.com/real.png');assert.equal(result.reviewsList.length,0);

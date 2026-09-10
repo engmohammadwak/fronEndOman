@@ -85,10 +85,10 @@ function setActiveNavLink() {
     const navKey = String(link.dataset.nav || '').trim();
     let isActive = false;
 
-    if (activeNav) {
-      isActive = navKey === activeNav;
-    } else if (isHomePath) {
+    if (isHomePath) {
       isActive = navKey === 'home';
+    } else if (activeNav) {
+      isActive = navKey === activeNav;
     } else {
       const href = link.getAttribute('href');
       if (href && href !== '#') {

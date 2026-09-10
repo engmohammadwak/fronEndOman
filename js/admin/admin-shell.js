@@ -19,6 +19,8 @@ function adminToast(message) {
   document.getElementById('admin-toast')?.remove();
   const node = document.createElement('div');
   node.id = 'admin-toast';
+  node.setAttribute('role', 'alert');
+  node.setAttribute('aria-atomic', 'true');
   node.className = 'admin-toast';
   node.textContent = message;
   document.body.appendChild(node);

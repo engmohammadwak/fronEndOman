@@ -13,17 +13,27 @@ function settingsTabs() {
   ];
 }
 
+function isDefaultBrandAsset(value) {
+  const raw = String(value || '').trim();
+  return !raw || raw === StoreState.DEFAULT_LOGO;
+}
+
+/** Custom uploaded/data URLs only — never expose the bundled default path in the form. */
+function brandCustomValue(value) {
+  return isDefaultBrandAsset(value) ? '' : String(value).trim();
+}
+
 function brandField(id, label, value, hint, previewFallback) {
-  const src = value || previewFallback || StoreState.DEFAULT_LOGO;
+  const custom = brandCustomValue(value);
+  const src = custom || previewFallback || StoreState.DEFAULT_LOGO;
   return `
     <div class="ad-field brand-upload-field">
       <label>${escapeAdmin(label)}</label>
       <div class="brand-upload-row">
         <img class="brand-preview" id="${id}-preview" src="${escapeAdmin(src)}" alt="">
         <div class="brand-upload-controls">
-          <input type="hidden" name="${id}" id="${id}-value" value="${escapeAdmin(value || '')}">
-          <input type="text" class="brand-url-input" id="${id}-url" placeholder="/assets/… أو https://…" value="${escapeAdmin(value && !String(value).startsWith('data:') ? value : '')}">
-          <div class="admin-actions" style="margin-top:0.5rem;gap:0.5rem">
+          <input type="hidden" name="${id}" id="${id}-value" value="${escapeAdmin(custom)}">
+          <div class="admin-actions" style="margin:0;gap:0.5rem">
             <label class="ad-ghost" style="cursor:pointer;margin:0">
               ${escapeAdmin(t('uploadImage'))}
               <input type="file" id="${id}-file" accept="image/png,image/jpeg,image/webp,image/svg+xml,image/x-icon,.ico" hidden>
@@ -37,23 +47,17 @@ function brandField(id, label, value, hint, previewFallback) {
   `;
 }
 
-function bindBrandAsset(id, fallback) {
+function bindBrandAsset(id, previewFallback) {
   const hidden = document.getElementById(`${id}-value`);
   const preview = document.getElementById(`${id}-preview`);
-  const urlInput = document.getElementById(`${id}-url`);
   const fileInput = document.getElementById(`${id}-file`);
   if (!hidden || !preview) return;
 
   const syncPreview = (value) => {
-    const next = value || fallback;
-    hidden.value = value || '';
-    preview.src = next;
-    if (urlInput) urlInput.value = value && !String(value).startsWith('data:') ? value : '';
+    const custom = brandCustomValue(value);
+    hidden.value = custom;
+    preview.src = custom || previewFallback || StoreState.DEFAULT_LOGO;
   };
-
-  urlInput?.addEventListener('input', () => {
-    syncPreview(urlInput.value.trim());
-  });
 
   fileInput?.addEventListener('change', async () => {
     const file = fileInput.files && fileInput.files[0];
@@ -72,8 +76,7 @@ function bindBrandAsset(id, fallback) {
   });
 
   document.querySelector(`[data-brand-reset="${id}"]`)?.addEventListener('click', () => {
-    const resetValue = id === 'adminLogoUrl' ? '' : fallback;
-    syncPreview(resetValue);
+    syncPreview('');
     if (fileInput) fileInput.value = '';
   });
 }
@@ -81,9 +84,10 @@ function bindBrandAsset(id, fallback) {
 function renderSettings() {
   const settings = StoreState.getSettings();
   const session = AdminAuth.session() || {};
-  const logo = settings.logoUrl || StoreState.DEFAULT_LOGO;
-  const favicon = settings.faviconUrl || logo;
-  const adminLogo = settings.adminLogoUrl || '';
+  const logoCustom = brandCustomValue(settings.logoUrl);
+  const faviconCustom = brandCustomValue(settings.faviconUrl);
+  const adminLogoCustom = brandCustomValue(settings.adminLogoUrl);
+  const logoPreview = logoCustom || StoreState.DEFAULT_LOGO;
   mountAdmin(`
     ${AdminLayout.pageHeader({ title: t('settings'), desc: pageDescription('settings') })}
     <div class="ad-tabs">
@@ -99,9 +103,9 @@ function renderSettings() {
             <div class="ad-field"><label>${escapeAdmin(t('storeNameAr'))}</label><input name="storeNameAr" required value="${escapeAdmin(settings.storeNameAr || '')}"></div>
             <div class="ad-field"><label>${escapeAdmin(t('storeNameEn'))}</label><input name="storeNameEn" required value="${escapeAdmin(settings.storeNameEn || '')}"></div>
           </div>
-          ${brandField('logoUrl', t('siteLogo'), logo, t('logoHint'))}
-          ${brandField('faviconUrl', t('siteFavicon'), favicon, t('faviconHint'), logo)}
-          ${brandField('adminLogoUrl', t('adminLogo'), adminLogo, t('adminLogoHint'), logo)}
+          ${brandField('logoUrl', t('siteLogo'), logoCustom, t('logoHint'))}
+          ${brandField('faviconUrl', t('siteFavicon'), faviconCustom, t('faviconHint'), logoPreview)}
+          ${brandField('adminLogoUrl', t('adminLogo'), adminLogoCustom, t('adminLogoHint'), logoPreview)}
           <hr class="settings-divider">
           <div class="ad-grid-2">
             <div class="ad-field"><label>WhatsApp</label><input name="whatsappAdmin" value="${escapeAdmin(settings.whatsappAdmin || '')}"></div>
@@ -152,13 +156,14 @@ function renderSettings() {
     });
   });
   bindBrandAsset('logoUrl', StoreState.DEFAULT_LOGO);
-  bindBrandAsset('faviconUrl', logo);
-  bindBrandAsset('adminLogoUrl', logo);
+  bindBrandAsset('faviconUrl', logoPreview);
+  bindBrandAsset('adminLogoUrl', logoPreview);
   document.getElementById('settings-form')?.addEventListener('submit', (event) => {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(event.target).entries());
-    if (!data.logoUrl) data.logoUrl = StoreState.DEFAULT_LOGO;
-    if (!data.faviconUrl) data.faviconUrl = data.logoUrl;
+    data.logoUrl = brandCustomValue(data.logoUrl);
+    data.faviconUrl = brandCustomValue(data.faviconUrl);
+    data.adminLogoUrl = brandCustomValue(data.adminLogoUrl);
     StoreState.saveSettings(data);
     StoreState.applyDocumentBranding({ admin: true, titleSuffix: adminLang() === 'en' ? 'Admin' : 'لوحة التحكم', lang: adminLang() });
     adminToast(t('saved'));

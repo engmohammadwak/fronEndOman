@@ -248,18 +248,26 @@ async function loadPosCatalog() {
   const grid = document.getElementById('pos-product-grid');
   if (grid) grid.innerHTML = `<div class="pos-empty">${escapeAdmin(t('posLoading'))}</div>`;
   try {
+    if (typeof StoreState?.ensure === 'function') StoreState.ensure();
     const [productsRes, categoriesRes] = await Promise.all([
-      fetch('/api/products', { credentials: 'same-origin', headers: { Accept: 'application/json' } }),
-      fetch('/api/categories', { credentials: 'same-origin', headers: { Accept: 'application/json' } })
+      fetch('/api/products', { signal: AbortSignal.timeout(15000), credentials: 'same-origin', headers: { Accept: 'application/json' } }),
+      fetch('/api/categories', { signal: AbortSignal.timeout(15000), credentials: 'same-origin', headers: { Accept: 'application/json' } })
     ]);
     const productsData = await productsRes.json().catch(() => ({}));
     const categoriesData = await categoriesRes.json().catch(() => ({}));
     if (categoriesRes.ok && categoriesData.ok && Array.isArray(categoriesData.categories)) {
       posCategoryList = categoriesData.categories;
     }
-    if (productsRes.ok && productsData.ok && Array.isArray(productsData.products) && (productsData.source === 'mysql' || productsData.products.length)) {
-      posCatalog = productsData.products.filter((p) => p.active !== false);
+
+    const serverProducts = productsRes.ok && productsData.ok && Array.isArray(productsData.products)
+      ? productsData.products.filter((p) => p.active !== false)
+      : [];
+    if (productsData.source === 'mysql' && serverProducts.length) {
+      posCatalog = serverProducts;
+    } else if (serverProducts.length) {
+      posCatalog = serverProducts;
     } else if (typeof StoreState?.getProducts === 'function') {
+      // Dashboard products live in browser storage when MySQL inventory is not configured.
       posCatalog = StoreState.getProducts().filter((p) => p.active !== false);
     } else {
       posCatalog = [];
@@ -287,6 +295,7 @@ async function scanPosCode(code) {
   }
   const response = await fetch(`/api/pos/scan/${encodeURIComponent(value)}`, {
     credentials: 'same-origin',
+      signal: AbortSignal.timeout(15000),
     headers: { Accept: 'application/json' }
   });
   const data = await response.json().catch(() => ({}));
@@ -312,6 +321,7 @@ async function checkoutPos() {
     const response = await fetch('/api/pos/checkout', {
       method: 'POST',
       credentials: 'same-origin',
+      signal: AbortSignal.timeout(15000),
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
         paymentMethod: posPayment,
@@ -520,27 +530,57 @@ function renderPos() {
   });
 
   document.getElementById('pos-receive-btn')?.addEventListener('click', async () => {
-    const code = prompt(t('posReceiveCode'));
-    if (!code) return;
-    const qty = Number(prompt(t('posReceiveQty'), '1'));
-    if (!Number.isInteger(qty) || qty <= 0) return;
-    const response = await fetch('/api/inventory/receive', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ barcode: code.trim(), qty })
+    const dialog = window.TechProDialog;
+    if (!dialog) return;
+    const values = await dialog.form({
+      title: t('posReceive'),
+      message: t('posReceiveHint'),
+      confirmText: t('posAdd'),
+      fields: [
+        {
+          name: 'code',
+          label: t('posReceiveCode'),
+          placeholder: t('posScanPlaceholder'),
+          required: true
+        },
+        {
+          name: 'qty',
+          label: t('posReceiveQty'),
+          type: 'number',
+          value: '1',
+          min: 1,
+          step: 1,
+          required: true
+        }
+      ]
     });
-    const data = await response.json().catch(() => ({}));
-    if (!response.ok || !data.ok) {
-      adminToast(data.error || t('posCheckoutFailed'));
+    if (!values) return;
+    const code = String(values.code || '').trim();
+    const qty = Number(values.qty);
+    if (!code || !Number.isInteger(qty) || qty <= 0) {
+      adminToast(t('posCheckoutFailed'));
       return;
     }
-    adminToast(t('saved'));
-    syncPosCatalogStock([{ id: data.product.id, remainingStock: data.remainingStock }]);
-    renderPosShell();
-    if (typeof StoreState.applyStockMutation === 'function') {
-      StoreState.applyStockMutation([{ id: data.product.id, remainingStock: data.remainingStock, stock: data.remainingStock }]);
-    }
+    try {
+      const response = await fetch('/api/inventory/receive', {
+        method: 'POST',
+        credentials: 'same-origin',
+        signal: AbortSignal.timeout(15000),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ barcode: code, qty })
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.ok) {
+        adminToast(data.error || t('posCheckoutFailed'));
+        return;
+      }
+      adminToast(t('saved'));
+      syncPosCatalogStock([{ id: data.product.id, remainingStock: data.remainingStock }]);
+      renderPosShell();
+      if (typeof StoreState.applyStockMutation === 'function') {
+        StoreState.applyStockMutation([{ id: data.product.id, remainingStock: data.remainingStock, stock: data.remainingStock }]);
+      }
+    } catch { adminToast(t('posCheckoutFailed')); }
   });
 
   if (typeof StoreState.connectStockSocket === 'function') {
