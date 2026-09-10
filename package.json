@@ -13,10 +13,14 @@
     "check": "node scripts/check.mjs",
     "verify": "npm run build && npm run check && npm test",
     "setup:admin": "node scripts/setup-admin.mjs",
+    "migrate:mysql": "node scripts/migrate-mysql.mjs",
+    "seed:mysql": "node scripts/seed-mysql-products.mjs",
     "pack:cpanel": "node scripts/pack-cpanel.mjs"
   },
   "dependencies": {
-    "express": "^4.22.2"
+    "express": "^4.22.2",
+    "mysql2": "^3.24.4",
+    "ws": "^8.21.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

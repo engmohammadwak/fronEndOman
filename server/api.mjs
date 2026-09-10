@@ -4,12 +4,14 @@
  */
 import './env.mjs';
 import express from 'express';
+import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { handleApi } from './handlers.mjs';
 import { loadAppRoutes } from './load-routes.mjs';
 import { isHttpsRequest } from './admin-auth.mjs';
+import { attachWebSocket } from './ws-hub.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -100,7 +102,7 @@ async function handleRequest(req, res) {
     return;
   }
 
-  if (!['GET', 'HEAD', 'POST', 'PUT'].includes(req.method)) {
+  if (!['GET', 'HEAD', 'POST', 'PUT', 'DELETE'].includes(req.method)) {
     send(res, 405, 'Method not allowed');
     return;
   }
@@ -117,7 +119,7 @@ async function handleRequest(req, res) {
         return;
       }
     }
-    if (!['GET', 'HEAD'].includes(req.method) && !String(req.headers['content-type'] || '').includes('application/json')) {
+    if (!['GET', 'HEAD', 'DELETE'].includes(req.method) && !String(req.headers['content-type'] || '').includes('application/json')) {
       send(res, 415, 'JSON required');
       return;
     }
@@ -190,7 +192,7 @@ async function handleRequest(req, res) {
   serveFile(res, real, false);
 }
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'same-origin');
   handleRequest(req, res).catch(() => {
@@ -199,7 +201,10 @@ app.use((req, res, next) => {
   });
 });
 
-export { app, rootDir };
+const server = http.createServer(app);
+attachWebSocket(server);
+
+export { app, server, rootDir };
 export default app;
 
 const shouldListen = process.env.TECHPRO_NO_LISTEN !== '1';
@@ -214,10 +219,13 @@ if (shouldListen) {
     const ready = typeof address === 'string' ? `TechPro store ready at ${display}` : `TechPro store ready at ${display}/`;
     console.log(ready);
     if (typeof address !== 'string') {
-      console.log(`Admin dashboard: http://${['::', '0.0.0.0'].includes(address.address) ? 'localhost' : address.address}:${address.port}/dashboard`);
+      const hostLabel = ['::', '0.0.0.0'].includes(address.address) ? 'localhost' : address.address;
+      console.log(`Admin dashboard: http://${hostLabel}:${address.port}/dashboard`);
+      console.log(`WebSocket: ws://${hostLabel}:${address.port}/ws`);
     }
   };
-  const server = HOST ? app.listen(PORT, HOST, onListen) : app.listen(PORT, onListen);
+  if (HOST) server.listen(PORT, HOST, onListen);
+  else server.listen(PORT, onListen);
   server.on('error', (error) => {
     console.error(`Unable to start server (${error.code}). Check HOST and PORT.`);
     process.exitCode = 1;

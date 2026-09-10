@@ -1,10 +1,47 @@
 let productsPage = 1;
 let productsFilters = { q: '', category: '', status: '' };
+let productCategories = [];
+let productCategoriesPromise = null;
+
+function ensureProductCategories() {
+  if (!productCategoriesPromise) {
+    productCategoriesPromise = fetch('/api/categories?all=1', {
+      credentials: 'same-origin',
+      headers: { Accept: 'application/json' }
+    })
+      .then((response) => response.json().catch(() => ({})))
+      .then((data) => {
+        if (data && data.ok && Array.isArray(data.categories)) productCategories = data.categories;
+        return productCategories;
+      })
+      .catch(() => productCategories);
+  }
+  return productCategoriesPromise;
+}
+
+function categoryOptionsHtml(selected) {
+  const list = productCategories.length
+    ? productCategories.filter((item) => item.active !== false)
+    : [
+        { slug: 'phones', nameAr: 'هواتف', nameEn: 'Phones' },
+        { slug: 'laptops', nameAr: 'لابتوبات', nameEn: 'Laptops' },
+        { slug: 'tablets', nameAr: 'أجهزة لوحية', nameEn: 'Tablets' },
+        { slug: 'accessories', nameAr: 'إكسسوارات', nameEn: 'Accessories' },
+        { slug: 'other', nameAr: 'أخرى', nameEn: 'Other' }
+      ];
+  return list.map((cat) => {
+    const slug = cat.slug || cat;
+    const label = typeof cat === 'string'
+      ? cat
+      : (adminLang() === 'en' ? (cat.nameEn || cat.nameAr || slug) : (cat.nameAr || cat.nameEn || slug));
+    return `<option value="${escapeAdmin(slug)}" ${selected === slug ? 'selected' : ''}>${escapeAdmin(label)}</option>`;
+  }).join('');
+}
 
 function productForm(product) {
   const item = product || {
     id: '', nameAr: '', nameEn: '', brand: 'Apple', price: 0, oldPrice: '', stock: 5,
-    listingType: 'new', sku: '', image: '', extraAr: '', extraEn: '', category: 'phones', active: true,
+    listingType: 'new', sku: '', barcode: '', costPrice: 0, image: '', extraAr: '', extraEn: '', category: 'phones', active: true,
     specs: [], seoTitle: '', seoDesc: '', seoKeywords: ''
   };
   const specs = Array.isArray(item.specs) ? item.specs : [];
@@ -25,11 +62,12 @@ function productForm(product) {
           <div class="ad-field" style="grid-column:1/-1"><label>${escapeAdmin(t('description'))}</label><textarea name="extraAr">${escapeAdmin(item.extraAr || '')}</textarea></div>
           <div class="ad-field"><label>${escapeAdmin(t('category'))}</label>
             <select name="category">
-              ${['phones', 'laptops', 'tablets', 'accessories', 'other'].map((cat) => `<option value="${cat}" ${item.category === cat ? 'selected' : ''}>${cat}</option>`).join('')}
+              ${categoryOptionsHtml(item.category)}
             </select>
           </div>
           <div class="ad-field"><label>${escapeAdmin(t('brandName'))}</label><input name="brand" value="${escapeAdmin(item.brand || '')}"></div>
           <div class="ad-field"><label>${escapeAdmin(t('price'))}</label><input name="price" type="number" min="0" step="0.01" required value="${escapeAdmin(item.price)}"></div>
+          <div class="ad-field"><label>${escapeAdmin(t('costPrice'))}</label><input name="costPrice" type="number" min="0" step="0.001" value="${escapeAdmin(item.costPrice ?? item.cost_price ?? 0)}"></div>
           <div class="ad-field"><label>${escapeAdmin(adminLang() === 'en' ? 'Old price' : 'السعر السابق')}</label><input name="oldPrice" type="number" min="0" step="0.01" value="${escapeAdmin(item.oldPrice || '')}"></div>
           <div class="ad-field"><label>${escapeAdmin(t('stock'))}</label><input name="stock" type="number" min="0" required value="${escapeAdmin(item.stock)}"></div>
           <div class="ad-field"><label>${escapeAdmin(t('condition'))}</label>
@@ -45,6 +83,7 @@ function productForm(product) {
             </select>
           </div>
           <div class="ad-field"><label>SKU</label><input name="sku" value="${escapeAdmin(item.sku || '')}"></div>
+          <div class="ad-field"><label>${escapeAdmin(t('barcode'))}</label><input name="barcode" value="${escapeAdmin(item.barcode || item.sku || '')}"></div>
           <div class="ad-field"><label>${escapeAdmin(adminLang() === 'en' ? 'English extra' : 'وصف إضافي إنجليزي')}</label><input name="extraEn" value="${escapeAdmin(item.extraEn || '')}"></div>
         </div>
       </div>
@@ -132,20 +171,22 @@ function bindProductForm(existing) {
     };
     reader.readAsDataURL(file);
   });
-  document.getElementById('product-form')?.addEventListener('submit', (event) => {
+  document.getElementById('product-form')?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     const names = data.getAll('specName[]');
     const values = data.getAll('specValue[]');
     const specs = names.map((name, index) => ({ name: String(name || ''), value: String(values[index] || '') })).filter((row) => row.name || row.value);
-    StoreState.upsertProduct({
+    const payload = {
       ...(existing || {}),
-      id: data.get('id') || Date.now(),
+      id: data.get('id') || '',
       nameAr: data.get('nameAr'),
       nameEn: data.get('nameEn'),
       brand: data.get('brand'),
       sku: data.get('sku') || `TP-${Date.now()}`,
+      barcode: data.get('barcode') || data.get('sku') || `TP-${Date.now()}`,
       price: Number(data.get('price')),
+      costPrice: Number(data.get('costPrice') || 0),
       oldPrice: data.get('oldPrice') ? Number(data.get('oldPrice')) : '',
       stock: Number(data.get('stock')),
       listingType: data.get('listingType'),
@@ -160,10 +201,20 @@ function bindProductForm(existing) {
       seoDesc: data.get('seoDesc') || '',
       seoKeywords: data.get('seoKeywords') || '',
       isDemo: true
-    });
-    closeAdminModal();
-    adminToast(t('saved'));
-    window.renderAdminPage();
+    };
+    try {
+      if (typeof StoreState.saveProductRemote === 'function' && StoreState.serverInventoryEnabled()) {
+        await StoreState.saveProductRemote(payload);
+      } else {
+        if (!payload.id) payload.id = Date.now();
+        StoreState.upsertProduct(payload);
+      }
+      closeAdminModal();
+      adminToast(t('saved'));
+      window.renderAdminPage();
+    } catch (error) {
+      adminToast(error.message || 'Save failed');
+    }
   });
 }
 
@@ -245,7 +296,13 @@ function bindProductActions() {
 }
 
 function renderProducts() {
-  const categories = [...new Set(StoreState.getProducts().map((item) => item.category).filter(Boolean))];
+  ensureProductCategories().finally(() => paintProducts());
+}
+
+function paintProducts() {
+  const categories = productCategories.length
+    ? productCategories.filter((item) => item.active !== false)
+    : [...new Set(StoreState.getProducts().map((item) => item.category).filter(Boolean))].map((slug) => ({ slug, nameAr: slug, nameEn: slug }));
   const list = filteredProducts();
   const paged = AdminLayout.paginate(list, productsPage, 8);
   mountAdmin(`
@@ -258,7 +315,13 @@ function renderProducts() {
       <input id="admin-search" class="ad-search" placeholder="${escapeAdmin(t('search'))}" value="${escapeAdmin(productsFilters.q)}">
       <select id="filter-category">
         <option value="">${escapeAdmin(t('allCategories'))}</option>
-        ${categories.map((cat) => `<option value="${escapeAdmin(cat)}" ${productsFilters.category === cat ? 'selected' : ''}>${escapeAdmin(cat)}</option>`).join('')}
+        ${categories.map((cat) => {
+          const slug = cat.slug || cat;
+          const label = cat.nameAr
+            ? (adminLang() === 'en' ? (cat.nameEn || cat.nameAr) : (cat.nameAr || cat.nameEn))
+            : slug;
+          return `<option value="${escapeAdmin(slug)}" ${productsFilters.category === slug ? 'selected' : ''}>${escapeAdmin(label)}</option>`;
+        }).join('')}
       </select>
       <select id="filter-status">
         <option value="">${escapeAdmin(t('allStatuses'))}</option>

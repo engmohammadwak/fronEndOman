@@ -70,26 +70,46 @@ async function loadComponent(selector, file) {
 // Navigation Active State Handler
 // ========================================
 function setActiveNavLink() {
-  const currentPath = window.location.pathname;
-  const activeNav = document.body && document.body.dataset ? document.body.dataset.activeNav : '';
-  const navLinks = document.querySelectorAll('.nav-link');
+  const currentPath = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
+  const activeNav = String(document.body?.dataset?.activeNav || '').trim();
+  const homePaths = new Set([
+    '/',
+    (appBaseUrl.pathname || '/').replace(/\/+$/, '') || '/',
+    (new URL('/', appBaseUrl).pathname || '/').replace(/\/+$/, '') || '/'
+  ]);
+  const isHomePath = homePaths.has(currentPath);
+  const activeClasses = ['text-tertiary-fixed', 'font-bold', 'border-b-2', 'border-tertiary-fixed'];
+  const inactiveClasses = ['text-secondary-fixed', 'hover:text-surface-container-lowest'];
 
-  navLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    const targetPath = href ? new URL(href, window.location.href).pathname : null;
-    const isHome = currentPath === '/' || currentPath === appBaseUrl.pathname || currentPath === new URL('/', appBaseUrl).pathname;
-    const isCurrentPage = targetPath === currentPath;
-    const isActiveNav = activeNav && link.dataset.nav === activeNav;
+  document.querySelectorAll('.nav-link').forEach((link) => {
+    const navKey = String(link.dataset.nav || '').trim();
+    let isActive = false;
 
-    if (isActiveNav || isHome || isCurrentPage) {
-      link.classList.add('text-tertiary-fixed', 'font-bold', 'border-b-2', 'border-tertiary-fixed');
-      link.classList.remove('text-secondary-fixed');
-      link.setAttribute('aria-current', 'page');
+    if (activeNav) {
+      isActive = navKey === activeNav;
+    } else if (isHomePath) {
+      isActive = navKey === 'home';
     } else {
-      link.classList.remove('text-tertiary-fixed', 'font-bold', 'border-b-2', 'border-tertiary-fixed');
-      link.classList.add('text-secondary-fixed', 'hover:text-surface-container-lowest');
-      link.removeAttribute('aria-current');
+      const href = link.getAttribute('href');
+      if (href && href !== '#') {
+        try {
+          const targetPath = (new URL(href, window.location.href).pathname || '/').replace(/\/+$/, '') || '/';
+          if (targetPath !== '/') {
+            isActive = currentPath === targetPath;
+          }
+        } catch {
+          isActive = false;
+        }
+      }
     }
+
+    activeClasses.forEach((cls) => link.classList.toggle(cls, isActive));
+    inactiveClasses.forEach((cls) => {
+      if (isActive) link.classList.remove(cls);
+      else link.classList.add(cls);
+    });
+    if (isActive) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
   });
 }
 

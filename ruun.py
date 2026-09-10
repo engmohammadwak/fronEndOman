@@ -4,39 +4,19 @@ from colorama import Fore, Style, init
 # تشغيل الألوان
 init(autoreset=True)
 
+def run_cmd(cmd, capture=False):
+    if capture:
+        res = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        return res.returncode, res.stdout.strip()
+    return subprocess.run(cmd, shell=True).returncode
 
-# ==============================
-# الأوامر
-# ==============================
-
-# تحميل / تحديث المشروع
-download_commands = [
-    "git pull origin main",
-    "php artisan migrate",
-    "php artisan optimize:clear",
-    "php artisan view:clear",
-    "php artisan cache:clear",
-]
-
-# رفع التعديلات إلى GitHub
-upload_commands = [
-    "git status",
-    "git add .",
-    'git commit -m "Update project"',
-    "git push origin main",
-]
-
-# حذف Git وإعادة ربط المشروع
-reset_upload_commands = [
-    "rm -rf .git",
-    "git init",
-    "git add .",
-    'git commit -m "Initial upload"',
-    "git branch -M main",
-    "git remote add origin https://github.com/engmohammadwak/fronEndOman.git",
-    "git push -u origin main --force",
-]
-
+# فحص سريع لبيانات الحساب قبل الرفع لتجنب رفض GitHub
+def check_git_config():
+    _, email = run_cmd("git config user.email", capture=True)
+    if not email:
+        mail = input(Fore.YELLOW + "📧 أدخل إيميلك في GitHub (أو noreply): ").strip()
+        if mail:
+            run_cmd(f'git config --global user.email "{mail}"')
 
 # ==============================
 # Header
@@ -49,49 +29,56 @@ print(Fore.CYAN + "=" * 55)
 print(Fore.GREEN + "1️⃣  Upload to GitHub")
 print(Fore.BLUE + "2️⃣  Download from GitHub")
 print(Fore.RED + "3️⃣  Reset Git & Force Upload")
-print(Fore.MAGENTA + "4️⃣  Start Laravel Server")
-print(Fore.CYAN + "5️⃣  Git Status")
-print(Fore.WHITE + "6️⃣  Exit")
 
 print(Fore.CYAN + "=" * 55)
-
 
 # ==============================
 # اختيار المستخدم
 # ==============================
 
 choice = input(
-    Fore.MAGENTA + "👉 Choose (1/2/3/4/5/6): "
+    Fore.MAGENTA + "👉 Choose (1/2/3): "
     + Style.RESET_ALL
 ).strip()
 
+commands = []
+title = ""
 
 # ==============================
-# Upload
+# 1. Upload
 # ==============================
-
 if choice == "1":
-
-    commands = upload_commands
+    check_git_config()
+    
+    commands.append("git status")
+    
+    # فحص إذا كان هناك تعديلات جديدة لعمل Commit دون توقف السكربت بخطأ
+    _, status_out = run_cmd("git status --porcelain", capture=True)
+    if status_out:
+        commands.append("git add .")
+        commands.append('git commit -m "Update project"')
+        
+    commands.append("git push origin main")
     title = "📤 Uploading to GitHub..."
 
-
 # ==============================
-# Download
+# 2. Download
 # ==============================
-
 elif choice == "2":
-
-    commands = download_commands
+    commands = [
+        "git pull origin main",
+        "php artisan migrate",
+        "php artisan optimize:clear",
+        "php artisan view:clear",
+        "php artisan cache:clear",
+    ]
     title = "📥 Downloading from GitHub..."
 
-
 # ==============================
-# Reset Git
+# 3. Reset Git
 # ==============================
-
 elif choice == "3":
-
+    check_git_config()
     print()
     print(Fore.RED + "⚠️ WARNING!")
     print(
@@ -108,73 +95,23 @@ elif choice == "3":
     ).strip().lower()
 
     if confirm != "y":
-
         print(Fore.YELLOW + "❌ Cancelled.")
         exit()
 
-    commands = reset_upload_commands
+    commands = [
+        "rm -rf .git",
+        "git init",
+        "git add .",
+        'git commit -m "Initial upload"',
+        "git branch -M main",
+        "git remote add origin https://github.com/engmohammadwak/fronEndOman.git",
+        "git push -u origin main --force",
+    ]
     title = "💣 Resetting Git & Force Uploading..."
 
-
-# ==============================
-# Laravel Server
-# ==============================
-
-elif choice == "4":
-
-    print()
-    print(Fore.GREEN + "🚀 Starting Laravel Server...")
-    print(Fore.CYAN + "🌐 http://127.0.0.1:8000")
-    print(Fore.YELLOW + "⛔ Press Ctrl + C to stop the server.")
-    print()
-
-    subprocess.run(
-        "php artisan serve",
-        shell=True
-    )
-
-    exit()
-
-
-# ==============================
-# Git Status
-# ==============================
-
-elif choice == "5":
-
-    print()
-    print(Fore.CYAN + "📊 Git Status")
-    print(Fore.CYAN + "=" * 55)
-    print()
-
-    subprocess.run(
-        "git status",
-        shell=True
-    )
-
-    print()
-    exit()
-
-
-# ==============================
-# Exit
-# ==============================
-
-elif choice == "6":
-
-    print(Fore.YELLOW + "👋 Goodbye!")
-    exit()
-
-
-# ==============================
-# Invalid
-# ==============================
-
 else:
-
     print(Fore.RED + "❌ Invalid choice.")
     exit()
-
 
 # ==============================
 # تنفيذ الأوامر
@@ -186,40 +123,17 @@ print(Fore.YELLOW + title)
 print(Fore.CYAN + "=" * 55)
 print()
 
-
 for cmd in commands:
-
     print(Fore.YELLOW + f"▶ {cmd}")
 
-    result = subprocess.run(
-        cmd,
-        shell=True
-    )
+    res_code = run_cmd(cmd)
 
-    if result.returncode == 0:
-
-        print(
-            Fore.GREEN
-            + "✅ Success"
-        )
-        print()
-
+    if res_code == 0:
+        print(Fore.GREEN + "✅ Success\n")
     else:
-
-        print(
-            Fore.RED
-            + f"❌ Failed: {cmd}"
-        )
-        print()
-
+        print(Fore.RED + f"❌ Failed: {cmd}\n")
         break
-
-
 else:
-
     print(Fore.CYAN + "=" * 55)
-    print(
-        Fore.GREEN
-        + "🎉 All operations completed successfully!"
-    )
+    print(Fore.GREEN + "🎉 All operations completed successfully!")
     print(Fore.CYAN + "=" * 55)

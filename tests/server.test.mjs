@@ -34,12 +34,32 @@ test('HTTP clean routes, private files, admin cookie persistence and safe checko
     for(const route of ['/data/store.json','/server/api.mjs','/.env','/dashboard/missing','/assets/%252e%252e/data/store.json']) assert.equal((await get(route)).status,404,route);
     assert.equal((await get('/%zz')).status,400);
     assert.equal((await get('/api/admin/session')).status,401);
+    const productsPublic = await get('/api/products');
+    assert.equal(productsPublic.status, 200);
+    const productsBody = await productsPublic.json();
+    assert.equal(productsBody.ok, true);
+    assert.ok(Array.isArray(productsBody.products));
+    const categoriesPublic = await get('/api/categories');
+    assert.equal(categoriesPublic.status, 200);
+    const categoriesBody = await categoriesPublic.json();
+    assert.equal(categoriesBody.ok, true);
+    assert.ok(categoriesBody.categories.length >= 1);
     assert.equal((await post('/api/admin/login',{email:'integration-admin',password:'wrong'})).status,401);
     const login=await post('/api/admin/login',{email:'integration-admin',password:'integration-password-only'});
     assert.equal(login.status,200);
     const setCookie=login.headers.get('set-cookie');assert.match(setCookie,/HttpOnly/);assert.match(setCookie,/SameSite=Strict/);
     const cookie=setCookie.split(';')[0];
     assert.equal((await get('/api/admin/session',{headers:{Cookie:cookie}})).status,200);
+    const createCategory = await post('/api/admin/categories', {
+      nameAr: 'تجريبي',
+      nameEn: 'Test Cat',
+      slug: 'test-cat',
+      sortOrder: 5
+    }, cookie);
+    assert.equal(createCategory.status, 200);
+    const created = await createCategory.json();
+    assert.equal(created.ok, true);
+    assert.equal(created.category.slug, 'test-cat');
     await server.stop();server=await start(directory);
     assert.equal((await get('/api/admin/session',{headers:{Cookie:cookie}})).status,200,'server restart preserves session');
     assert.equal((await get('/api/orders/private-order')).status,401);

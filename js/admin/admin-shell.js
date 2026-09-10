@@ -1,6 +1,8 @@
 const ADMIN_PAGES = [
   ['overview', 'overview', 'dashboard'],
+  ['pos', 'pos', 'point_of_sale'],
   ['products', 'products', 'inventory_2'],
+  ['categories', 'categories', 'category'],
   ['inventory', 'inventory', 'warehouse'],
   ['orders', 'orders', 'shopping_bag'],
   ['customers', 'customers', 'people'],
@@ -46,7 +48,9 @@ function pageDescription(page) {
   if (adminLang() === 'en') {
     return {
       overview: 'Welcome to the control panel',
+      pos: 'Full counter checkout with search, quantity, and discounts',
       products: 'Manage catalog and pricing',
+      categories: 'Bilingual category labels for store and POS',
       inventory: 'Live warehouse stock',
       orders: 'Track and fulfill orders',
       customers: 'Customer activity overview',
@@ -59,7 +63,9 @@ function pageDescription(page) {
   }
   return {
     overview: 'مرحباً بك في لوحة التحكم',
+    pos: 'بيع كامل من المحل مع بحث وكمية وخصم',
     products: 'إدارة الكتالوج والأسعار',
+    categories: 'أسماء التصنيفات بالعربية والإنجليزية للمتجر ونقطة البيع',
     inventory: 'المخزون الحي من المستودع',
     orders: 'متابعة وتنفيذ الطلبات',
     customers: 'نظرة على نشاط العملاء',
@@ -143,7 +149,7 @@ function renderShell(content) {
         `).join('')}
       </nav>
       <div class="sidebar-footer">
-        <a class="nav-link" href="${AdminAuth.storefrontHome()}">
+        <a class="nav-link" href="/" target="_blank" rel="noopener noreferrer">
           <span class="material-symbols-outlined">storefront</span>
           <span>${escapeAdmin(t('store'))}</span>
         </a>
@@ -216,6 +222,11 @@ function mountAdmin(content) {
     admin: true,
     lang: adminLang(),
     titleSuffix: adminLang() === 'en' ? 'Admin' : 'لوحة التحكم'
+  });
+  StoreState.connectStockSocket?.(() => {
+    if (typeof window.renderAdminPage === 'function' && document.body.dataset.adminPage !== 'pos') {
+      /* stock badge refresh happens on next navigation/render */
+    }
   });
   document.getElementById('admin-lang')?.addEventListener('click', () => {
     StoreState.setLang(adminLang() === 'ar' ? 'en' : 'ar');

@@ -3,6 +3,7 @@
  */
 (function storefrontBridge() {
   if (typeof StoreState === 'undefined' || window.TECHPRO_CONFIG?.mode !== 'demo') return;
+  if (typeof document === 'undefined' || typeof document.createElement !== 'function') return;
   StoreState.ensure();
 
   function applyCmsStrings() {
@@ -37,6 +38,7 @@
   }
 
   function applyBranding() {
+    if (typeof StoreState.applyDocumentBranding !== 'function') return;
     const lang = typeof currentLang === 'string' ? currentLang : (document.documentElement.lang === 'en' ? 'en' : 'ar');
     const pageLabel = document.body?.dataset?.pageTitle || '';
     StoreState.applyDocumentBranding({
@@ -46,12 +48,72 @@
     });
   }
 
+  function applyLiveStockUi() {
+    document.querySelectorAll('[data-product-id]').forEach((node) => {
+      const id = node.getAttribute('data-product-id');
+      const product = StoreState.getProduct(id);
+      if (!product) return;
+      const stock = Number(product.stock || 0);
+      node.querySelectorAll('[data-stock-label]').forEach((label) => {
+        label.textContent = String(stock);
+      });
+      node.querySelectorAll('button[data-add-cart], a[data-add-cart], button.add-to-cart').forEach((btn) => {
+        btn.disabled = stock <= 0;
+        if (stock <= 0) btn.setAttribute('aria-disabled', 'true');
+        else btn.removeAttribute('aria-disabled');
+      });
+      node.classList.toggle('is-out-of-stock', stock <= 0);
+    });
+  }
+
+  function applyHeaderCategories(categories) {
+    const select = document.getElementById('header-category-select');
+    if (!select || !Array.isArray(categories) || !categories.length) return;
+    const lang = typeof currentLang === 'string' ? currentLang : document.documentElement.lang;
+    const current = select.value || 'all';
+    const allLabel = lang === 'en' ? 'All departments' : 'جميع الأقسام';
+    select.innerHTML = [
+      `<option class="bg-inverse-surface text-inverse-on-surface" value="all">${allLabel}</option>`,
+      ...categories.filter((item) => item.active !== false).map((item) => {
+        const label = lang === 'en' ? (item.nameEn || item.nameAr || item.slug) : (item.nameAr || item.nameEn || item.slug);
+        return `<option class="bg-inverse-surface text-inverse-on-surface" value="${String(item.slug).replace(/"/g, '&quot;')}">${String(label).replace(/</g, '&lt;')}</option>`;
+      })
+    ].join('');
+    if ([...select.options].some((opt) => opt.value === current)) select.value = current;
+  }
+
+  async function loadCategories() {
+    try {
+      const response = await fetch('/api/categories', { credentials: 'same-origin', headers: { Accept: 'application/json' } });
+      const data = await response.json().catch(() => ({}));
+      if (response.ok && data.ok && Array.isArray(data.categories)) {
+        applyHeaderCategories(data.categories);
+        return data.categories;
+      }
+    } catch {}
+    return [];
+  }
+
   function applyNow() {
-    applyCmsStrings();
-    if (typeof updateAllTexts === 'function') updateAllTexts();
-    applyCmsStrings();
-    applyPolicy();
-    applyBranding();
+    try {
+      applyCmsStrings();
+      if (typeof updateAllTexts === 'function') updateAllTexts();
+      applyCmsStrings();
+      applyPolicy();
+      applyBranding();
+      applyLiveStockUi();
+      loadCategories();
+    } catch {}
+  }
+
+  const refresh = StoreState.refreshProductsFromServer?.();
+  if (refresh && typeof refresh.finally === 'function') {
+    refresh.finally(() => {
+      applyNow();
+      try { StoreState.connectStockSocket?.(() => applyLiveStockUi()); } catch {}
+    });
+  } else {
+    applyNow();
   }
 
   document.addEventListener('componentsLoaded', applyNow);

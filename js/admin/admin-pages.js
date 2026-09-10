@@ -5,7 +5,9 @@ window.renderAdminPage = function renderAdminPage() {
   const page = document.body.dataset.adminPage;
   ({
     overview: renderOverview,
+    pos: renderPos,
     products: renderProducts,
+    categories: renderCategories,
     inventory: renderInventory,
     orders: renderOrders,
     customers: renderCustomers,

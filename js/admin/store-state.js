@@ -12,6 +12,10 @@ const StoreState = (() => {
   };
 
   const ORDERS_KEY = 'techpro_orders';
+  let liveProducts = null;
+  let serverInventory = false;
+  let stockSocket = null;
+  const stockListeners = new Set();
 
   function read(key, fallback) {
     try {
@@ -28,6 +32,112 @@ const StoreState = (() => {
       document.dispatchEvent(new CustomEvent('storeStateChanged', { detail: { key } }));
     } catch {}
     return value;
+  }
+
+  function notifyStock(payload) {
+    stockListeners.forEach((fn) => {
+      try { fn(payload); } catch {}
+    });
+    try {
+      document.dispatchEvent(new CustomEvent('storeStateChanged', { detail: { key: KEYS.PRODUCTS, source: 'ws' } }));
+    } catch {}
+  }
+
+  function applyStockMutation(items) {
+    if (!Array.isArray(items) || !items.length) return;
+    if (!Array.isArray(liveProducts)) liveProducts = getProducts();
+    const byId = new Map(liveProducts.map((item) => [String(item.id), item]));
+    items.forEach((item) => {
+      const current = byId.get(String(item.id));
+      if (!current) return;
+      current.stock = Number(item.stock ?? item.remainingStock ?? current.stock);
+    });
+    liveProducts = [...byId.values()];
+    try { write(KEYS.PRODUCTS, liveProducts); } catch {}
+    notifyStock({ items });
+  }
+
+  function connectStockSocket(listener) {
+    if (typeof listener === 'function') stockListeners.add(listener);
+    if (typeof window === 'undefined' || !window.location || typeof WebSocket === 'undefined') return null;
+    if (stockSocket && (stockSocket.readyState === WebSocket.OPEN || stockSocket.readyState === WebSocket.CONNECTING)) {
+      return stockSocket;
+    }
+    const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+    try {
+      stockSocket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    } catch {
+      return null;
+    }
+    stockSocket.addEventListener('message', (event) => {
+      let message;
+      try { message = JSON.parse(event.data); } catch { return; }
+      if (message.type === 'STOCK_MUTATION') {
+        applyStockMutation(message.payload?.items || []);
+        return;
+      }
+      if (message.type === 'STOCK_SYNC') {
+        applyStockMutation((message.items || []).map((item) => ({
+          id: item.productId,
+          stock: item.newStock,
+          remainingStock: item.newStock,
+          sku: item.sku
+        })));
+      }
+    });
+    stockSocket.addEventListener('close', () => {
+      stockSocket = null;
+      setTimeout(() => connectStockSocket(), 2500);
+    });
+    return stockSocket;
+  }
+
+  async function refreshProductsFromServer() {
+    if (typeof fetch !== 'function') return null;
+    try {
+      const response = await fetch('/api/products', { credentials: 'same-origin', headers: { Accept: 'application/json' } });
+      if (!response.ok) {
+        serverInventory = false;
+        return null;
+      }
+      const data = await response.json().catch(() => null);
+      if (!data || data.ok !== true || !Array.isArray(data.products)) {
+        serverInventory = false;
+        return null;
+      }
+      // Local empty fallback must not wipe the client catalog.
+      if (data.source !== 'mysql' && data.products.length === 0) {
+        serverInventory = false;
+        return null;
+      }
+      serverInventory = data.source === 'mysql';
+      liveProducts = data.products;
+      try { write(KEYS.PRODUCTS, liveProducts); } catch {}
+      return liveProducts;
+    } catch {
+      serverInventory = false;
+      return null;
+    }
+  }
+
+  function serverInventoryEnabled() {
+    return serverInventory;
+  }
+
+  async function saveProductRemote(product) {
+    const method = product.id ? 'PUT' : 'POST';
+    const path = product.id ? `/api/products/${encodeURIComponent(product.id)}` : '/api/products';
+    const response = await fetch(path, {
+      method,
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(product)
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.ok) throw new Error(data.error || 'Unable to save product');
+    serverInventory = true;
+    await refreshProductsFromServer();
+    return data.product;
   }
 
   function catalogSeed() {
@@ -223,6 +333,7 @@ const StoreState = (() => {
   try { ensure(); } catch { /* UI initialization reports unavailable storage. */ }
 
   function getProducts() {
+    if (Array.isArray(liveProducts)) return liveProducts;
     const list = read(KEYS.PRODUCTS, []);
     return Array.isArray(list) ? list : [];
   }
@@ -232,6 +343,7 @@ const StoreState = (() => {
   }
 
   function saveProducts(list) {
+    liveProducts = list;
     return write(KEYS.PRODUCTS, list);
   }
 
@@ -498,6 +610,11 @@ const StoreState = (() => {
     deductCart,
     commitPreviewOrder,
     applyLiveProduct,
+    refreshProductsFromServer,
+    applyStockMutation,
+    connectStockSocket,
+    serverInventoryEnabled,
+    saveProductRemote,
     getOrders,
     addOrder,
     updateOrderStatus,
@@ -523,3 +640,6 @@ const StoreState = (() => {
 })();
 
 window.StoreState = StoreState;
+if (typeof window !== 'undefined' && window.location && typeof fetch === 'function') {
+  StoreState.refreshProductsFromServer();
+}

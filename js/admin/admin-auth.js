@@ -81,7 +81,7 @@ const AdminAuth = (() => {
     const path = (window.location.pathname || '').replace(/\/+$/, '') || '/';
     if (path === '/dashboard' || path.endsWith('/login.html')) return 'login';
     const slug = path.split('/').pop();
-    const keys = ['home', 'products', 'inventory', 'orders', 'customers', 'coupons', 'cms', 'content', 'settings', 'payments'];
+    const keys = ['home', 'pos', 'products', 'categories', 'inventory', 'orders', 'customers', 'coupons', 'cms', 'content', 'settings', 'payments'];
     if (slug === 'home' || slug === 'overview') return session() ? 'overview' : 'login';
     if (keys.includes(slug)) return session() ? slug : 'login';
     if (document.body.dataset.adminPage && document.body.dataset.adminPage !== 'login' && path.includes('/pages/admin/')) {

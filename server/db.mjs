@@ -10,6 +10,8 @@ const storeFile = path.join(dataDir, 'store.json');
 function emptyStore() {
   return {
     orders: [],
+    products: [],
+    categories: [],
     sessions: {},
     processedEvents: [],
     paymob: {
@@ -43,6 +45,8 @@ export function readStore() {
       ...parsed,
       paymob: openPaymob({ ...base.paymob, ...(parsed.paymob || {}) }),
       orders: Array.isArray(parsed.orders) ? parsed.orders : [],
+      products: Array.isArray(parsed.products) ? parsed.products : [],
+      categories: Array.isArray(parsed.categories) ? parsed.categories : [],
       processedEvents: Array.isArray(parsed.processedEvents) ? parsed.processedEvents : [],
       sessions: parsed.sessions && typeof parsed.sessions === 'object' ? parsed.sessions : {}
     };
