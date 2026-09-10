@@ -77,7 +77,7 @@ function setActiveNavLink() {
   navLinks.forEach(link => {
     const href = link.getAttribute('href');
     const targetPath = href ? new URL(href, window.location.href).pathname : null;
-    const isHome = currentPath === appBaseUrl.pathname && targetPath === new URL('index.html', appBaseUrl).pathname;
+    const isHome = currentPath === '/' || currentPath === appBaseUrl.pathname || currentPath === new URL('/', appBaseUrl).pathname;
     const isCurrentPage = targetPath === currentPath;
     const isActiveNav = activeNav && link.dataset.nav === activeNav;
 
@@ -228,7 +228,10 @@ function clearCart() {
 }
 
 function getStorefrontPageUrl(page) {
-  return new URL(`pages/storefront/${page}`, appBaseUrl).href;
+  const path = (typeof AppRoutes !== 'undefined' && typeof AppRoutes.page === 'function')
+    ? AppRoutes.page(page)
+    : `/${String(page || '').replace(/\.html$/i, '')}`;
+  return new URL(String(path).replace(/^\//, ''), appBaseUrl).href;
 }
 
 function updateAccountDisplay() {
@@ -300,12 +303,14 @@ function bindSecretAdminGate() {
     if (!(event.ctrlKey && event.shiftKey && (event.key === 'A' || event.key === 'a'))) return;
     if (event.target && /input|textarea|select/i.test(event.target.tagName)) return;
     event.preventDefault();
-    window.location.href = new URL('pages/admin/login.html', appBaseUrl).href;
+    window.location.href = (typeof AppRoutes !== 'undefined' && AppRoutes.admin)
+      ? new URL(AppRoutes.admin('login'), appBaseUrl).href
+      : new URL('/dashboard', appBaseUrl).href;
   });
 }
 
 function getCatalogResultsUrl(query, category, condition) {
-  const url = new URL('pages/storefront/catalog.html', appBaseUrl);
+  const url = new URL((typeof AppRoutes !== 'undefined' && AppRoutes.page) ? AppRoutes.page('catalog') : '/catalog', appBaseUrl);
   if (query) url.searchParams.set('q', query);
   if (category && category !== 'all') url.searchParams.set('cat', category);
   if (condition && condition !== 'all') url.searchParams.set('condition', condition);
@@ -313,7 +318,7 @@ function getCatalogResultsUrl(query, category, condition) {
 }
 
 function isCatalogResultsPage() {
-  return /\/catalog\.html$/.test(window.location.pathname);
+  return /\/catalog(?:\.html)?$/.test(window.location.pathname);
 }
 
 function bindHeaderSearch() {

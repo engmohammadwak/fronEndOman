@@ -45,7 +45,7 @@ function renderCheckoutPage() {
             <h1 class="font-black flex items-center gap-2"><span class="material-symbols-outlined text-primary">person_pin</span>${escapeHtml(commerceCopy('بيانات العميل والتوصيل', 'Customer & delivery'))}</h1>
             <span class="${session ? 'commerce-chip' : 'commerce-chip commerce-chip-guest'}">${session ? escapeHtml(commerceCopy('عميل مسجل', 'Member')) : escapeHtml(commerceCopy('زائر', 'Guest'))}</span>
           </div>
-          ${session ? `<p class="text-xs text-tertiary font-bold mb-3">${escapeHtml(commerceCopy(`مرحباً ${session.name} • ${session.loyaltyPoints} نقطة ولاء`, `Welcome ${session.nameEn || session.name} • ${session.loyaltyPoints} loyalty points`))}</p>` : `<p class="text-xs text-secondary mb-3">${escapeHtml(commerceCopy('يمكنك إتمام الطلب كزائر، أو ', 'You can checkout as a guest, or '))}<a class="text-primary font-bold" href="${escapeHtml(getStorefrontPageUrl('login.html'))}?next=checkout.html">${escapeHtml(commerceCopy('تسجيل الدخول', 'sign in'))}</a></p>`}
+          ${session ? `<p class="text-xs text-tertiary font-bold mb-3">${escapeHtml(commerceCopy(`مرحباً ${session.name} • ${session.loyaltyPoints} نقطة ولاء`, `Welcome ${session.nameEn || session.name} • ${session.loyaltyPoints} loyalty points`))}</p>` : `<p class="text-xs text-secondary mb-3">${escapeHtml(commerceCopy('يمكنك إتمام الطلب كزائر، أو ', 'You can checkout as a guest, or '))}<a class="text-primary font-bold" href="${escapeHtml(getStorefrontPageUrl('login.html'))}?next=checkout">${escapeHtml(commerceCopy('تسجيل الدخول', 'sign in'))}</a></p>`}
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div class="commerce-field">
               <label for="cust-name">${escapeHtml(commerceCopy('الاسم الكامل', 'Full name'))}</label>
@@ -126,10 +126,6 @@ async function handleCheckoutSubmit(event) {
     return;
   }
 
-  if (!isDemoMode() && checkoutUi.payment !== 'cod') {
-    notifyCommerce(commerceCopy('الدفع الإلكتروني غير مربوط بعد. اختر الدفع عند الاستلام.', 'Online payment is not connected. Select cash on delivery.'), 'error');
-    return;
-  }
   const totals = cartTotals();
   const session = typeof getAuthSession === 'function' ? getAuthSession() : null;
   const fingerprint = JSON.stringify({ items: cart, name, phone, address, payment: checkoutUi.payment });
@@ -155,11 +151,29 @@ async function handleCheckoutSubmit(event) {
   const button = event.target.querySelector('[type="submit"]');
   if (button) button.disabled = true;
   try {
-    if (isDemoMode() && typeof StoreState !== 'undefined') {
+    if (typeof StoreState !== 'undefined') {
       const blocked = cart.find((item) => item.productId != null && !StoreState.canSell(item.productId, item.qty || 1));
       if (blocked) {
         notifyCommerce(commerceCopy('الكمية المطلوبة أكبر من المتوفر في المخزن.', 'Requested quantity exceeds warehouse stock.'), 'error');
         return;
+      }
+    }
+    if (checkoutUi.payment !== 'cod' && typeof requestBackend === 'function') {
+      try {
+        const paid = await requestBackend('checkout/pay', { method: 'POST', body: JSON.stringify(order) });
+        if (paid?.checkoutUrl) {
+          saveState('techpro_pending_order', { id: order.orderId, fingerprint, order });
+          window.location.href = paid.checkoutUrl;
+          return;
+        }
+      } catch (error) {
+        if (!isDemoMode()) {
+          const message = error.code === 'PAYMOB_NOT_CONFIGURED' || error.status === 409
+            ? commerceCopy('أدخل بيانات Paymob من لوحة التحكم حتى تصل المبالغ إلى حسابك.', 'Enter Paymob keys in the dashboard so funds settle to your account.')
+            : commerceCopy('تعذر فتح بوابة الدفع. حاول لاحقاً أو اختر الدفع عند الاستلام.', 'Could not open the payment gateway. Try later or choose cash on delivery.');
+          notifyCommerce(message, 'error');
+          return;
+        }
       }
     }
     const saved = await submitOrderToDashboard(order);

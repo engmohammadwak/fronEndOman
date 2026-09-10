@@ -1,4 +1,6 @@
-const STOREFRONT_PLACEHOLDER_IMAGE = '../../assets/images/product-placeholder.svg';
+const STOREFRONT_PLACEHOLDER_IMAGE = typeof appBaseUrl !== 'undefined'
+  ? new URL('assets/images/product-placeholder.svg', appBaseUrl).href
+  : '/assets/images/product-placeholder.svg';
 
 function getCurrentLanguage() {
   if (typeof currentLang === 'string' && (currentLang === 'en' || currentLang === 'ar')) {
@@ -50,12 +52,11 @@ function safeMediaUrl(url, fallback) {
 }
 
 function getProductPageUrl(id) {
-  const path = window.location.pathname || '';
-  const query = `id=${encodeURIComponent(id)}`;
-  if (path.includes('/pages/storefront/')) {
-    return `product.html?${query}`;
-  }
-  return `pages/storefront/product.html?${query}`;
+  const base = typeof appBaseUrl !== 'undefined' ? appBaseUrl : window.location.origin;
+  const path = (typeof AppRoutes !== 'undefined' && AppRoutes.page) ? AppRoutes.page('product') : '/product';
+  const url = new URL(String(path).replace(/^\//, ''), base);
+  url.searchParams.set('id', id);
+  return url.href;
 }
 
 function updateDemoNotice(usingDemoData) {

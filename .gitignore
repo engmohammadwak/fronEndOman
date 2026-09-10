@@ -9,8 +9,12 @@
 .phpunit.result.cache
 storage/*.key
 
+# Server secrets and order store
+/data
+
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
+project.zip

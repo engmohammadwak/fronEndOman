@@ -16,15 +16,15 @@
   <div class="bg-inverse-surface text-inverse-on-surface">
     <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl h-20 flex items-center justify-between gap-space-md">
       <div class="flex items-center gap-space-md shrink-0">
-        <img alt="شعار تيك برو" class="w-8 h-8 rounded-full object-cover border border-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1XaLLqINJaydk9P73lrT9DiMMXja5rb4pvqV0d2oXD6nxmP9lxIX23rsY1YsJPHx55tOGyuMj6GwfZiScbC7vc9qbQ6PZrF6c1cZU4CO5MVaudLBbv5TVcCpZYQHORU8VqN_M_Un9TELhCUozHLT2VsFFSJdzrqdr3Vn0lp5XuPH67uilecTDrCL76gCl-kM5b6GsMM1ALLcMXcBaHUkYru-1xw6AQJ4tKfcSmsWEu9favacJHM61bk6HE">
+        <img data-brand-logo alt="شعار المتجر" class="w-8 h-8 rounded-full object-cover border border-white/20" src="/assets/images/brand-mark.svg">
         <div class="flex flex-col">
-          <span class="text-xl text-surface-container-lowest font-black leading-tight">الارض الذكية smart earth</span>
+          <span data-brand-name class="text-xl text-surface-container-lowest font-black leading-tight">الارض الذكية smart earth</span>
           <span class="text-xs text-secondary-fixed-dim" data-i18n="store_desc">متجر الأجهزة والتقنية المعتمد</span>
         </div>
       </div>
 
       <div class="hidden md:flex flex-1 max-w-xl mx-space-md items-center">
-        <form id="header-search-form" class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors" action="/pages/storefront/catalog.html" method="get" role="search">
+        <form id="header-search-form" class="flex w-full items-center bg-inverse-surface rounded-lg px-space-2xs py-space-2xs border border-outline-variant/30 focus-within:border-primary-container transition-colors" action="/catalog" method="get" role="search">
           <select id="header-category-select" name="cat" aria-label="اختر الأقسام" class="bg-transparent text-secondary-fixed text-sm px-space-xs py-space-xs focus:outline-none cursor-pointer">
             <option class="bg-inverse-surface text-inverse-on-surface" value="all" data-i18n="all_departments">جميع الأقسام</option>
             <option class="bg-inverse-surface text-inverse-on-surface" value="phones" data-i18n="phones">الجوالات</option>
@@ -41,13 +41,13 @@
       <!-- الأزرار: المفضلة، السلة، حسابي -->
       <div class="flex items-center gap-space-sm lg:gap-space-md shrink-0">
         <!-- المفضلة -->
-        <a id="header-wishlist-link" aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="/pages/storefront/wishlist.html">
+        <a id="header-wishlist-link" aria-label="قائمة الرغبات" class="relative p-space-xs text-secondary-fixed hover:text-surface-container-lowest transition-colors flex items-center justify-center" href="/wishlist">
           <span class="material-symbols-outlined text-2xl" aria-hidden="true">favorite</span>
           <span id="wishlist-count" class="absolute top-1 -right-1 bg-error text-on-error text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold" style="display: none;">0</span>
         </a>
         
         <!-- السلة -->
-        <a id="header-cart-link" aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="/pages/storefront/cart.html">
+        <a id="header-cart-link" aria-label="سلة المشتريات" class="flex items-center gap-space-xs bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-inverse-on-surface px-space-sm py-space-xs rounded-lg transition-colors" href="/cart">
           <span class="material-symbols-outlined text-2xl text-tertiary-fixed-dim" aria-hidden="true">shopping_cart</span>
           <div class="hidden sm:flex flex-col text-right">
             <span id="cart-count" class="text-xs text-secondary-fixed-dim" data-i18n="cart_label">سلة المشتريات (0)</span>
@@ -56,7 +56,7 @@
         </a>
         
         <!-- حسابي -->
-        <a id="header-account-link" aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="/pages/storefront/account.html">
+        <a id="header-account-link" aria-label="حسابي" class="flex items-center gap-space-2xs bg-primary-container hover:bg-primary text-on-primary px-space-sm py-space-xs rounded-lg transition-colors text-xs font-bold" href="/account">
           <span class="material-symbols-outlined text-xl" aria-hidden="true">person</span>
           <span id="header-account-label" class="hidden sm:inline" data-i18n="my_account">حسابي</span>
         </a>
@@ -69,7 +69,7 @@
           <a
             data-nav="home"
             class="nav-link transition-colors whitespace-nowrap py-space-xs"
-            href="/index.html"
+            href="/"
             data-i18n="nav_home"
           >
             الرئيسية
@@ -78,7 +78,7 @@
           <a
             data-nav="new-devices"
             class="nav-link transition-colors whitespace-nowrap py-space-xs"
-            href="/pages/storefront/new-devices.html"
+            href="/new-devices"
             data-i18n="nav_new_devices"
           >
             الأجهزة الجديدة
@@ -87,7 +87,7 @@
           <a
             data-nav="refurbished"
             class="nav-link transition-colors whitespace-nowrap py-space-xs"
-            href="/pages/storefront/refurbished-devices.html"
+            href="/refurbished-devices"
             data-i18n="nav_refurbished"
           >
             الأجهزة المستعملة والمجددة
@@ -96,7 +96,7 @@
           <a
             data-nav="special-offers"
             class="nav-link transition-colors whitespace-nowrap py-space-xs"
-            href="/pages/storefront/special-offers.html"
+            href="/special-offers"
             data-i18n="nav_special_offers"
           >
             العروض الخاصة
@@ -105,7 +105,7 @@
           <a
             data-nav="brands"
             class="nav-link transition-colors whitespace-nowrap py-space-xs"
-            href="/pages/storefront/brands.html"
+            href="/brands"
             data-i18n="nav_brands"
           >
             الماركات
@@ -114,7 +114,7 @@
           <a
             data-nav="customer-service"
             class="nav-link transition-colors whitespace-nowrap py-space-xs"
-            href="/pages/storefront/customer-service.html"
+            href="/customer-service"
             data-i18n="nav_customer_service"
           >
             خدمة العملاء

@@ -1,13 +1,36 @@
-const apiAppRoot = new URL('../', document.currentScript.src);
 function isDemoMode() { return window.TECHPRO_CONFIG?.mode !== 'live'; }
+async function requestBackend(path, options = {}) {
+  const origin = window.location.origin || new URL(window.location.href || 'http://localhost').origin;
+  const url = new URL(String(path).replace(/^\//, ''), new URL('/api/', origin));
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), window.TECHPRO_CONFIG?.requestTimeoutMs || 15000);
+  try {
+    const response = await fetch(url, {
+      credentials: 'same-origin',
+      ...options,
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json', ...options.headers },
+      signal: controller.signal
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const error = new Error(data.error || `API request failed (${response.status})`);
+      error.status = response.status;
+      error.code = data.code;
+      error.body = data;
+      throw error;
+    }
+    return data;
+  } finally { clearTimeout(timer); }
+}
 async function requestApi(path, options = {}) {
   if (isDemoMode() && window.TECHPRO_CONFIG?.demoApiReads === false) throw new Error('Preview uses local data');
-  const base = new URL(window.TECHPRO_CONFIG?.apiBase || 'api/', apiAppRoot);
-  const url = new URL(String(path).replace(/^\//, ''), base);
+  const origin = window.location.origin || new URL(window.location.href).origin;
+  const url = new URL(String(path).replace(/^\//, ''), new URL('/api/', origin));
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), window.TECHPRO_CONFIG?.requestTimeoutMs || 5000);
   try {
     const response = await fetch(url, {
+      credentials: 'same-origin',
       ...options,
       headers: { Accept: 'application/json', ...options.headers },
       signal: controller.signal

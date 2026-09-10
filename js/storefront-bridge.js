@@ -36,11 +36,22 @@
     if (text) host.textContent = String(text);
   }
 
+  function applyBranding() {
+    const lang = typeof currentLang === 'string' ? currentLang : (document.documentElement.lang === 'en' ? 'en' : 'ar');
+    const pageLabel = document.body?.dataset?.pageTitle || '';
+    StoreState.applyDocumentBranding({
+      lang,
+      titleSuffix: pageLabel || undefined,
+      setTitle: true
+    });
+  }
+
   function applyNow() {
     applyCmsStrings();
     if (typeof updateAllTexts === 'function') updateAllTexts();
     applyCmsStrings();
     applyPolicy();
+    applyBranding();
   }
 
   document.addEventListener('componentsLoaded', applyNow);

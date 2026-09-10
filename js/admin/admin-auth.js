@@ -1,94 +1,157 @@
 const AdminAuth = (() => {
-  const SESSION_KEY = 'techpro_admin_session';
-  const USER = 'admin';
-  const previewEnabled = () => window.TECHPRO_CONFIG?.mode === 'demo';
+  let currentSession = null;
+  let revision = 0;
+  let status = 'idle';
+  let initialization = null;
 
-  function session() {
-    if (!previewEnabled()) return null;
-    try {
-      let raw = localStorage.getItem(SESSION_KEY);
-      if (raw === null) {
-        const legacy = sessionStorage.getItem(SESSION_KEY);
-        if (legacy) { localStorage.setItem(SESSION_KEY, legacy); sessionStorage.removeItem(SESSION_KEY); raw = legacy; }
-      }
-      const data = raw ? JSON.parse(raw) : null;
-      return data && data.ok === true && typeof data.user === 'string' ? data : null;
-    } catch {
-      return null;
+  async function sessionRequest(path, options = {}) {
+    const response = await fetch(path, { credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(15000), ...options });
+    if (response.status === 401) return null;
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Authentication service unavailable');
+    return data;
+  }
+
+  function session() { return currentSession; }
+  function normalizeSession(data) {
+    if (data === null) return null;
+    if (!data || data.ok !== true || typeof data.email !== 'string' || !data.email.trim()) {
+      throw new Error('Invalid authentication response');
+    }
+    return {email:data.email, user:data.email, name:data.email, nameEn:data.email};
+  }
+
+  function showStatus(nextStatus) {
+    status = nextStatus;
+    const app = document.getElementById('admin-app');
+    if (!app) return;
+    app.hidden = false;
+    app.setAttribute('aria-busy', String(nextStatus === 'loading'));
+    app.replaceChildren();
+    const message = document.createElement('p');
+    message.setAttribute('role', nextStatus === 'error' ? 'alert' : 'status');
+    message.textContent = nextStatus === 'error'
+      ? 'تعذّر التحقق من الجلسة. لم يتم تسجيل خروجك. / Session verification unavailable.'
+      : 'جاري التحقق من الجلسة… / Checking your session…';
+    app.appendChild(message);
+    if (nextStatus === 'error') {
+      const retry = document.createElement('button');
+      retry.type = 'button';
+      retry.textContent = 'إعادة المحاولة / Retry';
+      retry.addEventListener('click', () => boot());
+      app.appendChild(retry);
     }
   }
 
-  function login(username) {
-    if (!previewEnabled() || !String(username || '').trim()) return false;
-    localStorage.setItem(SESSION_KEY, JSON.stringify({
-      ok: true,
-      user: USER,
-      name: 'مدير النظام',
-      nameEn: 'System admin',
-      at: Date.now()
-    }));
-    return true;
+  async function login(email, password) {
+    const operation = ++revision;
+    const data = await sessionRequest('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    if (operation !== revision) return false;
+    currentSession = normalizeSession(data);
+    status = currentSession ? 'authenticated' : 'anonymous';
+    return !!currentSession;
   }
 
-  function logout() {
-    localStorage.setItem(SESSION_KEY, 'null');
-    try { sessionStorage.removeItem(SESSION_KEY); } catch {}
+  async function logout() {
+    const operation = ++revision;
+    await sessionRequest('/api/admin/logout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}'
+    });
+    if (operation !== revision) return;
+    currentSession = null;
+    status = 'anonymous';
+    try {
+      localStorage.setItem('techpro_admin_session', 'null');
+      sessionStorage.removeItem('techpro_admin_session');
+    } catch {}
+  }
+
+  function adminPath(page) {
+    if (typeof AppRoutes !== 'undefined' && AppRoutes.admin) return AppRoutes.admin(page);
+    return page === 'login' ? '/dashboard' : (page === 'overview' || page === 'home' ? '/dashboard/home' : `/dashboard/${page}`);
+  }
+
+  function pageFromLocation() {
+    const path = (window.location.pathname || '').replace(/\/+$/, '') || '/';
+    if (path === '/dashboard' || path.endsWith('/login.html')) return 'login';
+    const slug = path.split('/').pop();
+    const keys = ['home', 'products', 'inventory', 'orders', 'customers', 'coupons', 'cms', 'content', 'settings', 'payments'];
+    if (slug === 'home' || slug === 'overview') return session() ? 'overview' : 'login';
+    if (keys.includes(slug)) return session() ? slug : 'login';
+    if (document.body.dataset.adminPage && document.body.dataset.adminPage !== 'login' && path.includes('/pages/admin/')) {
+      return session() ? document.body.dataset.adminPage : 'login';
+    }
+    return session() ? 'overview' : 'login';
   }
 
   function guard() {
-    if (session()) return true;
-    const loginUrl = new URL('login.html', window.location.href).href;
-    window.location.replace(loginUrl);
+    if (status === 'authenticated' && session()) return true;
+    if (status === 'anonymous') window.location.replace(adminPath('login'));
     return false;
   }
 
   function storefrontHome() {
-    return new URL('../../index.html', window.location.href).href;
+    if (typeof AppRoutes !== 'undefined') return new URL(AppRoutes.page('index'), window.location.origin).href;
+    return new URL('/', window.location.origin).href;
   }
 
-  function initLoginPage() {
-    if (document.body.dataset.adminPage !== 'login') return;
-    applyAdminDir();
-    if (!previewEnabled()) { document.body.textContent = 'Live administration requires server authentication. الإدارة الفعلية تحتاج مصادقة الخادم.'; return; }
-    if (session()) {
-      window.location.replace(new URL('index.html', window.location.href).href);
+  function showDashboard(page) {
+    const app = document.getElementById('admin-app');
+    document.body.dataset.adminPage = page;
+    document.body?.classList?.remove('is-admin-login');
+    if (app) {app.hidden = false;app.setAttribute('aria-busy','false');}
+    if (typeof window.renderAdminPage === 'function') window.renderAdminPage();
+  }
+
+  async function initialize(operation) {
+    showStatus('loading');
+    try {
+      const data = await sessionRequest('/api/admin/session');
+      if (operation !== revision) return;
+      currentSession = normalizeSession(data);
+      status = currentSession ? 'authenticated' : 'anonymous';
+    } catch {
+      if (operation === revision) showStatus('error');
       return;
     }
-    const fill = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
-    fill('login-title', t('loginTitle'));
-    fill('login-hint', t('loginHint'));
-    fill('login-user-label', t('user'));
-    fill('login-pass-label', t('pass'));
-    fill('login-submit', t('enter'));
-    fill('login-demo', t('demoHint'));
-    fill('admin-lang', t('lang'));
-    fill('login-meta-1', t('loginMeta1'));
-    fill('login-meta-2', t('loginMeta2'));
-    fill('login-meta-3', t('loginMeta3'));
-    document.getElementById('admin-lang')?.addEventListener('click', () => {
-      StoreState.setLang(adminLang() === 'ar' ? 'en' : 'ar');
-      window.location.reload();
-    });
-    document.getElementById('admin-login-form')?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const user = document.getElementById('admin-user')?.value;
 
-      const error = document.getElementById('admin-login-error');
-      let accepted = false;
-      try { accepted = login(user); } catch {}
-      if (accepted) {
-        window.location.replace(new URL('index.html', window.location.href).href);
-        return;
-      }
-      if (error) {
-        error.hidden = false;
-        error.textContent = t('badLogin');
-      }
-    });
+    if (!session()) {
+      window.location.replace(adminPath('login'));
+      return;
+    }
+
+    const page = pageFromLocation();
+    if (page === 'login') {
+      window.location.replace(adminPath('overview'));
+      return;
+    }
+
+    const current = window.location.pathname.replace(/\/+$/, '') || '/';
+    const target = adminPath(page === 'overview' ? 'overview' : page);
+    if (current.startsWith('/dashboard') && current !== target.replace(/\/+$/, '')) {
+      history.replaceState({}, '', target);
+    }
+    showDashboard(page);
   }
 
-  return { session, login, logout, guard, storefrontHome, USER, initLoginPage };
+  function boot() {
+    if (initialization && initialization.revision === revision) return initialization.promise;
+    const operation = ++revision;
+    const promise = initialize(operation).finally(() => {
+      if (initialization?.revision === operation) initialization = null;
+    });
+    initialization = {revision:operation,promise};
+    return promise;
+  }
+
+  return { session, login, logout, guard, storefrontHome, boot, adminPath, status: () => status };
 })();
 
 window.AdminAuth = AdminAuth;
-document.addEventListener('DOMContentLoaded', () => AdminAuth.initLoginPage());
+document.addEventListener('DOMContentLoaded', () => AdminAuth.boot());

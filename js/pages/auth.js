@@ -4,7 +4,10 @@ function authMode() {
 
 function nextAuthTarget() {
   const next = new URLSearchParams(window.location.search).get('next');
-  if (next && /^[a-z0-9-]+\.html$/i.test(next)) {
+  if (next && next.startsWith('/') && !next.startsWith('//')) {
+    return new URL(next, window.location.origin).href;
+  }
+  if (next && /^[a-z0-9-]+(?:\.html)?$/i.test(next)) {
     return getStorefrontPageUrl(next);
   }
   return getStorefrontPageUrl('account.html');

@@ -3,9 +3,12 @@
  * Future: GET /api/settings/public
  */
 document.addEventListener('DOMContentLoaded', () => {
+  const settings = typeof StoreState !== 'undefined' ? StoreState.getSettings() : {};
   const STORE_SETTINGS = {
-    whatsappNumber: window.TECHPRO_CONFIG?.adminWhatsApp || '',
-    storeName: 'الأرض الذكية Smart Earth'
+    whatsappNumber: settings.whatsappAdmin || window.TECHPRO_CONFIG?.adminWhatsApp || '',
+    storeName: (typeof StoreState !== 'undefined' && StoreState.storeDisplayName)
+      ? StoreState.storeDisplayName()
+      : (settings.storeNameAr || 'الأرض الذكية Smart Earth')
   };
 
   document.getElementById('wa-form')?.addEventListener('submit', (e) => {

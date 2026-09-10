@@ -23,3 +23,24 @@ test('live inventory deducts stock and blocks oversell', () => {
   assert.equal(StoreState.deductStock(1, 10), false);
   assert.equal(StoreState.availableStock(1), 3);
 });
+
+test('preview orders aggregate variants, commit once, restore once, and keep a deleted catalog empty',()=>{
+  const saved={};
+  const context=vm.createContext({window:{},document:{dispatchEvent(){}},
+    localStorage:{getItem:key=>saved[key]??null,setItem:(key,value)=>{saved[key]=value;},removeItem:key=>{delete saved[key];}},
+    STOREFRONT_DEMO_PRODUCTS:[{id:1,price:100,stock:5}]
+  });
+  vm.runInContext(fs.readFileSync('js/admin/store-state.js','utf8'),context);
+  const store=context.window.StoreState;
+  assert.equal(store.deductStock(1,0),false);
+  assert.equal(store.deductCart([{productId:1,qty:3},{productId:1,qty:3}]).ok,false);
+  assert.equal(store.availableStock(1),5);
+  const order={orderId:'preview-1',items:[{productId:1,qty:2}],total:200};
+  store.commitPreviewOrder(order);store.commitPreviewOrder(order);
+  assert.equal(store.availableStock(1),3);
+  store.updateOrderStatus(order.orderId,'cancelled');store.updateOrderStatus(order.orderId,'cancelled');
+  assert.equal(store.availableStock(1),5);
+  assert.throws(()=>store.updateOrderStatus(order.orderId,'processing'),/cannot be reopened/);
+  store.deleteProduct(1);store.ensure();
+  assert.equal(store.getProducts().length,0);
+});

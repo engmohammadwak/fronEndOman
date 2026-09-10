@@ -105,6 +105,8 @@ const StoreState = (() => {
     ];
   }
 
+  const DEFAULT_LOGO = '/assets/images/brand-mark.svg';
+
   function defaultSettings() {
     return {
       whatsappAdmin: '',
@@ -112,8 +114,86 @@ const StoreState = (() => {
       storeNameAr: 'الأرض الذكية / تيك برو',
       storeNameEn: 'Smart Earth / TechPro',
       currencyAr: 'ر.ع.',
-      currencyEn: 'OMR'
+      currencyEn: 'OMR',
+      logoUrl: DEFAULT_LOGO,
+      faviconUrl: DEFAULT_LOGO,
+      adminLogoUrl: ''
     };
+  }
+
+  function getLang() {
+    try { return localStorage.getItem(KEYS.LANG) || 'ar'; } catch { return 'ar'; }
+  }
+
+  function setLang(lang) {
+    localStorage.setItem(KEYS.LANG, lang === 'en' ? 'en' : 'ar');
+  }
+
+  function storeDisplayName(lang) {
+    const settings = getSettings();
+    const useEn = (lang || getLang()) === 'en';
+    return useEn
+      ? (settings.storeNameEn || settings.storeNameAr || 'TechPro')
+      : (settings.storeNameAr || settings.storeNameEn || 'تيك برو');
+  }
+
+  function storeLogoUrl() {
+    const settings = getSettings();
+    return settings.logoUrl || DEFAULT_LOGO;
+  }
+
+  function storeFaviconUrl() {
+    const settings = getSettings();
+    return settings.faviconUrl || settings.logoUrl || DEFAULT_LOGO;
+  }
+
+  function adminLogoUrl() {
+    const settings = getSettings();
+    return settings.adminLogoUrl || settings.logoUrl || DEFAULT_LOGO;
+  }
+
+  function applyDocumentBranding(options = {}) {
+    const lang = options.lang || (typeof document !== 'undefined' && document.documentElement.lang === 'en' ? 'en' : 'ar');
+    const name = storeDisplayName(lang);
+    const logo = options.admin ? adminLogoUrl() : storeLogoUrl();
+    const favicon = storeFaviconUrl();
+
+    document.querySelectorAll('[data-brand-name]').forEach((node) => {
+      node.textContent = name;
+    });
+    document.querySelectorAll('[data-brand-logo]').forEach((node) => {
+      if (node.tagName === 'IMG') {
+        node.src = logo;
+        node.alt = name;
+      } else {
+        node.style.backgroundImage = `url("${logo.replace(/"/g, '\\"')}")`;
+      }
+    });
+
+    let icon = document.querySelector('link[data-brand-favicon], link[rel="icon"]');
+    if (!icon) {
+      icon = document.createElement('link');
+      icon.rel = 'icon';
+      icon.setAttribute('data-brand-favicon', '1');
+      document.head.appendChild(icon);
+    }
+    icon.rel = 'icon';
+    icon.href = favicon;
+
+    let touch = document.querySelector('link[data-brand-touch]');
+    if (!touch) {
+      touch = document.createElement('link');
+      touch.rel = 'apple-touch-icon';
+      touch.setAttribute('data-brand-touch', '1');
+      document.head.appendChild(touch);
+    }
+    touch.href = favicon;
+
+    if (options.setTitle !== false) {
+      const suffix = options.titleSuffix != null ? options.titleSuffix : document.title.split('|').slice(1).join('|').trim();
+      document.title = suffix ? `${name} | ${suffix}` : name;
+    }
+    return { name, logo, favicon };
   }
 
   function syncFromCatalog(list) {
@@ -197,11 +277,11 @@ const StoreState = (() => {
   }
 
   function deductStock(productId, qty = 1) {
-    const amount = Number(qty || 1);
+    const amount = Number(qty);
     if (!Number.isSafeInteger(amount) || amount <= 0) return false;
     const list = getProducts();
     const item = list.find((product) => String(product.id) === String(productId));
-    if (!item || Number(item.stock || 0) < amount) return false;
+    if (!item || item.active === false || !Number.isSafeInteger(Number(item.stock)) || Number(item.stock) < amount) return false;
     item.stock = Number(item.stock) - amount;
     saveProducts(list);
     return true;
@@ -218,6 +298,7 @@ const StoreState = (() => {
   }
 
   function planDeduction(items) {
+    if (!Array.isArray(items) || !items.length) return { ok: false };
     const totals = new Map();
     for (const line of items || []) {
       if (!line || line.productId == null || !Number.isSafeInteger(Number(line.qty ?? 1)) || Number(line.qty ?? 1) <= 0) return { ok: false };
@@ -227,7 +308,7 @@ const StoreState = (() => {
     const products = getProducts();
     for (const [id, qty] of totals) {
       const item = products.find(product => String(product.id) === id);
-      if (!item || item.active === false || Number(item.stock) < qty) return { ok: false, productId: id };
+      if (!item || item.active === false || !Number.isSafeInteger(Number(item.stock)) || !Number.isSafeInteger(qty) || Number(item.stock) < qty) return { ok: false, productId: id };
       item.stock = Number(item.stock) - qty;
     }
     return { ok: true, products };
@@ -288,13 +369,25 @@ const StoreState = (() => {
     const previous = order.status;
     order.status = status;
     order.updatedAt = new Date().toISOString();
+    const products = getProducts();
     if (status === 'cancelled' && previous !== 'cancelled' && order.inventoryDeducted && !order.inventoryRestored) {
-      (order.items || []).forEach((item) => {
-        if (item.productId != null) restoreStock(item.productId, item.qty || 1);
-      });
+      for (const line of order.items || []) {
+        const product = products.find(item => String(item.id) === String(line.productId));
+        if (!Number.isSafeInteger(Number(line.qty)) || Number(line.qty) <= 0) throw new Error('Invalid order quantity');
+        if (product) product.stock = Number(product.stock) + Number(line.qty);
+      }
+      order.inventoryRestored = true;
     }
-    if (status === 'cancelled' && order.inventoryDeducted) order.inventoryRestored = true;
-    write(ORDERS_KEY, orders);
+    const before = [KEYS.PRODUCTS, ORDERS_KEY].map(key => [key, localStorage.getItem(key)]);
+    try {
+      saveProducts(products);
+      write(ORDERS_KEY, orders);
+    } catch (error) {
+      for (const [key, value] of before) {
+        try { if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value); } catch {}
+      }
+      throw error;
+    }
     return order;
   }
 
@@ -349,10 +442,16 @@ const StoreState = (() => {
         email: order.email || '',
         address: order.address || '',
         orders: 0,
-        total: 0
+        total: 0,
+        lastOrderAt: order.createdAt || '',
+        lastOrderId: order.orderId || ''
       };
       current.orders += 1;
       current.total += Number(order.total || 0);
+      if (!current.lastOrderAt || String(order.createdAt || '') > String(current.lastOrderAt || '')) {
+        current.lastOrderAt = order.createdAt || current.lastOrderAt;
+        current.lastOrderId = order.orderId || current.lastOrderId;
+      }
       map.set(key, current);
     });
     return [...map.values()].sort((a, b) => b.total - a.total);
@@ -412,8 +511,14 @@ const StoreState = (() => {
     saveSettings,
     getCustomers,
     kpis,
-    getLang: () => localStorage.getItem(KEYS.LANG) || 'ar',
-    setLang: (lang) => localStorage.setItem(KEYS.LANG, lang === 'en' ? 'en' : 'ar')
+    DEFAULT_LOGO,
+    storeDisplayName,
+    storeLogoUrl,
+    storeFaviconUrl,
+    adminLogoUrl,
+    applyDocumentBranding,
+    getLang,
+    setLang
   };
 })();
 

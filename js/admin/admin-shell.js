@@ -1,14 +1,17 @@
 const ADMIN_PAGES = [
-  ['index.html', 'overview', 'dashboard'],
-  ['products.html', 'products', 'inventory_2'],
-  ['inventory.html', 'inventory', 'warehouse'],
-  ['orders.html', 'orders', 'receipt_long'],
-  ['customers.html', 'customers', 'group'],
-  ['coupons.html', 'coupons', 'sell'],
-  ['cms.html', 'cms', 'edit_note'],
-  ['content.html', 'content', 'quiz'],
-  ['settings.html', 'settings', 'settings']
+  ['overview', 'overview', 'dashboard'],
+  ['products', 'products', 'inventory_2'],
+  ['inventory', 'inventory', 'warehouse'],
+  ['orders', 'orders', 'shopping_bag'],
+  ['customers', 'customers', 'people'],
+  ['coupons', 'coupons', 'sell'],
+  ['cms', 'cms', 'edit_note'],
+  ['content', 'content', 'support_agent'],
+  ['settings', 'settings', 'settings'],
+  ['payments', 'payments', 'account_balance']
 ];
+
+const SIDEBAR_KEY = 'techpro_admin_sidebar_collapsed';
 
 function adminToast(message) {
   document.getElementById('admin-toast')?.remove();
@@ -39,51 +42,169 @@ function statusLabel(status) {
   return t(key);
 }
 
+function pageDescription(page) {
+  if (adminLang() === 'en') {
+    return {
+      overview: 'Welcome to the control panel',
+      products: 'Manage catalog and pricing',
+      inventory: 'Live warehouse stock',
+      orders: 'Track and fulfill orders',
+      customers: 'Customer activity overview',
+      coupons: 'Promotions and discount codes',
+      cms: 'Storefront copy and banners',
+      content: 'FAQ, branches, and policies',
+      settings: 'Store configuration',
+      payments: 'Paymob gateway credentials'
+    }[page] || 'Admin workspace';
+  }
+  return {
+    overview: 'مرحباً بك في لوحة التحكم',
+    products: 'إدارة الكتالوج والأسعار',
+    inventory: 'المخزون الحي من المستودع',
+    orders: 'متابعة وتنفيذ الطلبات',
+    customers: 'نظرة على نشاط العملاء',
+    coupons: 'العروض وأكواد الخصم',
+    cms: 'نصوص وبانرات المتجر',
+    content: 'الأسئلة والفروع والسياسات',
+    settings: 'إعدادات المتجر',
+    payments: 'بيانات بوابة Paymob'
+  }[page] || 'مساحة الإدارة';
+}
+
+function restoreSidebarState() {
+  try {
+    if (localStorage.getItem(SIDEBAR_KEY) === '1') document.body.classList.add('sidebar-collapsed');
+    else document.body.classList.remove('sidebar-collapsed');
+  } catch {
+    document.body.classList.remove('sidebar-collapsed');
+  }
+}
+
+function toggleDesktopSidebar() {
+  document.body.classList.toggle('sidebar-collapsed');
+  try {
+    localStorage.setItem(SIDEBAR_KEY, document.body.classList.contains('sidebar-collapsed') ? '1' : '0');
+  } catch {}
+}
+
+function notificationsMarkup() {
+  const items = AdminLayout.buildNotifications();
+  const unread = AdminLayout.unreadCount(items);
+  return `
+    <div class="notify-wrap">
+      <button type="button" class="icon-btn" id="admin-notify-btn" aria-label="${escapeAdmin(t('notifications'))}">
+        <span class="material-symbols-outlined">notifications</span>
+        ${unread ? `<span class="notify-badge">${unread}</span>` : ''}
+      </button>
+      <div class="notify-panel" id="admin-notify-panel" hidden>
+        <div class="notify-panel-head">
+          <span>${escapeAdmin(t('notifications'))}</span>
+          <button type="button" class="ad-ghost" id="admin-notify-read">${escapeAdmin(t('markRead'))}</button>
+        </div>
+        ${items.length ? (() => {
+          let readIds = [];
+          try { readIds = JSON.parse(localStorage.getItem('techpro_admin_notify_read') || '{"read":[]}').read || []; } catch { readIds = []; }
+          if (!Array.isArray(readIds)) readIds = [];
+          const read = new Set(readIds);
+          return items.map((item) => `
+          <a class="notify-item ${read.has(item.id) ? '' : 'is-unread'}" href="${escapeAdmin(item.href)}" data-notify-id="${escapeAdmin(item.id)}">
+            ${escapeAdmin(item.title)}
+          </a>`).join('');
+        })() : `<p class="notify-empty">${escapeAdmin(t('noNotifications'))}</p>`}
+      </div>
+    </div>
+  `;
+}
+
 function renderShell(content) {
   const page = document.body.dataset.adminPage || 'overview';
   const session = AdminAuth.session() || {};
-  const now = new Date().toLocaleString(adminLang() === 'en' ? 'en-GB' : 'ar-OM', { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short' });
+  const userLabel = adminLang() === 'en'
+    ? (session.nameEn || session.user || session.email || 'Admin')
+    : (session.name || session.user || session.email || 'المدير');
+  restoreSidebarState();
   return `
-    <aside class="admin-side" id="admin-side">
-      <div class="admin-brand">
-        <div class="admin-mark"><span class="material-symbols-outlined">memory</span></div>
+    <aside class="sidebar admin-side" id="admin-side">
+      <div class="sidebar-header">
+        <div class="brand-icon">
+          <img class="brand-logo-img" data-brand-logo src="${escapeAdmin(StoreState.adminLogoUrl())}" alt="">
+        </div>
         <div>
-          <strong>${escapeAdmin(t('brand'))}</strong>
-          <span>${escapeAdmin(t('brandSub'))}</span>
+          <h1 class="brand-name" data-brand-name>${escapeAdmin(StoreState.storeDisplayName(adminLang()))}</h1>
+          <span class="brand-sub">${escapeAdmin(t('brandSub'))}</span>
         </div>
       </div>
-      <nav class="admin-nav">
-        ${ADMIN_PAGES.map(([href, key, icon]) => `
-          <a class="${page === key ? 'is-active' : ''}" href="${href}">
-            <span class="material-symbols-outlined">${icon}</span>${escapeAdmin(t(key))}
+      <nav class="sidebar-nav">
+        ${ADMIN_PAGES.map(([, key, icon]) => `
+          <a class="nav-link ${page === key ? 'active' : ''}" href="${AdminAuth.adminPath(key)}">
+            <span class="material-symbols-outlined">${icon}</span>
+            <span>${escapeAdmin(t(key))}</span>
           </a>
         `).join('')}
       </nav>
-      <div class="admin-side-foot">
-        <span class="ad-chip">${escapeAdmin(t('live'))}</span>
-        <small>${escapeAdmin(now)}</small>
+      <div class="sidebar-footer">
+        <a class="nav-link" href="${AdminAuth.storefrontHome()}">
+          <span class="material-symbols-outlined">storefront</span>
+          <span>${escapeAdmin(t('store'))}</span>
+        </a>
+        <button type="button" class="logout-btn is-danger" id="admin-logout">
+          <span class="material-symbols-outlined">logout</span>
+          <span>${escapeAdmin(t('logout'))}</span>
+        </button>
       </div>
     </aside>
-    <section class="admin-main">
-      <div class="admin-top">
-        <div class="admin-top-title">
-          <button type="button" class="ad-ghost admin-menu" id="admin-menu" aria-label="menu">
-            <span class="material-symbols-outlined">menu</span>
-          </button>
-          <div>
-            <h1>${escapeAdmin(t(page))}</h1>
-            <p>${escapeAdmin(adminLang() === 'en' ? (session.nameEn || session.user || '') : (session.name || session.user || ''))}</p>
-          </div>
-        </div>
-        <div class="admin-actions">
-          <button type="button" class="ad-ghost" id="admin-lang">${escapeAdmin(t('lang'))}</button>
-          <a class="ad-ghost" href="${AdminAuth.storefrontHome()}">${escapeAdmin(t('store'))}</a>
-          <button type="button" class="ad-danger" id="admin-logout">${escapeAdmin(t('logout'))}</button>
+    <header class="topbar">
+      <div class="topbar-content" style="display:flex;align-items:center;gap:0.75rem;">
+        <button type="button" class="mobile-menu-btn" id="admin-menu" aria-label="menu">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <button type="button" class="icon-btn sidebar-toggle-btn" id="admin-sidebar-toggle" aria-label="${escapeAdmin(t('toggleSidebar'))}">
+          <span class="material-symbols-outlined">view_sidebar</span>
+        </button>
+        <div>
+          <h2 class="page-title">${escapeAdmin(t(page))}</h2>
+          <p class="page-desc">${escapeAdmin(pageDescription(page))}</p>
         </div>
       </div>
+      <div class="topbar-actions">
+        <button type="button" class="icon-btn" id="admin-lang" title="${escapeAdmin(t('lang'))}">
+          <span class="material-symbols-outlined">language</span>
+        </button>
+        ${notificationsMarkup()}
+        <div class="user-profile">
+          <span class="user-name">${escapeAdmin(userLabel)}</span>
+          <span class="material-symbols-outlined">account_circle</span>
+        </div>
+      </div>
+    </header>
+    <main class="main-content admin-main">
       <div id="admin-page">${content}</div>
-    </section>
+    </main>
   `;
+}
+
+function bindNotifications() {
+  const btn = document.getElementById('admin-notify-btn');
+  const panel = document.getElementById('admin-notify-panel');
+  if (!btn || !panel) return;
+  btn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const open = !panel.classList.contains('is-open');
+    panel.classList.toggle('is-open', open);
+    panel.hidden = !open;
+  });
+  document.getElementById('admin-notify-read')?.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const ids = AdminLayout.buildNotifications().map((item) => item.id);
+    AdminLayout.markNotificationsRead(ids);
+    window.renderAdminPage();
+  });
+  document.addEventListener('click', (event) => {
+    if (!panel.classList.contains('is-open')) return;
+    if (event.target.closest('.notify-wrap')) return;
+    panel.classList.remove('is-open');
+    panel.hidden = true;
+  }, { once: true });
 }
 
 function mountAdmin(content) {
@@ -91,17 +212,25 @@ function mountAdmin(content) {
   const root = document.getElementById('admin-app');
   if (!root) return;
   root.innerHTML = renderShell(content);
+  StoreState.applyDocumentBranding({
+    admin: true,
+    lang: adminLang(),
+    titleSuffix: adminLang() === 'en' ? 'Admin' : 'لوحة التحكم'
+  });
   document.getElementById('admin-lang')?.addEventListener('click', () => {
     StoreState.setLang(adminLang() === 'ar' ? 'en' : 'ar');
     window.renderAdminPage();
   });
-  document.getElementById('admin-logout')?.addEventListener('click', () => {
-    AdminAuth.logout();
-    window.location.href = AdminAuth.storefrontHome();
+  document.getElementById('admin-logout')?.addEventListener('click', async () => {
+    try { await AdminAuth.logout(); } catch { adminToast('تعذّر تسجيل الخروج / Sign-out failed'); return; }
+    window.location.href = AdminAuth.adminPath('login');
   });
   document.getElementById('admin-menu')?.addEventListener('click', () => {
+    document.getElementById('admin-side')?.classList.toggle('open');
     document.getElementById('admin-side')?.classList.toggle('is-open');
   });
+  document.getElementById('admin-sidebar-toggle')?.addEventListener('click', toggleDesktopSidebar);
+  bindNotifications();
 }
 
 function adminModal(inner) {
@@ -123,3 +252,12 @@ function adminModal(inner) {
 function closeAdminModal() {
   document.getElementById('admin-modal')?.classList.remove('is-open');
 }
+
+window.toggleSidebar = function toggleSidebar() {
+  if (window.matchMedia('(max-width: 860px)').matches) {
+    document.getElementById('admin-side')?.classList.toggle('open');
+    document.getElementById('admin-side')?.classList.toggle('is-open');
+    return;
+  }
+  toggleDesktopSidebar();
+};
