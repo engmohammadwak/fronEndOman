@@ -7,31 +7,34 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/admin.css?v=admin-theme-1">
-  <link rel="stylesheet" href="../../css/dashboard-theme.css?v=pos-2">
-  <script src="../../js/config.js?v=enterprise-1"></script>
-  <script src="../../js/ui-dialog.js?v=dialog-1"></script>
+  <!-- Root-absolute assets: required for /dashboard/* clean URLs behind cPanel proxy -->
+  <link rel="stylesheet" href="/css/admin.css?v=admin-theme-2">
+  <link rel="stylesheet" href="/css/dashboard-theme.css?v=dash-2">
+  <script src="/js/config.js?v=enterprise-2"></script>
+  <script src="/js/ui-dialog.js?v=dialog-2"></script>
 </head>
 <body class="admin-body">
-  <div id="admin-app" class="admin-app"></div>
-  <script src="../../js/app-routes.js?v=cat-1"></script>
-  <script src="../../js/api.js?v=paymob-1"></script>
-  <script src="../../js/pages/storefront-demo-catalog.js?v=admin-2"></script>
-  <script src="../../js/i18n.js?v=admin-2"></script>
-  <script src="../../js/admin/store-state.js?v=cat-1"></script>
-  <script src="../../js/admin/admin-i18n.js?v=dialog-2"></script>
-  <script src="../../js/admin/admin-auth.js?v=cat-1"></script>
-  <script src="../../js/admin/admin-layout.js?v=admin-layout-1"></script>
-  <script src="../../js/admin/admin-shell.js?v=cat-1"></script>
-  <script src="../../js/admin/admin-products.js?v=cat-1"></script>
-  <script src="../../js/admin/admin-orders.js?v=admin-layout-1"></script>
-  <script src="../../js/admin/admin-overview.js?v=admin-layout-1"></script>
-  <script src="../../js/admin/admin-pos.js?v=dialog-1"></script>
-  <script src="../../js/admin/admin-categories.js?v=dialog-1"></script>
-  <script src="../../js/admin/admin-coupons.js"></script>
-  <script src="../../js/admin/admin-content.js"></script>
-  <script src="../../js/admin/admin-payments.js"></script>
-  <script src="../../js/admin/admin-settings.js?v=brand-2"></script>
-  <script src="../../js/admin/admin-pages.js?v=cat-1"></script>
+  <div id="admin-app" class="admin-app" aria-busy="true">
+    <p role="status" style="padding:2rem;font-family:Cairo,sans-serif;color:#64748b">جاري تحميل لوحة التحكم… / Loading dashboard…</p>
+  </div>
+  <script src="/js/app-routes.js?v=cat-2"></script>
+  <script src="/js/api.js?v=paymob-2"></script>
+  <script src="/js/pages/storefront-demo-catalog.js?v=admin-3"></script>
+  <script src="/js/i18n.js?v=admin-3"></script>
+  <script src="/js/admin/store-state.js?v=cat-2"></script>
+  <script src="/js/admin/admin-i18n.js?v=dialog-3"></script>
+  <script src="/js/admin/admin-auth.js?v=dash-2"></script>
+  <script src="/js/admin/admin-layout.js?v=admin-layout-2"></script>
+  <script src="/js/admin/admin-shell.js?v=dash-2"></script>
+  <script src="/js/admin/admin-products.js?v=dash-2"></script>
+  <script src="/js/admin/admin-orders.js?v=admin-layout-2"></script>
+  <script src="/js/admin/admin-overview.js?v=admin-layout-2"></script>
+  <script src="/js/admin/admin-pos.js?v=dialog-2"></script>
+  <script src="/js/admin/admin-categories.js?v=dialog-2"></script>
+  <script src="/js/admin/admin-coupons.js?v=dash-2"></script>
+  <script src="/js/admin/admin-content.js?v=dash-2"></script>
+  <script src="/js/admin/admin-payments.js?v=dash-2"></script>
+  <script src="/js/admin/admin-settings.js?v=brand-3"></script>
+  <script src="/js/admin/admin-pages.js?v=dash-2"></script>
 </body>
 </html>

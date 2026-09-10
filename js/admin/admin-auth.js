@@ -92,23 +92,36 @@ const AdminAuth = (() => {
     return session() ? 'overview' : 'login';
   }
 
-  function guard() {
-    if (status === 'authenticated' && session()) return true;
-    if (status === 'anonymous') window.location.replace(adminPath('login'));
-    return false;
-  }
-
   function storefrontHome() {
     if (typeof AppRoutes !== 'undefined') return new URL(AppRoutes.page('index'), window.location.origin).href;
     return new URL('/', window.location.origin).href;
+  }
+
+  function guard() {
+    if (status === 'authenticated' && session()) return true;
+    if (status === 'anonymous') {
+      window.location.replace(adminPath('login'));
+      return false;
+    }
+    const app = document.getElementById('admin-app');
+    if (app && !app.querySelector('[data-admin-boot]')) {
+      app.innerHTML = '<p data-admin-boot role="status" style="padding:2rem;font-family:Cairo,sans-serif;color:#64748b">جاري التحقق من الجلسة… / Checking session…</p>';
+    }
+    return false;
   }
 
   function showDashboard(page) {
     const app = document.getElementById('admin-app');
     document.body.dataset.adminPage = page;
     document.body?.classList?.remove('is-admin-login');
-    if (app) {app.hidden = false;app.setAttribute('aria-busy','false');}
-    if (typeof window.renderAdminPage === 'function') window.renderAdminPage();
+    if (app) { app.hidden = false; app.setAttribute('aria-busy', 'false'); }
+    if (typeof window.renderAdminPage === 'function') {
+      window.renderAdminPage();
+      return;
+    }
+    if (app) {
+      app.innerHTML = '<p role="alert" style="padding:2rem;font-family:Cairo,sans-serif;color:#ba1a1a">تعذّر تحميل سكربتات لوحة التحكم. تأكد أن ملفات /js/admin تصل عبر HTTPS. / Dashboard scripts failed to load.</p>';
+    }
   }
 
   async function initialize(operation) {
