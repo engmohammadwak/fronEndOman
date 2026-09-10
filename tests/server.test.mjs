@@ -33,7 +33,8 @@ test('HTTP clean routes, private files, admin cookie persistence and safe checko
     assert.equal(legacy.status,302);assert.equal(legacy.headers.get('location'),'/refurbished-devices?q=phone');
     for(const route of ['/data/store.json','/server/api.mjs','/.env','/dashboard/missing','/assets/%252e%252e/data/store.json']) assert.equal((await get(route)).status,404,route);
     assert.equal((await get('/%zz')).status,400);
-    assert.equal((await get('/api/admin/session')).status,401);
+    assert.equal((await get('/api/admin/session')).status,200);
+    assert.equal((await get('/api/admin/session').then(r=>r.json())).ok,false);
     const productsPublic = await get('/api/products');
     assert.equal(productsPublic.status, 200);
     const productsBody = await productsPublic.json();
@@ -75,7 +76,9 @@ test('HTTP clean routes, private files, admin cookie persistence and safe checko
     assert.equal((await post('/api/checkout/pay',{total:0.01})).status,503);
     assert.equal((await get('/api/payments/config').then(r=>r.json())).enabled,false);
     assert.equal((await post('/api/admin/logout',{},cookie)).status,200);
-    assert.equal((await get('/api/admin/session',{headers:{Cookie:cookie}})).status,401);
+    const afterLogout = await get('/api/admin/session',{headers:{Cookie:cookie}});
+    assert.equal(afterLogout.status,200);
+    assert.equal((await afterLogout.json()).ok,false);
     const invalid=await get('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:'{'});assert.equal(invalid.status,400);
     await writeFile(path.join(directory,'store.json'),'{broken');
     assert.equal((await get('/api/payments/config')).status,500,'corrupt data fails closed');

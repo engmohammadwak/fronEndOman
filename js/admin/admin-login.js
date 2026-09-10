@@ -80,7 +80,8 @@ try {
 } catch {}
 
 fetch('/api/admin/session', { credentials: 'same-origin', cache: 'no-store' })
-  .then((response) => { if (response.ok) window.location.replace('/dashboard/home'); })
+  .then((response) => response.json().catch(() => null))
+  .then((data) => { if (data?.ok === true) window.location.replace('/dashboard/home'); })
   .catch(() => {});
 
 });

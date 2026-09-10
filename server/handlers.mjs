@@ -256,7 +256,8 @@ export async function handleApi(req, res, url) {
 
   if (req.method === 'GET' && path === '/api/admin/session') {
     const session = adminSession(req);
-    json(res, session ? 200 : 401, session ? { ok:true, email:session.email } : { error:'Authentication required' });
+    // Always HTTP 200 so the login page probe is not a red 401 in DevTools.
+    json(res, 200, session ? { ok: true, email: session.email } : { ok: false });
     return true;
   }
 

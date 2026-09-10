@@ -7,8 +7,10 @@ const AdminAuth = (() => {
   async function sessionRequest(path, options = {}) {
     const response = await fetch(path, { credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(15000), ...options });
     if (response.status === 401) return null;
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Authentication service unavailable');
+    const data = await response.json().catch(() => null);
+    if (!response.ok) throw new Error(data?.error || 'Authentication service unavailable');
+    // Explicit anonymous probe from login page / logged-out state.
+    if (data && data.ok === false) return null;
     return data;
   }
 
