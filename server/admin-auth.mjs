@@ -61,9 +61,11 @@ export function isHttpsRequest(req) {
 }
 
 export function sessionCookie(token, maxAge = SESSION_TTL_MS / 1000, options = {}) {
+  // SameSite=Lax works with HTTPS↔proxy and top-level navigations after login.
+  // Secure follows the public HTTPS signal (X-Forwarded-Proto / TECHPRO_PUBLIC_URL).
   const useSecure = options.secure ?? isHttpsRequest(options.req);
   const secure = useSecure ? '; Secure' : '';
-  return `techpro_admin=${token || ''}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${secure}`;
+  return `techpro_admin=${token || ''}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${secure}`;
 }
 
 // Bound memory and slow credential guessing without trusting proxy headers.

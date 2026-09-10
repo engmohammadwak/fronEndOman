@@ -1,0 +1,26 @@
+# TechPro / cPanel — force HTTPS and proxy to the Node app on 127.0.0.1:3000
+# Requires: mod_rewrite, mod_proxy, mod_proxy_http, mod_proxy_wstunnel, mod_headers
+
+RewriteEngine On
+
+# Force HTTPS (skip when already HTTPS via TLS or proxy)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Serve existing static files / directories from disk when present
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Preserve the public Host for the Node app (cookies + origin checks)
+RequestHeader set X-Forwarded-Host %{HTTP_HOST}e env=HTTP_HOST
+RequestHeader set X-Forwarded-Proto "https"
+RequestHeader set X-Forwarded-Ssl on
+
+# WebSocket upgrade → Node
+RewriteCond %{HTTP:Upgrade} =websocket [NC]
+RewriteRule ^(.*)$ ws://127.0.0.1:3000/$1 [P,L]
+
+# Everything else → Node (Express on PORT=3000)
+RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]

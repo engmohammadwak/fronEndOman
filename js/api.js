@@ -1,7 +1,8 @@
 function isDemoMode() { return window.TECHPRO_CONFIG?.mode !== 'live'; }
 async function requestBackend(path, options = {}) {
-  const origin = window.location.origin || new URL(window.location.href || 'http://localhost').origin;
-  const url = new URL(String(path).replace(/^\//, ''), new URL('/api/', origin));
+  // Always same-origin relative /api — never hardcode http(s)://host (breaks Secure cookies).
+  const clean = String(path || '').replace(/^\/+/, '');
+  const url = `/api/${clean}`;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), window.TECHPRO_CONFIG?.requestTimeoutMs || 15000);
   try {
@@ -24,8 +25,8 @@ async function requestBackend(path, options = {}) {
 }
 async function requestApi(path, options = {}) {
   if (isDemoMode() && window.TECHPRO_CONFIG?.demoApiReads === false) throw new Error('Preview uses local data');
-  const origin = window.location.origin || new URL(window.location.href).origin;
-  const url = new URL(String(path).replace(/^\//, ''), new URL('/api/', origin));
+  const clean = String(path || '').replace(/^\/+/, '');
+  const url = `/api/${clean}`;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), window.TECHPRO_CONFIG?.requestTimeoutMs || 5000);
   try {

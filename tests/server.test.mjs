@@ -47,9 +47,18 @@ test('HTTP clean routes, private files, admin cookie persistence and safe checko
     assert.equal((await post('/api/admin/login',{email:'integration-admin',password:'wrong'})).status,401);
     const login=await post('/api/admin/login',{email:'integration-admin',password:'integration-password-only'});
     assert.equal(login.status,200);
-    const setCookie=login.headers.get('set-cookie');assert.match(setCookie,/HttpOnly/);assert.match(setCookie,/SameSite=Strict/);
+    const setCookie=login.headers.get('set-cookie');assert.match(setCookie,/HttpOnly/);assert.match(setCookie,/SameSite=Lax/);
     const cookie=setCookie.split(';')[0];
     assert.equal((await get('/api/admin/session',{headers:{Cookie:cookie}})).status,200);
+    assert.equal((await get('/api/admin/session',{
+      headers:{
+        Cookie:cookie,
+        Origin:'https://algorift.online',
+        Host:'127.0.0.1:3000',
+        'X-Forwarded-Host':'algorift.online',
+        'X-Forwarded-Proto':'https'
+      }
+    })).status,200,'proxy origin + forwarded host must keep the session');
     const createCategory = await post('/api/admin/categories', {
       nameAr: 'تجريبي',
       nameEn: 'Test Cat',

@@ -52,7 +52,7 @@ npm run dev
 
 ## الجلسات
 
-دخول الإدارة يُتحقق منه على السيرفر. Cookie من نوع `HttpOnly; SameSite=Strict` بصلاحية 30 يومًا تستمر بعد تحديث الصفحة وإعادة تشغيل السيرفر، وتُلغى عند Logout. تُضاف `Secure` تلقائيًا عند `TECHPRO_PUBLIC_URL=https://...` أو `COOKIE_SECURE=1` أو عند اكتشاف HTTPS عبر `X-Forwarded-Proto` خلف بروكسي cPanel.
+دخول الإدارة يُتحقق منه على السيرفر. Cookie من نوع `HttpOnly; SameSite=Lax` بصلاحية 30 يومًا تستمر بعد تحديث الصفحة وإعادة تشغيل السيرفر، وتُلغى عند Logout. تُضاف `Secure` تلقائيًا عند `TECHPRO_PUBLIC_URL=https://...` أو `COOKIE_SECURE=1` أو عند اكتشاف HTTPS عبر `X-Forwarded-Proto` خلف بروكسي cPanel.
 
 حسابات العملاء الحالية **تجريبية محلية** في `js/auth-state.js`؛ الجلسة والسلة والمفضلة تبقى بعد التحديث وإغلاق التبويب. حذف بيانات المتصفح يلغي هذا التخزين. يلزم Backend لحسابات العملاء قبل استقبال عملاء حقيقيين.
 

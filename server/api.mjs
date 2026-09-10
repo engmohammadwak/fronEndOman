@@ -91,9 +91,60 @@ function serveFile(res, filePath, asHtml) {
   });
 }
 
+function normalizeHost(value) {
+  return String(value || '')
+    .split(',')[0]
+    .trim()
+    .toLowerCase()
+    .replace(/:\d+$/, '');
+}
+
+/** Public hostname as seen by the browser (proxy-aware). */
+function requestPublicHost(req) {
+  const forwarded = req.headers['x-forwarded-host'] || req.headers['x-original-host'];
+  if (forwarded) return normalizeHost(forwarded);
+  const publicUrl = process.env.TECHPRO_PUBLIC_URL;
+  if (publicUrl) {
+    try {
+      return normalizeHost(new URL(publicUrl).host);
+    } catch {
+      /* ignore invalid env */
+    }
+  }
+  return normalizeHost(req.headers.host);
+}
+
+function originAllowed(req) {
+  if (!req.headers.origin) return true;
+  try {
+    const originHost = normalizeHost(new URL(req.headers.origin).host);
+    const candidates = new Set([
+      requestPublicHost(req),
+      normalizeHost(req.headers.host),
+      normalizeHost(req.headers['x-forwarded-host']),
+      normalizeHost(req.headers['x-original-host'])
+    ]);
+    if (process.env.TECHPRO_PUBLIC_URL) {
+      try {
+        candidates.add(normalizeHost(new URL(process.env.TECHPRO_PUBLIC_URL).host));
+      } catch {
+        /* ignore */
+      }
+    }
+    for (const host of String(process.env.TECHPRO_ALLOWED_ORIGINS || '').split(',')) {
+      const cleaned = normalizeHost(host);
+      if (cleaned) candidates.add(cleaned);
+    }
+    candidates.delete('');
+    return candidates.has(originHost);
+  } catch {
+    return false;
+  }
+}
+
 async function handleRequest(req, res) {
-  const host = req.headers.host || 'localhost';
-  const url = new URL(req.originalUrl || req.url || '/', `${req.protocol}://${host}`);
+  const host = req.headers['x-forwarded-host'] || req.headers.host || 'localhost';
+  const url = new URL(req.originalUrl || req.url || '/', `${req.protocol}://${String(host).split(',')[0].trim()}`);
   let pathname;
   try {
     pathname = decodeURIComponent(url.pathname);
@@ -108,16 +159,9 @@ async function handleRequest(req, res) {
   }
 
   if (pathname.startsWith('/api/')) {
-    if (req.headers.origin) {
-      try {
-        if (new URL(req.headers.origin).host !== req.headers.host) {
-          send(res, 403, 'Cross-origin request denied');
-          return;
-        }
-      } catch {
-        send(res, 403, 'Cross-origin request denied');
-        return;
-      }
+    if (req.headers.origin && !originAllowed(req)) {
+      send(res, 403, 'Cross-origin request denied');
+      return;
     }
     if (!['GET', 'HEAD', 'DELETE'].includes(req.method) && !String(req.headers['content-type'] || '').includes('application/json')) {
       send(res, 415, 'JSON required');
